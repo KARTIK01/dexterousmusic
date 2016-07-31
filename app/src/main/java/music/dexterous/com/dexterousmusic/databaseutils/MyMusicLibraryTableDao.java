@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.database.music;
+package music.dexterous.com.dexterousmusic.databaseutils;
 
 import android.content.Context;
 

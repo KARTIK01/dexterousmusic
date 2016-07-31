@@ -7,7 +7,7 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.MusicLibraryTable;
-import music.dexterous.com.dexterousmusic.database.music.MyMusicLibraryTableDao;
+import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
 import music.dexterous.com.dexterousmusic.utils.music.ScanningMusic;
 
 
