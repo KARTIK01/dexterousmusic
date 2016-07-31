@@ -50,5 +50,5 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
 
     //Database Green Dao
-    compile 'org.greenrobot:greendao:3.0.0'
+    compile 'org.greenrobot:greendao:2.2.0'
 }
