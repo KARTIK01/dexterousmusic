@@ -3,6 +3,7 @@ package music.dexterous.com.dexterousmusic;
 import android.app.Application;
 import android.content.ContextWrapper;
 
+import music.dexterous.com.dexterousmusic.DBHelper.DBAccessHelper;
 import music.dexterous.com.dexterousmusic.misc.AppPreference;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Utils;
@@ -32,6 +33,10 @@ public class GlobalApplication extends Application {
             //TODO
 //            GoogleAnalyticsHelper.prepareAnalytics(GlobalApplication.this);
         });
+    }
+
+    public DBAccessHelper getDBAccessHelper() {
+        return DBAccessHelper.getInstance(GlobalApplication.this);
     }
 
 }
