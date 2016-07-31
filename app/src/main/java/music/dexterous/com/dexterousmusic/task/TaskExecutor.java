@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
 
 /**
- * Created by anand on 05/01/16.
+ * Created by Kartik on 05/01/16.
  * <p>
  * Helper class to execute tasks on background thread
  */

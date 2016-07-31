@@ -1,7 +1,8 @@
 package music.dexterous.com.dexterousmusic.misc;
 
-import com.brightness.screen.nightmode.BuildConfig;
 import com.orhanobut.logger.Logger;
+
+import music.dexterous.com.dexterousmusic.BuildConfig;
 
 /**
  * Created by anand on 26/09/15.

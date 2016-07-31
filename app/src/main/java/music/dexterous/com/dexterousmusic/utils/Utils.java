@@ -7,9 +7,9 @@ import android.os.Build.VERSION_CODES;
 import android.os.StrictMode;
 import android.support.v4.util.ArrayMap;
 
-import com.brightness.screen.nightmode.task.TaskExecutor;
-
 import java.util.concurrent.Future;
+
+import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 
 /**
  * Class containing some static utility methods.

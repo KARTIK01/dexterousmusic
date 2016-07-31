@@ -2,7 +2,8 @@ package music.dexterous.com.dexterousmusic.utils;
 
 import android.util.Log;
 
-import com.brightness.screen.nightmode.BuildConfig;
+import music.dexterous.com.dexterousmusic.BuildConfig;
+
 
 public class LogUtils {
     private static final String LOG_PREFIX = "zuppit_";

@@ -5,11 +5,12 @@ buildscript {
 
     dependencies {
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
     }
 }
 
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
@@ -37,7 +38,17 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Test and it can be remove
     testCompile 'junit:junit:4.12'
+
+    //PreAdded libs check if any of those can be removed
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'
+
+    //Logger File
+    compile 'com.orhanobut:logger:1.15'
+
+    //Database Green Dao
+    compile 'org.greenrobot:greendao:3.0.0'
 }

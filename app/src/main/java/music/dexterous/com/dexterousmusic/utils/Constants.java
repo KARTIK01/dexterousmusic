@@ -1,7 +1,7 @@
 package music.dexterous.com.dexterousmusic.utils;
 
 /**
- * Created by Honey on 7/13/2016.
+ * Created by Kartik on 7/13/2016.
  */
 public class Constants {
 
