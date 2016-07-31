@@ -66,6 +66,7 @@ public class MusicLibraryTableDao extends AbstractDao<MusicLibraryTable, Long> {
         super(config, daoSession);
     }
 
+
     /** Creates the underlying database table. */
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
