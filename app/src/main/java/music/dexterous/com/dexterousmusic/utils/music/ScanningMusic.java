@@ -30,6 +30,7 @@ public class ScanningMusic {
     String SONG_TRACK_NO = android.provider.MediaStore.Audio.Media.TRACK;
     String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
     String SONG_DURATION = android.provider.MediaStore.Audio.Media.DURATION;
+    String SONG_ALBUMART_PATH = MediaStore.Audio.Albums.ALBUM_ART;
     List<MusicLibraryTable> musicLibraryTables = new ArrayList<>();
 
 
@@ -62,12 +63,17 @@ public class ScanningMusic {
         Uri genreUri = ((fromWhere == "internal") ?
                 android.provider.MediaStore.Audio.Genres.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Genres.EXTERNAL_CONTENT_URI);
+        Uri albumUri = ((fromWhere == "internal") ?
+                android.provider.MediaStore.Audio.Albums.INTERNAL_CONTENT_URI :
+                android.provider.MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI);
+
         Uri playlistUri = ((fromWhere == "internal") ?
                 android.provider.MediaStore.Audio.Playlists.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI);
         ContentResolver resolver = c.getContentResolver();
-        Cursor cursor;
+        Cursor cursor, cursor1;
         final String musicsOnly = MediaStore.Audio.Media.IS_MUSIC + "=1";
+        final String album = MediaStore.Audio.Albums.ALBUM_ART + "=1";
 
 
         String[] columns = {
@@ -78,14 +84,17 @@ public class ScanningMusic {
                 SONG_YEAR,
                 SONG_TRACK_NO,
                 SONG_FILEPATH,
-                SONG_DURATION
+                SONG_DURATION,
         };
-        cursor = resolver.query(musicUri, columns, musicsOnly, null, null);
+        cursor = resolver.query(musicUri, null, musicsOnly, null, null);
+        cursor1 = resolver.query(albumUri, null, album, null, null);
+        PrettyLogger.e(cursor1.getString(cursor.getColumnIndex(SONG_ALBUMART_PATH)));
 
         if (cursor != null && cursor.moveToFirst()) {
             // NOTE: I tried to use MediaMetadataRetriever, but it was too slow.
             //       Even with 10 songs, it took like 13 seconds,
             //       No way I'm releasing it this way - I have like 4.260 songs!
+            int i = 1;
 
             do {
                 // Creating a song from the values on the row
@@ -99,15 +108,20 @@ public class ScanningMusic {
                 song.setSONG_ALBUM(cursor.getString(cursor.getColumnIndex(SONG_ALBUM)));
                 song.setSONG_YEAR("" + cursor.getInt(cursor.getColumnIndex(SONG_YEAR)));
                 song.setSONG_TRACK_NUMBER("" + cursor.getInt(cursor.getColumnIndex(SONG_TRACK_NO)));
+
+
+              /*  if (cursor.getColumnIndex(SONG_ALBUMART_PATH) != -1)
+                    song.setSONG_ALBUM_ART_PATH("" + cursor.getInt(cursor.getColumnIndex(SONG_ALBUMART_PATH)));
+              */
                 song.setSONG_DURATION("" + cursor.getInt(cursor.getColumnIndex(SONG_DURATION)));
 
                 musicLibraryTables.add(song);
             }
             while (cursor.moveToNext());
         }
-        PrettyLogger.e(Arrays.toString(musicLibraryTables.toArray()));
+       /* PrettyLogger.e(Arrays.toString(musicLibraryTables.toArray()));
         PrettyLogger.e("" + musicLibraryTables.size());
-
+*/
 
         scanFromExternal("external", c);
 
@@ -166,8 +180,6 @@ public class ScanningMusic {
         }
         PrettyLogger.e(Arrays.toString(musicLibraryTables.toArray()));
         PrettyLogger.e("" + musicLibraryTables.size());
-
-
 
 
     }
