@@ -10,6 +10,7 @@ import music.dexterous.com.dexterousmusic.database.update.UpgradeDpHelper;
 import music.dexterous.com.dexterousmusic.misc.AppPreference;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Constants;
+import music.dexterous.com.dexterousmusic.utils.UiUtils;
 import music.dexterous.com.dexterousmusic.utils.Utils;
 
 /**
@@ -39,6 +40,10 @@ public class GlobalApplication extends Application {
                 .setPrefsName(getPackageName())
                 .setUseDefaultSharedPreference(true)
                 .build();
+
+        /** load the ui defaults */
+        UiUtils.initialize(GlobalApplication.this);
+
 
         if (BuildConfig.DEBUG) {
             Utils.enableStrictMode();

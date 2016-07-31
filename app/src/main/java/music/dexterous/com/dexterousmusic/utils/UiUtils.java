@@ -1,5 +1,8 @@
 package music.dexterous.com.dexterousmusic.utils;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,6 +20,20 @@ import java.util.concurrent.CountDownLatch;
 public class UiUtils {
 
     private static final Handler mHandler = new Handler(Looper.getMainLooper());
+
+    private static float densityScale;
+
+    /**
+     * Screen dimensions in pixels
+     */
+    public static int screenWidth;
+    public static int screenHeight;
+
+
+    public static void initialize(Context context) {
+        Resources resources = context.getResources();
+        densityScale = resources.getDisplayMetrics().density;
+    }
 
 
     /**
@@ -42,5 +59,9 @@ public class UiUtils {
         return bitmap;
     }
 
+
+    public static int dpToPixel(float dp) {
+        return Math.round(dp * densityScale);
+    }
 
 }
