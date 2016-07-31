@@ -87,9 +87,11 @@ public class ScanningMusic {
 
             do {
                 // Creating a song from the values on the row
-                MusicLibraryTable song = new MusicLibraryTable(cursor.getInt(cursor.getColumnIndex(SONG_ID)),
-                        cursor.getString(cursor.getColumnIndex(SONG_FILEPATH)));
+                MusicLibraryTable song = new MusicLibraryTable();
 
+
+                song.setSONG_ID("" + cursor.getInt(cursor.getColumnIndex(SONG_ID)));
+                song.setSONG_FILE_PATH(cursor.getString(cursor.getColumnIndex(SONG_FILEPATH)));
                 song.setSONG_TITLE(cursor.getString(cursor.getColumnIndex(SONG_TITLE)));
                 song.setSONG_ARTIST(cursor.getString(cursor.getColumnIndex(SONG_ARTIST)));
                 song.setSONG_ALBUM(cursor.getString(cursor.getColumnIndex(SONG_ALBUM)));
