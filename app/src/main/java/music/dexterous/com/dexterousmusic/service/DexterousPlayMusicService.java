@@ -6,6 +6,9 @@ import android.media.AudioManager;
 import android.os.PowerManager;
 
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
+import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
+import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
+import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
 
 /**
  * This is very import class and it needs to take care with proper guidance
@@ -65,17 +68,25 @@ public class DexterousPlayMusicService extends IntentService {
         dexterousMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         // These are the events that will "wake us up"
-        dexterousMediaPlayer.setOnPreparedListener(this); // player initialized
-        dexterousMediaPlayer.setOnCompletionListener(this); // song completed
-        dexterousMediaPlayer.setOnErrorListener(this);
+        dexterousMediaPlayer.setOnPreparedListener(new PlayMusicOnPreparedListener()); // player initialized
+        dexterousMediaPlayer.setOnCompletionListener(new PlayMusicOnCompletionListener()); // song completed
+        dexterousMediaPlayer.setOnErrorListener(new PlayMusicOnErrorListener());
     }
 
-
+    /**
+     * Cleans resources from Android's native MediaPlayer.
+     *
+     * @note According to the MediaPlayer guide, you should release
+     * the MediaPlayer as often as possible.
+     * For example, when losing Audio Focus for an extended
+     * period of time.
+     */
     public void stopMusicPlayer() {
         if (dexterousMediaPlayer == null)
             return;
 
         dexterousMediaPlayer.stop();
         dexterousMediaPlayer.release();
+        dexterousMediaPlayer = null;
     }
 }
