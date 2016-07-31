@@ -440,5 +440,44 @@ public class MusicLibraryTable implements Parcelable {
             return new MusicLibraryTable[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "MusicLibraryTable{" +
+                "id=" + id +
+                ", SONG_ID='" + SONG_ID + '\'' +
+                ", SONG_TITLE='" + SONG_TITLE + '\'' +
+                ", SONG_ARTIST='" + SONG_ARTIST + '\'' +
+                ", SONG_ALBUM='" + SONG_ALBUM + '\'' +
+                ", SONG_ALBUM_ARTIST='" + SONG_ALBUM_ARTIST + '\'' +
+                ", SONG_DURATION='" + SONG_DURATION + '\'' +
+                ", SONG_FILE_PATH='" + SONG_FILE_PATH + '\'' +
+                ", SONG_TRACK_NUMBER='" + SONG_TRACK_NUMBER + '\'' +
+                ", SONG_GENRE='" + SONG_GENRE + '\'' +
+                ", SONG_PLAY_COUNT='" + SONG_PLAY_COUNT + '\'' +
+                ", SONG_YEAR='" + SONG_YEAR + '\'' +
+                ", ALBUMS_COUNT='" + ALBUMS_COUNT + '\'' +
+                ", SONGS_COUNT='" + SONGS_COUNT + '\'' +
+                ", GENRES_SONG_COUNT='" + GENRES_SONG_COUNT + '\'' +
+                ", SONG_LAST_MODIFIED='" + SONG_LAST_MODIFIED + '\'' +
+                ", SONG_SCANNED='" + SONG_SCANNED + '\'' +
+                ", BLACKLIST_STATUS='" + BLACKLIST_STATUS + '\'' +
+                ", ADDED_TIMESTAMP='" + ADDED_TIMESTAMP + '\'' +
+                ", RATING='" + RATING + '\'' +
+                ", LAST_PLAYED_TIMESTAMP='" + LAST_PLAYED_TIMESTAMP + '\'' +
+                ", SONG_SOURCE='" + SONG_SOURCE + '\'' +
+                ", SONG_ALBUM_ART_PATH='" + SONG_ALBUM_ART_PATH + '\'' +
+                ", SONG_DELETED='" + SONG_DELETED + '\'' +
+                ", ARTIST_ART_LOCATION='" + ARTIST_ART_LOCATION + '\'' +
+                ", ALBUM_ID='" + ALBUM_ID + '\'' +
+                ", ARTIST_ID='" + ARTIST_ID + '\'' +
+                ", GENRE_ID='" + GENRE_ID + '\'' +
+                ", GENRE_SONG_COUNT='" + GENRE_SONG_COUNT + '\'' +
+                ", LOCAL_COPY_PATH='" + LOCAL_COPY_PATH + '\'' +
+                ", LIBRARIES='" + LIBRARIES + '\'' +
+                ", SAVED_POSITION='" + SAVED_POSITION + '\'' +
+                '}';
+    }
+
     // KEEP METHODS END
 }
