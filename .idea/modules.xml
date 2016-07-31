@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DexterousMusic.iml" filepath="$PROJECT_DIR$/DexterousMusic.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/daogenerator/daogenerator.iml" filepath="$PROJECT_DIR$/daogenerator/daogenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dexterousmusic.iml" filepath="$PROJECT_DIR$/dexterousmusic.iml" />
     </modules>
   </component>
 </project>

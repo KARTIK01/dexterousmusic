@@ -60,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with yourjj own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
 
-        PrettyLogger.d("hello this is log");
+
         android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         mmr.setDataSource("/storage/sdcard1/Tu Thodi Dair.mp3");
 
