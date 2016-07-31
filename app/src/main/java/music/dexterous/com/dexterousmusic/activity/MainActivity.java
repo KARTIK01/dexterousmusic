@@ -9,15 +9,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
 import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
-import music.dexterous.com.dexterousmusic.services.ScanMusicService;
+import music.dexterous.com.dexterousmusic.service.ScanMusicService;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;

@@ -1,9 +1,8 @@
-package music.dexterous.com.dexterousmusic.services;
+package music.dexterous.com.dexterousmusic.service;
 
 import android.app.IntentService;
 import android.content.Intent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.GlobalApplication;
