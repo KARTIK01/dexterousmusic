@@ -6,7 +6,7 @@
 
     <!-- Storage Permission -->
     <string name="permission_storage_denied">You have denied Permission to storage, now we can\'t play your SD card music</string>
-    <string name="permission_storage_never_ask">Thanks, Enjoy your music</string>
+    <string name="permission_storage_never_ask">Thanks Enjoy your music</string>
     <string name="permission_storage_rationale">Permission to access storage</string>
     <string name="button_allow">Disagree</string>
     <string name="button_deny">Agree</string>
