@@ -6,6 +6,12 @@ package music.dexterous.com.dexterousmusic.utils;
 public class Constants {
 
     /**
+     * Name of database for app
+     */
+    public static final String DB_NAME = "music-db";
+
+
+    /**
      * Variable used as notification id
      * It should be used when @FOREGROUND_NOTIFICATION is not in use
      */
