@@ -5,7 +5,7 @@ import com.orhanobut.logger.Logger;
 import music.dexterous.com.dexterousmusic.BuildConfig;
 
 /**
- * Created by anand on 26/09/15.
+ * Created by Kartik on 26/09/15.
  * <p>
  * Logger helper file for pretty logging
  */
