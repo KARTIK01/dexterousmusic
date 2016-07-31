@@ -3,19 +3,13 @@ package music.dexterous.com.dexterousmusic.utils.music;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
 import android.net.Uri;
-import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.database.MusicLibraryTable;
 import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
 
@@ -25,6 +19,9 @@ import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
 public class ScanningMusic {
     private boolean scanningSongs;
     private boolean scannedSongs;
+    private final static int internal = 0;
+    private final static int external = 1;
+
     String GENRE_ID = MediaStore.Audio.Genres._ID;
     String GENRE_NAME = MediaStore.Audio.Genres.NAME;
     String SONG_ID = android.provider.MediaStore.Audio.Media._ID;
@@ -46,28 +43,26 @@ public class ScanningMusic {
         return scannedSongs;
     }
 
-    public List<MusicLibraryTable> getAllMusicEntities(Context c) {
-
-        if (scanningSongs) {
+    /**
+     * @param context
+     * @return list already scanning then return null else scan the songs
+     */
+    public List<MusicLibraryTable> getAllMusicEntities(Context context) {
+        if (scanningSongs)
             return null;
-        }
-        scanFromInternal("internal", c);
-
-
+        scanFromInternal(internal, context);
         scanningSongs = true;
-
-
         return musicLibraryTables;
     }
 
-    public void scanFromInternal(String fromWhere, Context c) {
-        Uri musicUri = ((fromWhere == "internal") ?
+    public void scanFromInternal(int fromWhere, Context c) {
+        Uri musicUri = ((fromWhere == internal) ?
                 android.provider.MediaStore.Audio.Media.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-        Uri genreUri = ((fromWhere == "internal") ?
+        Uri genreUri = ((fromWhere == internal) ?
                 android.provider.MediaStore.Audio.Genres.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Genres.EXTERNAL_CONTENT_URI);
-        Uri playlistUri = ((fromWhere == "internal") ?
+        Uri playlistUri = ((fromWhere == internal) ?
                 android.provider.MediaStore.Audio.Playlists.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI);
         ContentResolver resolver = c.getContentResolver();
