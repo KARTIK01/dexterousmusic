@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        PrettyLogger.d("hello this is log");
     }
 
     @Override
