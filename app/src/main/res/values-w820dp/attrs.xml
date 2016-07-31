@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- styleable attributes for textview font-->
+    <declare-styleable name="FontText">
+        <attr name="fontName" format="string" />
+        <attr name="setBackground" format="boolean" />
+    </declare-styleable>
+
+</resources>
