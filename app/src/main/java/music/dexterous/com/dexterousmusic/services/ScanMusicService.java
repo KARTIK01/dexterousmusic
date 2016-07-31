@@ -2,16 +2,14 @@ package music.dexterous.com.dexterousmusic.services;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.database.Cursor;
-import android.provider.MediaStore;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import music.dexterous.com.dexterousmusic.DBHelper.DBAccessHelper;
-import music.dexterous.com.dexterousmusic.DBHelper.MediaStoreAccessHelper;
 import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.MusicLibraryTable;
 import music.dexterous.com.dexterousmusic.database.music.MyMusicLibraryTableDao;
+import music.dexterous.com.dexterousmusic.utils.music.ScanningMusic;
 
 
 /**
@@ -34,7 +32,7 @@ public class ScanMusicService extends IntentService {
     }
 
     private void getSongsFromMediaStore() {
-        ArrayList<MusicLibraryTable> musicLibraryTables = getAllMusicEntities();
+        List<MusicLibraryTable> musicLibraryTables = ScanningMusic.getAllMusicEntities();
         MyMusicLibraryTableDao.saveAll(getApplicationContext(), musicLibraryTables);
     }
 

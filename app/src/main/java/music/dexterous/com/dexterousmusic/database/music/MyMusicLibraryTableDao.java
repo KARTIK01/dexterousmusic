@@ -3,6 +3,7 @@ package music.dexterous.com.dexterousmusic.database.music;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.greenrobot.dao.internal.DaoConfig;
 import music.dexterous.com.dexterousmusic.GlobalApplication;
@@ -14,7 +15,7 @@ import music.dexterous.com.dexterousmusic.database.MusicLibraryTableDao;
  */
 public class MyMusicLibraryTableDao {
 
-    public static void saveAll(Context context, ArrayList<MusicLibraryTable> musicLibraryTables) {
+    public static void saveAll(Context context, List<MusicLibraryTable> musicLibraryTables) {
         ((GlobalApplication) context).getSession().getMusicLibraryTableDao().insertInTx(musicLibraryTables);
     }
 
