@@ -91,6 +91,11 @@ public class MusicLibraryTable implements Parcelable {
         this.SAVED_POSITION = SAVED_POSITION;
     }
 
+    public MusicLibraryTable(long id, String filePath) {
+        this.id = id;
+        this.SONG_FILE_PATH = filePath;
+    }
+
     public Long getId() {
         return id;
     }
