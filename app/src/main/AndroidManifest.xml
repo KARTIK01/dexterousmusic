@@ -23,6 +23,7 @@
         <service
             android:name=".services.ScanMusicService"
             android:exported="false"></service>
+
     </application>
 
 </manifest>

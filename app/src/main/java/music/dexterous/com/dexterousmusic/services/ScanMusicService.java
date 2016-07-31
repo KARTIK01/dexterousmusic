@@ -27,8 +27,6 @@ public class ScanMusicService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-
-
     }
 
     private Cursor getSongsFromMediaStore() {
@@ -38,7 +36,7 @@ public class ScanMusicService extends IntentService {
         //Build the appropriate selection statement.
         Cursor mediaStoreCursor = null;
         String sortOrder = null;
-        String projection[] = { MediaStore.Audio.Media.TITLE,
+        String projection[] = {MediaStore.Audio.Media.TITLE,
                 MediaStore.Audio.Media.ARTIST,
                 MediaStore.Audio.Media.ALBUM,
                 MediaStore.Audio.Media.ALBUM_ID,
@@ -49,10 +47,10 @@ public class ScanMusicService extends IntentService {
                 MediaStore.Audio.Media.DATE_ADDED,
                 MediaStore.Audio.Media.DATE_MODIFIED,
                 MediaStore.Audio.Media._ID,
-                MediaStoreAccessHelper.ALBUM_ARTIST };
+                MediaStoreAccessHelper.ALBUM_ARTIST};
 
         //Grab the cursor of MediaStore entries.
-        if (musicFoldersCursor==null || musicFoldersCursor.getCount() < 1) {
+        if (musicFoldersCursor == null || musicFoldersCursor.getCount() < 1) {
             //No folders were selected by the user. Grab all songs in MediaStore.
             mediaStoreCursor = MediaStoreAccessHelper.getAllSongs(this, projection, sortOrder);
         } else {
@@ -69,12 +67,13 @@ public class ScanMusicService extends IntentService {
 
         return mediaStoreCursor;
     }
+
     private String buildMusicFoldersSelection(Cursor musicFoldersCursor) {
         String mediaStoreSelection = MediaStore.Audio.Media.IS_MUSIC + "!=0 AND (";
         int folderPathColIndex = musicFoldersCursor.getColumnIndex(DBAccessHelper.FOLDER_PATH);
         int includeColIndex = musicFoldersCursor.getColumnIndex(DBAccessHelper.INCLUDE);
 
-        for (int i=0; i < musicFoldersCursor.getCount(); i++) {
+        for (int i = 0; i < musicFoldersCursor.getCount(); i++) {
             musicFoldersCursor.moveToPosition(i);
             boolean include = musicFoldersCursor.getInt(includeColIndex) > 0;
 
@@ -86,9 +85,9 @@ public class ScanMusicService extends IntentService {
                 likeClause = " NOT LIKE ";
 
             //The first " AND " clause was already appended to mediaStoreSelection.
-            if (i!=0 && !include)
+            if (i != 0 && !include)
                 mediaStoreSelection += " AND ";
-            else if (i!=0 && include)
+            else if (i != 0 && include)
                 mediaStoreSelection += " OR ";
 
             mediaStoreSelection += MediaStore.Audio.Media.DATA + likeClause
