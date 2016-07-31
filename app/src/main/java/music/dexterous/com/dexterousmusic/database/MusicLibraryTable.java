@@ -7,7 +7,6 @@ package music.dexterous.com.dexterousmusic.database;
 import android.os.Parcel;
 import android.os.Parcelable;
 // KEEP INCLUDES END
-
 /**
  * Entity mapped to table "MUSIC_LIBRARY_TABLE".
  */
@@ -89,11 +88,6 @@ public class MusicLibraryTable implements Parcelable {
         this.LOCAL_COPY_PATH = LOCAL_COPY_PATH;
         this.LIBRARIES = LIBRARIES;
         this.SAVED_POSITION = SAVED_POSITION;
-    }
-
-    public MusicLibraryTable(long id, String filePath) {
-        this.id = id;
-        this.SONG_FILE_PATH = filePath;
     }
 
     public Long getId() {
@@ -478,6 +472,6 @@ public class MusicLibraryTable implements Parcelable {
                 ", SAVED_POSITION='" + SAVED_POSITION + '\'' +
                 '}';
     }
-
     // KEEP METHODS END
+
 }
