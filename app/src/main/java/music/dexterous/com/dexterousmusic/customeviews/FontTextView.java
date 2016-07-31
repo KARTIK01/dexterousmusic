@@ -11,7 +11,7 @@ import music.dexterous.com.dexterousmusic.utils.Constants;
 import music.dexterous.com.dexterousmusic.utils.Utils;
 
 /**
- * Created by aman on 20-11-2015 in NewZuppit.
+ * Created by Kartik on 20-11-2015 in NewZuppit.
  * <p>
  * ** Set fontname from xml for textview
  */
