@@ -30,4 +30,12 @@
             android:exported="false"></service>
     </application>
 
+
+    <!-- Glide Module and cache -->
+    <meta-data
+        android:name="music.dexterous.com.dexterousmusic.utils.image.SetupGlideModule"
+        android:value="GlideModule" />
+    <meta-data
+        android:name="music.dexterous.com.dexterousmusic.utils.image.LimitCacheSizeGlideModule"
+        android:value="GlideModule" />
 </manifest>
