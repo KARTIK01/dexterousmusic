@@ -7,11 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.update.UpgradeDpHelper;
-import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Constants;
 import music.dexterous.com.dexterousmusic.utils.UiUtils;
 import music.dexterous.com.dexterousmusic.utils.Utils;
+import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 
 /**
  * Created by Honey on 7/13/2016.

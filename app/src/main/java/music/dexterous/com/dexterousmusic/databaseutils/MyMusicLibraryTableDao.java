@@ -2,25 +2,32 @@ package music.dexterous.com.dexterousmusic.databaseutils;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.dao.internal.DaoConfig;
 import music.dexterous.com.dexterousmusic.GlobalApplication;
-import music.dexterous.com.dexterousmusic.database.MusicLibraryTable;
-import music.dexterous.com.dexterousmusic.database.MusicLibraryTableDao;
+import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.database.MusicDao;
 
 /**
  * Created by Honey on 7/31/2016.
  */
 public class MyMusicLibraryTableDao {
 
-    public static void saveAllMusic(Context context, List<MusicLibraryTable> musicLibraryTables) {
-        ((GlobalApplication) context).getSession().getMusicLibraryTableDao().insertInTx(musicLibraryTables);
+    public static void saveAllMusic(Context context, List<Music> musicLibraryTables) {
+        ((GlobalApplication) context).getSession().getMusicDao().insertInTx(musicLibraryTables);
     }
 
-    public static List<MusicLibraryTable> getAllMusic(Context context) {
-        return ((GlobalApplication) context).getSession().getMusicLibraryTableDao().loadAll();
+    public static List<Music> getAllMusic(Context context) {
+        return ((GlobalApplication) context).getSession().getMusicDao().loadAll();
+    }
+
+    public static List<Music> getAllMusic(Context context, String searchQuery) {
+        return ((GlobalApplication) context)
+                .getSession()
+                .getMusicDao()
+                .queryBuilder()
+                .where(MusicDao.Properties.SONG_TITLE.like("%" + searchQuery + "%"))
+                .list();
     }
 
 }

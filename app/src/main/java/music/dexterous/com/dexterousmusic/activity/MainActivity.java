@@ -19,8 +19,8 @@ import android.widget.Toast;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
 import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.service.ScanMusicService;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -56,25 +56,25 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PrettyLogger.e(MyMusicLibraryTableDao.getAllMusic(getApplicationContext()).toString());
+                PrettyLogger.d(MyMusicLibraryTableDao.getAllMusic(getApplicationContext(), "mera").toString());
             }
         });
 
 
-        android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        mmr.setDataSource("/storage/sdcard1/Tu Thodi Dair.mp3");
-
-
-        byte[] data = mmr.getEmbeddedPicture();
-        //coverart is an Imageview object
-
-        // convert the byte array to a bitmap
-        if (data != null) {
-            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-            coverart.setImageBitmap(bitmap); //associated cover art in bitmap
-        } else {
-            coverart.setImageResource(R.mipmap.ic_launcher); //any default cover resourse folder
-        }
+//        android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+//        mmr.setDataSource("/storage/sdcard1/Tu Thodi Dair.mp3");
+//
+//
+//        byte[] data = mmr.getEmbeddedPicture();
+//        //coverart is an Imageview object
+//
+//        // convert the byte array to a bitmap
+//        if (data != null) {
+//            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+//            coverart.setImageBitmap(bitmap); //associated cover art in bitmap
+//        } else {
+//            coverart.setImageResource(R.mipmap.ic_launcher); //any default cover resourse folder
+//        }
 
     }
 
