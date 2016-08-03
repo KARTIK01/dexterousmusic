@@ -26,7 +26,7 @@ public class MyMusicLibraryTableDao {
                 .getSession()
                 .getMusicDao()
                 .queryBuilder()
-                .where(MusicDao.Properties.SONG_TITLE.like("%" + searchQuery + "%"))
+                .where(MusicDao.Properties.SONG_ARTIST.eq("Bilal Saeed"))
                 .list();
     }
 }
