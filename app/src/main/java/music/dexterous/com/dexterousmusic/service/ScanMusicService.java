@@ -6,7 +6,7 @@ import android.content.Intent;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.GlobalApplication;
-import music.dexterous.com.dexterousmusic.database.MusicLibraryTable;
+import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
 import music.dexterous.com.dexterousmusic.utils.music.ScanningMusic;
 
@@ -31,7 +31,7 @@ public class ScanMusicService extends IntentService {
     }
 
     private void getSongsFromMediaStore() {
-        List<MusicLibraryTable> musicLibraryTables = new ScanningMusic().getAllMusicEntities(this);
+        List<Music> musicLibraryTables = new ScanningMusic().getAllMusicEntities(this);
         MyMusicLibraryTableDao.saveAllMusic(getApplicationContext(), musicLibraryTables);
     }
 

@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.PowerManager;
 
+import java.util.List;
+
+import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
@@ -22,6 +25,8 @@ public class DexterousPlayMusicService extends IntentService {
      * Dexterous Media Player - we control it in here.
      */
     DexterousMediaPlayer dexterousMediaPlayer;
+
+    List<Music> mMusicList;
 
     /**
      * AudioManager provides access to volume and ringer mode control.
@@ -97,5 +102,15 @@ public class DexterousPlayMusicService extends IntentService {
         dexterousMediaPlayer.stop();
         dexterousMediaPlayer.release();
         dexterousMediaPlayer = null;
+    }
+
+
+    /**
+     * Appends a song to the end of the currently playing queue.
+     *
+     * @param music New song to put at the end.
+     */
+    public void add(Music music) {
+        mMusicList.add(music);
     }
 }

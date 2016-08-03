@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import music.dexterous.com.dexterousmusic.database.MusicLibraryTable;
+import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
@@ -32,7 +32,7 @@ public class ScanningMusic {
     String SONG_TRACK_NO = android.provider.MediaStore.Audio.Media.TRACK;
     String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
     String SONG_DURATION = android.provider.MediaStore.Audio.Media.DURATION;
-    List<MusicLibraryTable> musicLibraryTables = new ArrayList<>();
+    List<Music> musicLibraryTables = new ArrayList<>();
 
 
     public boolean isScanning() {
@@ -47,7 +47,7 @@ public class ScanningMusic {
      * @param context
      * @return list already scanning then return null else scan the songs
      */
-    public List<MusicLibraryTable> getAllMusicEntities(Context context) {
+    public List<Music> getAllMusicEntities(Context context) {
         if (scanningSongs)
             return null;
         scanFromInternal(internal, context);
@@ -90,7 +90,7 @@ public class ScanningMusic {
 
             do {
                 // Creating a song from the values on the row
-                MusicLibraryTable song = new MusicLibraryTable();
+                Music song = new Music();
 
 
                 song.setSONG_ID("" + cursor.getInt(cursor.getColumnIndex(SONG_ID)));
@@ -149,7 +149,7 @@ public class ScanningMusic {
 
             do {
                 // Creating a song from the values on the row
-                MusicLibraryTable song = new MusicLibraryTable();
+                Music song = new Music();
 
 
                 song.setSONG_ID("" + cursor.getInt(cursor.getColumnIndex(SONG_ID)));
