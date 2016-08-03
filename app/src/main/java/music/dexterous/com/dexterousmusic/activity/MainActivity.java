@@ -19,7 +19,7 @@ import android.widget.Toast;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
 import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
-import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.service.ScanMusicService;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;

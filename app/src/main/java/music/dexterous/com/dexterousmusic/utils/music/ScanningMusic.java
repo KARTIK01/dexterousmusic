@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.database.MusicLibraryTable;
-import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Dubey's on 31-07-2016.

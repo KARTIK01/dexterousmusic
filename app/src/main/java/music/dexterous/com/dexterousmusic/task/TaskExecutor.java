@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Kartik on 05/01/16.

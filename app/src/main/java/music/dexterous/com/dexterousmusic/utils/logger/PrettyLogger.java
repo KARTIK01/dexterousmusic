@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.misc;
+package music.dexterous.com.dexterousmusic.utils.logger;
 
 import com.orhanobut.logger.Logger;
 

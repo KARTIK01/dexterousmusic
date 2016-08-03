@@ -5,7 +5,7 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.Locale;
 
-import music.dexterous.com.dexterousmusic.misc.PrettyLogger;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Honey on 8/1/2016.

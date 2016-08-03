@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.misc;
+package music.dexterous.com.dexterousmusic.utils.preference;
 
 import android.annotation.TargetApi;
 import android.content.Context;
