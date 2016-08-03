@@ -15,8 +15,12 @@ import music.dexterous.com.dexterousmusic.database.MusicLibraryTableDao;
  */
 public class MyMusicLibraryTableDao {
 
-    public static void saveAll(Context context, List<MusicLibraryTable> musicLibraryTables) {
+    public static void saveAllMusic(Context context, List<MusicLibraryTable> musicLibraryTables) {
         ((GlobalApplication) context).getSession().getMusicLibraryTableDao().insertInTx(musicLibraryTables);
+    }
+
+    public static List<MusicLibraryTable> getAllMusic(Context context) {
+        return ((GlobalApplication) context).getSession().getMusicLibraryTableDao().loadAll();
     }
 
 }

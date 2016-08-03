@@ -35,6 +35,10 @@ public class DexterousPlayMusicService extends IntentService {
      */
     AudioManager audioManager;
 
+    PlayMusicOnPreparedListener mPlayMusicOnPreparedListener;
+    PlayMusicOnCompletionListener mPlayMusicOnCompletionListener;
+    PlayMusicOnErrorListener mPlayMusicOnErrorListener;
+
 
     public DexterousPlayMusicService() {
         super("DexterousPlayMusicService");
@@ -45,7 +49,6 @@ public class DexterousPlayMusicService extends IntentService {
         if (intent != null) {
             audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
             initMusicPlayer();
-
         }
     }
 
@@ -68,9 +71,15 @@ public class DexterousPlayMusicService extends IntentService {
         dexterousMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         // These are the events that will "wake us up"
-        dexterousMediaPlayer.setOnPreparedListener(new PlayMusicOnPreparedListener()); // player initialized
-        dexterousMediaPlayer.setOnCompletionListener(new PlayMusicOnCompletionListener()); // song completed
-        dexterousMediaPlayer.setOnErrorListener(new PlayMusicOnErrorListener());
+        if (mPlayMusicOnPreparedListener == null) {
+            dexterousMediaPlayer.setOnPreparedListener(mPlayMusicOnPreparedListener = new PlayMusicOnPreparedListener()); // player initialized
+        }
+        if (mPlayMusicOnCompletionListener == null) {
+            dexterousMediaPlayer.setOnCompletionListener(mPlayMusicOnCompletionListener = new PlayMusicOnCompletionListener()); // song completed
+        }
+        if (mPlayMusicOnErrorListener == null) {
+            dexterousMediaPlayer.setOnErrorListener(mPlayMusicOnErrorListener = new PlayMusicOnErrorListener());
+        }
     }
 
     /**

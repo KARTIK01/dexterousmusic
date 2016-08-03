@@ -32,7 +32,7 @@ public class ScanMusicService extends IntentService {
 
     private void getSongsFromMediaStore() {
         List<MusicLibraryTable> musicLibraryTables =new ScanningMusic().getAllMusicEntities(this);
-        MyMusicLibraryTableDao.saveAll(getApplicationContext(), musicLibraryTables);
+        MyMusicLibraryTableDao.saveAllMusic(getApplicationContext(), musicLibraryTables);
     }
 
 
