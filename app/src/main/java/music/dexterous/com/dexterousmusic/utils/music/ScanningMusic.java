@@ -19,8 +19,8 @@ import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 public class ScanningMusic {
     private boolean scanningSongs;
     private boolean scannedSongs;
-    private final static int internal = 0;
-    private final static int external = 1;
+    private final static int INTERNAL = 0;
+    private final static int EXTERNAL = 1;
 
     String GENRE_ID = MediaStore.Audio.Genres._ID;
     String GENRE_NAME = MediaStore.Audio.Genres.NAME;
@@ -50,19 +50,19 @@ public class ScanningMusic {
     public List<Music> getAllMusicEntities(Context context) {
         if (scanningSongs)
             return null;
-        scanFromInternal(internal, context);
+        scanFromInternal(INTERNAL, context);
         scanningSongs = true;
         return musicLibraryTables;
     }
 
     public void scanFromInternal(int fromWhere, Context c) {
-        Uri musicUri = ((fromWhere == internal) ?
+        Uri musicUri = ((fromWhere == INTERNAL) ?
                 android.provider.MediaStore.Audio.Media.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-        Uri genreUri = ((fromWhere == internal) ?
+        Uri genreUri = ((fromWhere == INTERNAL) ?
                 android.provider.MediaStore.Audio.Genres.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Genres.EXTERNAL_CONTENT_URI);
-        Uri playlistUri = ((fromWhere == internal) ?
+        Uri playlistUri = ((fromWhere == INTERNAL) ?
                 android.provider.MediaStore.Audio.Playlists.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI);
         ContentResolver resolver = c.getContentResolver();
@@ -109,20 +109,17 @@ public class ScanningMusic {
        /* PrettyLogger.e(Arrays.toString(musicLibraryTables.toArray()));
         PrettyLogger.e("" + musicLibraryTables.size());
 */
-
-        scanFromExternal("external", c);
-
-
+        scanFromExternal("EXTERNAL", c);
     }
 
     public void scanFromExternal(String fromWhere, Context c) {
-        Uri musicUri = ((fromWhere == "internal") ?
+        Uri musicUri = ((fromWhere == "INTERNAL") ?
                 android.provider.MediaStore.Audio.Media.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-        Uri genreUri = ((fromWhere == "internal") ?
+        Uri genreUri = ((fromWhere == "INTERNAL") ?
                 android.provider.MediaStore.Audio.Genres.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Genres.EXTERNAL_CONTENT_URI);
-        Uri playlistUri = ((fromWhere == "internal") ?
+        Uri playlistUri = ((fromWhere == "INTERNAL") ?
                 android.provider.MediaStore.Audio.Playlists.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI);
         ContentResolver resolver = c.getContentResolver();

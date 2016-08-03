@@ -4,6 +4,14 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <!-- Glide Module and cache -->
+    <meta-data
+        android:name="music.dexterous.com.dexterousmusic.utils.image.SetupGlideModule"
+        android:value="GlideModule" />
+    <meta-data
+        android:name="music.dexterous.com.dexterousmusic.utils.image.LimitCacheSizeGlideModule"
+        android:value="GlideModule" />
+
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
@@ -27,15 +35,18 @@
             android:exported="false" />
         <service
             android:name=".service.DexterousPlayMusicService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+
+        <!-- It will fire when headset inserted or removed from phone -->
+        <receiver
+            android:name=".receiver.HeadsetBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.HEADSET_PLUG" />
+            </intent-filter>
+        </receiver>
     </application>
 
-
-    <!-- Glide Module and cache -->
-    <meta-data
-        android:name="music.dexterous.com.dexterousmusic.utils.image.SetupGlideModule"
-        android:value="GlideModule" />
-    <meta-data
-        android:name="music.dexterous.com.dexterousmusic.utils.image.LimitCacheSizeGlideModule"
-        android:value="GlideModule" />
 </manifest>
