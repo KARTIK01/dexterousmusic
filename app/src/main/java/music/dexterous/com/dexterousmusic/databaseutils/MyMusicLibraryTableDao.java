@@ -12,7 +12,7 @@ import music.dexterous.com.dexterousmusic.database.MusicDao;
  * Created by Honey on 7/31/2016.
  */
 public class MyMusicLibraryTableDao {
-    
+
     public static void saveAllMusic(Context context, List<Music> musicList) {
         ((GlobalApplication) context).getSession().getMusicDao().insertInTx(musicList);
     }
@@ -29,5 +29,4 @@ public class MyMusicLibraryTableDao {
                 .where(MusicDao.Properties.SONG_TITLE.like("%" + searchQuery + "%"))
                 .list();
     }
-
 }

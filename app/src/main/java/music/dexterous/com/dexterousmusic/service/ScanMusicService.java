@@ -5,7 +5,6 @@ import android.content.Intent;
 
 import java.util.List;
 
-import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
 import music.dexterous.com.dexterousmusic.utils.music.ScanningMusic;
@@ -18,7 +17,7 @@ import music.dexterous.com.dexterousmusic.utils.music.ScanningMusic;
  * TODO: Customize class - update intent actions and extra parameters.
  */
 public class ScanMusicService extends IntentService {
-    GlobalApplication mApp;
+
     private String mMediaStoreSelection = null;
 
     public ScanMusicService() {
@@ -27,12 +26,14 @@ public class ScanMusicService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        getSongsFromMediaStore();
+        if (intent != null) {
+            getSongsFromMediaStore();
+        }
     }
 
     private void getSongsFromMediaStore() {
-        List<Music> musicLibraryTables = new ScanningMusic().getAllMusicEntities(this);
-        MyMusicLibraryTableDao.saveAllMusic(getApplicationContext(), musicLibraryTables);
+        List<Music> musicList = new ScanningMusic().getAllMusicEntities(this);
+        MyMusicLibraryTableDao.saveAllMusic(getApplicationContext(), musicList);
     }
 
 
