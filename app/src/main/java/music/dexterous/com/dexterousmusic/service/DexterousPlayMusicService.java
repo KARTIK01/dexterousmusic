@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.PowerManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.database.Music;
@@ -26,6 +27,14 @@ public class DexterousPlayMusicService extends IntentService {
      */
     DexterousMediaPlayer dexterousMediaPlayer;
 
+    /**
+     * Index of the current song we're playing on the `songs` list.
+     */
+    public int currentSongPosition;
+
+    /**
+     * List of songs we're  currently playing.
+     */
     List<Music> mMusicList;
 
     /**
@@ -106,6 +115,16 @@ public class DexterousPlayMusicService extends IntentService {
 
 
     /**
+     * Sets the "Now Playing List"
+     *
+     * @param musicList Songs list that will play from now on.
+     * @note Make sure to call {@link #playSong()} after this.
+     */
+    public void setList(ArrayList<Music> musicList) {
+        mMusicList = musicList;
+    }
+
+    /**
      * Appends a song to the end of the currently playing queue.
      *
      * @param music New song to put at the end.
@@ -113,4 +132,26 @@ public class DexterousPlayMusicService extends IntentService {
     public void add(Music music) {
         mMusicList.add(music);
     }
+
+
+    /**
+     * Returns the song on the Now Playing List at `position`.
+     */
+    public Music getSong(int position) {
+        return mMusicList.get(position);
+    }
+
+    /**
+     * Sets a specific song, already within internal Now Playing List.
+     *
+     * @param songIndex Index of the song inside the Now Playing List.
+     */
+    public void setSong(int songIndex) {
+        if (songIndex < 0 || songIndex >= mMusicList.size())
+            currentSongPosition = 0;
+        else
+            currentSongPosition = songIndex;
+    }
+
+
 }
