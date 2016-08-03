@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PrettyLogger.d(MyMusicLibraryTableDao.getAllMusic(getApplicationContext()).toString());
+                PrettyLogger.e(MyMusicLibraryTableDao.getAllMusic(getApplicationContext()).toString());
             }
         });
 
