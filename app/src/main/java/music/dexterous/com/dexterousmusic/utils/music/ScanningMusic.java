@@ -22,16 +22,6 @@ public class ScanningMusic {
     private final static int INTERNAL = 0;
     private final static int EXTERNAL = 1;
 
-    String GENRE_ID = MediaStore.Audio.Genres._ID;
-    String GENRE_NAME = MediaStore.Audio.Genres.NAME;
-    String SONG_ID = android.provider.MediaStore.Audio.Media._ID;
-    String SONG_TITLE = android.provider.MediaStore.Audio.Media.TITLE;
-    String SONG_ARTIST = android.provider.MediaStore.Audio.Media.ARTIST;
-    String SONG_ALBUM = android.provider.MediaStore.Audio.Media.ALBUM;
-    String SONG_YEAR = android.provider.MediaStore.Audio.Media.YEAR;
-    String SONG_TRACK_NO = android.provider.MediaStore.Audio.Media.TRACK;
-    String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
-    String SONG_DURATION = android.provider.MediaStore.Audio.Media.DURATION;
     List<Music> musicLibraryTables = new ArrayList<>();
 
 
@@ -44,18 +34,22 @@ public class ScanningMusic {
     }
 
     /**
+     * make sure you call {@link #isScanning()} before this method
+     *
      * @param context
-     * @return list already scanning then return null else scan the songs
+     * @return list already scanning
+     * null while scanning
      */
     public List<Music> getAllMusicEntities(Context context) {
         if (scanningSongs)
             return null;
-        scanFromInternal(INTERNAL, context);
         scanningSongs = true;
+        scan(INTERNAL, context);
+        scan(EXTERNAL, context);
         return musicLibraryTables;
     }
 
-    public void scanFromInternal(int fromWhere, Context c) {
+    private void scan(int fromWhere, Context c) {
         Uri musicUri = ((fromWhere == INTERNAL) ?
                 android.provider.MediaStore.Audio.Media.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
@@ -68,6 +62,18 @@ public class ScanningMusic {
         ContentResolver resolver = c.getContentResolver();
         Cursor cursor;
         final String musicsOnly = MediaStore.Audio.Media.IS_MUSIC + "=1";
+
+
+        String GENRE_ID = MediaStore.Audio.Genres._ID;
+        String GENRE_NAME = MediaStore.Audio.Genres.NAME;
+        String SONG_ID = android.provider.MediaStore.Audio.Media._ID;
+        String SONG_TITLE = android.provider.MediaStore.Audio.Media.TITLE;
+        String SONG_ARTIST = android.provider.MediaStore.Audio.Media.ARTIST;
+        String SONG_ALBUM = android.provider.MediaStore.Audio.Media.ALBUM;
+        String SONG_YEAR = android.provider.MediaStore.Audio.Media.YEAR;
+        String SONG_TRACK_NO = android.provider.MediaStore.Audio.Media.TRACK;
+        String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
+        String SONG_DURATION = android.provider.MediaStore.Audio.Media.DURATION;
 
 
         String[] columns = {
@@ -86,12 +92,9 @@ public class ScanningMusic {
             // NOTE: I tried to use MediaMetadataRetriever, but it was too slow.
             //       Even with 10 songs, it took like 13 seconds,
             //       No way I'm releasing it this way - I have like 4.260 songs!
-            int i = 1;
-
             do {
                 // Creating a song from the values on the row
                 Music song = new Music();
-
 
                 song.setSONG_ID("" + cursor.getInt(cursor.getColumnIndex(SONG_ID)));
                 song.setSONG_FILE_PATH(cursor.getString(cursor.getColumnIndex(SONG_FILEPATH)));
@@ -106,69 +109,6 @@ public class ScanningMusic {
             }
             while (cursor.moveToNext());
         }
-       /* PrettyLogger.e(Arrays.toString(musicLibraryTables.toArray()));
-        PrettyLogger.e("" + musicLibraryTables.size());
-*/
-        scanFromExternal("EXTERNAL", c);
     }
-
-    public void scanFromExternal(String fromWhere, Context c) {
-        Uri musicUri = ((fromWhere == "INTERNAL") ?
-                android.provider.MediaStore.Audio.Media.INTERNAL_CONTENT_URI :
-                android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-        Uri genreUri = ((fromWhere == "INTERNAL") ?
-                android.provider.MediaStore.Audio.Genres.INTERNAL_CONTENT_URI :
-                android.provider.MediaStore.Audio.Genres.EXTERNAL_CONTENT_URI);
-        Uri playlistUri = ((fromWhere == "INTERNAL") ?
-                android.provider.MediaStore.Audio.Playlists.INTERNAL_CONTENT_URI :
-                android.provider.MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI);
-        ContentResolver resolver = c.getContentResolver();
-        Cursor cursor;
-        final String musicsOnly = MediaStore.Audio.Media.IS_MUSIC + "=1";
-
-
-        String[] columns = {
-                SONG_ID,
-                SONG_TITLE,
-                SONG_ARTIST,
-                SONG_ALBUM,
-                SONG_YEAR,
-                SONG_TRACK_NO,
-                SONG_FILEPATH,
-                SONG_DURATION
-        };
-        cursor = resolver.query(musicUri, columns, musicsOnly, null, null);
-
-        if (cursor != null && cursor.moveToFirst()) {
-            // NOTE: I tried to use MediaMetadataRetriever, but it was too slow.
-            //       Even with 10 songs, it took like 13 seconds,
-            //       No way I'm releasing it this way - I have like 4.260 songs!
-
-            do {
-                // Creating a song from the values on the row
-                Music song = new Music();
-
-
-                song.setSONG_ID("" + cursor.getInt(cursor.getColumnIndex(SONG_ID)));
-                song.setSONG_FILE_PATH(cursor.getString(cursor.getColumnIndex(SONG_FILEPATH)));
-                song.setSONG_TITLE(cursor.getString(cursor.getColumnIndex(SONG_TITLE)));
-                song.setSONG_ARTIST(cursor.getString(cursor.getColumnIndex(SONG_ARTIST)));
-                song.setSONG_ALBUM(cursor.getString(cursor.getColumnIndex(SONG_ALBUM)));
-                song.setSONG_YEAR("" + cursor.getInt(cursor.getColumnIndex(SONG_YEAR)));
-                song.setSONG_TRACK_NUMBER("" + cursor.getInt(cursor.getColumnIndex(SONG_TRACK_NO)));
-                song.setSONG_DURATION("" + cursor.getInt(cursor.getColumnIndex(SONG_DURATION)));
-
-                musicLibraryTables.add(song);
-                PrettyLogger.e(cursor.getString(cursor.getColumnIndex(SONG_FILEPATH)));
-
-            }
-            while (cursor.moveToNext());
-        }
-        PrettyLogger.e(Arrays.toString(musicLibraryTables.toArray()));
-        PrettyLogger.e("" + musicLibraryTables.size());
-
-
-    }
-
 
 }
