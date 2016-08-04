@@ -9,6 +9,12 @@ import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
  */
 public class PlayMusicOnCompletionListener implements DexterousMediaPlayer.OnCompletionListener {
 
+
+    /**
+     * Will be called when the music completes - either when the
+     * user presses 'next' or when the music ends or when the user
+     * selects another track.
+     */
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
 
