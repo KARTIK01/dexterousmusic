@@ -11,6 +11,7 @@ import java.util.List;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
@@ -22,6 +23,10 @@ import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnP
  */
 
 public class DexterousPlayMusicService extends AbstractMusicControlService {
+
+
+    MusicList musicList;
+
 
     public static final String PLAY_MUSIC = "play_music";
     public static final String PAUSE_MUSIC = "pause_music";
@@ -58,55 +63,5 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
             }
         }
     }
-
-    /**
-     * Index of the current song we're playing on the `songs` list.
-     */
-    public int currentSongPosition;
-
-    /**
-     * List of songs we're  currently playing.
-     */
-    List<Music> mMusicList;
-
-    /**
-     * Sets the "Now Playing List"
-     *
-     * @param musicList Songs list that will play from now on.
-     * @note Make sure to call {@link #playMusic()} after this.
-     */
-    public void setList(ArrayList<Music> musicList) {
-        mMusicList = musicList;
-    }
-
-    /**
-     * Appends a song to the end of the currently playing queue.
-     *
-     * @param music New song to put at the end.
-     */
-    public void add(Music music) {
-        mMusicList.add(music);
-    }
-
-
-    /**
-     * Returns the song on the Now Playing List at `position`.
-     */
-    public Music getSong(int position) {
-        return mMusicList.get(position);
-    }
-
-    /**
-     * Sets a specific song, already within internal Now Playing List.
-     *
-     * @param songIndex Index of the song inside the Now Playing List.
-     */
-    public void setSong(int songIndex) {
-        if (songIndex < 0 || songIndex >= mMusicList.size())
-            currentSongPosition = 0;
-        else
-            currentSongPosition = songIndex;
-    }
-
 
 }

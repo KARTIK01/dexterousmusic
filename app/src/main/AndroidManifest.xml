@@ -37,7 +37,6 @@
             android:name=".service.DexterousPlayMusicService"
             android:exported="false" />
 
-
         <!-- It will fire when headset inserted or removed from phone -->
         <receiver
             android:name=".receiver.HeadsetBroadcastReceiver"
@@ -47,6 +46,18 @@
                 <action android:name="android.intent.action.HEADSET_PLUG" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".receiver.widget.NextMusicReceiver"
+            android:enabled="false"
+            android:exported="false" />
+        <receiver
+            android:name=".receiver.widget.PreviousMusicReceiver"
+            android:enabled="false"
+            android:exported="false" />
+        <receiver
+            android:name=".receiver.widget.PauseMusicReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>
