@@ -9,11 +9,19 @@ import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
  */
 public class PlayMusicOnPreparedListener implements DexterousMediaPlayer.OnPreparedListener {
 
+
+    private DexterousMediaPlayer mDexterousMediaPlayer;
+
+    public PlayMusicOnPreparedListener(DexterousMediaPlayer dexterousMediaPlayer) {
+        mDexterousMediaPlayer = dexterousMediaPlayer;
+    }
+
     /**
      * Called when the music is ready for playback.
      */
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
-
+        // Start playback
+        mDexterousMediaPlayer.start();
     }
 }

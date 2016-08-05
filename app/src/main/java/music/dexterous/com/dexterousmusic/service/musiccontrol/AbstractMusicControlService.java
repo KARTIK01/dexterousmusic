@@ -1,13 +1,9 @@
 package music.dexterous.com.dexterousmusic.service.musiccontrol;
 
 import android.app.IntentService;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.os.PowerManager;
 
-import java.util.List;
-
-import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
@@ -21,7 +17,7 @@ public abstract class AbstractMusicControlService extends IntentService implemen
     /**
      * Dexterous Media Player - we control it in here.
      */
-    DexterousMediaPlayer dexterousMediaPlayer;
+    DexterousMediaPlayer mDexterousMediaPlayer;
 
 
     /**
@@ -47,26 +43,26 @@ public abstract class AbstractMusicControlService extends IntentService implemen
 
     @Override
     public void initMusicPlayer() {
-        if (dexterousMediaPlayer == null) {
-            dexterousMediaPlayer = new DexterousMediaPlayer();
+        if (mDexterousMediaPlayer == null) {
+            mDexterousMediaPlayer = new DexterousMediaPlayer();
         }
 
         // Assures the CPU continues running this service
         // even when the device is sleeping.
-        dexterousMediaPlayer.setWakeMode(this,
+        mDexterousMediaPlayer.setWakeMode(this,
                 PowerManager.PARTIAL_WAKE_LOCK);
 
-        dexterousMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mDexterousMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         // These are the events that will "wake us up"
         if (mPlayMusicOnPreparedListener == null) {
-            dexterousMediaPlayer.setOnPreparedListener(mPlayMusicOnPreparedListener = new PlayMusicOnPreparedListener()); // player initialized
+            mDexterousMediaPlayer.setOnPreparedListener(mPlayMusicOnPreparedListener = new PlayMusicOnPreparedListener(mDexterousMediaPlayer)); // player initialized
         }
         if (mPlayMusicOnCompletionListener == null) {
-            dexterousMediaPlayer.setOnCompletionListener(mPlayMusicOnCompletionListener = new PlayMusicOnCompletionListener()); // song completed
+            mDexterousMediaPlayer.setOnCompletionListener(mPlayMusicOnCompletionListener = new PlayMusicOnCompletionListener()); // song completed
         }
         if (mPlayMusicOnErrorListener == null) {
-            dexterousMediaPlayer.setOnErrorListener(mPlayMusicOnErrorListener = new PlayMusicOnErrorListener());
+            mDexterousMediaPlayer.setOnErrorListener(mPlayMusicOnErrorListener = new PlayMusicOnErrorListener());
         }
     }
 
@@ -92,11 +88,11 @@ public abstract class AbstractMusicControlService extends IntentService implemen
 
     @Override
     public void stopMusicPlayer() {
-        if (dexterousMediaPlayer == null)
+        if (mDexterousMediaPlayer == null)
             return;
 
-        dexterousMediaPlayer.stop();
-        dexterousMediaPlayer.release();
-        dexterousMediaPlayer = null;
+        mDexterousMediaPlayer.stop();
+        mDexterousMediaPlayer.release();
+        mDexterousMediaPlayer = null;
     }
 }

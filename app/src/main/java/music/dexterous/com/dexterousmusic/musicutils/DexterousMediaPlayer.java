@@ -7,4 +7,12 @@ import android.media.MediaPlayer;
  */
 public class DexterousMediaPlayer extends MediaPlayer {
 
+    @Override
+    public void start() throws IllegalStateException {
+        super.start();
+
+        // If the user clicks on the notification, let's spawn the
+        // Now Playing screen.
+//        notifyCurrentSong();
+    }
 }

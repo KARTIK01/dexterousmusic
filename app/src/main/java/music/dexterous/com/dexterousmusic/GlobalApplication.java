@@ -2,15 +2,21 @@ package music.dexterous.com.dexterousmusic;
 
 import android.app.Application;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.SystemClock;
+import android.provider.Settings;
 
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.update.UpgradeDpHelper;
+import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Constants;
 import music.dexterous.com.dexterousmusic.utils.UiUtils;
 import music.dexterous.com.dexterousmusic.utils.Utils;
+import music.dexterous.com.dexterousmusic.utils.android.GlobalApplicationTrackTime;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 
 /**
@@ -34,6 +40,11 @@ public class GlobalApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        //must be first line always after super
+        if (BuildConfig.DEBUG) {
+            GlobalApplicationTrackTime.startTimeTrack(this);
+        }
+
         /** Initialize the Preference class */
         new AppPreference.Builder().setContext(GlobalApplication.this)
                 .setMode(ContextWrapper.MODE_PRIVATE)
@@ -54,6 +65,13 @@ public class GlobalApplication extends Application {
             //TODO
 //            GoogleAnalyticsHelper.prepareAnalytics(GlobalApplication.this);
         });
+
+        startMusicService();
+
+        //must be last time always
+        if (BuildConfig.DEBUG) {
+            GlobalApplicationTrackTime.endTimeTrack(this, true);
+        }
     }
 
 
@@ -79,4 +97,12 @@ public class GlobalApplication extends Application {
         }
     }
 
+    /**
+     * It start the music service and initializes all required components
+     */
+    private void startMusicService() {
+        Intent nextMusic = new Intent(DexterousPlayMusicService.INITIALIZE);
+        nextMusic.setClass(this, DexterousPlayMusicService.class);
+        startService(nextMusic);
+    }
 }
