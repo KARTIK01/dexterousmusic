@@ -3,7 +3,9 @@ package music.dexterous.com.dexterousmusic.service;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.PowerManager;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
+import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 
 /**
  * This is very import class and it needs to take care with proper guidance
@@ -35,17 +38,27 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
         super("DexterousPlayMusicService");
     }
 
+    @Nullable
     @Override
-    protected void onHandleIntent(Intent intent) {
-        if (intent != null && intent.getExtras() != null) {
-            Bundle intentExtras = intent.getExtras();
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null) {
+            if (intent.getExtras() != null) {
+                Bundle intentExtras = intent.getExtras();
+            }
             switch (intent.getAction()) {
                 case INITIALIZE:
                     audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                     initMusicPlayer();
                     break;
                 case PLAY_MUSIC:
-                    playMusic();
+                    TaskExecutor.getInstance().executeTask(() -> playMusic());
+//                    playMusic();
                     break;
                 case PAUSE_MUSIC:
                     pauseMusic();
@@ -58,9 +71,11 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
                     break;
 
                 default:
-                    return;
+                    return START_STICKY;
             }
         }
+
+        return START_STICKY;
     }
 
 }

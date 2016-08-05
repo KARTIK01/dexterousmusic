@@ -3,6 +3,7 @@
     package="music.dexterous.com.dexterousmusic">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- Glide Module and cache -->
     <meta-data

@@ -14,6 +14,7 @@ import music.dexterous.com.dexterousmusic.database.MusicDao;
 public class MyMusicLibraryTableDao {
 
     public static void saveAllMusic(Context context, List<Music> musicList) {
+        ((GlobalApplication) context).getSession().getMusicDao().deleteAll();
         ((GlobalApplication) context).getSession().getMusicDao().insertInTx(musicList);
     }
 
@@ -26,7 +27,13 @@ public class MyMusicLibraryTableDao {
                 .getSession()
                 .getMusicDao()
                 .queryBuilder()
-                .where(MusicDao.Properties.SONG_ARTIST.eq("Bilal Saeed"))
+                .where(MusicDao.Properties.SONG_TITLE.eq("%" + searchQuery + "%"))
                 .list();
+    }
+
+    public static Music getMusic(Context context, long index) {
+        return ((GlobalApplication) context)
+                .getSession()
+                .getMusicDao().load(index);
     }
 }

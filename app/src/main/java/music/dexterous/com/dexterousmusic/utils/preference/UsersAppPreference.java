@@ -19,7 +19,7 @@ public class UsersAppPreference {
     }
 
     public static long getHideSmallClipsDurations() {
-        return AppPreference.getLong(HIDE_SMALL_CLIPS_DURATIONS, 10000);
+        return AppPreference.getLong(HIDE_SMALL_CLIPS_DURATIONS, 60000 * 4); //60 * 3secs
     }
 
 

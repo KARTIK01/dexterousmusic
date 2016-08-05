@@ -1,6 +1,7 @@
 package music.dexterous.com.dexterousmusic.service.musiccontrol;
 
 import android.app.IntentService;
+import android.app.Service;
 import android.content.ContentUris;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -19,7 +20,7 @@ import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 /**
  * Created by Honey on 8/4/2016.
  */
-public abstract class AbstractMusicControlService extends IntentService implements MusicControl {
+public abstract class AbstractMusicControlService extends Service implements MusicControl {
 
     /**
      * Dexterous Media Player - we control it in here.
@@ -55,9 +56,12 @@ public abstract class AbstractMusicControlService extends IntentService implemen
     PlayMusicOnCompletionListener mPlayMusicOnCompletionListener;
     PlayMusicOnErrorListener mPlayMusicOnErrorListener;
 
+    public AbstractMusicControlService() {
+        super();
+    }
 
     public AbstractMusicControlService(String name) {
-        super(name);
+        super();
     }
 
     @Override
@@ -94,9 +98,9 @@ public abstract class AbstractMusicControlService extends IntentService implemen
                 (android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                         musicToPlay.getId());
         try {
-            mDexterousMediaPlayer.setDataSource(getApplicationContext(), songToPlayURI);
+            mDexterousMediaPlayer.setDataSource(this, Uri.parse(musicToPlay.getSONG_FILE_PATH()));
         } catch (IOException io) {
-            PrettyLogger.e("IOException: couldn't change the song" + io.getMessage(), io);
+            PrettyLogger.e("IOException: couldn't change the song : " + io.getMessage(), io);
             destroySelf();
         } catch (Exception e) {
             PrettyLogger.e("Error when changing the song", e);

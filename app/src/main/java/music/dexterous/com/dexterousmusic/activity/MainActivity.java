@@ -2,9 +2,6 @@ package music.dexterous.com.dexterousmusic.activity;
 
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -18,8 +15,11 @@ import android.widget.Toast;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
+import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
+import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.service.ScanMusicService;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -31,6 +31,7 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
     protected Button scan;
+    protected Button playMusic;
     String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
     final String musicsOnly = MediaStore.Audio.Media.IS_MUSIC + "=1";
     ImageView coverart;
@@ -43,14 +44,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         scan = (Button) findViewById(R.id.scan_music);
-        coverart = (ImageView) findViewById(R.id.album_art);
-        scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showStoragePermission();
-            }
-        });
+        playMusic = (Button) findViewById(R.id.playMusic);
 
+        coverart = (ImageView) findViewById(R.id.album_art);
+        scan.setOnClickListener(view -> showStoragePermission());
+        playMusic.setOnClickListener(view -> playMusic());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +76,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void myCode() {
+    private void playMusic() {
 
+        Music music = MyMusicLibraryTableDao.getMusic(getApplicationContext(), 5);
+        PrettyLogger.d(music.toString());
+        MusicList.getInstance().add(music);
+        MusicList.getInstance().setCurrentSongPosition(0);
+
+        Intent nextMusic = new Intent(DexterousPlayMusicService.PLAY_MUSIC);
+        nextMusic.setClass(this, DexterousPlayMusicService.class);
+        startService(nextMusic);
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)

@@ -12,6 +12,8 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
+import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
+import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 /**
  * Created by Dubey's on 31-07-2016.
@@ -44,7 +46,7 @@ public class ScanningMusic {
         if (scanningSongs)
             return null;
         scanningSongs = true;
-        scan(INTERNAL, context);
+//        scan(INTERNAL, context);
         scan(EXTERNAL, context);
         return musicLibraryTables;
     }
@@ -104,8 +106,8 @@ public class ScanningMusic {
                 song.setSONG_YEAR("" + cursor.getInt(cursor.getColumnIndex(SONG_YEAR)));
                 song.setSONG_TRACK_NUMBER("" + cursor.getInt(cursor.getColumnIndex(SONG_TRACK_NO)));
                 song.setSONG_DURATION("" + cursor.getInt(cursor.getColumnIndex(SONG_DURATION)));
-
-                musicLibraryTables.add(song);
+                if (Integer.parseInt(song.getSONG_DURATION()) > UsersAppPreference.getHideSmallClipsDurations())
+                    musicLibraryTables.add(song);
             }
             while (cursor.moveToNext());
         }
