@@ -13,7 +13,9 @@ public interface MusicControl {
      */
     public void initMusicPlayer();
 
-
+    /**
+     * Actually plays the song set by `currentSongPosition`.
+     */
     public void playMusic();
 
     public void playNextMusic();
@@ -31,4 +33,12 @@ public interface MusicControl {
      * period of time.
      */
     public void stopMusicPlayer();
+
+    /**
+     * Kills the service.
+     *
+     * @note Explicitly call this when the service is completed
+     * or whatnot.
+     */
+    public void destroySelf();
 }

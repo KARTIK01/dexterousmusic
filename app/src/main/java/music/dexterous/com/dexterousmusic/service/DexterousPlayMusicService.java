@@ -24,10 +24,6 @@ import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnP
 
 public class DexterousPlayMusicService extends AbstractMusicControlService {
 
-
-    MusicList musicList;
-
-
     public static final String PLAY_MUSIC = "play_music";
     public static final String PAUSE_MUSIC = "pause_music";
     public static final String NEXT_MUSIC = "next_music";
@@ -42,7 +38,7 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null && intent.getExtras() != null) {
-            Bundle bundle = intent.getExtras();
+            Bundle intentExtras = intent.getExtras();
             switch (intent.getAction()) {
                 case INITIALIZE:
                     audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
@@ -60,6 +56,9 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
                 case PREVIOUS_MUSIC:
                     playPreviousMusic();
                     break;
+
+                default:
+                    return;
             }
         }
     }

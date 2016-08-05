@@ -10,9 +10,9 @@ import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 public class PlayMusicOnPreparedListener implements DexterousMediaPlayer.OnPreparedListener {
 
 
-    private DexterousMediaPlayer mDexterousMediaPlayer;
+    private MediaPlayer mDexterousMediaPlayer;
 
-    public PlayMusicOnPreparedListener(DexterousMediaPlayer dexterousMediaPlayer) {
+    public PlayMusicOnPreparedListener(MediaPlayer dexterousMediaPlayer) {
         mDexterousMediaPlayer = dexterousMediaPlayer;
     }
 

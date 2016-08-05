@@ -15,7 +15,7 @@ public class MusicList {
     /**
      * Index of the current song we're playing on the `songs` list.
      */
-    public int currentSongPosition;
+    private int currentSongPosition;
 
     /**
      * List of songs we're  currently playing.
@@ -79,4 +79,12 @@ public class MusicList {
             currentSongPosition = songIndex;
     }
 
+
+    public int getCurrentSongPosition() {
+        return currentSongPosition;
+    }
+
+    public void setCurrentSongPosition(int currentSongPosition) {
+        this.currentSongPosition = currentSongPosition;
+    }
 }

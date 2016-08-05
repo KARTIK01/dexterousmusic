@@ -21,7 +21,7 @@ public class GlobalApplicationTrackTime {
             if (endTime > startTime)
                 PrettyLogger.i("GlobalApplication took total " + (endTime - startTime) + " milliseconds to execute");
             else
-                PrettyLogger.e("GlobalApplication took total -1 milliseconds to execute");
+                PrettyLogger.e("GlobalApplication took total -1 milliseconds to execute", new Exception("Start time can't be greater than end time"));
     }
 
 }

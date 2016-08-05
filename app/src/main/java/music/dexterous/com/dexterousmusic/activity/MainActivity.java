@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void myCode() {
+
+    }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showStoragePermission() {

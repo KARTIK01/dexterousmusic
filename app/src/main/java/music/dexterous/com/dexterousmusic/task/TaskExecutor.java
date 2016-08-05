@@ -113,9 +113,7 @@ public class TaskExecutor {
             try {
                 threadPoolExecutor.execute(task);
             } catch (Exception e) {
-                PrettyLogger.e(e.toString());
-                //TODO
-//                Crashlytics.logException(e);
+                PrettyLogger.e(e.toString(), e);
             }
         }
     }
@@ -125,9 +123,7 @@ public class TaskExecutor {
             try {
                 return threadPoolExecutor.submit(task);
             } catch (Exception e) {
-                PrettyLogger.e(e.toString());
-// TODO
-//   Crashlytics.logException(e);
+                PrettyLogger.e(e.toString(), e);
             }
         }
         return null;

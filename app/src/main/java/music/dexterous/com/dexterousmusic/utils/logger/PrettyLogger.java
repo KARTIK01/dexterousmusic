@@ -20,8 +20,13 @@ public class PrettyLogger {
         Logger.init("PrettyLogger");
     }
 
-    public static void e(String msg) {
-        if (DEBUG) Logger.e(msg);
+    public static void e(String msg, Exception e) {
+        if (DEBUG) {
+            Logger.e(msg);
+            e.printStackTrace();
+        } else {
+            //TODO send exception
+        }
     }
 
     public static void d(String msg) {
