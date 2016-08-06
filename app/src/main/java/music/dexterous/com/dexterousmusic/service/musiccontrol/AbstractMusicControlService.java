@@ -93,7 +93,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
         currentMusic = musicToPlay;
 
-        // Append the external URI with our songs'
+
+/********************************This is mess please improve this, please *************************************/
+// Append the external URI with our songs'
         Uri songToPlayURI = ContentUris.withAppendedId
                 (android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                         musicToPlay.getId());
@@ -106,10 +108,13 @@ public abstract class AbstractMusicControlService extends Service implements Mus
             PrettyLogger.e("Error when changing the song", e);
             destroySelf();
         }
+/********************************Mess Ends here please improve this, please *************************************/
 
         // Prepare the MusicPlayer asynchronously.
         // When finished, will call `onPrepare`
         mDexterousMediaPlayer.prepareAsync();
+
+
 //        serviceState = ServiceState.Preparing;
 //
 //        broadcastState(ServicePlayMusic.BROADCAST_EXTRA_PLAYING);
@@ -152,7 +157,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
             mDexterousMediaPlayer.setOnPreparedListener(mPlayMusicOnPreparedListener = new PlayMusicOnPreparedListener(mDexterousMediaPlayer)); // player initialized
         }
         if (mPlayMusicOnCompletionListener == null) {
-            mDexterousMediaPlayer.setOnCompletionListener(mPlayMusicOnCompletionListener = new PlayMusicOnCompletionListener()); // song completed
+            mDexterousMediaPlayer.setOnCompletionListener(mPlayMusicOnCompletionListener = new PlayMusicOnCompletionListener(this)); // song completed
         }
         if (mPlayMusicOnErrorListener == null) {
             mDexterousMediaPlayer.setOnErrorListener(mPlayMusicOnErrorListener = new PlayMusicOnErrorListener());

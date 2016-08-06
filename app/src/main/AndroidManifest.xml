@@ -58,7 +58,11 @@
         <receiver
             android:name=".receiver.widget.PauseMusicReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+        <receiver
+            android:name=".receiver.widget.PlayMusicReceiver"
+            android:enabled="false"
+            android:exported="false"></receiver>
     </application>
 
 </manifest>

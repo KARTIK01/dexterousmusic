@@ -15,7 +15,7 @@ public class DexterousMediaPlayer extends MediaPlayer {
         // Now Playing screen.
 //        notifyCurrentSong();
     }
-
+//
 //    public void setOnErrorListener(MediaPlayer.OnErrorListener listener) {
 //        throw new RuntimeException("Stub!");
 //    }

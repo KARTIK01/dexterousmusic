@@ -47,34 +47,31 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null) {
-            if (intent.getExtras() != null) {
-                Bundle intentExtras = intent.getExtras();
+        TaskExecutor.getInstance().executeTask(() -> {
+            if (intent != null) {
+                if (intent.getExtras() != null) {
+                    Bundle intentExtras = intent.getExtras();
+                }
+                switch (intent.getAction()) {
+                    case INITIALIZE:
+                        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                        initMusicPlayer();
+                        break;
+                    case PLAY_MUSIC:
+                        playMusic();
+                        break;
+                    case PAUSE_MUSIC:
+                        pauseMusic();
+                        break;
+                    case NEXT_MUSIC:
+                        playNextMusic();
+                        break;
+                    case PREVIOUS_MUSIC:
+                        playPreviousMusic();
+                        break;
+                }
             }
-            switch (intent.getAction()) {
-                case INITIALIZE:
-                    audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                    initMusicPlayer();
-                    break;
-                case PLAY_MUSIC:
-                    TaskExecutor.getInstance().executeTask(() -> playMusic());
-//                    playMusic();
-                    break;
-                case PAUSE_MUSIC:
-                    pauseMusic();
-                    break;
-                case NEXT_MUSIC:
-                    playNextMusic();
-                    break;
-                case PREVIOUS_MUSIC:
-                    playPreviousMusic();
-                    break;
-
-                default:
-                    return START_STICKY;
-            }
-        }
-
+        });
         return START_STICKY;
     }
 
