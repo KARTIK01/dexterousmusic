@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import music.dexterous.com.dexterousmusic.utils.logger.LogUtils;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**

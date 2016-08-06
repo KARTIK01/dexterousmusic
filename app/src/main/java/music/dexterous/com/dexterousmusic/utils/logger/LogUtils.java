@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.utils;
+package music.dexterous.com.dexterousmusic.utils.logger;
 
 import android.util.Log;
 
