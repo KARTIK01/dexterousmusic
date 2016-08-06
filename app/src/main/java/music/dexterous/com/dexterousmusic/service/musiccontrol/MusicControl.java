@@ -20,7 +20,7 @@ public interface MusicControl {
      */
     public void playMusic();
 
-    public void playNextMusic();
+    public void playNextMusic(boolean isUserSkipped);
 
     public void playPreviousMusic();
 

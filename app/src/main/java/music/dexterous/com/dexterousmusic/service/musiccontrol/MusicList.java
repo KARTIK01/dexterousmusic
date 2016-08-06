@@ -10,6 +10,8 @@ import music.dexterous.com.dexterousmusic.database.Music;
  */
 public class MusicList {
 
+    private boolean repeatMode = false;
+
     static private MusicList musicList;
 
     /**
@@ -86,5 +88,14 @@ public class MusicList {
 
     public void setCurrentSongPosition(int currentSongPosition) {
         this.currentSongPosition = currentSongPosition;
+    }
+
+
+    public boolean isRepeatMode() {
+        return repeatMode;
+    }
+
+    public void setRepeatMode(boolean repeatMode) {
+        this.repeatMode = repeatMode;
     }
 }

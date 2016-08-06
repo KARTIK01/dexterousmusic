@@ -3,7 +3,10 @@ package music.dexterous.com.dexterousmusic.service.playmusiclistener;
 import android.media.MediaPlayer;
 
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicControl;
+import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
+import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 /**
  * Created by Honey on 7/31/2016.
@@ -25,11 +28,32 @@ public class PlayMusicOnCompletionListener implements DexterousMediaPlayer.OnCom
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
 
+        //TODO send report song completed
+
         // Repeating current song if desired
-        if (true) { //TODO replace with repeat mode var
+        if (UsersAppPreference.getMusicRepeatModeSetting() ==
+                UsersAppPreference.RepeatModeContants.REPEAT_CURRENT_SONG) {
             musicControl.playMusic();
             return;
         }
+
+        // Remember that by calling next(), if played
+        // the last song on the list, will reset to the
+        // first one.
+        musicControl.playNextMusic(false);
+
+
+        // Reached the end, should we restart playing
+        // from the first song or simply stop?
+//        if (currentSongPosition == 0) {
+//            if (kMP.settings.get("repeat_list", false))
+//                playSong();
+//            else
+//                destroySelf();
+//            return;
+//        }
+        // Common case - skipped a track or anything
+//        playSong();
 
     }
 }

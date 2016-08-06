@@ -28,7 +28,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     MediaPlayer mDexterousMediaPlayer;
 
 
-    MusicList musicList;
+    public MusicList musicList;
 
 
     /**
@@ -126,7 +126,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     }
 
     @Override
-    public void playNextMusic() {
+    public void playNextMusic(boolean isUserSkipped) {
 
     }
 

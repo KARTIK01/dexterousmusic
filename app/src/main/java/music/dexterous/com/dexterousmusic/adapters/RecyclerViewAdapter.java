@@ -11,6 +11,7 @@ import com.viethoa.RecyclerViewFastScroller;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 
 /**
  * Created by Dubey's on 06-08-2016.
@@ -57,11 +58,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mTextView;
+        FontTextView mTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTextView = (TextView) itemView.findViewById(R.id.tv_alphabet);
+            mTextView = (FontTextView) itemView.findViewById(R.id.tv_alphabet);
         }
     }
 
