@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicControl;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
 import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
@@ -45,15 +46,16 @@ public class PlayMusicOnCompletionListener implements DexterousMediaPlayer.OnCom
 
         // Reached the end, should we restart playing
         // from the first song or simply stop?
-//        if (currentSongPosition == 0) {
-//            if (kMP.settings.get("repeat_list", false))
-//                playSong();
-//            else
-//                destroySelf();
-//            return;
-//        }
+        if (MusicList.getInstance().getCurrentSongPosition() == 0) {
+            if (UsersAppPreference.getMusicRepeatModeSetting() ==
+                    UsersAppPreference.RepeatModeContants.REPEAT_CURRENT_PLAYLIST)
+                musicControl.playMusic();
+            else
+                musicControl.destroySelf();
+            return;
+        }
         // Common case - skipped a track or anything
-//        playSong();
+        musicControl.playMusic();
 
     }
 }

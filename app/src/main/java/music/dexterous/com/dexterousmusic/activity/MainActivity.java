@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
 import music.dexterous.com.dexterousmusic.database.Music;
@@ -83,10 +86,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void playMusic() {
+        List<Music> playList = new ArrayList<>();
+        Music music1 = MyMusicLibraryTableDao.getMusic(getApplicationContext(), 2);
+        playList.add(music1);
+        Music music2 = MyMusicLibraryTableDao.getMusic(getApplicationContext(), 8);
+        playList.add(music2);
 
-        Music music = MyMusicLibraryTableDao.getMusic(getApplicationContext(), 5);
-        PrettyLogger.d(music.toString());
-        MusicList.getInstance().add(music);
+        PrettyLogger.d(playList.toString());
+        MusicList.getInstance().setList(playList);
         MusicList.getInstance().setCurrentSongPosition(0);
 
         Intent nextMusic = new Intent(DexterousPlayMusicService.PLAY_MUSIC);

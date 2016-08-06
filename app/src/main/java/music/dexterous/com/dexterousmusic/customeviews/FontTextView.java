@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.utils.Constants;
-import music.dexterous.com.dexterousmusic.utils.Utils;
+import music.dexterous.com.dexterousmusic.utils.ui.FontUtils;
 
 /**
  * Created by Kartik on 20-11-2015 in NewZuppit.
@@ -56,7 +56,7 @@ public class FontTextView extends TextView {
              * there is issue with font in assets. Not only this one but with others too
              * be careful while changing the fonts
              */
-            Typeface fontFace = Utils.getTypefaceFromName(getContext(), fontName);
+            Typeface fontFace = FontUtils.getTypefaceFromName(getContext(), fontName);
             if (fontFace != null) {
                 setTypeface(fontFace);
             }

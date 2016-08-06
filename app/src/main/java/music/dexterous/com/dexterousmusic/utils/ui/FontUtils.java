@@ -1,5 +1,5 @@
 
-package music.dexterous.com.dexterousmusic.utils;
+package music.dexterous.com.dexterousmusic.utils.ui;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -10,11 +10,13 @@ import android.support.v4.util.ArrayMap;
 import java.util.concurrent.Future;
 
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
+import music.dexterous.com.dexterousmusic.utils.AppUtils;
+import music.dexterous.com.dexterousmusic.utils.DiskUtils;
 
 /**
  * Class containing some static utility methods.
  */
-public class Utils {
+public class FontUtils {
 
     /**
      * for storing typeface objects as per the names of the font files
@@ -45,36 +47,4 @@ public class Utils {
             return fontTypefaceCache.get(fontName);
         }
     }
-
-
-    /**
-     * Enables strict mode for debugging.
-     * Beware that instance count is buggy, so ignore it (as of April 12, 2016 )
-     */
-    public static void enableStrictMode() {
-        if (AppUtils.isCompatWith(VERSION_CODES.GINGERBREAD)) {
-
-            StrictMode.ThreadPolicy.Builder threadPolicyBuilder =
-                    new StrictMode.ThreadPolicy.Builder()
-                            .detectAll()
-                            .penaltyLog();
-
-            StrictMode.VmPolicy.Builder vmPolicyBuilder =
-                    new StrictMode.VmPolicy.Builder()
-                            .detectActivityLeaks()
-//                            .detectLeakedClosableObjects()
-                            .detectLeakedRegistrationObjects()
-                            .detectLeakedSqlLiteObjects()
-//                            .setClassInstanceLimit(HomeFragment.class, 1)
-//                            .setClassInstanceLimit(HomeActivity.class, 1)
-                            .penaltyDeath()
-                            .penaltyLog();
-
-            threadPolicyBuilder.penaltyFlashScreen();
-
-            StrictMode.setThreadPolicy(threadPolicyBuilder.build());
-            StrictMode.setVmPolicy(vmPolicyBuilder.build());
-        }
-    }
-
 }

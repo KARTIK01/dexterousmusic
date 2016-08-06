@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.utils;
+package music.dexterous.com.dexterousmusic.utils.ui;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

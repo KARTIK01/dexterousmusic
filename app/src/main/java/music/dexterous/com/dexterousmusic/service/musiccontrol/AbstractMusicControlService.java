@@ -16,6 +16,9 @@ import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnC
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
+import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
+import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
+import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 /**
  * Created by Honey on 8/4/2016.
@@ -28,7 +31,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     MediaPlayer mDexterousMediaPlayer;
 
 
-    public MusicList musicList;
+    private MusicList musicList;
 
 
     /**
@@ -128,6 +131,23 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     @Override
     public void playNextMusic(boolean isUserSkipped) {
 
+        if (isUserSkipped) {
+            //TODO
+        }
+
+        //TODO Updates Lock-Screen Widget
+
+        int currentSongPosition = musicList.getCurrentSongPosition();
+
+        if (UsersAppPreference.isMusicShuffle()) {
+            musicList.setCurrentSongPosition(RandomNumberGeneratorForMusic.nextInt(currentSongPosition, musicList.list.size()));
+            return;
+        }
+
+        musicList.setCurrentSongPosition(currentSongPosition + 1);
+
+        if (currentSongPosition >= musicList.list.size())
+            musicList.setCurrentSongPosition(0);
     }
 
     @Override

@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.SystemClock;
-import android.provider.Settings;
 
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
@@ -13,10 +11,9 @@ import music.dexterous.com.dexterousmusic.database.update.UpgradeDpHelper;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Constants;
-import music.dexterous.com.dexterousmusic.utils.UiUtils;
-import music.dexterous.com.dexterousmusic.utils.Utils;
+import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
+import music.dexterous.com.dexterousmusic.utils.other.StrictModeUtil;
 import music.dexterous.com.dexterousmusic.utils.android.GlobalApplicationTrackTime;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 
 /**
@@ -57,7 +54,7 @@ public class GlobalApplication extends Application {
 
 
         if (BuildConfig.DEBUG) {
-            Utils.enableStrictMode();
+            StrictModeUtil.enableStrictMode();
         }
 
         /** initialize the analytics */

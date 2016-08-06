@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.utils.UiUtils;
+import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
  * Created by Honey on 7/31/2016.

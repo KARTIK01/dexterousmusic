@@ -10,8 +10,6 @@ import music.dexterous.com.dexterousmusic.database.Music;
  */
 public class MusicList {
 
-    private boolean repeatMode = false;
-
     static private MusicList musicList;
 
     /**
@@ -46,7 +44,7 @@ public class MusicList {
      * @param musicList Songs list that will play from now on.
      * @note Make sure to call {@link #playMusic()} after this.
      */
-    public void setList(ArrayList<Music> musicList) {
+    public void setList(List<Music> musicList) {
         list = musicList;
     }
 
@@ -90,12 +88,4 @@ public class MusicList {
         this.currentSongPosition = currentSongPosition;
     }
 
-
-    public boolean isRepeatMode() {
-        return repeatMode;
-    }
-
-    public void setRepeatMode(boolean repeatMode) {
-        this.repeatMode = repeatMode;
-    }
 }

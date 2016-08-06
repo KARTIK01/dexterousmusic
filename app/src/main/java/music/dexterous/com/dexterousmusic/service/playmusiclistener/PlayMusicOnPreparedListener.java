@@ -2,6 +2,7 @@ package music.dexterous.com.dexterousmusic.service.playmusiclistener;
 
 import android.media.MediaPlayer;
 
+import music.dexterous.com.dexterousmusic.BuildConfig;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 
 /**
@@ -23,5 +24,7 @@ public class PlayMusicOnPreparedListener implements DexterousMediaPlayer.OnPrepa
     public void onPrepared(MediaPlayer mediaPlayer) {
         // Start playback
         mDexterousMediaPlayer.start();
+        if (BuildConfig.DEBUG)
+            mDexterousMediaPlayer.seekTo(mDexterousMediaPlayer.getDuration() - 1000 * 10);
     }
 }
