@@ -36,6 +36,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+repositories {
+    maven { url 'https://oss.sonatype.org/content/groups/public' }
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -64,4 +67,7 @@ dependencies {
 
     //network logging
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    // recycler view with alphabets
+    compile 'com.github.viethoa:fastscroller:1.1.0'
+
 }
