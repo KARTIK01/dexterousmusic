@@ -1,12 +1,16 @@
 package music.dexterous.com.dexterousmusic.databaseutils;
 
 import android.content.Context;
+import android.database.Cursor;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.dao.query.QueryBuilder;
 import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.database.MusicDao;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Honey on 7/31/2016.
@@ -36,4 +40,17 @@ public class MyMusicLibraryTableDao {
                 .getSession()
                 .getMusicDao().load(index);
     }
+
+    public static ArrayList<String> getAllSongNames(Context context) {
+        ArrayList<String> result = new ArrayList<String>();
+        String SQL_SONGS = "SELECT " + MusicDao.Properties.SONG_TITLE.columnName + " FROM " + MusicDao.TABLENAME + " ORDER BY " + MusicDao.Properties.SONG_TITLE.columnName;
+        Cursor c = ((GlobalApplication) context).getSession().getDatabase().rawQuery(SQL_SONGS, null);
+        while (c.moveToNext()) {
+            result.add(c.getString(0));
+        }
+        c.close();
+
+        return result;
+    }
+
 }

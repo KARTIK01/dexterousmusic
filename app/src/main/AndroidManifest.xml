@@ -5,14 +5,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <!-- Glide Module and cache -->
-    <meta-data
-        android:name="music.dexterous.com.dexterousmusic.utils.image.SetupGlideModule"
-        android:value="GlideModule" />
-    <meta-data
-        android:name="music.dexterous.com.dexterousmusic.utils.image.LimitCacheSizeGlideModule"
-        android:value="GlideModule" />
-
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
@@ -30,6 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.SongList"></activity>
+
 
         <service
             android:name=".service.ScanMusicService"
@@ -62,7 +56,18 @@
         <receiver
             android:name=".receiver.widget.PlayMusicReceiver"
             android:enabled="false"
+
             android:exported="false"></receiver>
+
+
+        <!-- Glide Module and cache -->
+        <meta-data
+            android:name="music.dexterous.com.dexterousmusic.utils.image.SetupGlideModule"
+            android:value="GlideModule" />
+        <meta-data
+            android:name="music.dexterous.com.dexterousmusic.utils.image.LimitCacheSizeGlideModule"
+            android:value="GlideModule" />
+
     </application>
 
 </manifest>
