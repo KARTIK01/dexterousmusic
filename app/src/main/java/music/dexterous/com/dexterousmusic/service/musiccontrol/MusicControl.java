@@ -44,5 +44,5 @@ public interface MusicControl {
      */
     public void destroySelf();
 
-//    public void notifyCurrentSong();
+    public void notifyCurrentSong();
 }

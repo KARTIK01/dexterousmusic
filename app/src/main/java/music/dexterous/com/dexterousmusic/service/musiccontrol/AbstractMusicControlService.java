@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
+import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
@@ -30,6 +31,11 @@ public abstract class AbstractMusicControlService extends Service implements Mus
      */
     MediaPlayer mDexterousMediaPlayer;
 
+    /**
+     * Spawns an on-going notification with our current
+     * playing song.
+     */
+    private NotificationMusic notification = null;
 
     private MusicList musicList;
 
@@ -174,7 +180,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     private void initListener() {
         // These are the events that will "wake us up"
         if (mPlayMusicOnPreparedListener == null) {
-            mDexterousMediaPlayer.setOnPreparedListener(mPlayMusicOnPreparedListener = new PlayMusicOnPreparedListener(mDexterousMediaPlayer)); // player initialized
+            mDexterousMediaPlayer.setOnPreparedListener(mPlayMusicOnPreparedListener = new PlayMusicOnPreparedListener(this, mDexterousMediaPlayer)); // player initialized
         }
         if (mPlayMusicOnCompletionListener == null) {
             mDexterousMediaPlayer.setOnCompletionListener(mPlayMusicOnCompletionListener = new PlayMusicOnCompletionListener(this)); // song completed
@@ -188,5 +194,23 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     public void destroySelf() {
         stopSelf();
         currentMusic = null;
+    }
+
+
+    /**
+     * Displays a notification on the status bar with the
+     * current song and some nice buttons.
+     */
+    @Override
+    public void notifyCurrentSong() {
+        if (!UsersAppPreference.isMusicNotificationToDisplay())
+            return;
+        if (currentMusic == null)
+            return;
+
+        if (notification == null)
+            notification = new NotificationMusic();
+
+        notification.notifySong(this, this, currentMusic);
     }
 }

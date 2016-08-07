@@ -7,8 +7,9 @@ public class UsersAppPreference {
 
     private static final String HIDE_SMALL_CLIPS_DURATIONS = "hide_small_clips_durations";
     private static final String MUSIC_PLAY_ON_INSET_HEADSET = "music_play_on_inset_headset";
-    private static final String MUSIC_REPEATE_MODE_TYPE = "music_repeate_mode_type";
+    private static final String MUSIC_REPEAT_MODE_TYPE = "music_repeat_mode_type";
     private static final String MUSIC_SHUFFLE_MODE = "music_shuffle_mode";
+    private static final String MUSIC_NOTIFICATION = "music_notification";
 
 
     /**
@@ -52,7 +53,7 @@ public class UsersAppPreference {
      * @param autoStart
      */
     public static void setMusicRepeatModeSetting(int autoStart) {
-        AppPreference.putInt(MUSIC_REPEATE_MODE_TYPE, autoStart);
+        AppPreference.putInt(MUSIC_REPEAT_MODE_TYPE, autoStart);
     }
 
     /**
@@ -60,7 +61,7 @@ public class UsersAppPreference {
      * false otherwise
      */
     public static int getMusicRepeatModeSetting() {
-        return AppPreference.getInt(MUSIC_REPEATE_MODE_TYPE, RepeatModeContants.REPEAT_CURRENT_PLAYLIST);
+        return AppPreference.getInt(MUSIC_REPEAT_MODE_TYPE, RepeatModeContants.REPEAT_CURRENT_PLAYLIST);
     }
 
 
@@ -69,8 +70,17 @@ public class UsersAppPreference {
     }
 
     public static void setMusicShuffleMode(boolean isShuffle) {
-        AppPreference.putBoolean(MUSIC_REPEATE_MODE_TYPE, isShuffle);
+        AppPreference.putBoolean(MUSIC_REPEAT_MODE_TYPE, isShuffle);
     }
+
+    public static boolean isMusicNotificationToDisplay() {
+        return AppPreference.getBoolean(MUSIC_NOTIFICATION, true);
+    }
+
+    public static void setMusicNotificationToDisplat(boolean isShuffle) {
+        AppPreference.putBoolean(MUSIC_NOTIFICATION, isShuffle);
+    }
+
 
     static public class RepeatModeContants {
         public static final int REPEAT_CURRENT_SONG = 0;

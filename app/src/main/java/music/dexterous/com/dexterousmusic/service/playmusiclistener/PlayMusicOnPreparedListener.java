@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 
 import music.dexterous.com.dexterousmusic.BuildConfig;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicControl;
 
 /**
  * Created by Honey on 7/31/2016.
@@ -11,9 +12,11 @@ import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 public class PlayMusicOnPreparedListener implements DexterousMediaPlayer.OnPreparedListener {
 
 
+    private MusicControl mMusicControl;
     private MediaPlayer mDexterousMediaPlayer;
 
-    public PlayMusicOnPreparedListener(MediaPlayer dexterousMediaPlayer) {
+    public PlayMusicOnPreparedListener(MusicControl musicControl, MediaPlayer dexterousMediaPlayer) {
+        mMusicControl = musicControl;
         mDexterousMediaPlayer = dexterousMediaPlayer;
     }
 
@@ -28,6 +31,6 @@ public class PlayMusicOnPreparedListener implements DexterousMediaPlayer.OnPrepa
             mDexterousMediaPlayer.seekTo(mDexterousMediaPlayer.getDuration() - 1000 * 10);
         // If the user clicks on the notification, let's spawn the
         // Now Playing screen.
-//        notifyCurrentSong();
+        mMusicControl.notifyCurrentSong();
     }
 }
