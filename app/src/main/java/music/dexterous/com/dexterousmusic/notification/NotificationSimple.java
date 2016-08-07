@@ -90,7 +90,7 @@ public class NotificationSimple {
 
 
     //TODO replace with proper small icon
-    private int getSmallIcon() {
+    protected int getSmallIcon() {
         return R.drawable.alphabet_background_color;
     }
 }

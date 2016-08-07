@@ -43,4 +43,6 @@ public interface MusicControl {
      * or whatnot.
      */
     public void destroySelf();
+
+//    public void notifyCurrentSong();
 }

@@ -6,7 +6,16 @@ import android.content.Intent;
 
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 
+/**
+ * Called when user clicks the "skip" button on the on-going system Notification.
+ */
 public class NextMusicReceiver extends BroadcastReceiver {
+
+
+    public static final String ACTION = "action";
+
+
+    public static final String ACTION_TYPE_SKIP = "action_type_skip";
 
     public NextMusicReceiver() {
     }
@@ -16,5 +25,8 @@ public class NextMusicReceiver extends BroadcastReceiver {
         Intent nextMusic = new Intent(DexterousPlayMusicService.NEXT_MUSIC);
         nextMusic.setClass(context, DexterousPlayMusicService.class);
         context.startService(nextMusic);
+
+//        kMP.musicService.next(true);
+//        kMP.musicService.playSong();
     }
 }

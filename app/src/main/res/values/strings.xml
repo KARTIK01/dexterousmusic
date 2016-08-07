@@ -11,4 +11,10 @@
     <string name="button_allow">Disagree</string>
     <string name="button_deny">Agree</string>
 
+
+    <!-- ************ contentDescription Strings *********************************** -->
+
+    <!-- Notification-->
+    <string name="notification_button_play">Play</string>
+    <string name="notification_button_skip">Skip</string>
 </resources>
