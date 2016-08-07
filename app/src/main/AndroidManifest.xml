@@ -22,8 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SongList"></activity>
-
+        <activity android:name=".activity.SongListActivity" />
 
         <service
             android:name=".service.ScanMusicService"
@@ -56,9 +55,7 @@
         <receiver
             android:name=".receiver.widget.PlayMusicReceiver"
             android:enabled="false"
-
-            android:exported="false"></receiver>
-
+            android:exported="false" />
 
         <!-- Glide Module and cache -->
         <meta-data
@@ -68,6 +65,7 @@
             android:name="music.dexterous.com.dexterousmusic.utils.image.LimitCacheSizeGlideModule"
             android:value="GlideModule" />
 
+        <activity android:name=".activity.NowPlayingActivity"></activity>
     </application>
 
 </manifest>

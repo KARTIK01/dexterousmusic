@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +32,7 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     protected Button scan;
     protected Button playMusic;
     String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SongList.class);
+                Intent intent = new Intent(getApplicationContext(), SongListActivity.class);
                 startActivity(intent);
 
                 Log.e("TAG", MyMusicLibraryTableDao.getAllSongNames(getApplicationContext()).toString());

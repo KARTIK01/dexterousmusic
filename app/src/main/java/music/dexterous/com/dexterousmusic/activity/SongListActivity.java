@@ -15,7 +15,7 @@ import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.RecyclerViewAdapter;
 import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
 
-public class SongList extends AppCompatActivity {
+public class SongListActivity extends BaseActivity {
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
     ArrayList<String> arrayList = new ArrayList<>();
