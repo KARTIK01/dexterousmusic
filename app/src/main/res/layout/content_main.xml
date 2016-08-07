@@ -37,9 +37,4 @@
         android:layout_centerVertical="true"
         android:text="PLAY LIST Music" />
 
-    <include layout="@layout/control_music_widget" />
-
-    <include layout="@layout/control_music_widget_lower" />
-
-
 </LinearLayout>

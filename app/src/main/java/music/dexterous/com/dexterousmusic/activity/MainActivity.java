@@ -54,16 +54,11 @@ public class MainActivity extends BaseActivity {
         playMusic.setOnClickListener(view -> playMusic());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SongListActivity.class);
-                startActivity(intent);
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), NowPlayingActivity.class);
+            startActivity(intent);
 
-                Log.e("TAG", MyMusicLibraryTableDao.getAllSongNames(getApplicationContext()).toString());
-
-                // PrettyLogger.d(MyMusicLibraryTableDao.getAllMusic(getApplicationContext(), "mera").toString());
-            }
+            Log.e("TAG", MyMusicLibraryTableDao.getAllSongNames(getApplicationContext()).toString());
         });
 
 
