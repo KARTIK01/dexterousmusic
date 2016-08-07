@@ -8,4 +8,9 @@
     <dimen name="toastSideMargin">6dp</dimen>
     <dimen name="toastUpMargin">5dp</dimen>
 
+    <!-- control music widget Dimessions -->
+    <dimen name="widget_element_size">64dp</dimen>
+    <dimen name="widget_element_size_small">48dp</dimen>
+    <dimen name="widget_element_size_extra_small">24dp</dimen>
+
 </resources>
