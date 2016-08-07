@@ -44,6 +44,7 @@
             android:lines="1"
             android:singleLine="true"
             android:text="placeholder text"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
             android:textStyle="bold" />
 
         <TextView
@@ -52,7 +53,8 @@
             android:layout_height="wrap_content"
             android:lines="1"
             android:singleLine="true"
-            android:text="placeholder text" />
+            android:text="placeholder text"
+            android:textColor="@android:color/secondary_text_dark_nodisable" />
 
     </LinearLayout>
 

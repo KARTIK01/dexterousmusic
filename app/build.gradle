@@ -1,11 +1,14 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter ()
     }
 
     dependencies {
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
+
+        //logging for your debug builds.
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
     }
 }
 
@@ -13,6 +16,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'android-apt'
+apply plugin: 'com.jakewharton.hugo'
 
 android {
     compileSdkVersion 24
@@ -67,7 +71,9 @@ dependencies {
 
     //network logging
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
     // recycler view with alphabets
     compile 'com.github.viethoa:fastscroller:1.1.0'
+
 
 }

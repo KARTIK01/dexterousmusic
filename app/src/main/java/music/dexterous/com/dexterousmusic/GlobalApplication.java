@@ -5,6 +5,7 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
+import hugo.weaving.DebugLog;
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.update.UpgradeDpHelper;
@@ -13,7 +14,6 @@ import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Constants;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 import music.dexterous.com.dexterousmusic.utils.other.StrictModeUtil;
-import music.dexterous.com.dexterousmusic.utils.android.GlobalApplicationTrackTime;
 import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 
 /**
@@ -34,13 +34,9 @@ public class GlobalApplication extends Application {
 
 
     @Override
+    @DebugLog
     public void onCreate() {
         super.onCreate();
-
-        //must be first line always after super
-        if (BuildConfig.DEBUG) {
-            GlobalApplicationTrackTime.startTimeTrack(this);
-        }
 
         /** Initialize the Preference class */
         new AppPreference.Builder().setContext(GlobalApplication.this)
@@ -64,11 +60,6 @@ public class GlobalApplication extends Application {
         });
 
         startMusicService();
-
-        //must be last time always
-        if (BuildConfig.DEBUG) {
-            GlobalApplicationTrackTime.endTimeTrack(this, true);
-        }
     }
 
 
