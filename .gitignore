@@ -63,6 +63,3 @@ captures/
 hs_err_pid*
 
 
-app/libs/
-app/src/main/java/music/dexterous/com/dexterousmusic/fragment/
-daogenerator/libs/
