@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="5dp"
-        android:textSize="15sp"
+        android:textSize="20sp"
         app:fontName="Calibri-light.ttf" />
 
     <View

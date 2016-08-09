@@ -70,7 +70,7 @@ public class UsersAppPreference {
     }
 
     public static void setMusicShuffleMode(boolean isShuffle) {
-        AppPreference.putBoolean(MUSIC_REPEAT_MODE_TYPE, isShuffle);
+        AppPreference.putBoolean(MUSIC_SHUFFLE_MODE, isShuffle);
     }
 
     public static boolean isMusicNotificationToDisplay() {

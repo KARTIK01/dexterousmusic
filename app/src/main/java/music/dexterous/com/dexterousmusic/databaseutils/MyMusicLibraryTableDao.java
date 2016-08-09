@@ -41,16 +41,4 @@ public class MyMusicLibraryTableDao {
                 .getMusicDao().load(index);
     }
 
-    public static ArrayList<String> getAllSongNames(Context context) {
-        ArrayList<String> result = new ArrayList<String>();
-        String SQL_SONGS = "SELECT " + MusicDao.Properties.SONG_TITLE.columnName + " FROM " + MusicDao.TABLENAME + " ORDER BY " + MusicDao.Properties.SONG_TITLE.columnName;
-        Cursor c = ((GlobalApplication) context).getSession().getDatabase().rawQuery(SQL_SONGS, null);
-        while (c.moveToNext()) {
-            result.add(c.getString(0));
-        }
-        c.close();
-
-        return result;
-    }
-
 }

@@ -1,9 +1,9 @@
 package music.dexterous.com.dexterousmusic.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
 
 import com.viethoa.RecyclerViewFastScroller;
 import com.viethoa.models.AlphabetItem;
@@ -13,13 +13,22 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.RecyclerViewAdapter;
+import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
+import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 public class SongListActivity extends BaseActivity {
+
+    //All songs List
+    List<Music> allSongsList;
+
+    //Alphabet list
+    private List<AlphabetItem> mAlphabetItems;
+
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
-    ArrayList<String> arrayList = new ArrayList<>();
-    private List<AlphabetItem> mAlphabetItems;
+
+    Button shuffle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +39,18 @@ public class SongListActivity extends BaseActivity {
     }
 
     protected void initialiseData() {
-        //Recycler view data
-        arrayList = MyMusicLibraryTableDao.getAllSongNames(getApplicationContext());
+        //All songs
+        allSongsList = MyMusicLibraryTableDao.getAllMusic(getApplicationContext());
 
         //Alphabet fast scroller data
         mAlphabetItems = new ArrayList<>();
-        List<String> strAlphabets = new ArrayList<>();
-        for (int i = 0; i < arrayList.size(); i++) {
-            String name = arrayList.get(i);
-            if (name == null || name.trim().isEmpty())
-                continue;
 
-            String word = name.substring(0, 1);
+        List<String> strAlphabets = new ArrayList<>();
+        for (int i = 0; i < allSongsList.size(); i++) {
+            String tittle = allSongsList.get(i).getSONG_TITLE();
+            if (tittle == null || tittle.trim().isEmpty())
+                continue;
+            String word = tittle.substring(0, 1);
             if (!strAlphabets.contains(word)) {
                 strAlphabets.add(word);
                 mAlphabetItems.add(new AlphabetItem(i, word, false));
@@ -54,10 +63,12 @@ public class SongListActivity extends BaseActivity {
         fastScroller = (RecyclerViewFastScroller) findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(new RecyclerViewAdapter(arrayList));
+        mRecyclerView.setAdapter(new RecyclerViewAdapter(allSongsList));
 
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
+        shuffle = (Button) findViewById(R.id.shuffle);
+        shuffle.setOnClickListener(view -> ShuffleAllSongs.shuffleAllSongs(getApplicationContext(), allSongsList));
     }
 
 

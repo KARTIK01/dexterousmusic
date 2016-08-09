@@ -55,10 +55,8 @@ public class MainActivity extends BaseActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), NowPlayingActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SongListActivity.class);
             startActivity(intent);
-
-            Log.e("TAG", MyMusicLibraryTableDao.getAllSongNames(getApplicationContext()).toString());
         });
 
 

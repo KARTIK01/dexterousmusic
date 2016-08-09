@@ -12,6 +12,7 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
+import music.dexterous.com.dexterousmusic.database.Music;
 
 /**
  * Created by Dubey's on 06-08-2016.
@@ -20,9 +21,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
 
-    private List<String> mDataArray;
+    private List<Music> mDataArray;
 
-    public RecyclerViewAdapter(List<String> dataset) {
+    public RecyclerViewAdapter(List<Music> dataset) {
         mDataArray = dataset;
     }
 
@@ -42,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataArray.get(position));
+        holder.mTextView.setText(mDataArray.get(position).getSONG_TITLE());
     }
 
     @Override
@@ -50,11 +51,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (pos < 0 || pos >= mDataArray.size())
             return null;
 
-        String name = mDataArray.get(pos);
+        String name = mDataArray.get(pos).getSONG_TITLE();
         if (name == null || name.length() < 1)
             return null;
 
-        return mDataArray.get(pos).substring(0, 1);
+        return mDataArray.get(pos).getSONG_TITLE().substring(0, 1);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
