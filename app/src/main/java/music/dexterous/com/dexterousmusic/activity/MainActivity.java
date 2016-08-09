@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), SongListActivity.class);
+            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(intent);
         });
 
@@ -78,26 +78,14 @@ public class MainActivity extends BaseActivity {
     }
 
     private void playMusic() {
-        List<Music> playList = new ArrayList<>();
-        Music music1 = MyMusicLibraryTableDao.getMusic(getApplicationContext(), 2);
-        playList.add(music1);
-        Music music2 = MyMusicLibraryTableDao.getMusic(getApplicationContext(), 8);
-        playList.add(music2);
-
-        PrettyLogger.d(playList.toString());
-        MusicList.getInstance().setList(playList);
-        MusicList.getInstance().setCurrentSongPosition(0);
-
-        Intent nextMusic = new Intent(DexterousPlayMusicService.PLAY_MUSIC);
-        nextMusic.setClass(this, DexterousPlayMusicService.class);
-        startService(nextMusic);
+        Intent intent = new Intent(getApplicationContext(), NowPlayingActivity.class);
+        startActivity(intent);
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showStoragePermission() {
         Intent intent = new Intent(getApplicationContext(), ScanMusicService.class);
         startService(intent);
-
     }
 
     @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
