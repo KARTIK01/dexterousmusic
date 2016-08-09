@@ -27,12 +27,13 @@ public class ShuffleAllSongs {
         int currentSongPoistion = RandomNumberGeneratorForMusic.nextInt(-1, allSongsList.size());
         if (currentSongPoistion == -1) {
             ShortToast.displayToast(context, "Please Select At Least One song to play", 2000);
+            return;
         } else {
             MusicList.getInstance().setCurrentSongPosition(currentSongPoistion);
-        }
 
-        Intent nextMusic = new Intent(DexterousPlayMusicService.PLAY_MUSIC);
-        nextMusic.setClass(context, DexterousPlayMusicService.class);
-        context.startService(nextMusic);
+            Intent nextMusic = new Intent(DexterousPlayMusicService.PLAY_MUSIC);
+            nextMusic.setClass(context, DexterousPlayMusicService.class);
+            context.startService(nextMusic);
+        }
     }
 }

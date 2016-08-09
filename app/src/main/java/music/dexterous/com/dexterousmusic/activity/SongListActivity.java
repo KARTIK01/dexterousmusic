@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.RecyclerViewAdapter;
+import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
 import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;

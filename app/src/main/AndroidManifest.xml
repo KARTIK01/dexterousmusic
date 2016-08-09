@@ -23,8 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SongListActivity" />
-        <activity android:name=".activity.NowPlayingActivity"></activity>
-
+        <activity android:name=".activity.NowPlayingActivity" />
 
         <service
             android:name=".service.ScanMusicService"
@@ -67,6 +66,7 @@
             android:name="music.dexterous.com.dexterousmusic.utils.image.LimitCacheSizeGlideModule"
             android:value="GlideModule" />
 
+        <activity android:name=".activity.HomeActivity"></activity>
     </application>
 
 </manifest>
