@@ -5,10 +5,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-
-    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
-    <!-- TODO remove this-->
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!--TODO we required this permission or not for @MediaScannerCompletedReceiver or not -->
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 
     <application
         android:name=".GlobalApplication"
@@ -66,7 +66,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_SCANNER_FINISHED" />
                 <action android:name="android.intent.action.MEDIA_SCANNER_STARTED" />
-                <!-- change for audio files only-->
+                <!--TODO change for audio files only-->
                 <data android:scheme="file" />
             </intent-filter>
         </receiver>
