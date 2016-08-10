@@ -27,9 +27,7 @@ public class MusicDaoGenerator {
     private static Entity addMusicLibrary(Schema schema) {
         Entity newsItemEntity = schema.addEntity("Music");
 
-        newsItemEntity.addLongProperty("id").primaryKey();
-
-        newsItemEntity.addStringProperty("SONG_ID");
+        newsItemEntity.addStringProperty("SONG_ID").primaryKey();
         newsItemEntity.addStringProperty("SONG_TITLE");
         newsItemEntity.addStringProperty("SONG_ARTIST");
         newsItemEntity.addStringProperty("SONG_ALBUM");

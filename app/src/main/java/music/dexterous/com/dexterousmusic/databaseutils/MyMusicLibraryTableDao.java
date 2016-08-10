@@ -18,33 +18,11 @@ import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 public class MyMusicLibraryTableDao {
 
     public static void saveAllMusic(Context context, List<Music> musicList) {
-        ((GlobalApplication) context).getSession().getMusicDao().deleteAll();
-        ((GlobalApplication) context).getSession().getMusicDao().insertInTx(musicList);
+        ((GlobalApplication) context).getSession().getMusicDao().insertOrReplaceInTx(musicList);
     }
 
     public static List<Music> getAllMusic(Context context) {
         return ((GlobalApplication) context).getSession().getMusicDao().loadAll();
-    }
-
-    public static  ArrayList<Music> getAllAlbum(Context context) {
-
-        ArrayList<String> result = new ArrayList<String>();
-
-        final String SQL_DISTINCT_ENAME = "SELECT DISTINCT " +
-                MusicDao.Properties.SONG_ALBUM.columnName +
-                " FROM " +
-                MusicDao.TABLENAME;
-        Cursor c = ((GlobalApplication) context).getSession().getDatabase().rawQuery(SQL_DISTINCT_ENAME, null);
-        try {
-            if (c.moveToFirst()) {
-                do {
-                    result.add(c.getString(0));
-                } while (c.moveToNext());
-            }
-        } finally {
-            c.close();
-        }
-        return result;
     }
 
     public static List<Music> getAllMusic(Context context, String searchQuery) {
@@ -56,10 +34,32 @@ public class MyMusicLibraryTableDao {
                 .list();
     }
 
-    public static Music getMusic(Context context, long index) {
+    public static Music getMusic(Context context, String index) {
         return ((GlobalApplication) context)
                 .getSession()
                 .getMusicDao().load(index);
     }
+
+
+//    public static ArrayList<Music> getAllAlbum(Context context) {
+//
+//        ArrayList<String> result = new ArrayList<String>();
+//
+//        final String SQL_DISTINCT_ENAME = "SELECT DISTINCT " +
+//                MusicDao.Properties.SONG_ALBUM.columnName +
+//                " FROM " +
+//                MusicDao.TABLENAME;
+//        Cursor c = ((GlobalApplication) context).getSession().getDatabase().rawQuery(SQL_DISTINCT_ENAME, null);
+//        try {
+//            if (c.moveToFirst()) {
+//                do {
+//                    result.add(c.getString(0));
+//                } while (c.moveToNext());
+//            }
+//        } finally {
+//            c.close();
+//        }
+//        return result;
+//    }
 
 }
