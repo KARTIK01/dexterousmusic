@@ -26,6 +26,27 @@ public class MyMusicLibraryTableDao {
         return ((GlobalApplication) context).getSession().getMusicDao().loadAll();
     }
 
+    public static  ArrayList<Music> getAllAlbum(Context context) {
+
+        ArrayList<String> result = new ArrayList<String>();
+
+        final String SQL_DISTINCT_ENAME = "SELECT DISTINCT " +
+                MusicDao.Properties.SONG_ALBUM.columnName +
+                " FROM " +
+                MusicDao.TABLENAME;
+        Cursor c = ((GlobalApplication) context).getSession().getDatabase().rawQuery(SQL_DISTINCT_ENAME, null);
+        try {
+            if (c.moveToFirst()) {
+                do {
+                    result.add(c.getString(0));
+                } while (c.moveToNext());
+            }
+        } finally {
+            c.close();
+        }
+        return result;
+    }
+
     public static List<Music> getAllMusic(Context context, String searchQuery) {
         return ((GlobalApplication) context)
                 .getSession()

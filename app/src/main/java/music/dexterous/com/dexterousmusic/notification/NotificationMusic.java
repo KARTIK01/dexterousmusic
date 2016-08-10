@@ -1,26 +1,17 @@
 package music.dexterous.com.dexterousmusic.notification;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Build;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.NotificationCompat;
 import android.widget.RemoteViews;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.activity.NowPlayingActivity;
+import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
 
@@ -91,7 +82,8 @@ public class NotificationMusic extends NotificationSimple {
 
 
         // Intent that launches the "Now Playing" Activity
-        Intent notifyIntent = new Intent(context, NowPlayingActivity.class);
+        Intent notifyIntent = new Intent(context, HomeActivity.class);
+        //TODO put extra for now playing
         notifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         //TODO build TaskStackBuilder for notification

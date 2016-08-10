@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import music.dexterous.com.dexterousmusic.fragment.AllSongsFragment;
+import music.dexterous.com.dexterousmusic.fragment.NowPlayingFragment;
 
 /**
  * Created by Honey on 8/9/2016.
@@ -22,10 +23,13 @@ public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-            case 1:
-            case 2:
-            case 3:
                 return AllSongsFragment.newInstance();
+            case 1:
+                return NowPlayingFragment.newInstance();
+            case 2:
+                return AllSongsFragment.newInstance();
+            case 3:
+                return NowPlayingFragment.newInstance();
         }
         return AllSongsFragment.newInstance();
     }

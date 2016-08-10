@@ -23,7 +23,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.SongListActivity" />
-        <activity android:name=".activity.NowPlayingActivity" />
 
         <service
             android:name=".service.ScanMusicService"

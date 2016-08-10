@@ -78,8 +78,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void playMusic() {
-        Intent intent = new Intent(getApplicationContext(), NowPlayingActivity.class);
-        startActivity(intent);
+
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)

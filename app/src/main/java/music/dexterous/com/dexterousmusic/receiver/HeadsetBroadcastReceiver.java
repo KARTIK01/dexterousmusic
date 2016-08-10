@@ -16,6 +16,10 @@ public class HeadsetBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent != null && intent.getAction().equals(Intent.ACTION_HEADSET_PLUG) && UsersAppPreference.getMusicPlayONInsetHeadSet()) {
             PrettyLogger.d("HeadPhone Inserted");
+            /**
+             * Implement this one day
+             *
+             */
         }
     }
 }

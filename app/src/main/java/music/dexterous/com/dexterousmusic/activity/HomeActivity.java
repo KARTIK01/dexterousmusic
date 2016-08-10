@@ -44,7 +44,7 @@ public class HomeActivity extends BaseActivity {
         BaseFragment fragment = (BaseFragment) mFragmentManager.findFragmentByTag(HomeFragment.FRAGMENT_TAG);
         if (fragment == null) {
 
-            mFragmentManager.beginTransaction()
+                mFragmentManager.beginTransaction()
                     .replace(R.id.rootHomeContainer, mHomeFragment, HomeFragment.FRAGMENT_TAG)
                     .commitAllowingStateLoss();
         }

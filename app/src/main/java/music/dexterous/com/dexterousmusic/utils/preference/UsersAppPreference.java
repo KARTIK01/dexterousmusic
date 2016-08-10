@@ -22,7 +22,7 @@ public class UsersAppPreference {
     }
 
     public static long getHideSmallClipsDurations() {
-        return AppPreference.getLong(HIDE_SMALL_CLIPS_DURATIONS, 60000 * 2); //60 * 3secs
+        return AppPreference.getLong(HIDE_SMALL_CLIPS_DURATIONS, DefaultPreference.HIDE_SMALL_CLIPS_DURATIONS_DEFAULT);
     }
 
 
@@ -40,7 +40,7 @@ public class UsersAppPreference {
      * false otherwise
      */
     public static boolean getMusicPlayONInsetHeadSet() {
-        return AppPreference.getBoolean(MUSIC_PLAY_ON_INSET_HEADSET, true);
+        return AppPreference.getBoolean(MUSIC_PLAY_ON_INSET_HEADSET, DefaultPreference.MUSIC_PLAY_ON_INSET_HEADSET_DEFAULT);
     }
 
     /**
@@ -66,7 +66,7 @@ public class UsersAppPreference {
 
 
     public static boolean isMusicShuffle() {
-        return AppPreference.getBoolean(MUSIC_SHUFFLE_MODE, true);
+        return AppPreference.getBoolean(MUSIC_SHUFFLE_MODE, DefaultPreference.MUSIC_SHUFFLE_MODE_DEFAULT);
     }
 
     public static void setMusicShuffleMode(boolean isShuffle) {
@@ -74,7 +74,7 @@ public class UsersAppPreference {
     }
 
     public static boolean isMusicNotificationToDisplay() {
-        return AppPreference.getBoolean(MUSIC_NOTIFICATION, true);
+        return AppPreference.getBoolean(MUSIC_NOTIFICATION, DefaultPreference.MUSIC_NOTIFICATION_DEFAULT);
     }
 
     public static void setMusicNotificationToDisplat(boolean isShuffle) {
@@ -86,6 +86,26 @@ public class UsersAppPreference {
         public static final int REPEAT_CURRENT_SONG = 0;
         public static final int REPEAT_CURRENT_PLAYLIST = 1;
         public static final int REPEAT_MODE_OFF = 2;
+    }
+
+    static public class DefaultPreference {
+
+        public static boolean MUSIC_NOTIFICATION_DEFAULT = true;
+        public static boolean MUSIC_SHUFFLE_MODE_DEFAULT = true;
+        public static boolean MUSIC_PLAY_ON_INSET_HEADSET_DEFAULT = true;
+        public static int HIDE_SMALL_CLIPS_DURATIONS_DEFAULT = 100 * 1000; // 100 seconds
+
+
+        /**
+         * reset all user app preference to default values
+         */
+        static public void restAll() {
+            setMusicNotificationToDisplat(MUSIC_NOTIFICATION_DEFAULT);
+            setMusicShuffleMode(MUSIC_SHUFFLE_MODE_DEFAULT);
+            setMusicRepeatModeSetting(RepeatModeContants.REPEAT_CURRENT_PLAYLIST);
+            setMusicPlayONInsetHeadSet(MUSIC_PLAY_ON_INSET_HEADSET_DEFAULT);
+            setHideSmallClipsDurations(HIDE_SMALL_CLIPS_DURATIONS_DEFAULT);
+        }
     }
 
 }
