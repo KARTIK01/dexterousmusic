@@ -105,9 +105,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
 /********************************This is mess please improve this, please *************************************/
 // Append the external URI with our songs'
-        Uri songToPlayURI = ContentUris.withAppendedId
-                (android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                        musicToPlay.getId());
+//        Uri songToPlayURI = ContentUris.withAppendedId
+//                (android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+//                        musicToPlay.getId());
         try {
             mDexterousMediaPlayer.setDataSource(this, Uri.parse(musicToPlay.getSONG_FILE_PATH()));
         } catch (IOException io) {
