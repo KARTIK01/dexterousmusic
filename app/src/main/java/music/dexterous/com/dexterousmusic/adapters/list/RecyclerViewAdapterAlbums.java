@@ -58,8 +58,7 @@ public class RecyclerViewAdapterAlbums extends RecyclerView.Adapter<RecyclerView
             return;
         mmr.setDataSource(mDataArray
                 .get(position)
-                .getMusicArrayList()
-                .get(0).getSONG_FILE_PATH()
+                .getAlbumArtPath()
         );
         new ImageLoader(context).loadImage(context, mmr.getEmbeddedPicture(), holder.mTextView);
 //        holder.mTextView.setText(mDataArray.get(position).getAlbumName());
