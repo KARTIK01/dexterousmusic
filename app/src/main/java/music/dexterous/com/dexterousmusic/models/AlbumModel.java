@@ -3,8 +3,10 @@ package music.dexterous.com.dexterousmusic.models;
 import android.net.Uri;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import music.dexterous.com.dexterousmusic.database.Music;
@@ -15,8 +17,8 @@ import music.dexterous.com.dexterousmusic.database.Music;
 public class AlbumModel {
 
     private String albumName;
-    private Uri albumArtPath;
-    private ArrayList<Music> musicArrayList;
+    private String albumArtPath;
+    private List<Music> musicArrayList = new ArrayList<>();
 
     public String getAlbumName() {
         return albumName;
@@ -26,19 +28,19 @@ public class AlbumModel {
         this.albumName = albumName;
     }
 
-    public Uri getAlbumArtPath() {
+    public String getAlbumArtPath() {
         return albumArtPath;
     }
 
-    public void setAlbumArtPath(Uri albumArtPath) {
+    public void setAlbumArtPath(String albumArtPath) {
         this.albumArtPath = albumArtPath;
     }
 
-    public ArrayList<Music> getMusicArrayList() {
+    public List<Music> getMusicArrayList() {
         return musicArrayList;
     }
 
-    public void setMusicArrayList(ArrayList<Music> musicArrayList) {
+    public void setMusicArrayList(List<Music> musicArrayList) {
         this.musicArrayList = musicArrayList;
     }
 
@@ -51,16 +53,23 @@ public class AlbumModel {
                 '}';
     }
 
-    public Set<AlbumModel> getModel(List<Music> musicList) {
-        Set<AlbumModel> albumModelSet = new HashSet<>();
+    static public List<AlbumModel> getModel(List<Music> musicList, List<String> albumsNames) {
+        Map<String, AlbumModel> albumModelMap = new HashMap<>(albumsNames.size());
 
-        for (int i = 0; i < musicList.size(); i++) {
+        for (int i = 0; i < albumsNames.size(); i++) {
             AlbumModel albumModel = new AlbumModel();
-//TODO
-            albumModelSet.add(albumModel);
+            albumModel.setAlbumName(albumsNames.get(i));
+            albumModelMap.put(albumsNames.get(i), albumModel);
         }
 
-        return albumModelSet;
+        for (int i = 0; i < musicList.size(); i++) {
+            AlbumModel albumModel = albumModelMap.get(musicList.get(i).getSONG_ALBUM());
+            albumModel.setAlbumArtPath(musicList.get(i).getSONG_ALBUM_ART_PATH());
+            List<Music> musicList1 = albumModel.getMusicArrayList();
+            musicList1.add(musicList.get(i));
+            albumModel.setMusicArrayList(musicList1);
+        }
+        return new ArrayList<AlbumModel>(albumModelMap.values());
     }
 
     @Override

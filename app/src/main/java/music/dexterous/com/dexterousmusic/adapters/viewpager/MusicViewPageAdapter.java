@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import music.dexterous.com.dexterousmusic.fragment.AllAlbumFragment;
 import music.dexterous.com.dexterousmusic.fragment.AllSongsFragment;
 import music.dexterous.com.dexterousmusic.fragment.NowPlayingFragment;
 
@@ -29,7 +30,7 @@ public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
             case 2:
                 return AllSongsFragment.newInstance();
             case 3:
-                return NowPlayingFragment.newInstance();
+                return AllAlbumFragment.newInstance();
         }
         return AllSongsFragment.newInstance();
     }

@@ -17,8 +17,10 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapter;
+import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapterAlbums;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 /**
@@ -27,8 +29,7 @@ import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 public class AllAlbumFragment extends BaseFragment {
 
-    //All songs List
-    List<Music> allSongsList;
+    List<AlbumModel> albumModels;
 
     //Alphabet list
     private List<AlphabetItem> mAlphabetItems;
@@ -67,9 +68,12 @@ public class AllAlbumFragment extends BaseFragment {
     }
 
     protected void initialiseData() {
-        //All songs
-        allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
 
+        //All songs List
+        List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
+        List<String> albums = DataManager.getInstance(getActivity()).getAlbums();
+
+        albumModels = AlbumModel.getModel(allSongsList, albums);
         //Alphabet fast scroller data
         mAlphabetItems = new ArrayList<>();
 
@@ -91,12 +95,12 @@ public class AllAlbumFragment extends BaseFragment {
         fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new RecyclerViewAdapter(allSongsList));
-
+        mRecyclerView.setAdapter(new RecyclerViewAdapterAlbums(albumModels));
+//
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
-        shuffle = (Button) view.findViewById(R.id.shuffle);
-        shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), allSongsList));
+//        shuffle = (Button) view.findViewById(R.id.shuffle);
+//        shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), albumModels));
     }
 
 }
