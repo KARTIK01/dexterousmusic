@@ -78,4 +78,6 @@ dependencies {
     compile 'com.github.viethoa:fastscroller:1.1.0'
     testCompile 'junit:junit:4.12'
     apt 'com.github.hotchemi:permissionsdispatcher-processor:2.1.3'
+
+    compile 'com.android.support:support-annotations:24.1.1'
 }
