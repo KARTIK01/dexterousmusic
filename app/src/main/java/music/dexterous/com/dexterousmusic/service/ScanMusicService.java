@@ -30,6 +30,4 @@ public class ScanMusicService extends IntentService {
         PrettyLogger.d("List size is :" + musicList.size());
         DataManager.getInstance(this).saveAllMusic(musicList);
     }
-
-
 }

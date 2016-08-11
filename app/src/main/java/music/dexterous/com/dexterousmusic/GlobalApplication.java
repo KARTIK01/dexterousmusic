@@ -46,7 +46,7 @@ public class GlobalApplication extends Application {
                 .setUseDefaultSharedPreference(true)
                 .build();
 
-
+        /** Initialize the DataManager class */
         DataManager.getInstance(GlobalApplication.this);
 
         /** load the ui defaults */
