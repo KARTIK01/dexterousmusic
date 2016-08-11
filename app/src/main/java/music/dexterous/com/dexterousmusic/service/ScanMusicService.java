@@ -6,17 +6,10 @@ import android.content.Intent;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
+import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.music.ScanningMusic;
 
-
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p>
- * TODO: Customize class - update intent actions and extra parameters.
- */
 public class ScanMusicService extends IntentService {
 
     private String mMediaStoreSelection = null;
@@ -35,7 +28,7 @@ public class ScanMusicService extends IntentService {
     private void getSongsFromMediaStore() {
         List<Music> musicList = new ScanningMusic().getAllMusicEntities(this);
         PrettyLogger.d("List size is :" + musicList.size());
-        MyMusicLibraryTableDao.saveAllMusic(getApplicationContext(), musicList);
+        DataManager.getInstance(this).saveAllMusic(musicList);
     }
 
 

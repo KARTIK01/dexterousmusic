@@ -7,23 +7,13 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
-import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
-import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.service.ScanMusicService;
-import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;

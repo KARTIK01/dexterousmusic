@@ -2,7 +2,6 @@ package music.dexterous.com.dexterousmusic.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,11 +17,8 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapter;
-import music.dexterous.com.dexterousmusic.adapters.viewpager.MusicViewPageAdapter;
-import music.dexterous.com.dexterousmusic.animations.transformation.ABaseTransformer;
-import music.dexterous.com.dexterousmusic.animations.transformation.DepthPageTransformer;
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
+import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 /**
@@ -72,7 +68,7 @@ public class AllSongsFragment extends BaseFragment {
 
     protected void initialiseData() {
         //All songs
-        allSongsList = MyMusicLibraryTableDao.getAllMusic(getActivity().getApplicationContext());
+        allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
 
         //Alphabet fast scroller data
         mAlphabetItems = new ArrayList<>();

@@ -9,6 +9,7 @@ import hugo.weaving.DebugLog;
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.update.UpgradeDpHelper;
+import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Constants;
@@ -44,6 +45,9 @@ public class GlobalApplication extends Application {
                 .setPrefsName(getPackageName())
                 .setUseDefaultSharedPreference(true)
                 .build();
+
+
+        DataManager.getInstance(GlobalApplication.this);
 
         /** load the ui defaults */
         UiUtils.initialize(GlobalApplication.this);

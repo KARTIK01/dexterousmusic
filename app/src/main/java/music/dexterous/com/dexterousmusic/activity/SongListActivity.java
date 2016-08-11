@@ -14,7 +14,7 @@ import java.util.List;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.databaseutils.MyMusicLibraryTableDao;
+import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 public class SongListActivity extends BaseActivity {
@@ -40,7 +40,7 @@ public class SongListActivity extends BaseActivity {
 
     protected void initialiseData() {
         //All songs
-        allSongsList = MyMusicLibraryTableDao.getAllMusic(getApplicationContext());
+        allSongsList = DataManager.getInstance(SongListActivity.this).getAllMusic();
 
         //Alphabet fast scroller data
         mAlphabetItems = new ArrayList<>();
