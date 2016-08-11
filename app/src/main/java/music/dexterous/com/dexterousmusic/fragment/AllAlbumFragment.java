@@ -95,7 +95,7 @@ public class AllAlbumFragment extends BaseFragment {
         fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new RecyclerViewAdapterAlbums(albumModels));
+        mRecyclerView.setAdapter(new RecyclerViewAdapterAlbums(albumModels, getActivity()));
 //
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
