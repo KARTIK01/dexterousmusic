@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.fragment.HomeFragment;
 
@@ -31,10 +32,11 @@ public class HomeActivity extends BaseActivity {
 
         mFragmentManager = getSupportFragmentManager();
         mHomeFragment = HomeFragment.newInstance();
-
         openHomeFragment();
 
+        DataManager.getInstance(this).loadActivitySpecificData();
     }
+
 
 
     /**
@@ -44,7 +46,7 @@ public class HomeActivity extends BaseActivity {
         BaseFragment fragment = (BaseFragment) mFragmentManager.findFragmentByTag(HomeFragment.FRAGMENT_TAG);
         if (fragment == null) {
 
-                mFragmentManager.beginTransaction()
+            mFragmentManager.beginTransaction()
                     .replace(R.id.rootHomeContainer, mHomeFragment, HomeFragment.FRAGMENT_TAG)
                     .commitAllowingStateLoss();
         }

@@ -28,8 +28,7 @@ public class MediaScannerCompletedReceiver extends BroadcastReceiver {
 
 
                     //TODO check if we has permission for access
-                    Intent scanIntent = new Intent(context, ScanMusicService.class);
-                    context.startService(scanIntent);
+                    ScanMusicService.startService(context.getApplicationContext());
                     break;
 
             }

@@ -21,7 +21,7 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
-@RuntimePermissions
+//@RuntimePermissions
 public class MainActivity extends BaseActivity {
     protected Button scan;
     protected Button playMusic;
@@ -71,13 +71,12 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+    //    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showStoragePermission() {
-        Intent intent = new Intent(getApplicationContext(), ScanMusicService.class);
-        startService(intent);
+        ScanMusicService.startService(getApplicationContext());
     }
 
-    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+    //    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showRationaleForStorage(PermissionRequest request) {
         new AlertDialog.Builder(this)
                 .setMessage(R.string.permission_storage_rationale)
@@ -86,12 +85,12 @@ public class MainActivity extends BaseActivity {
                 .show();
     }
 
-    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
+    //    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showDeniedForStorage() {
         Toast.makeText(this, R.string.permission_storage_denied, Toast.LENGTH_SHORT).show();
     }
 
-    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
+    //    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showNeverAskForStorage() {
         ShortToast.displayToast(this, getResources().getString(R.string.permission_storage_never_ask), Toast.LENGTH_SHORT);
     }
