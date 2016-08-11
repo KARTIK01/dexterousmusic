@@ -93,8 +93,6 @@ public class GlobalApplication extends Application {
      * It start the music service and initializes all required components
      */
     private void startMusicService() {
-        Intent nextMusic = new Intent(DexterousPlayMusicService.INITIALIZE);
-        nextMusic.setClass(this, DexterousPlayMusicService.class);
-        startService(nextMusic);
+        DexterousPlayMusicService.startService(this, DexterousPlayMusicService.INITIALIZE);
     }
 }

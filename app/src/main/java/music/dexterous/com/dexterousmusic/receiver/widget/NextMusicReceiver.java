@@ -22,9 +22,7 @@ public class NextMusicReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent nextMusic = new Intent(DexterousPlayMusicService.NEXT_MUSIC);
-        nextMusic.setClass(context, DexterousPlayMusicService.class);
-        context.startService(nextMusic);
+        DexterousPlayMusicService.startService(context, DexterousPlayMusicService.NEXT_MUSIC);
 
 //        kMP.musicService.next(true);
 //        kMP.musicService.playSong();

@@ -1,5 +1,6 @@
 package music.dexterous.com.dexterousmusic.service;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -33,6 +34,11 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
     public static final String PREVIOUS_MUSIC = "previous_music";
     public static final String INITIALIZE = "initialize";
 
+    public static void startService(Context context, String type) {
+        Intent nextMusic = new Intent(type);
+        nextMusic.setClass(context, DexterousPlayMusicService.class);
+
+    }
 
     public DexterousPlayMusicService() {
         super("DexterousPlayMusicService");

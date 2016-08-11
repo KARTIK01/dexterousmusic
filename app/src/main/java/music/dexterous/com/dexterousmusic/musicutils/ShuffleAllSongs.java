@@ -30,10 +30,7 @@ public class ShuffleAllSongs {
             return;
         } else {
             MusicList.getInstance().setCurrentSongPosition(currentSongPoistion);
-
-            Intent nextMusic = new Intent(DexterousPlayMusicService.PLAY_MUSIC);
-            nextMusic.setClass(context, DexterousPlayMusicService.class);
-            context.startService(nextMusic);
+            DexterousPlayMusicService.startService(context, DexterousPlayMusicService.PLAY_MUSIC);
         }
     }
 }

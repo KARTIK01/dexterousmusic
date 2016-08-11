@@ -12,8 +12,6 @@ public class PauseMusicReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent nextMusic = new Intent(DexterousPlayMusicService.PAUSE_MUSIC);
-        nextMusic.setClass(context, DexterousPlayMusicService.class);
-        context.startService(nextMusic);
+        DexterousPlayMusicService.startService(context, DexterousPlayMusicService.PAUSE_MUSIC);
     }
 }

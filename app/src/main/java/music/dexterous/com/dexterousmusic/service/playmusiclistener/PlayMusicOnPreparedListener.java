@@ -27,8 +27,8 @@ public class PlayMusicOnPreparedListener implements DexterousMediaPlayer.OnPrepa
     public void onPrepared(MediaPlayer mediaPlayer) {
         // Start playback
         mDexterousMediaPlayer.start();
-        if (BuildConfig.DEBUG)
-            mDexterousMediaPlayer.seekTo(mDexterousMediaPlayer.getDuration() - 1000 * 10);
+//        if (BuildConfig.DEBUG)
+//            mDexterousMediaPlayer.seekTo(mDexterousMediaPlayer.getDuration() - 1000 * 10);
         // If the user clicks on the notification, let's spawn the
         // Now Playing screen.
         mMusicControl.notifyCurrentSong();
