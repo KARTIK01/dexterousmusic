@@ -106,6 +106,7 @@ public class ScanningMusic {
                 song.setSONG_YEAR("" + cursor.getInt(cursor.getColumnIndex(SONG_YEAR)));
                 song.setSONG_TRACK_NUMBER("" + cursor.getInt(cursor.getColumnIndex(SONG_TRACK_NO)));
                 song.setSONG_DURATION("" + cursor.getInt(cursor.getColumnIndex(SONG_DURATION)));
+                
                 if (Integer.parseInt(song.getSONG_DURATION()) > UsersAppPreference.getHideSmallClipsDurations())
                     musicLibraryTables.add(song);
             }

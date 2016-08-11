@@ -1,13 +1,9 @@
 package music.dexterous.com.dexterousmusic.models;
 
-import android.net.Uri;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import music.dexterous.com.dexterousmusic.database.Music;
 
@@ -53,18 +49,16 @@ public class AlbumModel {
                 '}';
     }
 
-    static public List<AlbumModel> getModel(List<Music> musicList, List<String> albumsNames) {
-        Map<String, AlbumModel> albumModelMap = new HashMap<>(albumsNames.size());
+    static public List<AlbumModel> getModel(List<Music> musicList, List<AlbumModel> albumModelList) {
+        Map<String, AlbumModel> albumModelMap = new HashMap<>(albumModelList.size());
 
-        for (int i = 0; i < albumsNames.size(); i++) {
+        for (int i = 0; i < albumModelList.size(); i++) {
             AlbumModel albumModel = new AlbumModel();
-            albumModel.setAlbumName(albumsNames.get(i));
-            albumModelMap.put(albumsNames.get(i), albumModel);
+            albumModelMap.put(albumModelList.get(i).albumName, albumModel);
         }
 
         for (int i = 0; i < musicList.size(); i++) {
             AlbumModel albumModel = albumModelMap.get(musicList.get(i).getSONG_ALBUM());
-            albumModel.setAlbumArtPath(musicList.get(i).getSONG_ALBUM_ART_PATH());
             List<Music> musicList1 = albumModel.getMusicArrayList();
             musicList1.add(musicList.get(i));
             albumModel.setMusicArrayList(musicList1);

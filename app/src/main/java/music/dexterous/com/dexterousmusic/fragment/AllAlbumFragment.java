@@ -71,7 +71,7 @@ public class AllAlbumFragment extends BaseFragment {
 
         //All songs List
         List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
-        List<String> albums = DataManager.getInstance(getActivity()).getAlbums();
+        List<AlbumModel> albums = DataManager.getInstance(getActivity()).getAlbums();
 
         albumModels = AlbumModel.getModel(allSongsList, albums);
         //Alphabet fast scroller data

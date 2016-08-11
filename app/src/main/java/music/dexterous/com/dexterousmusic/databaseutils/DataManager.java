@@ -13,6 +13,7 @@ import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.database.MusicDao;
+import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
@@ -33,7 +34,7 @@ public class DataManager extends MediaDao {
     /**
      * list of all Albums present
      */
-    private static final List<String> albums = new ArrayList<>();
+    private static final List<AlbumModel> albums = new ArrayList<>();
     private static final List<Music> allMusic = new ArrayList<>();
 
     private DataManager(Context context) {
@@ -62,12 +63,15 @@ public class DataManager extends MediaDao {
 
     private void loadAlbums() {
         synchronized (albums) {
-            List<String> returnListOfAlbumNames = new ArrayList<>();
+            List<AlbumModel> returnListOfAlbumNames = new ArrayList<>();
             Uri albumUri = android.provider.MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
             Cursor cursor = mContext.getContentResolver().query(albumUri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
                 do {
-                    returnListOfAlbumNames.add(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM)));
+                    AlbumModel albumModel = new AlbumModel();
+                    albumModel.setAlbumArtPath(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART)));
+                    albumModel.setAlbumName(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM)));
+                    returnListOfAlbumNames.add(albumModel);
                 } while (cursor.moveToNext());
             }
             albums.clear();
@@ -96,7 +100,7 @@ public class DataManager extends MediaDao {
     }
 
 
-    public static List<String> getAlbums() {
+    public static List<AlbumModel> getAlbums() {
         return albums;
     }
 
