@@ -161,6 +161,22 @@ public class ImageLoader extends ImageLoaderHelper {
                 .into(imageView);
     }
 
+    /**
+     * to load image from byte array
+     *
+     * @param context
+     * @param bitmap
+     * @param imageView
+     */
+    public void loadImage(Context context, Bitmap bitmap, ImageView imageView) {
+//        Glide.with(context).load(bitmap)
+//                .priority(Priority.IMMEDIATE)
+//                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+//                .into(imageView);
+        //TODO use glide for this of requires caching and images are loading show
+        imageView.setImageBitmap(bitmap);
+    }
+
 
 //    /**
 //     * Load an image from a url into the given image view using the default placeholder if

@@ -1,6 +1,8 @@
 package music.dexterous.com.dexterousmusic.adapters.list;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoaderHelper;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Dubey's on 06-08-2016.
@@ -25,13 +28,19 @@ import music.dexterous.com.dexterousmusic.utils.image.ImageLoaderHelper;
 public class RecyclerViewAdapterAlbums extends RecyclerView.Adapter<RecyclerViewAdapterAlbums.ViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
+    /**
+     * Used to load images asynchronously on a background thread.
+     */
+    ImageLoader mImageLoader;
 
     private List<AlbumModel> mDataArray;
     Context context;
 
+
     public RecyclerViewAdapterAlbums(List<AlbumModel> dataset, Context context) {
         this.context = context;
         mDataArray = dataset;
+        mImageLoader = new ImageLoader(context, R.drawable.dishoom);
     }
 
     @Override
@@ -50,18 +59,16 @@ public class RecyclerViewAdapterAlbums extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
 
-        if (mDataArray
-                .get(position)
-                .getMusicArrayList().size() == 0)
-            return;
-        mmr.setDataSource(mDataArray
-                .get(position)
-                .getAlbumArtPath()
-        );
-        new ImageLoader(context).loadImage(context, mmr.getEmbeddedPicture(), holder.mTextView);
-//        holder.mTextView.setText(mDataArray.get(position).getAlbumName());
+        Bitmap bitmap = BitmapFactory.decodeFile(
+                mDataArray
+                        .get(position)
+                        .getAlbumArtPath());
+
+//        PrettyLogger.d(mDataArray.get(position).toString());
+
+        mImageLoader.loadImage(context, bitmap, holder.mTextView);
+        holder.albumName.setText(mDataArray.get(position).getAlbumName());
     }
 
     @Override
@@ -78,10 +85,12 @@ public class RecyclerViewAdapterAlbums extends RecyclerView.Adapter<RecyclerView
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mTextView;
+        FontTextView albumName;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mTextView = (ImageView) itemView.findViewById(R.id.albumImage);
+            albumName = (FontTextView) itemView.findViewById(R.id.albumName);
         }
     }
 

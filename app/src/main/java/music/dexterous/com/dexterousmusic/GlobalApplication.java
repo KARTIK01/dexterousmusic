@@ -52,7 +52,6 @@ public class GlobalApplication extends Application {
         /** load the ui defaults */
         UiUtils.initialize(GlobalApplication.this);
 
-
         if (BuildConfig.DEBUG) {
             StrictModeUtil.enableStrictMode();
         }

@@ -42,7 +42,7 @@ public class AlbumModel {
 
     @Override
     public String toString() {
-        return "AlbumModel{" +
+        return "\nAlbumModel{" +
                 "albumName='" + albumName + '\'' +
                 ", albumArtPath=" + albumArtPath +
                 ", musicArrayList=" + musicArrayList +
@@ -53,8 +53,7 @@ public class AlbumModel {
         Map<String, AlbumModel> albumModelMap = new HashMap<>(albumModelList.size());
 
         for (int i = 0; i < albumModelList.size(); i++) {
-            AlbumModel albumModel = new AlbumModel();
-            albumModelMap.put(albumModelList.get(i).albumName, albumModel);
+            albumModelMap.put(albumModelList.get(i).albumName, albumModelList.get(i));
         }
 
         for (int i = 0; i < musicList.size(); i++) {
