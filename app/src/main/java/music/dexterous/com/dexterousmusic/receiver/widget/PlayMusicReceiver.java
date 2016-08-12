@@ -26,7 +26,7 @@ public class PlayMusicReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //TODO set currentSongPosition on {@link #,MusicList} first
 
-        DexterousPlayMusicService.startService(context, DexterousPlayMusicService.PLAY_MUSIC);
+        DexterousPlayMusicService.startService(context, DexterousPlayMusicService.TOGGLE_MUSIC);
 
 
         if (intent != null && intent.getExtras() != null) {

@@ -54,14 +54,7 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".receiver.widget.NextMusicReceiver" />
-        <receiver
-            android:name=".receiver.widget.PreviousMusicReceiver"
-            android:enabled="false"
-            android:exported="false" />
-        <receiver
-            android:name=".receiver.widget.PauseMusicReceiver"
-            android:enabled="true"
-            android:exported="true" />
+        <receiver android:name=".receiver.widget.PreviousMusicReceiver" />
         <receiver
             android:name=".receiver.widget.PlayMusicReceiver"
             android:enabled="false"

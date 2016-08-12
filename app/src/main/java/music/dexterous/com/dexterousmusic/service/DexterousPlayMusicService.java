@@ -30,6 +30,7 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
 
     public static final String PLAY_MUSIC = "play_music";
     public static final String PAUSE_MUSIC = "pause_music";
+    public static final String TOGGLE_MUSIC = "toggle_music";
     public static final String NEXT_MUSIC = "next_music";
     public static final String PREVIOUS_MUSIC = "previous_music";
     public static final String INITIALIZE = "initialize";
@@ -76,6 +77,8 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
                     case PREVIOUS_MUSIC:
                         playPreviousMusic();
                         break;
+                    case TOGGLE_MUSIC:
+
                 }
             }
         });
