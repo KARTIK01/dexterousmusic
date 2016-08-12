@@ -29,7 +29,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     /**
      * Dexterous Media Player - we control it in here.
      */
-    MediaPlayer mDexterousMediaPlayer;
+    private MediaPlayer mDexterousMediaPlayer;
 
     /**
      * Spawns an on-going notification with our current
@@ -168,7 +168,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     @Override
     public void pauseMusic() {
-
+        mDexterousMediaPlayer.pause();
+        notification.notifyPaused(true);
+        //TODO Updates Lock-Screen Widget
     }
 
     @Override
@@ -217,5 +219,27 @@ public abstract class AbstractMusicControlService extends Service implements Mus
             notification = new NotificationMusic();
 
         notification.notifySong(this, this, currentMusic);
+    }
+
+    @Override
+    public void unPauseMusic() {
+        //restart music
+        mDexterousMediaPlayer.start();
+        //show on notification
+        notification.notifyPaused(false);
+
+        //TODO Updates Lock-Screen Widget
+        /**
+         * Controller that communicates with the lock screen,
+         * providing that fancy widget.
+         */
+//        RemoteControlClientCompat lockscreenController = null;
+//        if (lockscreenController != null)
+//            lockscreenController.setPlaybackState(RemoteControlClient.PLAYSTATE_PLAYING);
+
+    }
+
+    protected boolean isPlaying() {
+        return mDexterousMediaPlayer.isPlaying();
     }
 }

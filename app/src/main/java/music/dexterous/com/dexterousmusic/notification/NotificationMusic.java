@@ -100,8 +100,8 @@ public class NotificationMusic extends NotificationSimple {
 
         //set resources to view from small notification
         Helper.setSmallNotificationView(smallNotificationView, music);
-        Helper.setButtonPlayIntent(context, smallNotificationView);
-        Helper.setButtonSkipIntent(context, smallNotificationView , R.id.notification_button_skip_small);
+        Helper.setSmallButtonPlayIntent(context, smallNotificationView);
+        Helper.setButtonSkipIntent(context, smallNotificationView, R.id.notification_button_skip_small);
 
         // Finally... Actually creating the Notification
         notificationBuilder = new NotificationCompat.Builder(context);
@@ -124,8 +124,8 @@ public class NotificationMusic extends NotificationSimple {
 
             //set resources to view from small notification
             Helper.setBigNotificationView(bigContentView, music);
-            Helper.setButtonPlayIntent(context, bigContentView);
-            Helper.setButtonSkipIntent(context, bigContentView , R.id.notification_button_skip_big);
+            Helper.setBigButtonPlayIntent(context, bigContentView);
+            Helper.setButtonSkipIntent(context, bigContentView, R.id.notification_button_skip_big);
 
             notification.bigContentView = bigContentView;
             notification.priority = Notification.PRIORITY_MAX;
@@ -149,6 +149,7 @@ public class NotificationMusic extends NotificationSimple {
      * Updates the Notification icon if the music is paused.
      */
     public void notifyPaused(boolean isPaused) {
+        //TODO big notification gone when this funcation calls
         if ((smallNotificationView == null) || (notificationBuilder == null))
             return;
 
@@ -156,7 +157,8 @@ public class NotificationMusic extends NotificationSimple {
                 R.drawable.ic_play :
                 R.drawable.ic_pause);
 
-        smallNotificationView.setImageViewResource(R.id.notification_button_play, iconID);
+        smallNotificationView.setImageViewResource(R.id.notification_button_play_big, iconID);
+        smallNotificationView.setImageViewResource(R.id.notification_button_play_small, iconID);
 
         notificationBuilder.setContent(smallNotificationView);
 

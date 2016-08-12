@@ -55,10 +55,7 @@
         </receiver>
         <receiver android:name=".receiver.widget.NextMusicReceiver" />
         <receiver android:name=".receiver.widget.PreviousMusicReceiver" />
-        <receiver
-            android:name=".receiver.widget.PlayMusicReceiver"
-            android:enabled="false"
-            android:exported="false" />
+        <receiver android:name=".receiver.widget.ToggleMusicReceiver" />
         <receiver android:name=".receiver.MediaScannerCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_SCANNER_FINISHED" />

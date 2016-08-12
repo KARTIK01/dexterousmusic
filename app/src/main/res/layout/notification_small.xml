@@ -16,7 +16,7 @@
             android:contentDescription="@string/app_name_short" />
      -->
     <ImageButton
-        android:id="@+id/notification_button_play"
+        android:id="@+id/notification_button_play_small"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:contentDescription="@string/notification_button_play"

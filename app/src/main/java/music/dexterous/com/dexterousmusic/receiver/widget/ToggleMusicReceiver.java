@@ -11,7 +11,7 @@ import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 /**
  * Called when user clicks the "play/pause" button on the on-going system Notification.
  */
-public class PlayMusicReceiver extends BroadcastReceiver {
+public class ToggleMusicReceiver extends BroadcastReceiver {
 
 
     public static final String ACTION = "action";
@@ -19,23 +19,11 @@ public class PlayMusicReceiver extends BroadcastReceiver {
 
     public static final String ACTION_TYPE_TOGGLE = "action_type_toggle";
 
-    public PlayMusicReceiver() {
+    public ToggleMusicReceiver() {
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        //TODO set currentSongPosition on {@link #,MusicList} first
-
         DexterousPlayMusicService.startService(context, DexterousPlayMusicService.TOGGLE_MUSIC);
-
-
-        if (intent != null && intent.getExtras() != null) {
-            Bundle bundle = intent.getExtras();
-            int state = bundle.getInt(ACTION);
-            switch (state) {
-//                kMP.musicService.togglePlayback();
-            }
-        }
-
     }
 }
