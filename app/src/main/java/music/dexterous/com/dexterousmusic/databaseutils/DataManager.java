@@ -14,6 +14,7 @@ import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.database.MusicDao;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
+import music.dexterous.com.dexterousmusic.models.ArtistModel;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
@@ -36,6 +37,7 @@ public class DataManager extends MediaDao {
      */
     private static final List<AlbumModel> albums = new ArrayList<>();
     private static final List<Music> allMusic = new ArrayList<>();
+    private static final List<ArtistModel> artist = new ArrayList<>();
 
     private DataManager(Context context) {
         mContext = context;
@@ -59,6 +61,7 @@ public class DataManager extends MediaDao {
     public void loadActivitySpecificData() {
         loadAllMusic();
         loadAlbums();
+        loadArtist();
     }
 
     private void loadAlbums() {
@@ -79,16 +82,35 @@ public class DataManager extends MediaDao {
         }
     }
 
-    public void saveAllMusic(List<Music> musicList) {
-        mMusicDao.insertOrReplaceInTx(musicList);
-    }
-
     private void loadAllMusic() {
         synchronized (allMusic) {
             List<Music> returnMusicList = mMusicDao.loadAll();
             allMusic.clear();
             allMusic.addAll(returnMusicList);
         }
+    }
+
+    private void loadArtist() {
+        synchronized (artist) {
+            List<ArtistModel> returnListOfAlbumNames = new ArrayList<>();
+            Uri artistUri = android.provider.MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
+            Cursor cursor = mContext.getContentResolver().query(artistUri, null, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    ArtistModel albumModel = new ArtistModel();
+                    albumModel.setArtistName(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST)));
+//                    albumModel.setAlbumName(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.)));
+                    returnListOfAlbumNames.add(albumModel);
+                } while (cursor.moveToNext());
+            }
+            artist.clear();
+            artist.addAll(returnListOfAlbumNames);
+        }
+    }
+
+
+    public void saveAllMusic(List<Music> musicList) {
+        mMusicDao.insertOrReplaceInTx(musicList);
     }
 
 
@@ -103,6 +125,11 @@ public class DataManager extends MediaDao {
     public static List<AlbumModel> getAlbums() {
         return albums;
     }
+
+    public static List<ArtistModel> getArtist() {
+        return artist;
+    }
+
 
     public static List<Music> getAllMusic() {
         return allMusic;

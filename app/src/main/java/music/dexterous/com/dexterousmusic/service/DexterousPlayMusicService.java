@@ -37,7 +37,7 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
     public static void startService(Context context, String type) {
         Intent nextMusic = new Intent(type);
         nextMusic.setClass(context, DexterousPlayMusicService.class);
-
+        context.startService(nextMusic);
     }
 
     public DexterousPlayMusicService() {
