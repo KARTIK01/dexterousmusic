@@ -162,8 +162,21 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     }
 
     @Override
-    public void playPreviousMusic() {
+    public void playPreviousMusic(boolean isUserSkipped) {
+        if (isUserSkipped) {
+            //TODO
+        }
 
+        //TODO Updates Lock-Screen Widget
+
+        int currentSongPosition = musicList.getCurrentSongPosition();
+
+        currentSongPosition--;
+
+        if (currentSongPosition < 0)
+            currentSongPosition = musicList.list.size() - 1;
+
+        musicList.setCurrentSongPosition(currentSongPosition);
     }
 
     @Override

@@ -76,7 +76,8 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
                         playMusic();
                         break;
                     case PREVIOUS_MUSIC:
-                        playPreviousMusic();
+                        playPreviousMusic(true);
+                        playMusic();
                         break;
                     case TOGGLE_MUSIC:
                         if (isPlaying())
@@ -86,7 +87,6 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
                         break;
                     case UNPAUSE_MUSIC:
                         unPauseMusic();
-
                 }
             }
         });
