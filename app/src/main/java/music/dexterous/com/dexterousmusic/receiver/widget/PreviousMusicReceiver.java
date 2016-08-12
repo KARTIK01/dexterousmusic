@@ -12,8 +12,6 @@ public class PreviousMusicReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent nextMusic = new Intent(DexterousPlayMusicService.PREVIOUS_MUSIC);
-        nextMusic.setClass(context, DexterousPlayMusicService.class);
-        context.startService(nextMusic);
+        DexterousPlayMusicService.startService(context, DexterousPlayMusicService.PREVIOUS_MUSIC);
     }
 }
