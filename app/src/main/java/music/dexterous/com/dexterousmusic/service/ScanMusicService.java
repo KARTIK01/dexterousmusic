@@ -14,8 +14,6 @@ import music.dexterous.com.dexterousmusic.utils.music.ScanningMusic;
 
 public class ScanMusicService extends IntentService {
 
-    private String mMediaStoreSelection = null;
-
     public static void startService(Context context) {
         Intent intent = new Intent(context, ScanMusicService.class);
         context.startService(intent);

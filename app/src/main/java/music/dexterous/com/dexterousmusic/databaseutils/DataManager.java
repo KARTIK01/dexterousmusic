@@ -8,14 +8,12 @@ import android.provider.MediaStore;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.greenrobot.dao.query.QueryBuilder;
 import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.database.MusicDao;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Honey on 7/31/2016.
