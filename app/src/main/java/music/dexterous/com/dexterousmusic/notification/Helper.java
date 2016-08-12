@@ -3,6 +3,7 @@ package music.dexterous.com.dexterousmusic.notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.IdRes;
 import android.widget.RemoteViews;
 
 import music.dexterous.com.dexterousmusic.R;
@@ -19,7 +20,16 @@ public class Helper {
     // (ignoring the defaults on the XML)
     static protected void setSmallNotificationView(RemoteViews smallNotificationView, Music music) {
         smallNotificationView.setImageViewResource(R.id.notification_button_play, R.drawable.ic_pause);
-        smallNotificationView.setImageViewResource(R.id.notification_button_skip, R.drawable.ic_skip_next);
+        smallNotificationView.setImageViewResource(R.id.notification_button_skip_small, R.drawable.ic_skip_next);
+        smallNotificationView.setTextViewText(R.id.notification_text_title, music.getSONG_TITLE());
+        smallNotificationView.setTextViewText(R.id.notification_text_artist, music.getSONG_ARTIST());
+    }
+
+    // Manually settings the buttons and text
+    // (ignoring the defaults on the XML)
+    static protected void setBigNotificationView(RemoteViews smallNotificationView, Music music) {
+        smallNotificationView.setImageViewResource(R.id.notification_button_play, R.drawable.ic_pause);
+        smallNotificationView.setImageViewResource(R.id.notification_button_skip_big, R.drawable.ic_skip_next);
         smallNotificationView.setTextViewText(R.id.notification_text_title, music.getSONG_TITLE());
         smallNotificationView.setTextViewText(R.id.notification_text_artist, music.getSONG_ARTIST());
     }
@@ -37,11 +47,11 @@ public class Helper {
     }
 
     // And now, building and attaching the Skip button.
-    static protected void setButtonSkipIntent(Context context, RemoteViews smallNotificationView) {
+    static protected void setButtonSkipIntent(Context context, RemoteViews smallNotificationView, @IdRes int buttonId) {
         Intent buttonSkipIntent = new Intent(context, NextMusicReceiver.class);
         buttonSkipIntent.putExtra(NextMusicReceiver.ACTION, NextMusicReceiver.ACTION_TYPE_SKIP);
         PendingIntent buttonSkipPendingIntent = PendingIntent.getBroadcast(context, 0, buttonSkipIntent, 0);
-        smallNotificationView.setOnClickPendingIntent(R.id.notification_button_skip, buttonSkipPendingIntent);
+        smallNotificationView.setOnClickPendingIntent(buttonId, buttonSkipPendingIntent);
     }
 
 }

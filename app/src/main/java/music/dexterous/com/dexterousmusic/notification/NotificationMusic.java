@@ -101,7 +101,7 @@ public class NotificationMusic extends NotificationSimple {
         //set resources to view from small notification
         Helper.setSmallNotificationView(smallNotificationView, music);
         Helper.setButtonPlayIntent(context, smallNotificationView);
-        Helper.setButtonSkipIntent(context, smallNotificationView);
+        Helper.setButtonSkipIntent(context, smallNotificationView , R.id.notification_button_skip_small);
 
         // Finally... Actually creating the Notification
         notificationBuilder = new NotificationCompat.Builder(context);
@@ -121,6 +121,11 @@ public class NotificationMusic extends NotificationSimple {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             RemoteViews bigContentView = new RemoteViews(Package.getPackageName(context), R.layout.notification_big);
 //            bigContentView.setTextViewText(R.id.bigNotificationTitle, title);
+
+            //set resources to view from small notification
+            Helper.setBigNotificationView(bigContentView, music);
+            Helper.setButtonPlayIntent(context, bigContentView);
+            Helper.setButtonSkipIntent(context, bigContentView , R.id.notification_button_skip_big);
 
             notification.bigContentView = bigContentView;
             notification.priority = Notification.PRIORITY_MAX;

@@ -71,6 +71,7 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
                         break;
                     case NEXT_MUSIC:
                         playNextMusic(true);
+                        playMusic();
                         break;
                     case PREVIOUS_MUSIC:
                         playPreviousMusic();

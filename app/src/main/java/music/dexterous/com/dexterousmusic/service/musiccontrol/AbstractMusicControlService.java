@@ -134,9 +134,14 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     }
 
+    /**
+     * Jumps to the next song on the list.
+     *
+     * @note Remember to call {@link #playMusic} to make the MusicPlayer
+     * actually play the music.
+     */
     @Override
     public void playNextMusic(boolean isUserSkipped) {
-
         if (isUserSkipped) {
             //TODO
         }

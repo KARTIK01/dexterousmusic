@@ -20,6 +20,12 @@ public interface MusicControl {
      */
     public void playMusic();
 
+    /**
+     * Jumps to the next song on the list.
+     *
+     * @note Remember to call {@link #playMusic} to make the MusicPlayer
+     * actually play the music.
+     */
     public void playNextMusic(boolean isUserSkipped);
 
     public void playPreviousMusic();

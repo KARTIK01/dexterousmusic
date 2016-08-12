@@ -22,7 +22,7 @@
         android:src="@drawable/ic_play" />
 
     <ImageButton
-        android:id="@+id/notification_button_skip"
+        android:id="@+id/notification_button_skip_big"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:contentDescription="@string/notification_button_skip"
