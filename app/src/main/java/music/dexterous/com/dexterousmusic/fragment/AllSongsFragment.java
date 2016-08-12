@@ -16,9 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapter;
+import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapterAllSongs;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 /**
@@ -35,6 +36,7 @@ public class AllSongsFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
+    RecyclerViewAdapterAllSongs recyclerViewAdapterAllSongs;
 
     Button shuffle;
 
@@ -91,12 +93,16 @@ public class AllSongsFragment extends BaseFragment {
         fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new RecyclerViewAdapter(allSongsList));
+        mRecyclerView.setAdapter(recyclerViewAdapterAllSongs = new RecyclerViewAdapterAllSongs(allSongsList));
 
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
         shuffle = (Button) view.findViewById(R.id.shuffle);
         shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), allSongsList));
+
+        recyclerViewAdapterAllSongs.setOnItemClickListener((view1, position) -> {
+            PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), allSongsList, position);
+        });
     }
 
 }

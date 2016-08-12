@@ -16,14 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapter;
-import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapterAlbums;
 import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapterArtist;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
-import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
-import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 /**
  * Created by Kartik on 8/9/2016.
@@ -102,7 +98,7 @@ public class AllArtistFragment extends BaseFragment {
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
 //        shuffle = (Button) view.findViewById(R.id.shuffle);
-//        shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), albumModels));
+//        shuffle.setOnItemClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), albumModels));
     }
 
 }

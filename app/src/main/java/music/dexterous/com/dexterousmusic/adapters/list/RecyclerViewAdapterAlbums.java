@@ -83,7 +83,7 @@ public class RecyclerViewAdapterAlbums extends RecyclerView.Adapter<RecyclerView
         return mDataArray.get(pos).getAlbumName().substring(0, 1);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mTextView;
         FontTextView albumName;
 

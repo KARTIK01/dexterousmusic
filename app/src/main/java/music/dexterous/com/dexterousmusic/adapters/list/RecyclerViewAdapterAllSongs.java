@@ -16,13 +16,13 @@ import music.dexterous.com.dexterousmusic.database.Music;
 /**
  * Created by Dubey's on 06-08-2016.
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
+public class RecyclerViewAdapterAllSongs extends RecyclerView.Adapter<RecyclerViewAdapterAllSongs.AllSongsViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
 
     private List<Music> mDataArray;
 
-    public RecyclerViewAdapter(List<Music> dataset) {
+    public RecyclerViewAdapterAllSongs(List<Music> dataset) {
         mDataArray = dataset;
     }
 
@@ -34,14 +34,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AllSongsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new AllSongsViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(AllSongsViewHolder holder, int position) {
         holder.mTextView.setText(mDataArray.get(position).getSONG_TITLE());
     }
 
@@ -57,14 +56,36 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mDataArray.get(pos).getSONG_TITLE().substring(0, 1);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class AllSongsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         FontTextView mTextView;
 
-        public ViewHolder(View itemView) {
+        public AllSongsViewHolder(View itemView) {
             super(itemView);
             mTextView = (FontTextView) itemView.findViewById(R.id.tv_alphabet);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (mOnClickListener != null) {
+                switch (view.getId()) {
+                    default:
+                        int position = getAdapterPosition();
+                        mOnClickListener.onClick(view, position);
+                }
+            }
         }
     }
 
 
+    private OnAllSongsItemClickListener mOnClickListener;
+
+    public void setOnItemClickListener(OnAllSongsItemClickListener onClickListener) {
+        mOnClickListener = onClickListener;
+    }
+
+
+    public interface OnAllSongsItemClickListener {
+        void onClick(View view, int position);
+    }
 }

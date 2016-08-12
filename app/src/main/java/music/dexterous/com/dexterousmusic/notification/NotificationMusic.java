@@ -150,6 +150,7 @@ public class NotificationMusic extends NotificationSimple {
      */
     public void notifyPaused(boolean isPaused) {
         //TODO big notification gone when this funcation calls
+        //TODO if paused make a cross symol to cancle notification
         if ((smallNotificationView == null) || (notificationBuilder == null))
             return;
 
