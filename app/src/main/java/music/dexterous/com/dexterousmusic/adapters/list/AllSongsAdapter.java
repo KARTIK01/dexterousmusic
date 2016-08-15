@@ -43,7 +43,7 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
 
     @Override
     public void onBindViewHolder(AllSongsViewHolder holder, int position) {
-        holder.mSongAlbum.setText(mDataArray.get(position).getSONG_TITLE());
+        holder.mSongName.setText(mDataArray.get(position).getSONG_TITLE());
         holder.mSongAlbum.setText(mDataArray.get(position).getSONG_ALBUM());
         holder.mSongDuration.setText(
                 TimeConvert.songDurationToDisplay(Long.parseLong(mDataArray.get(position).getSONG_DURATION())));

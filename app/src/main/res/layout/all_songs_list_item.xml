@@ -1,50 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/medium_space">
 
     <music.dexterous.com.dexterousmusic.customeviews.FontTextView
         android:id="@+id/song_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/song_duration"
+        android:ellipsize="end"
+        android:lines="1"
         android:orientation="vertical"
-        android:paddingBottom="5dp"
         android:textSize="20sp"
-        app:fontName="Calibri-light.ttf" />
-
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
-        android:id="@+id/song_artist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="5dp"
-        android:textSize="20sp"
-        app:fontName="Calibri-light.ttf" />
+        app:fontName="Calibri-light.ttf"
+        tools:text="Song Name Song" />
 
     <music.dexterous.com.dexterousmusic.customeviews.FontTextView
         android:id="@+id/song_album"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/song_name"
+        android:lines="1"
         android:orientation="vertical"
-        android:paddingBottom="5dp"
-        android:textSize="20sp"
-        app:fontName="Calibri-light.ttf" />
+        android:textSize="18sp"
+        app:fontName="Calibri.ttf"
+        tools:text="Song Album Song Album Song Album" />
+
+    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+        android:id="@+id/dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/song_name"
+        android:layout_toRightOf="@+id/song_album"
+        android:orientation="vertical"
+        android:text="-"
+        android:textSize="18sp"
+        app:fontName="Calibri.ttf" />
+
+    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+        android:id="@+id/song_artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/song_name"
+        android:layout_toRightOf="@+id/dash"
+        android:ellipsize="end"
+        android:lines="1"
+        android:orientation="vertical"
+        android:textSize="18sp"
+        app:fontName="Calibri.ttf"
+        tools:text="Song Artist Song Artist Song Artist" />
+
 
     <music.dexterous.com.dexterousmusic.customeviews.FontTextView
         android:id="@+id/song_duration"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/showPopup"
         android:orientation="vertical"
-        android:paddingBottom="5dp"
-        android:textSize="20sp"
-        app:fontName="Calibri-light.ttf" />
+        android:textSize="18sp"
+        app:fontName="Calibri-light.ttf"
+        tools:text="5.30" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/showPopup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:src="@drawable/ic_dots_vertical_vector" />
 
-</LinearLayout>
+</RelativeLayout>
