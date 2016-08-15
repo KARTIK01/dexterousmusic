@@ -9,10 +9,12 @@ import com.turingtechnologies.materialscrollbar.INameableAdapter;
 import com.viethoa.RecyclerViewFastScroller;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllSongsViewHolder;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.utils.other.TimeConvert;
 
 /**
  * Created by Dubey's on 06-08-2016.
@@ -43,7 +45,8 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
     public void onBindViewHolder(AllSongsViewHolder holder, int position) {
         holder.mSongAlbum.setText(mDataArray.get(position).getSONG_TITLE());
         holder.mSongAlbum.setText(mDataArray.get(position).getSONG_ALBUM());
-        holder.mSongDuration.setText(mDataArray.get(position).getSONG_DURATION());
+        holder.mSongDuration.setText(
+                TimeConvert.songDurationToDisplay(Long.parseLong(mDataArray.get(position).getSONG_DURATION())));
         holder.mSongArtist.setText(mDataArray.get(position).getSONG_ARTIST());
     }
 

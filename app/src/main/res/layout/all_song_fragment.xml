@@ -29,7 +29,7 @@
             android:layout_alignParentEnd="false"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            app:msb_lightOnTouch="false"/>
+            app:msb_lightOnTouch="false" />
 
     </RelativeLayout>
 </LinearLayout>
