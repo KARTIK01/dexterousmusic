@@ -155,8 +155,8 @@ public class NotificationMusic extends NotificationSimple {
             return;
 
         int iconID = ((isPaused) ?
-                R.drawable.ic_play :
-                R.drawable.ic_pause);
+                R.drawable.ic_play_vector :
+                R.drawable.ic_pause_vector);
 
         smallNotificationView.setImageViewResource(R.id.notification_button_play_big, iconID);
         smallNotificationView.setImageViewResource(R.id.notification_button_play_small, iconID);

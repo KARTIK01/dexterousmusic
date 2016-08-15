@@ -10,13 +10,13 @@
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
-        android:src="@drawable/ic_repeat" />
+        android:src="@drawable/ic_repeat_vector" />
 
     <ImageView
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
-        android:src="@drawable/ic_volume_mute" />
+        android:src="@drawable/ic_volume_mute_vector" />
 
 
     <SeekBar
@@ -28,12 +28,12 @@
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
-        android:src="@drawable/ic_volume_up" />
+        android:src="@drawable/ic_volume_up_vector" />
 
     <ImageView
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
-        android:src="@drawable/ic_shuffle" />
+        android:src="@drawable/ic_shuffle_vector" />
 
 </LinearLayout>

@@ -19,8 +19,8 @@ public class Helper {
     // Manually settings the buttons and text
     // (ignoring the defaults on the XML)
     static protected void setSmallNotificationView(RemoteViews smallNotificationView, Music music) {
-        smallNotificationView.setImageViewResource(R.id.notification_button_play_small, R.drawable.ic_pause);
-        smallNotificationView.setImageViewResource(R.id.notification_button_skip_small, R.drawable.ic_skip_next);
+        smallNotificationView.setImageViewResource(R.id.notification_button_play_small, R.drawable.ic_pause_vector);
+        smallNotificationView.setImageViewResource(R.id.notification_button_skip_small, R.drawable.ic_skip_next_vector);
         smallNotificationView.setTextViewText(R.id.notification_text_title, music.getSONG_TITLE());
         smallNotificationView.setTextViewText(R.id.notification_text_artist, music.getSONG_ARTIST());
     }
@@ -28,8 +28,8 @@ public class Helper {
     // Manually settings the buttons and text
     // (ignoring the defaults on the XML)
     static protected void setBigNotificationView(RemoteViews smallNotificationView, Music music) {
-        smallNotificationView.setImageViewResource(R.id.notification_button_play_big, R.drawable.ic_pause);
-        smallNotificationView.setImageViewResource(R.id.notification_button_skip_big, R.drawable.ic_skip_next);
+        smallNotificationView.setImageViewResource(R.id.notification_button_play_big, R.drawable.ic_pause_vector);
+        smallNotificationView.setImageViewResource(R.id.notification_button_skip_big, R.drawable.ic_skip_next_vector);
         smallNotificationView.setTextViewText(R.id.notification_text_title, music.getSONG_TITLE());
         smallNotificationView.setTextViewText(R.id.notification_text_artist, music.getSONG_ARTIST());
     }

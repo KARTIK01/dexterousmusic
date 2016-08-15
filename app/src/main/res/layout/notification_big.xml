@@ -19,14 +19,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:contentDescription="@string/notification_button_play"
-        android:src="@drawable/ic_play" />
+        android:src="@drawable/ic_play_vector" />
 
     <ImageButton
         android:id="@+id/notification_button_skip_big"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:contentDescription="@string/notification_button_skip"
-        android:src="@drawable/ic_skip_next" />
+        android:src="@drawable/ic_skip_next_vector" />
 
     <LinearLayout
         android:layout_width="fill_parent"
