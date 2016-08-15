@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Dexterous Music</string>
-    <string name="action_settings">Settings</string>
 
     <!-- ************** Permission Strings *********************************  -->
 
@@ -25,4 +24,15 @@
     <string name="artist">Artist</string>
     <string name="all_songs">All Songs</string>
     <string name="recent_played">Recent Played</string>
+
+
+    <!--Menu  -->
+    <string name="play_now">Play Now</string>
+    <string name="play_next">Play Next</string>
+    <string name="add_to_playlist">Add To Playlist</string>
+    <string name="search">Search</string>
+    <string name="edit_meta_data">Edit Meta Data</string>
+    <string name="use_as_ringtone">Use as RingTone</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
 </resources>
