@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.cleveroad.audiowidget.AudioWidget;
 
+import org.greenrobot.eventbus.EventBus;
+
 import hugo.weaving.DebugLog;
 import music.dexterous.com.dexterousmusic.customeviews.floating.AudioWidgetController;
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
@@ -121,5 +123,13 @@ public class GlobalApplication extends Application {
 
     public AudioWidget getAudioWidget() {
         return audioWidget;
+    }
+
+
+    /**
+     * @return App wide event bus
+     */
+    public static EventBus getBus() {
+        return EventBus.getDefault();
     }
 }

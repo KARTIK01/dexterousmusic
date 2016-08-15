@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestListener;
 
 import music.dexterous.com.dexterousmusic.BuildConfig;
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.utils.image.transformation.BlurTransformation;
 
 /**
  * Created by Honey on 8/1/2016.
@@ -178,29 +179,17 @@ public class ImageLoader extends ImageLoaderHelper {
     }
 
 
-//    /**
-//     * Load an image from a url into the given image view using the default placeholder if
-//     * available.
-//     *
-//     * @param url    The web URL of an image.
-//     * @param target The target ImageView to load the image into.
-//     */
-//    public void loadImageInTarget(String url, LoadingImageTarget target) {
-//        loadImageIntoTarget(url, target, null, null, shouldCropByDefault /*crop*/);
-//    }
-//
-//    /** load image url into loading image view */
-//    public void loadImageIntoTarget(String url, LoadingImageTarget target, RequestListener<String, Bitmap> requestListener,
-//                                    Integer placeholderOverride, boolean crop) {
-//        BitmapRequestBuilder<String, Bitmap> request = beginImageLoad(url, requestListener, crop)
-//                .animate(R.anim.image_fade_in);
-//
-//        if (placeholderOverride != null) {
-//            request.placeholder(placeholderOverride);
-//        } else if (mPlaceHolderResId != null) {
-//            request.placeholder(mPlaceHolderResId);
-//        }
-//        request.diskCacheStrategy(mDiskCacheStrategy);
-//        request.into(target);
-//    }
+    /**
+     * to load image from byte array
+     *
+     * @param context
+     * @param bitmap
+     * @param imageView
+     */
+    public static void loadBlurImage(Context context, Bitmap bitmap, ImageView imageView) {
+        Glide.with(context).load(R.drawable.dishoom)
+                .bitmapTransform(new BlurTransformation(context))
+                .into(imageView);
+    }
+
 }
