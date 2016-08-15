@@ -41,4 +41,10 @@
         android:textSize="20sp"
         app:fontName="Calibri-light.ttf" />
 
+    <ImageButton
+        android:id="@+id/showPopup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_dots_vertical_vector" />
+
 </LinearLayout>
