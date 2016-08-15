@@ -13,7 +13,7 @@ import music.dexterous.com.dexterousmusic.fragment.home.RecentPlayedFragment;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
- * Created by Honey on 8/9/2016.
+ * Created by Kartik on 8/9/2016.
  */
 
 public class MusicViewPageAdapter extends FragmentStatePagerAdapter {

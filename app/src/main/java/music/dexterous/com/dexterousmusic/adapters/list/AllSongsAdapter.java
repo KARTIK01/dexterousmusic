@@ -19,7 +19,6 @@ import music.dexterous.com.dexterousmusic.database.Music;
 public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsAdapter.AllSongsViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
-
     private List<Music> mDataArray;
 
     public AllSongsAdapter(List<Music> dataset) {
@@ -35,13 +34,16 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsAdapter.AllSon
 
     @Override
     public AllSongsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_songs_list_item, parent, false);
         return new AllSongsViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(AllSongsViewHolder holder, int position) {
-        holder.mTextView.setText(mDataArray.get(position).getSONG_TITLE());
+        holder.mSongAlbum.setText(mDataArray.get(position).getSONG_TITLE());
+        holder.mSongAlbum.setText(mDataArray.get(position).getSONG_ALBUM());
+        holder.mSongDuration.setText(mDataArray.get(position).getSONG_DURATION());
+        holder.mSongArtist.setText(mDataArray.get(position).getSONG_ARTIST());
     }
 
     @Override
@@ -57,11 +59,17 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsAdapter.AllSon
     }
 
     public class AllSongsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        FontTextView mTextView;
+        FontTextView mSongAlbum;
+        FontTextView mSongName;
+        FontTextView mSongArtist;
+        FontTextView mSongDuration;
 
         public AllSongsViewHolder(View itemView) {
             super(itemView);
-            mTextView = (FontTextView) itemView.findViewById(R.id.tv_alphabet);
+            mSongName = (FontTextView) itemView.findViewById(R.id.song_name);
+            mSongAlbum = (FontTextView) itemView.findViewById(R.id.song_album);
+            mSongArtist = (FontTextView) itemView.findViewById(R.id.song_artist);
+            mSongDuration = (FontTextView) itemView.findViewById(R.id.song_duration);
             itemView.setOnClickListener(this);
         }
 
@@ -77,13 +85,11 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsAdapter.AllSon
         }
     }
 
-
     private OnAllSongsItemClickListener mOnClickListener;
 
     public void setOnItemClickListener(OnAllSongsItemClickListener onClickListener) {
         mOnClickListener = onClickListener;
     }
-
 
     public interface OnAllSongsItemClickListener {
         void onClick(View view, int position);
