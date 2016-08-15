@@ -12,6 +12,9 @@ import android.view.View;
 
 import java.util.concurrent.CountDownLatch;
 
+import music.dexterous.com.dexterousmusic.R;
+import okhttp3.Response;
+
 /**
  * Created by Kartik on 06/01/16.
  * <p>
@@ -23,6 +26,8 @@ public class UiUtils {
 
     private static float densityScale;
 
+    static public String[] mHomeTabHeaderTittle;
+
     /**
      * Screen dimensions in pixels
      */
@@ -30,6 +35,11 @@ public class UiUtils {
     public static int screenHeight;
 
 
+    /**
+     * load data which are required for {@link music.dexterous.com.dexterousmusic.GlobalApplication}
+     *
+     * @param context
+     */
     public static void initialize(Context context) {
         Resources resources = context.getResources();
         densityScale = resources.getDisplayMetrics().density;
@@ -62,6 +72,25 @@ public class UiUtils {
 
     public static int dpToPixel(float dp) {
         return Math.round(dp * densityScale);
+    }
+
+    /**
+     * Load data which are required for {@link music.dexterous.com.dexterousmusic.activity.HomeActivity} or its fragment
+     *
+     * @param context
+     */
+    static public void loadHomeActivitySpecificData(Context context) {
+        loadStrings(context);
+    }
+
+    static private void loadStrings(Context context) {
+        Resources resources = context.getResources();
+
+        String albums = resources.getString(R.string.albums);
+        String artist = resources.getString(R.string.artist);
+        String all_songs = resources.getString(R.string.all_songs);
+        String recent_played = resources.getString(R.string.recent_played);
+        mHomeTabHeaderTittle = new String[]{recent_played, all_songs, artist, albums};
     }
 
 }

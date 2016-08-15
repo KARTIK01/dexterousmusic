@@ -16,13 +16,13 @@ import music.dexterous.com.dexterousmusic.database.Music;
 /**
  * Created by Dubey's on 06-08-2016.
  */
-public class RecyclerViewAdapterAllSongs extends RecyclerView.Adapter<RecyclerViewAdapterAllSongs.AllSongsViewHolder>
+public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsAdapter.AllSongsViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
 
     private List<Music> mDataArray;
 
-    public RecyclerViewAdapterAllSongs(List<Music> dataset) {
+    public AllSongsAdapter(List<Music> dataset) {
         mDataArray = dataset;
     }
 

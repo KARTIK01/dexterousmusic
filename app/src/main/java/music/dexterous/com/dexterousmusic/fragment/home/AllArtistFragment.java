@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.fragment;
+package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,9 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapterArtist;
+import music.dexterous.com.dexterousmusic.adapters.list.ArtistAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
 
 /**
@@ -93,7 +94,7 @@ public class AllArtistFragment extends BaseFragment {
         fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new RecyclerViewAdapterArtist(artistModel, getActivity()));
+        mRecyclerView.setAdapter(new ArtistAdapter(artistModel, getActivity()));
 //
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);

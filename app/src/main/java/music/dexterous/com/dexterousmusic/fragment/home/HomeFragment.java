@@ -1,7 +1,8 @@
-package music.dexterous.com.dexterousmusic.fragment;
+package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.viewpager.MusicViewPageAdapter;
 import music.dexterous.com.dexterousmusic.animations.transformation.ABaseTransformer;
 import music.dexterous.com.dexterousmusic.animations.transformation.DepthPageTransformer;
+import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 
 /**
  * Created by Kartik on 8/9/2016.
@@ -30,7 +32,9 @@ public class HomeFragment extends BaseFragment {
      */
     private boolean mIsComingFromOnCreate = false;
 
-    ViewPager mMusicViewPage;
+    ViewPager mHomeViewPager;
+    TabLayout mHomeTabHeader;
+
     MusicViewPageAdapter mMusicViewPageAdapter;
 
     /**
@@ -64,12 +68,20 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mMusicViewPage = (ViewPager) view.findViewById(R.id.musicViewPage);
+        /**
+         * fragment views
+         */
+        mHomeViewPager = (ViewPager) view.findViewById(R.id.home_view_pager);
+        mHomeTabHeader = (TabLayout) view.findViewById(R.id.home_tab_header);
 
         mMusicViewPageAdapter = new MusicViewPageAdapter(getChildFragmentManager());
-        mMusicViewPage.setAdapter(mMusicViewPageAdapter);
-        mMusicViewPage.setOffscreenPageLimit(NUM_PAGES_CACHED);
-        mMusicViewPage.setPageTransformer(true, PAGE_TRANSFORMER);
+
+        mHomeViewPager.setAdapter(mMusicViewPageAdapter);
+        mHomeViewPager.setOffscreenPageLimit(NUM_PAGES_CACHED);
+        mHomeViewPager.setPageTransformer(true, PAGE_TRANSFORMER);
+
+
+        mHomeTabHeader.setupWithViewPager(mHomeViewPager);
     }
 
 }

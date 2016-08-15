@@ -3,7 +3,6 @@ package music.dexterous.com.dexterousmusic.adapters.list;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +15,13 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
-import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
-import music.dexterous.com.dexterousmusic.utils.image.ImageLoaderHelper;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Dubey's on 06-08-2016.
  */
-public class RecyclerViewAdapterAlbums extends RecyclerView.Adapter<RecyclerViewAdapterAlbums.ViewHolder>
+public class RecentPlayedAdapter extends RecyclerView.Adapter<RecentPlayedAdapter.ViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
     /**
@@ -37,7 +33,7 @@ public class RecyclerViewAdapterAlbums extends RecyclerView.Adapter<RecyclerView
     Context context;
 
 
-    public RecyclerViewAdapterAlbums(List<AlbumModel> dataset, Context context) {
+    public RecentPlayedAdapter(List<AlbumModel> dataset, Context context) {
         this.context = context;
         mDataArray = dataset;
         mImageLoader = new ImageLoader(context, R.drawable.dishoom);
@@ -51,7 +47,7 @@ public class RecyclerViewAdapterAlbums extends RecyclerView.Adapter<RecyclerView
     }
 
     @Override
-    public RecyclerViewAdapterAlbums.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecentPlayedAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout_albums, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;

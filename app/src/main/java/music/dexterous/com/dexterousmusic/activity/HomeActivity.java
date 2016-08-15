@@ -3,13 +3,13 @@ package music.dexterous.com.dexterousmusic.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.fragment.HomeFragment;
+import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
+import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
  * Created by Kartik on 8/9/2016.
@@ -32,11 +32,12 @@ public class HomeActivity extends BaseActivity {
 
         mFragmentManager = getSupportFragmentManager();
         mHomeFragment = HomeFragment.newInstance();
+
+        DataManager.getInstance(this).loadHomeActivitySpecificData();
+        UiUtils.loadHomeActivitySpecificData(HomeActivity.this);
+
         openHomeFragment();
-
-        DataManager.getInstance(this).loadActivitySpecificData();
     }
-
 
 
     /**

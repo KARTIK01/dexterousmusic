@@ -4,10 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import music.dexterous.com.dexterousmusic.fragment.AllAlbumFragment;
-import music.dexterous.com.dexterousmusic.fragment.AllArtistFragment;
-import music.dexterous.com.dexterousmusic.fragment.AllSongsFragment;
+import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.fragment.home.AllAlbumFragment;
+import music.dexterous.com.dexterousmusic.fragment.home.AllArtistFragment;
+import music.dexterous.com.dexterousmusic.fragment.home.AllSongsFragment;
 import music.dexterous.com.dexterousmusic.fragment.NowPlayingFragment;
+import music.dexterous.com.dexterousmusic.fragment.home.RecentPlayedFragment;
+import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
  * Created by Honey on 8/9/2016.
@@ -15,7 +18,7 @@ import music.dexterous.com.dexterousmusic.fragment.NowPlayingFragment;
 
 public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
 
-    private static final int NO_OF_PAGES = 4;
+    protected static final String[] titles = UiUtils.mHomeTabHeaderTittle;
 
     public MusicViewPageAdapter(FragmentManager fm) {
         super(fm);
@@ -25,9 +28,9 @@ public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return AllSongsFragment.newInstance();
+                return RecentPlayedFragment.newInstance();
             case 1:
-                return NowPlayingFragment.newInstance();
+                return AllSongsFragment.newInstance();
             case 2:
                 return AllArtistFragment.newInstance();
             case 3:
@@ -38,6 +41,11 @@ public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return NO_OF_PAGES;
+        return titles.length;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
     }
 }

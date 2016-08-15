@@ -18,4 +18,11 @@
     <string name="notification_button_play">Play</string>
     <string name="notification_button_skip">Skip</string>
     <string name="title_activity_splash">Splash</string>
+
+
+    <!-- Home Screen-->
+    <string name="albums">Albums</string>
+    <string name="artist">Artist</string>
+    <string name="all_songs">All Songs</string>
+    <string name="recent_played">Recent Played</string>
 </resources>

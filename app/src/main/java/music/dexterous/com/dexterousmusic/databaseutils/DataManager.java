@@ -56,7 +56,7 @@ public class DataManager extends MediaDao {
         return sInstance;
     }
 
-    public void loadActivitySpecificData() {
+    public void loadHomeActivitySpecificData() {
         loadAllMusic();
         loadAlbums();
         loadArtist();

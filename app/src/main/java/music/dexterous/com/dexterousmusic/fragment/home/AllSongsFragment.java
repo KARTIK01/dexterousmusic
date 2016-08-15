@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.fragment;
+package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,9 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapterAllSongs;
+import music.dexterous.com.dexterousmusic.adapters.list.AllSongsAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
@@ -36,7 +37,7 @@ public class AllSongsFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
-    RecyclerViewAdapterAllSongs recyclerViewAdapterAllSongs;
+    AllSongsAdapter recyclerViewAdapterAllSongs;
 
     Button shuffle;
 
@@ -93,7 +94,7 @@ public class AllSongsFragment extends BaseFragment {
         fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(recyclerViewAdapterAllSongs = new RecyclerViewAdapterAllSongs(allSongsList));
+        mRecyclerView.setAdapter(recyclerViewAdapterAllSongs = new AllSongsAdapter(allSongsList));
 
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);

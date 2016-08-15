@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.fragment;
+package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,29 +16,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.RecyclerViewAdapterAlbums;
+import music.dexterous.com.dexterousmusic.adapters.list.AllSongsAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
-import music.dexterous.com.dexterousmusic.models.AlbumModel;
+import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
+import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
+import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 /**
  * Created by Kartik on 8/9/2016.
  */
 
-public class AllAlbumFragment extends BaseFragment {
+public class RecentPlayedFragment extends BaseFragment {
 
-    List<AlbumModel> albumModels;
+    //All songs List
+    List<Music> allSongsList;
 
     //Alphabet list
     private List<AlphabetItem> mAlphabetItems;
 
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
+    AllSongsAdapter recyclerViewAdapterAllSongs;
 
     Button shuffle;
 
-    public static AllAlbumFragment newInstance() {
-        AllAlbumFragment fragment = new AllAlbumFragment();
+    public static RecentPlayedFragment newInstance() {
+        RecentPlayedFragment fragment = new RecentPlayedFragment();
         Bundle info = new Bundle();
         fragment.setArguments(info);
         return fragment;
@@ -66,12 +70,9 @@ public class AllAlbumFragment extends BaseFragment {
     }
 
     protected void initialiseData() {
+        //All songs
+        allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
 
-        //All songs List
-        List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
-        List<AlbumModel> albums = DataManager.getInstance(getActivity()).getAlbums();
-
-        albumModels = AlbumModel.getModel(allSongsList, albums);
         //Alphabet fast scroller data
         mAlphabetItems = new ArrayList<>();
 
@@ -93,12 +94,16 @@ public class AllAlbumFragment extends BaseFragment {
         fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new RecyclerViewAdapterAlbums(albumModels, getActivity()));
-//
+        mRecyclerView.setAdapter(recyclerViewAdapterAllSongs = new AllSongsAdapter(allSongsList));
+
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
-//        shuffle = (Button) view.findViewById(R.id.shuffle);
-//        shuffle.setOnItemClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), albumModels));
+        shuffle = (Button) view.findViewById(R.id.shuffle);
+        shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), allSongsList));
+
+        recyclerViewAdapterAllSongs.setOnItemClickListener((view1, position) -> {
+            PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), allSongsList, position);
+        });
     }
 
 }
