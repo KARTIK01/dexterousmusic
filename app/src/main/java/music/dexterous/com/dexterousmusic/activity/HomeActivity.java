@@ -10,13 +10,19 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.event.UpDateHomeActivityEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.image.transformation.BlurTransformation;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
@@ -50,8 +56,6 @@ public class HomeActivity extends BaseActivity {
 
         openHomeFragment();
 
-        refreshViewsOnSongChange(BitmapFactory.decodeResource(this.getResources(), R.drawable.dishoom));
-
         safeRegister();
     }
 
@@ -68,7 +72,19 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    public void refreshViewsOnSongChange(Bitmap songCoverImage) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void refreshViewsOnSongChange(UpDateHomeActivityEvent upDateHomeActivityEvent) {
+        //TODO album art
+//        String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
+//        String albumArt = songAlbum;
+//
+//        final public static Uri sArtworkUri = Uri
+//                .parse("content://media/external/audio/albumart");
+//
+//        Uri uri = ContentUris.withAppendedId(PlayerConstants.sArtworkUri,
+//                listOfAlbums.get(position).getAlbumID());
+
+        Bitmap songCoverImage = BitmapFactory.decodeFile(albumArt);
         ImageLoader.loadBlurImage(HomeActivity.this, songCoverImage, imageView);
     }
 

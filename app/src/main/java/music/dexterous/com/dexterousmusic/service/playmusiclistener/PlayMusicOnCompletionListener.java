@@ -56,6 +56,5 @@ public class PlayMusicOnCompletionListener implements DexterousMediaPlayer.OnCom
         }
         // Common case - skipped a track or anything
         musicControl.playMusic();
-
     }
 }

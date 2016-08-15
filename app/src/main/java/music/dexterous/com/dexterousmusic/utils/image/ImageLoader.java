@@ -187,7 +187,7 @@ public class ImageLoader extends ImageLoaderHelper {
      * @param imageView
      */
     public static void loadBlurImage(Context context, Bitmap bitmap, ImageView imageView) {
-        Glide.with(context).load(R.drawable.dishoom)
+        Glide.with(context).load(bitmap)
                 .bitmapTransform(new BlurTransformation(context))
                 .into(imageView);
     }

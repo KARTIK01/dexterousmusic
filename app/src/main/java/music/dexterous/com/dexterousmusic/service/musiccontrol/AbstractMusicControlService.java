@@ -10,8 +10,10 @@ import android.os.PowerManager;
 
 import java.io.IOException;
 
+import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.event.UpDateHomeActivityEvent;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
@@ -131,7 +133,10 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 //
 //        updateLockScreenWidget(currentSong, RemoteControlClient.PLAYSTATE_PLAYING);
 
-        PrettyLogger.d("playing music");
+        /**
+         * update {@link music.dexterous.com.dexterousmusic.activity.HomeActivity View}
+         */
+        GlobalApplication.getBus().post(new UpDateHomeActivityEvent(musicToPlay));
 
     }
 

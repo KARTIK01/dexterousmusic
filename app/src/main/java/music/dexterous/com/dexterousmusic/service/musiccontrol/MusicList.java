@@ -6,7 +6,8 @@ import java.util.List;
 import music.dexterous.com.dexterousmusic.database.Music;
 
 /**
- * Created by Honey on 8/4/2016.
+ * This class is responsible for all music
+ * which are added to now playing queue
  */
 public class MusicList {
 
