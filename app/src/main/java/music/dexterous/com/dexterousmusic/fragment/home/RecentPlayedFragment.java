@@ -59,7 +59,7 @@ public class RecentPlayedFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_song_list, container, false);
+        return inflater.inflate(R.layout.recent_played_fragment, container, false);
     }
 
     @Override
