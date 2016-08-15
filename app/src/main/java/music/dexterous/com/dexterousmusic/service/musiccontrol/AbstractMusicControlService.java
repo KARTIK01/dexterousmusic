@@ -182,7 +182,8 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     @Override
     public void pauseMusic() {
         mDexterousMediaPlayer.pause();
-        notification.notifyPaused(true);
+        if (notification != null)
+            notification.notifyPaused(true);
         //TODO Updates Lock-Screen Widget
     }
 
@@ -239,7 +240,8 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         //restart music
         mDexterousMediaPlayer.start();
         //show on notification
-        notification.notifyPaused(false);
+        if (notification != null)
+            notification.notifyPaused(false);
 
         //TODO Updates Lock-Screen Widget
         /**
