@@ -72,6 +72,7 @@ dependencies {
 
     // recycler view with alphabets
     compile 'com.github.viethoa:fastscroller:1.1.0'
+    compile 'com.turingtechnologies.materialscrollbar:lib:10.+'
 
     //RunTime Permisssion
     compile 'com.github.hotchemi:permissionsdispatcher:2.1.3'

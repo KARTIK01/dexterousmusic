@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.turingtechnologies.materialscrollbar.INameableAdapter;
 import com.viethoa.RecyclerViewFastScroller;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import music.dexterous.com.dexterousmusic.database.Music;
  * Created by Dubey's on 06-08-2016.
  */
 public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
-        implements RecyclerViewFastScroller.BubbleTextGetter {
+        implements RecyclerViewFastScroller.BubbleTextGetter, INameableAdapter {
 
     private List<Music> mDataArray;
 
@@ -67,5 +68,14 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
 
     public interface OnAllSongsItemClickListener {
         void onClick(View view, int position);
+    }
+
+    @Override
+    public Character getCharacterForElement(int element) {
+        Character c = mDataArray.get(element).getSONG_TITLE().charAt(0);
+        if (Character.isDigit(c)) {
+            c = '#';
+        }
+        return c;
     }
 }
