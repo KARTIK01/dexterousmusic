@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
     String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
     final String musicsOnly = MediaStore.Audio.Media.IS_MUSIC + "=1";
     ImageView coverart;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
