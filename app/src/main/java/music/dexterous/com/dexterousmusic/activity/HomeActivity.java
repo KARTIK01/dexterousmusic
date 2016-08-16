@@ -94,8 +94,7 @@ public class HomeActivity extends BaseActivity {
 
         if (!TextUtils.isEmpty(albumArtPath)) {
             Bitmap songCoverImage = BitmapFactory.decodeFile(albumArtPath);
-
-
+            //TODO make blur via glide and {@link BlurTransformation}
             new ImageLoader(this, new BlurTransformation(this))
                     .loadImage(this, BlurBuilder.blur(this, songCoverImage), imageView);
         } else {

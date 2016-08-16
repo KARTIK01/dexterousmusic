@@ -17,7 +17,7 @@
         android:lines="1"
         android:orientation="vertical"
         android:textSize="20sp"
-        app:fontName="MuseoSansCyrl.otf"
+        app:fontName="Calibri-light.ttf"
         tools:text="Song Name Song" />
 
     <music.dexterous.com.dexterousmusic.customeviews.FontTextView
@@ -28,8 +28,8 @@
         android:layout_below="@+id/song_name"
         android:lines="1"
         android:orientation="vertical"
-        android:textSize="16sp"
-        app:fontName="Calibri.ttf"
+        android:textSize="20sp"
+        app:fontName="Calibri-light.ttf"
         tools:text="Song Album Song Album Song Album" />
 
     <music.dexterous.com.dexterousmusic.customeviews.FontTextView
@@ -40,8 +40,8 @@
         android:layout_toRightOf="@+id/song_album"
         android:orientation="vertical"
         android:text="-"
-        android:textSize="16sp"
-        app:fontName="Calibri.ttf" />
+        android:textSize="20sp"
+        app:fontName="Calibri-light.ttf" />
 
     <music.dexterous.com.dexterousmusic.customeviews.FontTextView
         android:id="@+id/song_artist"
@@ -52,8 +52,8 @@
         android:ellipsize="end"
         android:lines="1"
         android:orientation="vertical"
-        android:textSize="16sp"
-        app:fontName="Calibri.ttf"
+        android:textSize="20sp"
+        app:fontName="Calibri-light.ttf"
         tools:text="Song Artist Song Artist Song Artist" />
 
 
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/showPopup"
         android:orientation="vertical"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:fontName="Calibri-light.ttf"
         tools:text="5.30" />
 
