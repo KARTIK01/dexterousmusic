@@ -37,7 +37,11 @@ public class SplashActivity extends AppCompatActivity {
 //            setContentView(R.layout.layout_intro);
             ScanMusicService.startService(getApplicationContext());
             OtherPreference.setFirstTime(false);
-            showStoragePermission();
+
+
+            Intent mainActivityIntent = MainActivity.getIntent(SplashActivity.this);
+            startActivity(mainActivityIntent);
+
         } else {
             //TODO user Rx java when data of songs and album is ready then open it
             Intent homeActivityIntent = HomeActivity.getIntent(SplashActivity.this);
@@ -54,29 +58,4 @@ public class SplashActivity extends AppCompatActivity {
 
         });
     }
-
-    @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void showStoragePermission() {
-        ScanMusicService.startService(getApplicationContext());
-    }
-
-    @OnShowRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void showRationaleForStorage(PermissionRequest request) {
-        new AlertDialog.Builder(this)
-                .setMessage(R.string.permission_storage_rationale)
-                .setPositiveButton(R.string.button_allow, (dialog, button) -> request.proceed())
-                .setNegativeButton(R.string.button_deny, (dialog, button) -> request.cancel())
-                .show();
-    }
-
-    @OnPermissionDenied(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void showDeniedForStorage() {
-        Toast.makeText(this, R.string.permission_storage_denied, Toast.LENGTH_SHORT).show();
-    }
-
-    @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
-    void showNeverAskForStorage() {
-        ShortToast.displayToast(this, getResources().getString(R.string.permission_storage_never_ask), Toast.LENGTH_SHORT);
-    }
-
 }

@@ -1,6 +1,7 @@
 package music.dexterous.com.dexterousmusic.activity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -68,6 +69,11 @@ public class MainActivity extends BaseActivity {
 
     private void playMusic() {
 
+    }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
