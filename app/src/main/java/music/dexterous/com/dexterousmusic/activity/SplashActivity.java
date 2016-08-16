@@ -33,11 +33,8 @@ public class SplashActivity extends AppCompatActivity {
 
         if (isFirstTime) {
             //TODO app intro OR scanning music and RumTimePermissions
-//            setContentView(R.layout.layout_intro);
-            ScanMusicService.startService(getApplicationContext());
+
             OtherPreference.setFirstTime(false);
-
-
             Intent mainActivityIntent = MainActivity.getIntent(SplashActivity.this);
             startActivity(mainActivityIntent);
 

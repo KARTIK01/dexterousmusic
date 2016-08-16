@@ -95,10 +95,7 @@ public class GlobalApplication extends Application {
      * It start the music service and initializes all required components
      */
     private void startMusicService() {
-        boolean isFirstTime = OtherPreference.isFirstTime();
-        if (!isFirstTime) {
-            DexterousPlayMusicService.startService(this, DexterousPlayMusicService.INITIALIZE);
-        }
+        DexterousPlayMusicService.startService(this, DexterousPlayMusicService.INITIALIZE);
     }
 
 

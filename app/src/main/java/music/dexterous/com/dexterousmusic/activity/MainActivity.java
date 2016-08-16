@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity {
         playMusic = (Button) findViewById(R.id.playMusic);
 
         coverart = (ImageView) findViewById(R.id.album_art);
-        scan.setOnClickListener(view -> showStoragePermission());
+        scan.setOnClickListener(view -> MainActivityPermissionsDispatcher.showStoragePermissionWithCheck(this));
         playMusic.setOnClickListener(view -> playMusic());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -100,4 +100,10 @@ public class MainActivity extends BaseActivity {
         ShortToast.displayToast(this, getResources().getString(R.string.permission_storage_never_ask), Toast.LENGTH_SHORT);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // NOTE: delegate the permission handling to generated method
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
 }
