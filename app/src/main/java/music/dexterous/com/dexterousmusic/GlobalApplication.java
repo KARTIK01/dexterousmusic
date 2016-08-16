@@ -5,12 +5,10 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.cleveroad.audiowidget.AudioWidget;
 
 import org.greenrobot.eventbus.EventBus;
 
 import hugo.weaving.DebugLog;
-import music.dexterous.com.dexterousmusic.customeviews.floating.AudioWidgetController;
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.update.UpgradeDpHelper;
@@ -26,12 +24,6 @@ import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
  * Created by Honey on 7/13/2016.
  */
 public class GlobalApplication extends Application {
-
-    /**
-     * Floating widget
-     */
-    private AudioWidget audioWidget;
-    private AudioWidgetController audioWidgetController;
 
     /**
      * lock object for serialized access of dao session
@@ -73,8 +65,6 @@ public class GlobalApplication extends Application {
         });
 
         startMusicService();
-
-        setupFloatingAudioWidget();
     }
 
 
@@ -105,24 +95,6 @@ public class GlobalApplication extends Application {
      */
     private void startMusicService() {
         DexterousPlayMusicService.startService(this, DexterousPlayMusicService.INITIALIZE);
-    }
-
-
-    private void setupFloatingAudioWidget() {
-        //TODO check preference
-        if (audioWidget == null) {
-            audioWidget = new AudioWidget.Builder(this).build();
-            if (audioWidgetController == null) {
-                audioWidget.controller().onControlsClickListener(audioWidgetController = new AudioWidgetController(this));
-                audioWidget.controller().onWidgetStateChangedListener(audioWidgetController);
-            }
-            //TODO show when first song play
-            audioWidget.show(100, 100);
-        }
-    }
-
-    public AudioWidget getAudioWidget() {
-        return audioWidget;
     }
 
 

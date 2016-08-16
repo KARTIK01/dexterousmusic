@@ -16,8 +16,6 @@ import music.dexterous.com.dexterousmusic.activity.BaseActivity;
 
 public class NowPlayingFragment extends BaseFragment {
 
-    private AudioVisualization audioVisualization;
-
     public static NowPlayingFragment newInstance() {
         NowPlayingFragment fragment = new NowPlayingFragment();
         Bundle info = new Bundle();
@@ -34,10 +32,6 @@ public class NowPlayingFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        audioVisualization = (AudioVisualization) view.findViewById(R.id.visualizer_view);
-
-
-        audioVisualization.linkTo(DbmHandler.Factory.newVisualizerHandler(getContext(), 0));
 
         // set speech recognizer handler
 //        SpeechRecognizerDbmHandler speechRecHandler = DbmHandler.Factory.newSpeechRecognizerHandler(getActivity());
@@ -53,18 +47,15 @@ public class NowPlayingFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        audioVisualization.onResume();
     }
 
     @Override
     public void onPause() {
-        audioVisualization.onPause();
         super.onPause();
     }
 
     @Override
     public void onDestroyView() {
-        audioVisualization.release();
         super.onDestroyView();
     }
 }

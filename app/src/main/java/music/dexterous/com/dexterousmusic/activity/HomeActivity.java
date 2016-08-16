@@ -83,9 +83,9 @@ public class HomeActivity extends BaseActivity {
 //
 //        Uri uri = ContentUris.withAppendedId(PlayerConstants.sArtworkUri,
 //                listOfAlbums.get(position).getAlbumID());
-
-        Bitmap songCoverImage = BitmapFactory.decodeFile(albumArt);
-        ImageLoader.loadBlurImage(HomeActivity.this, songCoverImage, imageView);
+//
+//        Bitmap songCoverImage = BitmapFactory.decodeFile(albumArt);
+//        ImageLoader.loadBlurImage(HomeActivity.this, songCoverImage, imageView);
     }
 
     @Override
