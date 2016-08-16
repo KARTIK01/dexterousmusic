@@ -10,4 +10,8 @@
     <color name="partial_transparent_mid">#3c284d</color>
     <color name="partial_transparent_end">#1c1827</color>
 
+    <color name="VISUALIZER_END_COLOR">@color/colorAccent</color>
+    <color name="VISUALIZER__START_COLOR">@color/colorAccent</color>
+    <color name="VISUALIZER_COLOR_HERE">@color/colorAccent</color>
+
 </resources>

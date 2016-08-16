@@ -48,6 +48,7 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
         holder.mSongDuration.setText(
                 TimeConvert.songDurationToDisplay(Long.parseLong(mDataArray.get(position).getSONG_DURATION())));
         holder.mSongArtist.setText(mDataArray.get(position).getSONG_ARTIST());
+
     }
 
     @Override
