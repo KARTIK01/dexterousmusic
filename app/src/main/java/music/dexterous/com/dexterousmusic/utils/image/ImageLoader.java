@@ -187,8 +187,8 @@ public class ImageLoader extends ImageLoaderHelper {
      * @param albumArtPath
      * @param imageView
      */
-    public static void loadBlurImage(Context context, String albumArtPath, ImageView imageView) {
-        Glide.with(context).load(Base64.decode(albumArtPath, Base64.DEFAULT))
+    public static void loadBlurImage(Context context, Bitmap albumArtPath, ImageView imageView) {
+        Glide.with(context).load(albumArtPath)
                 .bitmapTransform(new BlurTransformation(context))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
 //                .asBitMap()

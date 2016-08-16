@@ -23,6 +23,7 @@ import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
+import music.dexterous.com.dexterousmusic.utils.image.BlurBuilder;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.image.transformation.BlurTransformation;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
@@ -75,6 +76,12 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
+    /**
+     * updates user HomeScreen Background
+     * with current playing song album art
+     *
+     * @param upDateHomeActivityEvent
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void refreshViewsOnSongChange(UpDateHomeActivityEvent upDateHomeActivityEvent) {
         String albumArtPath = "";
@@ -87,11 +94,13 @@ public class HomeActivity extends BaseActivity {
 
         if (!TextUtils.isEmpty(albumArtPath)) {
             Bitmap songCoverImage = BitmapFactory.decodeFile(albumArtPath);
-            new ImageLoader(HomeActivity.this).loadImage(HomeActivity.this, songCoverImage, imageView);
+
+
+            new ImageLoader(this, new BlurTransformation(this))
+                    .loadImage(this, BlurBuilder.blur(this, songCoverImage), imageView);
         } else {
             //show palceholder
         }
-
     }
 
     @Override
