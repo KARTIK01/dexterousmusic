@@ -6,13 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cleveroad.audiovisualization.AudioVisualization;
-import com.cleveroad.audiovisualization.DbmHandler;
-import com.cleveroad.audiovisualization.SpeechRecognizerDbmHandler;
-import com.cleveroad.audiovisualization.VisualizerDbmHandler;
-
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.activity.BaseActivity;
 
 public class NowPlayingFragment extends BaseFragment {
 
