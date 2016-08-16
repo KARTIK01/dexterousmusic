@@ -23,7 +23,6 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
-@RuntimePermissions
 public class SplashActivity extends AppCompatActivity {
 
     @Override
