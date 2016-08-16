@@ -16,6 +16,7 @@ import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Constants;
+import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 import music.dexterous.com.dexterousmusic.utils.other.StrictModeUtil;
 import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
@@ -94,13 +95,17 @@ public class GlobalApplication extends Application {
      * It start the music service and initializes all required components
      */
     private void startMusicService() {
-        DexterousPlayMusicService.startService(this, DexterousPlayMusicService.INITIALIZE);
+        boolean isFirstTime = OtherPreference.isFirstTime();
+        if (!isFirstTime) {
+            DexterousPlayMusicService.startService(this, DexterousPlayMusicService.INITIALIZE);
+        }
     }
 
 
     /**
      * @return App wide event bus
      */
+
     public static EventBus getBus() {
         return EventBus.getDefault();
     }
