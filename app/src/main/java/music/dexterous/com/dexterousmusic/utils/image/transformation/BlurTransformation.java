@@ -76,6 +76,7 @@ public class BlurTransformation implements Transformation<Bitmap> {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             try {
+                //TODO check performance
                 bitmap = RsBlur.blur(mContext, bitmap, mRadius);
             } catch (RSRuntimeException e) {
                 bitmap = FastBlur.blur(bitmap, mRadius, true);

@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
@@ -33,7 +35,8 @@ public class DataManager extends MediaDao {
     /**
      * list of all Albums present
      */
-    private static final List<AlbumModel> albums = new ArrayList<>();
+
+    private static final Map<String, AlbumModel> albumHash = new HashMap<>();
     private static final List<Music> allMusic = new ArrayList<>();
     private static final List<ArtistModel> artist = new ArrayList<>();
 
@@ -63,20 +66,21 @@ public class DataManager extends MediaDao {
     }
 
     private void loadAlbums() {
-        synchronized (albums) {
-            List<AlbumModel> returnListOfAlbumNames = new ArrayList<>();
+        synchronized (albumHash) {
+            Map<String, AlbumModel> returnListOfAlbumNames = new HashMap<>();
             Uri albumUri = android.provider.MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
             Cursor cursor = mContext.getContentResolver().query(albumUri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     AlbumModel albumModel = new AlbumModel();
                     albumModel.setAlbumArtPath(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART)));
-                    albumModel.setAlbumName(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM)));
-                    returnListOfAlbumNames.add(albumModel);
+                    String albumName = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM));
+                    albumModel.setAlbumName(albumName);
+                    returnListOfAlbumNames.put(albumName, albumModel);
                 } while (cursor.moveToNext());
             }
-            albums.clear();
-            albums.addAll(returnListOfAlbumNames);
+            albumHash.clear();
+            albumHash.putAll(returnListOfAlbumNames);
         }
     }
 
@@ -121,7 +125,11 @@ public class DataManager extends MediaDao {
 
 
     public static List<AlbumModel> getAlbums() {
-        return albums;
+        return new ArrayList<AlbumModel>(albumHash.values());
+    }
+
+    public static Map<String, AlbumModel> getAlbumsMap() {
+        return albumHash;
     }
 
     public static List<ArtistModel> getArtist() {

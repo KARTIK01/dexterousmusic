@@ -3,6 +3,7 @@ package music.dexterous.com.dexterousmusic.utils.image;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.DrawableRes;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import com.bumptech.glide.BitmapRequestBuilder;
@@ -183,12 +184,14 @@ public class ImageLoader extends ImageLoaderHelper {
      * to load image from byte array
      *
      * @param context
-     * @param bitmap
+     * @param albumArtPath
      * @param imageView
      */
-    public static void loadBlurImage(Context context, Bitmap bitmap, ImageView imageView) {
-        Glide.with(context).load(bitmap)
+    public static void loadBlurImage(Context context, String albumArtPath, ImageView imageView) {
+        Glide.with(context).load(Base64.decode(albumArtPath, Base64.DEFAULT))
                 .bitmapTransform(new BlurTransformation(context))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .asBitMap()
                 .into(imageView);
     }
 

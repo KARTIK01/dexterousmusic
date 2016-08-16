@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -19,6 +21,7 @@ import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.event.UpDateHomeActivityEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
+import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.image.transformation.BlurTransformation;
@@ -74,18 +77,21 @@ public class HomeActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void refreshViewsOnSongChange(UpDateHomeActivityEvent upDateHomeActivityEvent) {
-        //TODO album art
-//        String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
-//        String albumArt = songAlbum;
-//
-//        final public static Uri sArtworkUri = Uri
-//                .parse("content://media/external/audio/albumart");
-//
-//        Uri uri = ContentUris.withAppendedId(PlayerConstants.sArtworkUri,
-//                listOfAlbums.get(position).getAlbumID());
-//
-//        Bitmap songCoverImage = BitmapFactory.decodeFile(albumArt);
-//        ImageLoader.loadBlurImage(HomeActivity.this, songCoverImage, imageView);
+        String albumArtPath = "";
+
+        String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
+        AlbumModel albumModel = DataManager.getAlbumsMap().get(songAlbum);
+        if (albumModel != null) {
+            albumArtPath = albumModel.getAlbumArtPath();
+        }
+
+        if (!TextUtils.isEmpty(albumArtPath)) {
+            Bitmap songCoverImage = BitmapFactory.decodeFile(albumArtPath);
+            new ImageLoader(HomeActivity.this).loadImage(HomeActivity.this, songCoverImage, imageView);
+        } else {
+            //show palceholder
+        }
+
     }
 
     @Override
