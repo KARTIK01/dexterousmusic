@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         bootstrapStartupTasks();
 
         if (isFirstTime) {
-            //TODO app intro OR scanning music
+            //TODO app intro OR scanning music and RumTimePermissions
 //            setContentView(R.layout.layout_intro);
             ScanMusicService.startService(getApplicationContext());
             OtherPreference.setFirstTime(false);
