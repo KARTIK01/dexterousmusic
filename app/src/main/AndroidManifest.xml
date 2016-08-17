@@ -50,6 +50,23 @@
             android:name=".service.DexterousPlayMusicService"
             android:exported="false" />
 
+        <!--
+           Defining Services For firebase ...
+       -->
+        <service
+            android:name=".service.firebaseservices.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.firebaseservices.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
         <!-- It will fire when headset inserted or removed from phone -->
         <receiver
             android:name=".receiver.HeadsetBroadcastReceiver"
