@@ -32,7 +32,7 @@ This is Dexterous Music Player App.
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/showPopup"
         android:orientation="vertical"
-        android:textSize="20sp"
+         android:textSize="@dimen/text_large"
         app:fontName="Calibri-light.ttf"
         tools:text="5.30" />
 ```
@@ -59,3 +59,10 @@ ShortToast.displayToast(context, "Please Select At Least One song to play", 2000
 ### Don't not chnage any thing in database package directly###
 
 Its auto generated code by GreenDao lib, for more reference go https://github.com/greenrobot/greenDAO
+
+
+### use TextSize form dimen ###
+```
+
+ android:textSize="@dimen/text_large"
+```

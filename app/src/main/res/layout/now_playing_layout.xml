@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/image_current_song"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text_small" />
 
             <music.dexterous.com.dexterousmusic.customeviews.FontTextView
                 android:id="@+id/song_name"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/status"
                 android:layout_toRightOf="@+id/image_current_song"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_large" />
 
             <ImageView
                 android:id="@+id/toggle"
@@ -82,7 +82,7 @@
             android:padding="8dp"
             android:text="01 - Sau Tarah Ke - Dishoom [DJMaza.Cool]"
             android:textColor="@android:color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/text_extra_large" />
 
         <LinearLayout
             android:id="@+id/song_details"
@@ -100,7 +100,7 @@
                 android:padding="8dp"
                 android:text="Artist Name"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_medium" />
 
             <music.dexterous.com.dexterousmusic.customeviews.FontTextView
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                 android:padding="8dp"
                 android:text="|"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_medium" />
 
             <music.dexterous.com.dexterousmusic.customeviews.FontTextView
                 android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
                 android:padding="8dp"
                 android:text="Movie Name"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/text_medium" />
         </LinearLayout>
 
         <include
