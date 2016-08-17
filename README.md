@@ -58,6 +58,4 @@ ShortToast.displayToast(context, "Please Select At Least One song to play", 2000
 
 ### Don't not chnage any thing in database package directly###
 
-<span style="color:orange;">Word up</span>
-
 Its auto generated code by GreenDao lib, for more reference go https://github.com/greenrobot/greenDAO
