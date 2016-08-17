@@ -2,6 +2,7 @@ package music.dexterous.com.dexterousmusic.customeviews.slidinguppannel;
 
 import android.view.View;
 
+import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
@@ -27,6 +28,19 @@ public class BottomPanelSlideListener implements SlidingUpPanelLayout.PanelSlide
      */
     @Override
     public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+
+        switch (newState) {
+            case EXPANDED:
+                //TODO hide and show views
+                panel.findViewById(R.id.bottom_bar).setVisibility(View.GONE);
+                panel.findViewById(R.id.now_plaiing_innerview).setVisibility(View.VISIBLE);
+                break;
+            case COLLAPSED:
+                //TODO hide and show views
+                panel.findViewById(R.id.bottom_bar).setVisibility(View.VISIBLE);
+                panel.findViewById(R.id.now_plaiing_innerview).setVisibility(View.GONE);
+                break;
+        }
 
     }
 }
