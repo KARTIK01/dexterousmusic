@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "512316797314",
+    "firebase_url": "https://dexterousmusic-c198e.firebaseio.com",
+    "project_id": "dexterousmusic-c198e",
+    "storage_bucket": "dexterousmusic-c198e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512316797314:android:8a65f37d164315e5",
+        "android_client_info": {
+          "package_name": "music.dexterous.com.dexterousmusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512316797314-dattgiiqeonpi9bqqkq9c20r34fpb91i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNiEw91A-D9aDW7Fb9eA_7wyOChuzgP7I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

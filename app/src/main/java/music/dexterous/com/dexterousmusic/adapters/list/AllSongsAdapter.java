@@ -49,9 +49,12 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
                 TimeConvert.songDurationToDisplay(Long.parseLong(mDataArray.get(position).getSONG_DURATION())));
         holder.mSongArtist.setText(mDataArray.get(position).getSONG_ARTIST());
 
-        if (mDataArray.get(position).getSONG_IS_PLAYING()) {
+        if (mDataArray.get(position).getSONG_IS_PLAYING() != null && mDataArray.get(position).getSONG_IS_PLAYING()) {
             holder.visualizer.setVisibility(View.VISIBLE);
             holder.visualizer.startListening();
+        } else {
+            holder.visualizer.setVisibility(View.GONE);
+            holder.visualizer.stopListening();
         }
     }
 

@@ -5,13 +5,13 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
+
 /**
  * Created by gipsy_danger on 17/8/16.
  */
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
-
-    private static final String TAG = "MyFirebaseIIDService";
 
     @Override
     public void onTokenRefresh() {
@@ -20,7 +20,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
         //Displaying token on logcat
-        Log.d(TAG, "Refreshed token: " + refreshedToken);
+        PrettyLogger.d("Refreshed token: " + refreshedToken);
 
     }
 

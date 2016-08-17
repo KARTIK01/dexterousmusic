@@ -100,8 +100,6 @@ public class HomeActivity extends BaseActivity {
         } else {
             //show palceholder
         }
-
-//        DataManager.getAllMusic().
     }
 
     @Override
