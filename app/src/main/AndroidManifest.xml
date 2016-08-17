@@ -90,10 +90,10 @@
 
         <!-- Glide Module and cache -->
         <meta-data
-            android:name="music.dexterous.com.dexterousmusic.utils.image.SetupGlideModule"
+            android:name="${package}.utils.image.SetupGlideModule"
             android:value="GlideModule" />
         <meta-data
-            android:name="music.dexterous.com.dexterousmusic.utils.image.LimitCacheSizeGlideModule"
+            android:name="${package}.utils.image.LimitCacheSizeGlideModule"
             android:value="GlideModule" />
 
     </application>

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:512316797314:android:8a65f37d164315e5",
         "android_client_info": {
-          "package_name": "music.dexterous.com.dexterousmusic"
+          "package_name": "music.dexterous.com.dexterousmusic.debug"
         }
       },
       "oauth_client": [
