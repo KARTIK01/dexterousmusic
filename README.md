@@ -38,7 +38,7 @@ This is Dexterous Music Player App.
 ```
 
 
-* Use PrettyLogger instead of Lod
+* Use PrettyLogger instead of Log
 
 ```
 #!java
@@ -46,3 +46,16 @@ This is Dexterous Music Player App.
 
 PrettyLogger.d("Refreshed token: " + refreshedToken);
 ```
+
+* Use ShortToast instead of Toast
+
+```
+#!java
+
+
+ShortToast.displayToast(context, "Please Select At Least One song to play", 2000);
+```
+
+### Don't not chnage any thing in database package directly###
+
+Its auto generated code by GreenDao lib, for more reference go https://github.com/greenrobot/greenDAO
