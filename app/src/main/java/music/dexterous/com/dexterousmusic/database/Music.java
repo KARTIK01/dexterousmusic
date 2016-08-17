@@ -7,7 +7,6 @@ package music.dexterous.com.dexterousmusic.database;
 import android.os.Parcel;
 import android.os.Parcelable;
 // KEEP INCLUDES END
-
 /**
  * Entity mapped to table "MUSIC".
  */
@@ -20,6 +19,7 @@ public class Music implements Parcelable {
     private String SONG_ALBUM_ARTIST;
     private String SONG_DURATION;
     private String SONG_FILE_PATH;
+    private Boolean SONG_IS_PLAYING;
     private String SONG_TRACK_NUMBER;
     private String SONG_GENRE;
     private String SONG_PLAY_COUNT;
@@ -55,7 +55,7 @@ public class Music implements Parcelable {
         this.SONG_ID = SONG_ID;
     }
 
-    public Music(String SONG_ID, String SONG_TITLE, String SONG_ARTIST, String SONG_ALBUM, String SONG_ALBUM_ARTIST, String SONG_DURATION, String SONG_FILE_PATH, String SONG_TRACK_NUMBER, String SONG_GENRE, String SONG_PLAY_COUNT, String SONG_YEAR, String ALBUMS_COUNT, String SONGS_COUNT, String GENRES_SONG_COUNT, String SONG_LAST_MODIFIED, String SONG_SCANNED, String BLACKLIST_STATUS, String ADDED_TIMESTAMP, String RATING, String LAST_PLAYED_TIMESTAMP, String SONG_SOURCE, String SONG_ALBUM_ART_PATH, String SONG_DELETED, String ARTIST_ART_LOCATION, String ALBUM_ID, String ARTIST_ID, String GENRE_ID, String GENRE_SONG_COUNT, String LOCAL_COPY_PATH, String LIBRARIES, String SAVED_POSITION) {
+    public Music(String SONG_ID, String SONG_TITLE, String SONG_ARTIST, String SONG_ALBUM, String SONG_ALBUM_ARTIST, String SONG_DURATION, String SONG_FILE_PATH, Boolean SONG_IS_PLAYING, String SONG_TRACK_NUMBER, String SONG_GENRE, String SONG_PLAY_COUNT, String SONG_YEAR, String ALBUMS_COUNT, String SONGS_COUNT, String GENRES_SONG_COUNT, String SONG_LAST_MODIFIED, String SONG_SCANNED, String BLACKLIST_STATUS, String ADDED_TIMESTAMP, String RATING, String LAST_PLAYED_TIMESTAMP, String SONG_SOURCE, String SONG_ALBUM_ART_PATH, String SONG_DELETED, String ARTIST_ART_LOCATION, String ALBUM_ID, String ARTIST_ID, String GENRE_ID, String GENRE_SONG_COUNT, String LOCAL_COPY_PATH, String LIBRARIES, String SAVED_POSITION) {
         this.SONG_ID = SONG_ID;
         this.SONG_TITLE = SONG_TITLE;
         this.SONG_ARTIST = SONG_ARTIST;
@@ -63,6 +63,7 @@ public class Music implements Parcelable {
         this.SONG_ALBUM_ARTIST = SONG_ALBUM_ARTIST;
         this.SONG_DURATION = SONG_DURATION;
         this.SONG_FILE_PATH = SONG_FILE_PATH;
+        this.SONG_IS_PLAYING = SONG_IS_PLAYING;
         this.SONG_TRACK_NUMBER = SONG_TRACK_NUMBER;
         this.SONG_GENRE = SONG_GENRE;
         this.SONG_PLAY_COUNT = SONG_PLAY_COUNT;
@@ -143,6 +144,14 @@ public class Music implements Parcelable {
 
     public void setSONG_FILE_PATH(String SONG_FILE_PATH) {
         this.SONG_FILE_PATH = SONG_FILE_PATH;
+    }
+
+    public Boolean getSONG_IS_PLAYING() {
+        return SONG_IS_PLAYING;
+    }
+
+    public void setSONG_IS_PLAYING(Boolean SONG_IS_PLAYING) {
+        this.SONG_IS_PLAYING = SONG_IS_PLAYING;
     }
 
     public String getSONG_TRACK_NUMBER() {

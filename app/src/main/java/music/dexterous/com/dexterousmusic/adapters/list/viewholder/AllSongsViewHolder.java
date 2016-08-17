@@ -30,10 +30,9 @@ public class AllSongsViewHolder extends RecyclerView.ViewHolder implements View.
         mSongArtist = (FontTextView) itemView.findViewById(R.id.song_artist);
         mSongDuration = (FontTextView) itemView.findViewById(R.id.song_duration);
         mOverflowIcon = (ImageView) itemView.findViewById(R.id.showPopup);
-        visualizer = (Visualizer)itemView.findViewById(R.id.music_visulazer);
+        visualizer = (Visualizer) itemView.findViewById(R.id.music_visulazer);
 
         this.mOnClickListener = onClickListener;
-
         mOverflowIcon.setOnClickListener(this);
         itemView.setOnClickListener(this);
     }

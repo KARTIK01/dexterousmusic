@@ -35,6 +35,9 @@ public class MusicDaoGenerator {
         newsItemEntity.addStringProperty("SONG_DURATION");
         newsItemEntity.addStringProperty("SONG_FILE_PATH");
 
+
+        newsItemEntity.addBooleanProperty("SONG_IS_PLAYING");
+
         //TODO Check why we require this
         newsItemEntity.addStringProperty("SONG_TRACK_NUMBER");
 

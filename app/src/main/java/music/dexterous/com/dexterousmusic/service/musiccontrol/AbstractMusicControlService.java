@@ -134,9 +134,13 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 //        updateLockScreenWidget(currentSong, RemoteControlClient.PLAYSTATE_PLAYING);
 
         /**
-         * update {@link music.dexterous.com.dexterousmusic.activity.HomeActivity View}
+         * update {@link music.dexterous.com.dexterousmusic.activity.HomeActivity} background
          */
         GlobalApplication.getBus().post(new UpDateHomeActivityEvent(musicToPlay));
+        /**
+         * update allsongs list item view to show visualizer
+         */
+
 
     }
 
