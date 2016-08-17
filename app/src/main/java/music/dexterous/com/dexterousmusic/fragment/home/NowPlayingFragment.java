@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.fragment;
+package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
 
 public class NowPlayingFragment extends BaseFragment {

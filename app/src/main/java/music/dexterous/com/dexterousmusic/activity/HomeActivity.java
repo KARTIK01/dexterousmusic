@@ -14,10 +14,12 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.BottomPanelSlideListener;
+import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.event.UpDateHomeActivityEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.fragment.NowPlayingFragment;
+import music.dexterous.com.dexterousmusic.fragment.home.NowPlayingFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.utils.image.BlurBuilder;
@@ -35,10 +37,12 @@ public class HomeActivity extends BaseActivity {
     HomeFragment mHomeFragment;
     NowPlayingFragment mNowPlayingFragment;
 
+    SlidingUpPanelLayout mSlidingUpPanelLayout;
     FrameLayout mRootHomeContainer;
     FrameLayout mRootHomeContainerBottom;
 
     ImageView imageView;
+    BottomPanelSlideListener mBottomPanelSlideListener;
 
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, HomeActivity.class);
@@ -51,6 +55,7 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        mSlidingUpPanelLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mRootHomeContainer = (FrameLayout) findViewById(R.id.rootHomeContainer);
         mRootHomeContainerBottom = (FrameLayout) findViewById(R.id.rootHomeContainerBottom);
 
@@ -59,6 +64,9 @@ public class HomeActivity extends BaseActivity {
 
         mHomeFragment = HomeFragment.newInstance();
         mNowPlayingFragment = NowPlayingFragment.newInstance();
+
+        if (mBottomPanelSlideListener == null)
+            mSlidingUpPanelLayout.addPanelSlideListener(mBottomPanelSlideListener = new BottomPanelSlideListener());
 
         DataManager.getInstance(this).loadHomeActivitySpecificData();
         UiUtils.loadHomeActivitySpecificData(HomeActivity.this);

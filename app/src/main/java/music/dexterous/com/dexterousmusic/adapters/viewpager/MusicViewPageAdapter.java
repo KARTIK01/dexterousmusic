@@ -4,11 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.fragment.home.AllAlbumFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.AllArtistFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.AllSongsFragment;
-import music.dexterous.com.dexterousmusic.fragment.NowPlayingFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.RecentPlayedFragment;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
