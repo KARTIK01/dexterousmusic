@@ -75,27 +75,4 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_dots_vertical_vector" />
 
-    <music.dexterous.com.dexterousmusic.customeviews.audiowaves.Visualizer xmlns:aw="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/music_visulazer"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/song_duration"
-        android:layout_toLeftOf="@+id/showPopup"
-        android:visibility="gone"
-        aw:aw_color_gradient_end="@color/VISUALIZER_END_COLOR"
-        aw:aw_color_gradient_start="@color/VISUALIZER__START_COLOR"
-        aw:aw_color_is_gradient="true"
-        aw:aw_color_uniform="@color/VISUALIZER_COLOR_HERE"
-        aw:aw_format="vertical_lines"
-        aw:aw_gravity="center"
-        aw:aw_height="200"
-        aw:aw_line_border_radius="0"
-        aw:aw_line_height="30"
-        aw:aw_line_min_height="30"
-        aw:aw_line_min_with="10"
-        aw:aw_line_spacing="2"
-        aw:aw_line_with="30"
-        aw:aw_num_waves="3"
-        aw:aw_width="40" />
-
 </RelativeLayout>

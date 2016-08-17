@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,17 +14,15 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.event.UpDateHomeActivityEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
+import music.dexterous.com.dexterousmusic.fragment.NowPlayingFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
-import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.image.BlurBuilder;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.image.transformation.BlurTransformation;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
@@ -34,9 +30,14 @@ import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
  */
 public class HomeActivity extends BaseActivity {
 
-    HomeFragment mHomeFragment;
     FragmentManager mFragmentManager;
+
+    HomeFragment mHomeFragment;
+    NowPlayingFragment mNowPlayingFragment;
+
     FrameLayout mRootHomeContainer;
+    FrameLayout mRootHomeContainerBottom;
+
     ImageView imageView;
 
     public static Intent getIntent(Context context) {
@@ -51,9 +52,13 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
         mRootHomeContainer = (FrameLayout) findViewById(R.id.rootHomeContainer);
-        imageView = (ImageView) findViewById(R.id.imageView);
+        mRootHomeContainerBottom = (FrameLayout) findViewById(R.id.rootHomeContainerBottom);
+
+        imageView = (ImageView) findViewById(R.id.home_activity_backgroud_image_view);
         mFragmentManager = getSupportFragmentManager();
+
         mHomeFragment = HomeFragment.newInstance();
+        mNowPlayingFragment = NowPlayingFragment.newInstance();
 
         DataManager.getInstance(this).loadHomeActivitySpecificData();
         UiUtils.loadHomeActivitySpecificData(HomeActivity.this);
@@ -69,10 +74,14 @@ public class HomeActivity extends BaseActivity {
     public void openHomeFragment() {
         BaseFragment fragment = (BaseFragment) mFragmentManager.findFragmentByTag(HomeFragment.FRAGMENT_TAG);
         if (fragment == null) {
-
             mFragmentManager.beginTransaction()
                     .replace(R.id.rootHomeContainer, mHomeFragment, HomeFragment.FRAGMENT_TAG)
                     .commitAllowingStateLoss();
+
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.rootHomeContainerBottom, mNowPlayingFragment, NowPlayingFragment.FRAGMENT_TAG)
+                    .commitAllowingStateLoss();
+
         }
     }
 

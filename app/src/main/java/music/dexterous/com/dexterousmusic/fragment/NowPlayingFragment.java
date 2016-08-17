@@ -10,6 +10,9 @@ import music.dexterous.com.dexterousmusic.R;
 
 public class NowPlayingFragment extends BaseFragment {
 
+
+    public static final String FRAGMENT_TAG = NowPlayingFragment.class.getSimpleName();
+
     public static NowPlayingFragment newInstance() {
         NowPlayingFragment fragment = new NowPlayingFragment();
         Bundle info = new Bundle();
