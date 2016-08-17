@@ -1,12 +1,15 @@
 package music.dexterous.com.dexterousmusic.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
 
 public class NowPlayingFragment extends BaseFragment {
 
@@ -30,15 +33,12 @@ public class NowPlayingFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // set speech recognizer handler
-//        SpeechRecognizerDbmHandler speechRecHandler = DbmHandler.Factory.newSpeechRecognizerHandler(getActivity());
-//        speechRecHandler.innerRecognitionListener(...);
-//        audioVisualization.linkTo(speechRecHandler);
-//
-//        // set audio visualization handler. This will REPLACE previously set speech recognizer handler
-//        VisualizerDbmHandler vizualizerHandler = DbmHandler.Factory.newVisualizerHandler(getContext(), 0);
-//        audioVisualization.linkTo(vizualizerHandler);
-
+        ImageView toggle = (ImageView) view.findViewById(R.id.toggle);
+        toggle.setOnClickListener(view1 -> {
+            Intent buttonPlayIntent = new Intent(getActivity(), ToggleMusicReceiver.class);
+            buttonPlayIntent.putExtra(ToggleMusicReceiver.ACTION, ToggleMusicReceiver.ACTION_TYPE_TOGGLE);
+            getActivity().sendBroadcast(buttonPlayIntent);
+        });
     }
 
     @Override

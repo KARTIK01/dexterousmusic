@@ -19,8 +19,49 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
+
+        <!-- small bar -->
+        <RelativeLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_activity_bottom_bar"
+            android:layout_alignParentTop="true">
+
+            <ImageView
+                android:id="@+id/image_current_song"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/dishoom" />
+
+            <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+                android:id="@+id/status"
+                androidtext="Playing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/image_current_song"
+                android:textSize="16sp" />
+
+            <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+                android:id="@+id/song_name"
+                androidtext="Song Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/status"
+                android:layout_toRightOf="@+id/image_current_song"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/toggle"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_play_vector" />
+
+        </RelativeLayout>
+
 
         <ImageView
             android:id="@+id/album_art"
