@@ -25,6 +25,7 @@ import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
 import music.dexterous.com.dexterousmusic.utils.image.BlurBuilder;
+import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
 import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
@@ -107,34 +108,11 @@ public class HomeActivity extends BaseActivity {
      * updates user HomeScreen Background
      * with current playing song album art
      *
-     * @param upDateHomeActivityEvent
+     * @param playMusicEvent
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void refreshViewsOnSongChange(PlayMusicEvent upDateHomeActivityEvent) {
-        String albumArtPath = "";
-
-        String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
-        AlbumModel albumModel = DataManager.getInstance(this).getAlbumsMap().get(songAlbum);
-        if (albumModel != null) {
-            albumArtPath = albumModel.getAlbumArtPath();
-        }
-
-        if (!TextUtils.isEmpty(albumArtPath)) {
-            Bitmap songCoverImage = BitmapFactory.decodeFile(albumArtPath);
-            if (songCoverImage != null) {
-                //TODO make blur via glide and {@link BlurTransformation}
-                new ImageLoader(this)
-                        .loadImage(this, BlurBuilder.blur(this, songCoverImage), imageView);
-            } else {
-                //TODO show random palceholder
-                new ImageLoader(this)
-                        .loadImage(this, BlurBuilder.blur(this, BitmapFactory.decodeResource(this.getResources(), R.drawable.bg_1)), imageView);
-            }
-        } else {
-            //TODO show random palceholder
-            new ImageLoader(this)
-                    .loadImage(this, BlurBuilder.blur(this, BitmapFactory.decodeResource(this.getResources(), R.drawable.bg_1)), imageView);
-        }
+    public void refreshViewsOnSongChange(PlayMusicEvent playMusicEvent) {
+        HomeActivtyBgImageHelper.setImage(playMusicEvent, getApplicationContext(), imageView, true);
     }
 
     @Override

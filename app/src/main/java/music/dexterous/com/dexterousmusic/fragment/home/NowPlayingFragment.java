@@ -16,6 +16,7 @@ import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
+import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
@@ -71,11 +72,10 @@ public class NowPlayingFragment extends BaseFragment {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void setUpUI(PlayMusicEvent playMusicEvent) {
         //show image into imageView
-
-
+        HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), mNowPlayingImageView, false);
         //show song Name
         mNowPlayingSongNameTextView.setText(playMusicEvent.music.getSONG_TITLE());
-        
+
         //show image for play or pause
         if (playMusicEvent.music.getSONG_IS_PLAYING() != null && playMusicEvent.music.getSONG_IS_PLAYING()) {
             new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
