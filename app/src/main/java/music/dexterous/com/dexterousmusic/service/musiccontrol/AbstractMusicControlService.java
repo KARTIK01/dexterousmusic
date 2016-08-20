@@ -1,8 +1,6 @@
 package music.dexterous.com.dexterousmusic.service.musiccontrol;
 
-import android.app.IntentService;
 import android.app.Service;
-import android.content.ContentUris;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -11,9 +9,8 @@ import android.os.PowerManager;
 import java.io.IOException;
 
 import music.dexterous.com.dexterousmusic.GlobalApplication;
-import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.event.UpDateHomeActivityEvent;
+import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
@@ -21,7 +18,6 @@ import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnE
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
-import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 /**
@@ -136,7 +132,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         /**
          * update {@link music.dexterous.com.dexterousmusic.activity.HomeActivity} background
          */
-        GlobalApplication.getBus().post(new UpDateHomeActivityEvent(musicToPlay));
+        GlobalApplication.getBus().post(new PlayMusicEvent(musicToPlay));
         /**
          * update allsongs list item view to show visualizer
          */

@@ -14,17 +14,13 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.BottomPanelSlideListener;
-import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
-import music.dexterous.com.dexterousmusic.event.UpDateHomeActivityEvent;
+import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.fragment.home.NowPlayingFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.utils.image.BlurBuilder;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
-import music.dexterous.com.dexterousmusic.utils.image.transformation.BlurTransformation;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
@@ -86,7 +82,7 @@ public class HomeActivity extends BaseActivity {
      * @param upDateHomeActivityEvent
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void refreshViewsOnSongChange(UpDateHomeActivityEvent upDateHomeActivityEvent) {
+    public void refreshViewsOnSongChange(PlayMusicEvent upDateHomeActivityEvent) {
         String albumArtPath = "";
 
         String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
@@ -98,10 +94,12 @@ public class HomeActivity extends BaseActivity {
         if (!TextUtils.isEmpty(albumArtPath)) {
             Bitmap songCoverImage = BitmapFactory.decodeFile(albumArtPath);
             //TODO make blur via glide and {@link BlurTransformation}
-            new ImageLoader(this, new BlurTransformation(this))
+            new ImageLoader(this)
                     .loadImage(this, BlurBuilder.blur(this, songCoverImage), imageView);
         } else {
-            //show palceholder
+            //TODO show random palceholder
+            new ImageLoader(this)
+                    .loadImage(this, BlurBuilder.blur(this, BitmapFactory.decodeResource(this.getResources(), R.drawable.bg_1)), imageView);
         }
     }
 

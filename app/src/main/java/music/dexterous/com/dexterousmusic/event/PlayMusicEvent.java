@@ -5,11 +5,11 @@ import music.dexterous.com.dexterousmusic.database.Music;
 /**
  * Created by Honey on 8/15/2016.
  */
-public class UpDateHomeActivityEvent {
+public class PlayMusicEvent {
 
     public Music music;
 
-    public UpDateHomeActivityEvent(Music music) {
+    public PlayMusicEvent(Music music) {
         this.music = music;
     }
 }
