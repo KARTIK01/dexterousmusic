@@ -89,8 +89,8 @@ public class UiUtils {
         String albums = resources.getString(R.string.albums);
         String artist = resources.getString(R.string.artist);
         String all_songs = resources.getString(R.string.all_songs);
-        String recent_played = resources.getString(R.string.recent_played);
-        mHomeTabHeaderTittle = new String[]{recent_played, all_songs, artist, albums};
+//        String recent_played = resources.getString(R.string.recent_played);
+        mHomeTabHeaderTittle = new String[]{all_songs, artist, albums};
     }
 
 }

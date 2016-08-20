@@ -63,6 +63,13 @@ public class HomeActivity extends BaseActivity {
         safeRegister();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        safeRegister();
+    }
+
+
     /**
      * fragment containing the main content for news
      */
@@ -106,6 +113,12 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        unregister();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         unregister();
     }
 }

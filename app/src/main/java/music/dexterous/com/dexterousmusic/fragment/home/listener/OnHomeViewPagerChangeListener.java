@@ -25,9 +25,9 @@ public class OnHomeViewPagerChangeListener implements ViewPager.OnPageChangeList
     @Override
     public void onPageSelected(int position) {
         switch (position) {
-            case MusicViewPageAdapter.RECENT_PLAYED:
-                mFloatingActionButton.show();
-                break;
+//            case MusicViewPageAdapter.RECENT_PLAYED:
+//                mFloatingActionButton.show();
+//                break;
             case MusicViewPageAdapter.ALL_SONGS:
                 mFloatingActionButton.show();
                 break;
