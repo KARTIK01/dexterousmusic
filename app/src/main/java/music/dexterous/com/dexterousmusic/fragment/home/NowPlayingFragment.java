@@ -28,9 +28,17 @@ public class NowPlayingFragment extends BaseFragment {
 
     public static final String FRAGMENT_TAG = NowPlayingFragment.class.getSimpleName();
 
+    // Views for small bar
     private ImageView mNowPlayingImageView;
     private FontTextView mNowPlayingSongNameTextView;
     private ImageView mToggelButton;
+
+
+    //views for big bar
+    private ImageView album_art_image_view;
+    private FontTextView song_name_tv;
+    private FontTextView song_artist_tv;
+    private FontTextView song_album_tv;
 
     public static NowPlayingFragment newInstance() {
         NowPlayingFragment fragment = new NowPlayingFragment();
@@ -53,7 +61,14 @@ public class NowPlayingFragment extends BaseFragment {
         mNowPlayingSongNameTextView = (FontTextView) view.findViewById(R.id.now_playing_song_name_textview);
         mToggelButton = (ImageView) view.findViewById(R.id.toggle);
 
+        album_art_image_view = (ImageView) view.findViewById(R.id.album_art);
+        song_name_tv = (FontTextView) view.findViewById(R.id.song_tittle);
+        song_artist_tv = (FontTextView) view.findViewById(R.id.song_artist);
+        song_album_tv = (FontTextView) view.findViewById(R.id.song_album);
+
+
         safeRegister();
+
         mToggelButton.setOnClickListener(view1 -> {
             Intent buttonPlayIntent = new Intent(getActivity(), ToggleMusicReceiver.class);
             buttonPlayIntent.putExtra(ToggleMusicReceiver.ACTION, ToggleMusicReceiver.ACTION_TYPE_TOGGLE);
@@ -75,8 +90,13 @@ public class NowPlayingFragment extends BaseFragment {
     public void setUpUI(PlayMusicEvent playMusicEvent) {
         //show image into imageView
         HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), mNowPlayingImageView, false);
+        HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), album_art_image_view, false);
+
         //show song Name
         mNowPlayingSongNameTextView.setText(playMusicEvent.music.getSONG_TITLE());
+        song_name_tv.setText(playMusicEvent.music.getSONG_TITLE());
+        song_artist_tv.setText(playMusicEvent.music.getSONG_ARTIST());
+        song_album_tv.setText(playMusicEvent.music.getSONG_ALBUM());
 
         //show image for play or pause
         if (playMusicEvent.music.getSONG_IS_PLAYING() != null && playMusicEvent.music.getSONG_IS_PLAYING()) {

@@ -62,7 +62,6 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
 
-
         <ImageView
             android:id="@+id/album_art"
             android:layout_width="200dp"
@@ -93,6 +92,7 @@
             android:orientation="horizontal">
 
             <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+                android:id="@+id/song_artist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -113,6 +113,7 @@
                 android:textSize="@dimen/text_medium" />
 
             <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+                android:id="@+id/song_album"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -124,7 +125,7 @@
         </LinearLayout>
 
         <include
-            layout="@layout/control_music_widget"
+            layout="@layout/control_music_widget_upper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/control_music_widget_id"
