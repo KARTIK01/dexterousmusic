@@ -3,7 +3,8 @@ package music.dexterous.com.dexterousmusic.event;
 import music.dexterous.com.dexterousmusic.database.Music;
 
 /**
- * Created by Honey on 8/15/2016.
+ * This event is responsible for all UI chagnes
+ * Fire this when app opens and when music changes
  */
 public class PlayMusicEvent {
 
