@@ -39,8 +39,6 @@ public class RecentPlayedFragment extends BaseFragment {
     RecyclerViewFastScroller fastScroller;
     AllSongsAdapter recyclerViewAdapterAllSongs;
 
-    Button shuffle;
-
     public static RecentPlayedFragment newInstance() {
         RecentPlayedFragment fragment = new RecentPlayedFragment();
         Bundle info = new Bundle();
@@ -98,8 +96,6 @@ public class RecentPlayedFragment extends BaseFragment {
 
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
-        shuffle = (Button) view.findViewById(R.id.shuffle);
-        shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), allSongsList));
 
         recyclerViewAdapterAllSongs.setOnItemClickListener((view1, position) -> {
             PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), allSongsList, position);

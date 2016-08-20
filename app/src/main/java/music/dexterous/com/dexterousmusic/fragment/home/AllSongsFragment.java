@@ -38,8 +38,6 @@ public class AllSongsFragment extends BaseFragment {
     DragScrollBar dragScrollBar;
     AllSongsAdapter recyclerViewAdapterAllSongs;
 
-    Button shuffle;
-
     public static AllSongsFragment newInstance() {
         AllSongsFragment fragment = new AllSongsFragment();
         Bundle info = new Bundle();
@@ -83,8 +81,8 @@ public class AllSongsFragment extends BaseFragment {
         dragScrollBar.setRecyclerView(mRecyclerView);
         dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
 
-        shuffle = (Button) view.findViewById(R.id.shuffle);
-        shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), allSongsList));
+//        shuffle = (Button) view.findViewById(R.id.shuffle);
+//        shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), allSongsList));
 
         recyclerViewAdapterAllSongs.setOnItemClickListener((view1, position) -> {
             PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), allSongsList, position);

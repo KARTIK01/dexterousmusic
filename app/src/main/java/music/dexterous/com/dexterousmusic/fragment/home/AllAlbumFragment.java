@@ -36,8 +36,6 @@ public class AllAlbumFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
 
-    Button shuffle;
-
     public static AllAlbumFragment newInstance() {
         AllAlbumFragment fragment = new AllAlbumFragment();
         Bundle info = new Bundle();
