@@ -25,8 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/now_playing_imageview"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin"
             android:text="Playing"
-            android:textSize="@dimen/text_small" />
+            android:textColor="@android:color/holo_purple"
+            android:textSize="@dimen/text_extra_small" />
 
         <music.dexterous.com.dexterousmusic.customeviews.FontTextView
             android:id="@+id/now_playing_song_name_textview"
@@ -34,14 +37,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/status"
             android:layout_toRightOf="@id/now_playing_imageview"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="Song Name"
             android:textSize="@dimen/text_large"
             app:fontName="Calibri-light.ttf" />
 
         <ImageView
             android:id="@+id/toggle"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_play_vector" />

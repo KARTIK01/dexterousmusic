@@ -154,14 +154,7 @@ public class ImageLoader extends ImageLoaderHelper {
      * to load a drawable into imageview
      */
     public void loadImage(Context context, Drawable drawableResId, ImageView imageView) {
-        /**
-         * set cache-strategy to result as reading source is pretty fast and we don't have
-         * to keep that in memory
-         */
-        Glide.with(context).load(drawableResId)
-                .priority(Priority.IMMEDIATE)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .into(imageView);
+        imageView.setImageDrawable(drawableResId);
     }
 
     /**
