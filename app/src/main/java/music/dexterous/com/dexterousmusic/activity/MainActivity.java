@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
@@ -25,10 +24,6 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class MainActivity extends BaseActivity {
     protected Button scan;
-    protected Button playMusic;
-    String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
-    final String musicsOnly = MediaStore.Audio.Media.IS_MUSIC + "=1";
-    ImageView coverart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,31 +31,11 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        scan = (Button) findViewById(R.id.scan_music);
-        playMusic = (Button) findViewById(R.id.playMusic);
-
-        coverart = (ImageView) findViewById(R.id.album_art);
-        scan.setOnClickListener(view -> MainActivityPermissionsDispatcher.showStoragePermissionWithCheck(this));
-        playMusic.setOnClickListener(view -> playMusic());
-
-
-
-
-//        android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-//        mmr.setDataSource("/storage/sdcard1/Tu Thodi Dair.mp3");
-//
-//
-//        byte[] data = mmr.getEmbeddedPicture();
-//        //coverart is an Imageview object
-//
-//        // convert the byte array to a bitmap
-//        if (data != null) {
-//            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-//            coverart.setImageBitmap(bitmap); //associated cover art in bitmap
-//        } else {
-//            coverart.setImageResource(R.mipmap.ic_launcher); //any default cover resourse folder
-//        }
-
+        scan = (Button) findViewById(R.id.give_permission);
+        scan.setOnClickListener(view ->{
+            MainActivityPermissionsDispatcher.showStoragePermissionWithCheck(this);
+            startActivity(HomeActivity.getIntent(this));
+        });
     }
 
     private void playMusic() {

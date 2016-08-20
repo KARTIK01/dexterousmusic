@@ -1,156 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/dishoom" />
-
-    <ImageView
+    <!-- small bar -->
+    <RelativeLayout
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/now_playing_gradient" />
+        android:layout_height="@dimen/home_activity_bottom_bar">
+
+        <ImageView
+            android:id="@+id/now_playing_imageview"
+            android:layout_width="@dimen/home_activity_bottom_bar"
+            android:layout_height="@dimen/home_activity_bottom_bar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dishoom" />
+
+        <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/now_playing_imageview"
+            android:text="Playing"
+            android:textSize="@dimen/text_small" />
+
+        <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+            android:id="@+id/now_playing_song_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/status"
+            android:layout_toRightOf="@id/now_playing_imageview"
+            android:text="Song Name"
+            android:textSize="@dimen/text_large"
+            app:fontName="Calibri-light.ttf" />
+
+        <ImageView
+            android:id="@+id/toggle"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_play_vector" />
+
+    </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/now_plaiing_innerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:visibility="gone">
 
-        <!-- small bar -->
-        <RelativeLayout
-            android:id="@+id/bottom_bar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/home_activity_bottom_bar"
-            android:layout_alignParentTop="true">
 
-            <ImageView
-                android:id="@+id/image_current_song"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/dishoom" />
+        <ImageView
+            android:id="@+id/album_art"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dishoom" />
 
-            <music.dexterous.com.dexterousmusic.customeviews.FontTextView
-                android:id="@+id/status"
-                androidtext="Playing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/image_current_song"
-                android:textSize="@dimen/text_small" />
+        <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+            android:id="@+id/song_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/album_art"
+            android:gravity="center"
+            android:lines="1"
+            android:padding="8dp"
+            android:text="01 - Sau Tarah Ke - Dishoom [DJMaza.Cool]"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_extra_large" />
 
-            <music.dexterous.com.dexterousmusic.customeviews.FontTextView
-                android:id="@+id/song_name"
-                androidtext="Song Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/status"
-                android:layout_toRightOf="@+id/image_current_song"
-                android:textSize="@dimen/text_large" />
-
-            <ImageView
-                android:id="@+id/toggle"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_play_vector" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/now_plaiing_innerview"
+        <LinearLayout
+            android:id="@+id/song_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone">
-
-
-            <ImageView
-                android:id="@+id/album_art"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/dishoom" />
+            android:layout_below="@id/song_tittle"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <music.dexterous.com.dexterousmusic.customeviews.FontTextView
-                android:id="@+id/song_tittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/album_art"
                 android:gravity="center"
                 android:lines="1"
                 android:padding="8dp"
-                android:text="01 - Sau Tarah Ke - Dishoom [DJMaza.Cool]"
+                android:text="Artist Name"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_extra_large" />
+                android:textSize="@dimen/text_medium" />
 
-            <LinearLayout
-                android:id="@+id/song_details"
-                android:layout_width="match_parent"
+            <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/song_tittle"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:lines="1"
+                android:padding="8dp"
+                android:text="|"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_medium" />
 
-                <music.dexterous.com.dexterousmusic.customeviews.FontTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="8dp"
-                    android:text="Artist Name"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_medium" />
-
-                <music.dexterous.com.dexterousmusic.customeviews.FontTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="8dp"
-                    android:text="|"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_medium" />
-
-                <music.dexterous.com.dexterousmusic.customeviews.FontTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="8dp"
-                    android:text="Movie Name"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_medium" />
-            </LinearLayout>
-
-            <include
-                layout="@layout/control_music_widget"
-                android:layout_width="match_parent"
+            <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/control_music_widget_id"
-                android:layout_below="@id/song_details" />
+                android:gravity="center"
+                android:lines="1"
+                android:padding="8dp"
+                android:text="Movie Name"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_medium" />
+        </LinearLayout>
 
-            <include
-                android:id="@+id/control_music_widget_id"
-                layout="@layout/control_music_widget"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/control_music_widget_lower_id" />
+        <include
+            layout="@layout/control_music_widget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/control_music_widget_id"
+            android:layout_below="@id/song_details" />
+
+        <include
+            android:id="@+id/control_music_widget_id"
+            layout="@layout/control_music_widget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/control_music_widget_lower_id" />
 
 
-            <include
-                android:id="@+id/control_music_widget_lower_id"
-                layout="@layout/control_music_widget_lower"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true" />
-        </RelativeLayout>
+        <include
+            android:id="@+id/control_music_widget_lower_id"
+            layout="@layout/control_music_widget_lower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
-
-</FrameLayout>
+</RelativeLayout>

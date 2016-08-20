@@ -2,6 +2,7 @@ package music.dexterous.com.dexterousmusic.utils.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.util.Base64;
 import android.widget.ImageView;
@@ -139,6 +140,20 @@ public class ImageLoader extends ImageLoaderHelper {
      * to load a drawable into imageview
      */
     public void loadImage(Context context, @DrawableRes int drawableResId, ImageView imageView) {
+        /**
+         * set cache-strategy to result as reading source is pretty fast and we don't have
+         * to keep that in memory
+         */
+        Glide.with(context).load(drawableResId)
+                .priority(Priority.IMMEDIATE)
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .into(imageView);
+    }
+
+    /**
+     * to load a drawable into imageview
+     */
+    public void loadImage(Context context, Drawable drawableResId, ImageView imageView) {
         /**
          * set cache-strategy to result as reading source is pretty fast and we don't have
          * to keep that in memory

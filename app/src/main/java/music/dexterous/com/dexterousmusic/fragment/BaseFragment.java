@@ -12,6 +12,7 @@ import music.dexterous.com.dexterousmusic.GlobalApplication;
 
 public class BaseFragment extends Fragment {
 
+
     // safely registers the fragment
     public synchronized void safeRegister() {
         if (!getBus().isRegistered(this)) getBus().register(this);

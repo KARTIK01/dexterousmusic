@@ -80,7 +80,8 @@ public class HomeActivity extends BaseActivity {
         } else {
             musicToPlay = musicList.get(RandomNumberGeneratorForMusic.nextInt(-1, DataManager.getInstance(this).getAllMusic().size()));
         }
-        GlobalApplication.getBus().post(new PlayMusicEvent(musicToPlay));
+
+        GlobalApplication.getBus().postSticky(new PlayMusicEvent(musicToPlay));
     }
 
     @Override

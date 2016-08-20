@@ -98,6 +98,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         nowPlayingList = NowPlayingList.getInstance();
         int musicPosition = nowPlayingList.getCurrentSongPosition();
         Music musicToPlay = nowPlayingList.getSong(musicPosition);
+        musicToPlay.setSONG_IS_PLAYING(true);
 
         currentMusic = musicToPlay;
 
@@ -185,6 +186,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     @Override
     public void pauseMusic() {
         mDexterousMediaPlayer.pause();
+
+        currentMusic.setSONG_IS_PLAYING(false);
+
         if (notification != null)
             notification.notifyPaused(true);
         //TODO Updates Lock-Screen Widget
@@ -242,6 +246,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     public void unPauseMusic() {
         //restart music
         mDexterousMediaPlayer.start();
+
+        currentMusic.setSONG_IS_PLAYING(true);
+
         //show on notification
         if (notification != null)
             notification.notifyPaused(false);

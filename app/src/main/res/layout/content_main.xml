@@ -14,27 +14,11 @@
     tools:showIn="@layout/activity_main">
 
     <Button
-        android:id="@+id/scan_music"
+        android:id="@+id/give_permission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Give Permission" />
-
-    <ImageView
-        android:id="@+id/album_art"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/scan_music"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="74dp" />
-
-    <Button
-        android:id="@+id/playMusic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="PLAY LIST Music" />
 
 </LinearLayout>

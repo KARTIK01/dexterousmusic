@@ -10,6 +10,7 @@ import android.widget.Toast;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AllSongsAdapter;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
+import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 public class AllSongsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     private AllSongsAdapter.OnAllSongsItemClickListener mOnClickListener;
@@ -29,6 +30,7 @@ public class AllSongsViewHolder extends RecyclerView.ViewHolder implements View.
         mSongDuration = (FontTextView) itemView.findViewById(R.id.song_duration);
         mOverflowIcon = (ImageView) itemView.findViewById(R.id.showPopup);
 
+        mOverflowIcon.setImageDrawable(UiUtils.ic_dots_vertical_vector);
         this.mOnClickListener = onClickListener;
         mOverflowIcon.setOnClickListener(this);
         itemView.setOnClickListener(this);

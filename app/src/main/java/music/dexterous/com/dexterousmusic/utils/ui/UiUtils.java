@@ -6,8 +6,10 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import java.util.concurrent.CountDownLatch;
@@ -27,6 +29,14 @@ public class UiUtils {
     private static float densityScale;
 
     static public String[] mHomeTabHeaderTittle;
+
+    static public Drawable ic_pause_vector;
+    static public Drawable ic_play_vector;
+    static public Drawable ic_skip_next_vector;
+    static public Drawable ic_skip_previous_vector;
+    static public Drawable ic_shuffle_white_vector;
+    static public Drawable ic_shuffle_vector;
+    static public Drawable ic_dots_vertical_vector;
 
     /**
      * Screen dimensions in pixels
@@ -81,6 +91,7 @@ public class UiUtils {
      */
     static public void loadHomeActivitySpecificData(Context context) {
         loadStrings(context);
+        loadIcons(context);
     }
 
     static private void loadStrings(Context context) {
@@ -91,6 +102,16 @@ public class UiUtils {
         String all_songs = resources.getString(R.string.all_songs);
 //        String recent_played = resources.getString(R.string.recent_played);
         mHomeTabHeaderTittle = new String[]{all_songs, artist, albums};
+    }
+
+    static private void loadIcons(Context context) {
+        ic_pause_vector = ContextCompat.getDrawable(context, R.drawable.ic_pause_vector);
+        ic_play_vector = ContextCompat.getDrawable(context, R.drawable.ic_play_vector);
+        ic_skip_next_vector = ContextCompat.getDrawable(context, R.drawable.ic_skip_next_vector);
+        ic_skip_previous_vector = ContextCompat.getDrawable(context, R.drawable.ic_skip_previous_vector);
+        ic_shuffle_white_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_white_vector);
+        ic_shuffle_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_vector);
+        ic_dots_vertical_vector = ContextCompat.getDrawable(context, R.drawable.ic_dots_vertical_vector);
     }
 
 }
