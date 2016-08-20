@@ -93,16 +93,22 @@ public class HomeActivity extends BaseActivity {
         String albumArtPath = "";
 
         String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
-        AlbumModel albumModel = DataManager.getAlbumsMap().get(songAlbum);
+        AlbumModel albumModel = DataManager.getInstance(this).getAlbumsMap().get(songAlbum);
         if (albumModel != null) {
             albumArtPath = albumModel.getAlbumArtPath();
         }
 
         if (!TextUtils.isEmpty(albumArtPath)) {
             Bitmap songCoverImage = BitmapFactory.decodeFile(albumArtPath);
-            //TODO make blur via glide and {@link BlurTransformation}
-            new ImageLoader(this)
-                    .loadImage(this, BlurBuilder.blur(this, songCoverImage), imageView);
+            if (songCoverImage != null) {
+                //TODO make blur via glide and {@link BlurTransformation}
+                new ImageLoader(this)
+                        .loadImage(this, BlurBuilder.blur(this, songCoverImage), imageView);
+            } else {
+                //TODO show random palceholder
+                new ImageLoader(this)
+                        .loadImage(this, BlurBuilder.blur(this, BitmapFactory.decodeResource(this.getResources(), R.drawable.bg_1)), imageView);
+            }
         } else {
             //TODO show random palceholder
             new ImageLoader(this)

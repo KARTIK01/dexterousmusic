@@ -124,20 +124,20 @@ public class DataManager extends MediaDao {
     }
 
 
-    public static List<AlbumModel> getAlbums() {
+    public  List<AlbumModel> getAlbums() {
         return new ArrayList<AlbumModel>(albumHash.values());
     }
 
-    public static Map<String, AlbumModel> getAlbumsMap() {
+    public  Map<String, AlbumModel> getAlbumsMap() {
         return albumHash;
     }
 
-    public static List<ArtistModel> getArtist() {
+    public  List<ArtistModel> getArtist() {
         return artist;
     }
 
 
-    public static List<Music> getAllMusic() {
+    public  List<Music> getAllMusic() {
         return allMusic;
     }
 

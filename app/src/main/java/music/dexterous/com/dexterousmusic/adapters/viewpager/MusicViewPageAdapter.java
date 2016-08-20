@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import music.dexterous.com.dexterousmusic.fragment.home.AllAlbumFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.AllArtistFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.AllSongsFragment;
-import music.dexterous.com.dexterousmusic.fragment.home.RecentPlayedFragment;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
