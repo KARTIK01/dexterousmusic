@@ -8,6 +8,7 @@
     sothree:umanoPanelHeight="@dimen/home_activity_bottom_bar"
     sothree:umanoShadowHeight="4dp">
 
+    <!--sothree:umanoScrollInterpolator="@anim/hide"-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

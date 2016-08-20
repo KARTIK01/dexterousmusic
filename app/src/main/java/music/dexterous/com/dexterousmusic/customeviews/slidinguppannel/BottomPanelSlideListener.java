@@ -31,12 +31,12 @@ public class BottomPanelSlideListener implements SlidingUpPanelLayout.PanelSlide
 
         switch (newState) {
             case EXPANDED:
-                //TODO hide and show views
+                //TODO improve annimation
                 panel.findViewById(R.id.bottom_bar).setVisibility(View.GONE);
                 panel.findViewById(R.id.now_plaiing_innerview).setVisibility(View.VISIBLE);
                 break;
             case COLLAPSED:
-                //TODO hide and show views
+                //TODO improve annimation
                 panel.findViewById(R.id.bottom_bar).setVisibility(View.VISIBLE);
                 panel.findViewById(R.id.now_plaiing_innerview).setVisibility(View.GONE);
                 break;
