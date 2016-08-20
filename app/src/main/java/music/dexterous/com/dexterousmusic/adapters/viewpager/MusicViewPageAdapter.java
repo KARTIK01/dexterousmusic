@@ -16,6 +16,11 @@ import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
 
+    public static final int RECENT_PLAYED = 0;
+    public static final int ALL_SONGS = 1;
+    public static final int ALL_ARTIST = 2;
+    public static final int ALL_ALBUM = 3;
+
     protected static final String[] titles = UiUtils.mHomeTabHeaderTittle;
 
     public MusicViewPageAdapter(FragmentManager fm) {
@@ -25,13 +30,13 @@ public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0:
+            case RECENT_PLAYED:
                 return RecentPlayedFragment.newInstance();
-            case 1:
+            case ALL_SONGS:
                 return AllSongsFragment.newInstance();
-            case 2:
+            case ALL_ARTIST:
                 return AllArtistFragment.newInstance();
-            case 3:
+            case ALL_ALBUM:
                 return AllAlbumFragment.newInstance();
         }
         return AllSongsFragment.newInstance();

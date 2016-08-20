@@ -43,11 +43,7 @@ public class MainActivity extends BaseActivity {
         scan.setOnClickListener(view -> MainActivityPermissionsDispatcher.showStoragePermissionWithCheck(this));
         playMusic.setOnClickListener(view -> playMusic());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-            startActivity(intent);
-        });
+
 
 
 //        android.media.MediaMetadataRetriever mmr = new MediaMetadataRetriever();
