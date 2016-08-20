@@ -3,15 +3,19 @@ package music.dexterous.com.dexterousmusic.fragment.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.viewpager.MusicViewPageAdapter;
 import music.dexterous.com.dexterousmusic.animations.transformation.ABaseTransformer;
 import music.dexterous.com.dexterousmusic.animations.transformation.DepthPageTransformer;
+import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.BottomPanelSlideListener;
+import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 
 /**
@@ -32,10 +36,19 @@ public class HomeFragment extends BaseFragment {
      */
     private boolean mIsComingFromOnCreate = false;
 
+    FragmentManager mFragmentManager;
+
     ViewPager mHomeViewPager;
     TabLayout mHomeTabHeader;
 
     MusicViewPageAdapter mMusicViewPageAdapter;
+
+    SlidingUpPanelLayout mSlidingUpPanelLayout;
+    FrameLayout mRootHomeContainerBottom;
+
+    NowPlayingFragment mNowPlayingFragment;
+
+    BottomPanelSlideListener mBottomPanelSlideListener;
 
     /**
      * transformer for the viewpager
@@ -74,6 +87,15 @@ public class HomeFragment extends BaseFragment {
         mHomeViewPager = (ViewPager) view.findViewById(R.id.home_view_pager);
         mHomeTabHeader = (TabLayout) view.findViewById(R.id.home_tab_header);
 
+        mSlidingUpPanelLayout = (SlidingUpPanelLayout) view.findViewById(R.id.sliding_layout);
+        mRootHomeContainerBottom = (FrameLayout) view.findViewById(R.id.rootHomeContainerBottom);
+
+
+        mFragmentManager = getActivity().getSupportFragmentManager();
+
+
+        mNowPlayingFragment = NowPlayingFragment.newInstance();
+
         mMusicViewPageAdapter = new MusicViewPageAdapter(getChildFragmentManager());
 
         mHomeViewPager.setAdapter(mMusicViewPageAdapter);
@@ -82,6 +104,14 @@ public class HomeFragment extends BaseFragment {
 
 
         mHomeTabHeader.setupWithViewPager(mHomeViewPager);
+
+        if (mBottomPanelSlideListener == null)
+            mSlidingUpPanelLayout.addPanelSlideListener(mBottomPanelSlideListener = new BottomPanelSlideListener());
+
+
+        mFragmentManager.beginTransaction()
+                .replace(R.id.rootHomeContainerBottom, mNowPlayingFragment, NowPlayingFragment.FRAGMENT_TAG)
+                .commitAllowingStateLoss();
     }
 
 }

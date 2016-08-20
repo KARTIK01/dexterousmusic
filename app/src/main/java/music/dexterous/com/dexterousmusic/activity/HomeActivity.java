@@ -35,14 +35,10 @@ public class HomeActivity extends BaseActivity {
     FragmentManager mFragmentManager;
 
     HomeFragment mHomeFragment;
-    NowPlayingFragment mNowPlayingFragment;
 
-    SlidingUpPanelLayout mSlidingUpPanelLayout;
     FrameLayout mRootHomeContainer;
-    FrameLayout mRootHomeContainerBottom;
 
     ImageView imageView;
-    BottomPanelSlideListener mBottomPanelSlideListener;
 
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, HomeActivity.class);
@@ -55,18 +51,13 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        mSlidingUpPanelLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         mRootHomeContainer = (FrameLayout) findViewById(R.id.rootHomeContainer);
-        mRootHomeContainerBottom = (FrameLayout) findViewById(R.id.rootHomeContainerBottom);
 
         imageView = (ImageView) findViewById(R.id.home_activity_backgroud_image_view);
         mFragmentManager = getSupportFragmentManager();
 
         mHomeFragment = HomeFragment.newInstance();
-        mNowPlayingFragment = NowPlayingFragment.newInstance();
 
-        if (mBottomPanelSlideListener == null)
-            mSlidingUpPanelLayout.addPanelSlideListener(mBottomPanelSlideListener = new BottomPanelSlideListener());
 
         DataManager.getInstance(this).loadHomeActivitySpecificData();
         UiUtils.loadHomeActivitySpecificData(HomeActivity.this);
@@ -85,11 +76,6 @@ public class HomeActivity extends BaseActivity {
             mFragmentManager.beginTransaction()
                     .replace(R.id.rootHomeContainer, mHomeFragment, HomeFragment.FRAGMENT_TAG)
                     .commitAllowingStateLoss();
-
-            mFragmentManager.beginTransaction()
-                    .replace(R.id.rootHomeContainerBottom, mNowPlayingFragment, NowPlayingFragment.FRAGMENT_TAG)
-                    .commitAllowingStateLoss();
-
         }
     }
 
