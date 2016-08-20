@@ -36,7 +36,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
      */
     private NotificationMusic notification = null;
 
-    private MusicList musicList;
+    private NowPlayingList nowPlayingList;
 
 
     /**
@@ -95,9 +95,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
         // Get the song ID from the list, extract the ID and
         // get an URL based on it
-        musicList = MusicList.getInstance();
-        int musicPosition = musicList.getCurrentSongPosition();
-        Music musicToPlay = musicList.getSong(musicPosition);
+        nowPlayingList = NowPlayingList.getInstance();
+        int musicPosition = nowPlayingList.getCurrentSongPosition();
+        Music musicToPlay = nowPlayingList.getSong(musicPosition);
 
         currentMusic = musicToPlay;
 
@@ -130,12 +130,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 //        updateLockScreenWidget(currentSong, RemoteControlClient.PLAYSTATE_PLAYING);
 
         /**
-         * update {@link music.dexterous.com.dexterousmusic.activity.HomeActivity} background
+         * update {@link music.dexterous.com.dexterousmusic.activity.HomeActivity} UI
          */
         GlobalApplication.getBus().post(new PlayMusicEvent(musicToPlay));
-        /**
-         * update allsongs list item view to show visualizer
-         */
 
 
     }
@@ -154,17 +151,17 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
         //TODO Updates Lock-Screen Widget
 
-        int currentSongPosition = musicList.getCurrentSongPosition();
+        int currentSongPosition = nowPlayingList.getCurrentSongPosition();
 
         if (UsersAppPreference.isMusicShuffle()) {
-            musicList.setCurrentSongPosition(RandomNumberGeneratorForMusic.nextInt(currentSongPosition, musicList.getList().size()));
+            nowPlayingList.setCurrentSongPosition(RandomNumberGeneratorForMusic.nextInt(currentSongPosition, nowPlayingList.getList().size()));
             return;
         }
 
-        musicList.setCurrentSongPosition(currentSongPosition + 1);
+        nowPlayingList.setCurrentSongPosition(currentSongPosition + 1);
 
-        if (currentSongPosition >= musicList.getList().size())
-            musicList.setCurrentSongPosition(0);
+        if (currentSongPosition >= nowPlayingList.getList().size())
+            nowPlayingList.setCurrentSongPosition(0);
     }
 
     @Override
@@ -175,14 +172,14 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
         //TODO Updates Lock-Screen Widget
 
-        int currentSongPosition = musicList.getCurrentSongPosition();
+        int currentSongPosition = nowPlayingList.getCurrentSongPosition();
 
         currentSongPosition--;
 
         if (currentSongPosition < 0)
-            currentSongPosition = musicList.getList().size() - 1;
+            currentSongPosition = nowPlayingList.getList().size() - 1;
 
-        musicList.setCurrentSongPosition(currentSongPosition);
+        nowPlayingList.setCurrentSongPosition(currentSongPosition);
     }
 
     @Override

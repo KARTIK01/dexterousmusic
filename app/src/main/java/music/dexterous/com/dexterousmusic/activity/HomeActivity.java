@@ -13,14 +13,21 @@ import android.widget.ImageView;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.List;
+
+import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
 import music.dexterous.com.dexterousmusic.utils.image.BlurBuilder;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
+import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
+import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
@@ -61,6 +68,19 @@ public class HomeActivity extends BaseActivity {
         openHomeFragment();
 
         safeRegister();
+
+        setUpUiForCurrentSong();
+    }
+
+    private void setUpUiForCurrentSong() {
+        Music musicToPlay;
+        List<Music> musicList = DataManager.getInstance(this).getAllMusic();
+        if (OtherPreference.getCurrentSongIndex() != -1) {
+            musicToPlay = musicList.get(OtherPreference.getCurrentSongIndex());
+        } else {
+            musicToPlay = musicList.get(RandomNumberGeneratorForMusic.nextInt(-1, DataManager.getInstance(this).getAllMusic().size()));
+        }
+        GlobalApplication.getBus().post(new PlayMusicEvent(musicToPlay));
     }
 
     @Override

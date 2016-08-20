@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
-import com.viethoa.models.AlphabetItem;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.PlayListAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
 
 /**
  * Created by Kartik on 8/9/2016.
@@ -58,7 +57,7 @@ public class PlayListFragment extends BaseFragment {
     }
 
     protected void initialiseData() {
-        playListSongList = MusicList.getInstance().getList();
+        playListSongList = NowPlayingList.getInstance().getList();
     }
 
     protected void initialiseUI(View view) {

@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
 
 /**
  * This class is responsible for all music
  * which are added to now playing queue
  */
-public class MusicList {
+public class NowPlayingList {
 
-    static private MusicList musicList;
+    static private NowPlayingList nowPlayingList;
 
     /**
      * Index of the current song we're playing on the `songs` list.
@@ -23,19 +24,19 @@ public class MusicList {
      */
     private List<Music> list;
 
-    private MusicList() {
+    private NowPlayingList() {
         list = new ArrayList<>();
     }
 
-    public static MusicList getInstance() {
-        if (musicList == null) {
-            synchronized (MusicList.class) {
-                if (musicList == null) {
-                    musicList = new MusicList();
+    public static NowPlayingList getInstance() {
+        if (nowPlayingList == null) {
+            synchronized (NowPlayingList.class) {
+                if (nowPlayingList == null) {
+                    nowPlayingList = new NowPlayingList();
                 }
             }
         }
-        return musicList;
+        return nowPlayingList;
     }
 
 
@@ -87,6 +88,7 @@ public class MusicList {
 
     public void setCurrentSongPosition(int currentSongPosition) {
         this.currentSongPosition = currentSongPosition;
+        OtherPreference.setCurrentSongIndex(currentSongPosition);
     }
 
     public List<Music> getList() {

@@ -16,7 +16,7 @@ public interface MusicControl {
     /**
      * Actually plays the song set by `currentSongPosition`.
      * <p>
-     * set currentSongPosition on {@link #,MusicList}before calling this function
+     * set currentSongPosition on {@link #, NowPlayingList}before calling this function
      */
     public void playMusic();
 

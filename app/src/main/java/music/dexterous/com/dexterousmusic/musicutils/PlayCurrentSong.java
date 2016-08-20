@@ -4,11 +4,9 @@ import android.content.Context;
 
 import java.util.List;
 
-import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
-import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
-import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
 import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 /**
@@ -27,9 +25,9 @@ public class PlayCurrentSong {
         //Set mode not to shuffle in SharedPreferences
         UsersAppPreference.setMusicShuffleMode(false);
 
-        MusicList.getInstance().setList(allSongsList);
+        NowPlayingList.getInstance().setList(allSongsList);
         int currentSongPoistion = position;
-        MusicList.getInstance().setCurrentSongPosition(currentSongPoistion);
+        NowPlayingList.getInstance().setCurrentSongPosition(currentSongPoistion);
         DexterousPlayMusicService.startService(context, DexterousPlayMusicService.PLAY_MUSIC);
     }
 }

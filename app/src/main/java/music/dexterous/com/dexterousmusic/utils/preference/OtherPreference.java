@@ -6,6 +6,7 @@ package music.dexterous.com.dexterousmusic.utils.preference;
 public class OtherPreference {
 
     private static final String KEY_IS_FIRST_TIME = "isFirstTime";
+    private static final String KEY_CURRENT_SONG_INDEX = "lastSongIndex";
 
     /**
      * @return if the user is first time user
@@ -19,6 +20,20 @@ public class OtherPreference {
      */
     public static void setFirstTime(boolean isFirstTime) {
         AppPreference.putBoolean(KEY_IS_FIRST_TIME, isFirstTime);
+    }
+
+    /**
+     * @return if the user is first time user
+     */
+    public static int getCurrentSongIndex() {
+        return AppPreference.getInt(KEY_CURRENT_SONG_INDEX, -1);
+    }
+
+    /**
+     * @return if the user is first time user
+     */
+    public static void setCurrentSongIndex(int lastSongIndex) {
+        AppPreference.putInt(KEY_CURRENT_SONG_INDEX, lastSongIndex);
     }
 
 

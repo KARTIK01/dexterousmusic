@@ -5,19 +5,9 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.PowerManager;
 import android.support.annotation.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
-import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
-import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
-import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
-import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 
 /**
