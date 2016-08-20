@@ -3,25 +3,19 @@ package music.dexterous.com.dexterousmusic.fragment.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
-import com.viethoa.RecyclerViewFastScroller;
 import com.viethoa.models.AlphabetItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.AlbumsAdapter;
 import music.dexterous.com.dexterousmusic.adapters.list.PlayListAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
 
 /**
@@ -31,9 +25,7 @@ import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicList;
 public class PlayListFragment extends BaseFragment {
 
     List<Music> playListSongList;
-
-    //Alphabet list
-    private List<AlphabetItem> mAlphabetItems;
+    public static final String FRAGMENT_TAG = PlayListFragment.class.getName();
 
     SuperRecyclerView mRecyclerView;
 

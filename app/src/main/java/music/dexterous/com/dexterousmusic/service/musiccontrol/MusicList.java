@@ -19,7 +19,7 @@ public class MusicList {
     private int currentSongPosition;
 
     /**
-     * List of songs we're  currently playing.
+     * List of songs we're  currently playing. or in playList
      */
     private List<Music> list;
 

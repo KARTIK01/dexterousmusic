@@ -24,7 +24,7 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListViewHolder> {
     private List<Music> playListSongList;
 
     public PlayListAdapter(List<Music> playListSongList) {
-        playListSongList = playListSongList;
+        this.playListSongList = playListSongList;
     }
 
     @Override

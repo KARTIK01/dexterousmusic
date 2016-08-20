@@ -40,6 +40,15 @@ public class NowPlayingFragment extends BaseFragment {
             buttonPlayIntent.putExtra(ToggleMusicReceiver.ACTION, ToggleMusicReceiver.ACTION_TYPE_TOGGLE);
             getActivity().sendBroadcast(buttonPlayIntent);
         });
+
+        ImageView album_art = (ImageView) view.findViewById(R.id.album_art);
+        album_art.setOnClickListener(view1 -> {
+
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.rootHomeContainerBottom, PlayListFragment.newInstance(), PlayListFragment.FRAGMENT_TAG)
+                    .commit();
+        });
     }
 
     @Override
