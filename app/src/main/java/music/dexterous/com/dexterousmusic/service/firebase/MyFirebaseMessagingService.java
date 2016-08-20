@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.service.firebaseservices;
+package music.dexterous.com.dexterousmusic.service.firebase;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;

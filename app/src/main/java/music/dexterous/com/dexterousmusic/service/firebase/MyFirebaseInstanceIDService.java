@@ -1,6 +1,4 @@
-package music.dexterous.com.dexterousmusic.service.firebaseservices;
-
-import android.util.Log;
+package music.dexterous.com.dexterousmusic.service.firebase;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
