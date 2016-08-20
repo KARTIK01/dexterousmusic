@@ -13,6 +13,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
+import music.dexterous.com.dexterousmusic.event.MusicPaused;
+import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
@@ -82,6 +84,16 @@ public class NowPlayingFragment extends BaseFragment {
         } else {
             new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void pause(MusicPaused musicPaused) {
+        new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void unpause(MusicUnPaused musicUnPaused) {
+        new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
     }
 
 

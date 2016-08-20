@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.event.MusicPaused;
+import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
@@ -192,6 +194,10 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         if (notification != null)
             notification.notifyPaused(true);
         //TODO Updates Lock-Screen Widget
+
+
+        GlobalApplication.getBus().post(new MusicPaused());
+
     }
 
     @Override
@@ -261,6 +267,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 //        RemoteControlClientCompat lockscreenController = null;
 //        if (lockscreenController != null)
 //            lockscreenController.setPlaybackState(RemoteControlClient.PLAYSTATE_PLAYING);
+
+
+        GlobalApplication.getBus().post(new MusicUnPaused());
 
     }
 
