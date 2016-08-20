@@ -77,7 +77,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         return mDataArray.get(pos).getAlbumName().substring(0, 1);
     }
 
-    public  class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mTextView;
         FontTextView albumName;
 
