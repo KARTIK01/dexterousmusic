@@ -66,3 +66,13 @@ Its auto generated code by GreenDao lib, for more reference go https://github.co
 
  android:textSize="@dimen/text_large"
 ```
+
+### use Text and Vector images from UiUtils ###
+
+Text and Vector images which are used again and again in HomeActivity load them in 
+```
+
+UiUtils.loadHomeActivitySpecificData
+```
+
+and use from there instead of direct access from drawable or strings
