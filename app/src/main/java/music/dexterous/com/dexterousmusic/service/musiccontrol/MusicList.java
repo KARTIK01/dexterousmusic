@@ -21,7 +21,7 @@ public class MusicList {
     /**
      * List of songs we're  currently playing.
      */
-    List<Music> list;
+    private List<Music> list;
 
     private MusicList() {
         list = new ArrayList<>();
@@ -89,4 +89,7 @@ public class MusicList {
         this.currentSongPosition = currentSongPosition;
     }
 
+    public List<Music> getList() {
+        return list;
+    }
 }

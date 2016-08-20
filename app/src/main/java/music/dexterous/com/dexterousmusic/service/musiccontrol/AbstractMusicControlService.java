@@ -161,13 +161,13 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         int currentSongPosition = musicList.getCurrentSongPosition();
 
         if (UsersAppPreference.isMusicShuffle()) {
-            musicList.setCurrentSongPosition(RandomNumberGeneratorForMusic.nextInt(currentSongPosition, musicList.list.size()));
+            musicList.setCurrentSongPosition(RandomNumberGeneratorForMusic.nextInt(currentSongPosition, musicList.getList().size()));
             return;
         }
 
         musicList.setCurrentSongPosition(currentSongPosition + 1);
 
-        if (currentSongPosition >= musicList.list.size())
+        if (currentSongPosition >= musicList.getList().size())
             musicList.setCurrentSongPosition(0);
     }
 
@@ -184,7 +184,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         currentSongPosition--;
 
         if (currentSongPosition < 0)
-            currentSongPosition = musicList.list.size() - 1;
+            currentSongPosition = musicList.getList().size() - 1;
 
         musicList.setCurrentSongPosition(currentSongPosition);
     }

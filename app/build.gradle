@@ -83,5 +83,7 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     // for firebase
     compile 'com.google.firebase:firebase-messaging:9.4.0'
+    //superrecyclerview for playlist
+    compile 'com.malinskiy:superrecyclerview:1.1.4'
 }
 apply plugin: 'com.google.gms.google-services'
