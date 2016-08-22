@@ -1,6 +1,5 @@
 package music.dexterous.com.dexterousmusic.fragment.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.activity.AlbumActivity;
 import music.dexterous.com.dexterousmusic.adapters.list.AllAlbumsAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.fragment.AlbumFragmentFragment;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 
@@ -100,8 +99,13 @@ public class AllAlbumFragment extends BaseFragment {
         fastScroller.setUpAlphabet(mAlphabetItems);
 
         allAlbumsAdapter.setOnItemClickListener((view1, position) -> {
-            Intent intent = AlbumActivity.getIntent(getContext());
-            startActivity(intent);
+            AlbumModel albumModel = albumModels.get(position);
+            AlbumFragmentFragment albumFragmentFragment = AlbumFragmentFragment.newInstance(albumModel);
+            getActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.rootHomeContainer, albumFragmentFragment)
+                    .commit();
         });
     }
 
