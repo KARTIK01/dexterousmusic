@@ -208,6 +208,8 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         mDexterousMediaPlayer.stop();
         mDexterousMediaPlayer.release();
         mDexterousMediaPlayer = null;
+
+        notification.cancel();
     }
 
 

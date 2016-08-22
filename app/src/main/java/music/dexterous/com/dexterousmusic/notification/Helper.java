@@ -8,6 +8,7 @@ import android.widget.RemoteViews;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.receiver.widget.CloseMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.NextMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
 
@@ -63,6 +64,15 @@ public class Helper {
     static protected void setButtonSkipIntent(Context context, RemoteViews smallNotificationView, @IdRes int buttonId) {
         Intent buttonSkipIntent = new Intent(context, NextMusicReceiver.class);
         buttonSkipIntent.putExtra(NextMusicReceiver.ACTION, NextMusicReceiver.ACTION_TYPE_SKIP);
+        PendingIntent buttonSkipPendingIntent = PendingIntent.getBroadcast(context, 0, buttonSkipIntent, 0);
+        smallNotificationView.setOnClickPendingIntent(buttonId, buttonSkipPendingIntent);
+    }
+
+
+    // And now, building and attaching the Skip button.
+    static protected void setButtonCloseIntent(Context context, RemoteViews smallNotificationView, @IdRes int buttonId) {
+        Intent buttonSkipIntent = new Intent(context, CloseMusicReceiver.class);
+        buttonSkipIntent.putExtra(CloseMusicReceiver.ACTION, CloseMusicReceiver.ACTION_TYPE_CLOSE);
         PendingIntent buttonSkipPendingIntent = PendingIntent.getBroadcast(context, 0, buttonSkipIntent, 0);
         smallNotificationView.setOnClickPendingIntent(buttonId, buttonSkipPendingIntent);
     }

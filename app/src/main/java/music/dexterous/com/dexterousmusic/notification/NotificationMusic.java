@@ -102,6 +102,8 @@ public class NotificationMusic extends NotificationSimple {
         Helper.setSmallNotificationView(smallNotificationView, music);
         Helper.setSmallButtonPlayIntent(context, smallNotificationView);
         Helper.setButtonSkipIntent(context, smallNotificationView, R.id.notification_button_skip_small);
+        Helper.setButtonCloseIntent(context, smallNotificationView, R.id.notification_button_close_small);
+
 
         // Finally... Actually creating the Notification
         notificationBuilder = new NotificationCompat.Builder(context);
@@ -126,6 +128,7 @@ public class NotificationMusic extends NotificationSimple {
             Helper.setBigNotificationView(bigContentView, music);
             Helper.setBigButtonPlayIntent(context, bigContentView);
             Helper.setButtonSkipIntent(context, bigContentView, R.id.notification_button_skip_big);
+            Helper.setButtonCloseIntent(context, bigContentView, R.id.notification_button_close_big);
 
             notification.bigContentView = bigContentView;
             notification.priority = Notification.PRIORITY_MAX;

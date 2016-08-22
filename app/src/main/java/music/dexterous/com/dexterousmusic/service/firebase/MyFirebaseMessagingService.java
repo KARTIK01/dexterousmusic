@@ -1,19 +1,9 @@
 package music.dexterous.com.dexterousmusic.service.firebase;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.support.v4.app.NotificationCompat;
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.activity.MainActivity;
-import music.dexterous.com.dexterousmusic.notification.FireBaseNotificationUpdateApp;
+import music.dexterous.com.dexterousmusic.notification.firebase.FireBaseNotificationUpdateApp;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**

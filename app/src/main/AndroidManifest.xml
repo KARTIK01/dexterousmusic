@@ -72,6 +72,7 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".receiver.widget.NextMusicReceiver" />
+        <receiver android:name=".receiver.widget.CloseMusicReceiver" />
         <receiver android:name=".receiver.widget.PreviousMusicReceiver" />
         <receiver android:name=".receiver.widget.ToggleMusicReceiver" />
         <receiver android:name=".receiver.MediaScannerCompletedReceiver">

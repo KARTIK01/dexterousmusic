@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.notification;
+package music.dexterous.com.dexterousmusic.notification.firebase;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,11 +8,9 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
-import org.json.JSONArray;
-
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.DeepLinkingActivity;
-import music.dexterous.com.dexterousmusic.activity.MainActivity;
+import music.dexterous.com.dexterousmusic.notification.firebase.FireBaseNotification;
 
 /**
  * Created by naren on 22/8/16.
