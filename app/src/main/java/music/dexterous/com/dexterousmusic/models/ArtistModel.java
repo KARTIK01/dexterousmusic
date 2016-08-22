@@ -1,5 +1,8 @@
 package music.dexterous.com.dexterousmusic.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +13,7 @@ import music.dexterous.com.dexterousmusic.database.Music;
 /**
  * Created by Honey on 8/11/2016.
  */
-public class ArtistModel {
+public class ArtistModel implements Parcelable {
 
     private String artistName;
     private List<Music> musicArrayList = new ArrayList<>();
@@ -69,4 +72,36 @@ public class ArtistModel {
         }
         return false;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.artistName);
+        dest.writeTypedList(this.musicArrayList);
+    }
+
+    public ArtistModel() {
+    }
+
+    protected ArtistModel(Parcel in) {
+        this.artistName = in.readString();
+        this.musicArrayList = in.createTypedArrayList(Music.CREATOR);
+    }
+
+    public static final Creator<ArtistModel> CREATOR = new Creator<ArtistModel>() {
+        @Override
+        public ArtistModel createFromParcel(Parcel source) {
+            return new ArtistModel(source);
+        }
+
+        @Override
+        public ArtistModel[] newArray(int size) {
+            return new ArtistModel[size];
+        }
+    };
 }

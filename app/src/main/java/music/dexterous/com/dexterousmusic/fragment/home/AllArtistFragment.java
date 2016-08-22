@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.viethoa.RecyclerViewFastScroller;
 import com.viethoa.models.AlphabetItem;
@@ -16,9 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.ArtistAdapter;
+import music.dexterous.com.dexterousmusic.adapters.list.AllArtistAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.fragment.ArtistFragment;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
 
@@ -28,13 +28,14 @@ import music.dexterous.com.dexterousmusic.models.ArtistModel;
 
 public class AllArtistFragment extends BaseFragment {
 
-    List<ArtistModel> artistModel;
+    List<ArtistModel> artistModels;
 
     //Alphabet list
     private List<AlphabetItem> mAlphabetItems;
 
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
+    AllArtistAdapter allArtistAdapter;
 
     public static AllArtistFragment newInstance() {
         AllArtistFragment fragment = new AllArtistFragment();
@@ -70,7 +71,7 @@ public class AllArtistFragment extends BaseFragment {
         List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
         List<ArtistModel> albums = DataManager.getInstance(getActivity()).getArtist();
 
-        artistModel = ArtistModel.getModel(allSongsList, albums);
+        artistModels = ArtistModel.getModel(allSongsList, albums);
         //Alphabet fast scroller data
         mAlphabetItems = new ArrayList<>();
 
@@ -92,12 +93,22 @@ public class AllArtistFragment extends BaseFragment {
         fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new ArtistAdapter(artistModel, getActivity()));
+        mRecyclerView.setAdapter(allArtistAdapter = new AllArtistAdapter(artistModels, getActivity()));
 //
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
-//        shuffle = (Button) view.findViewById(R.id.shuffle);
-//        shuffle.setOnItemClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), albumModels));
+
+        allArtistAdapter.setOnItemClickListener((view1, position) -> {
+            ArtistModel artistModel = artistModels.get(position);
+            ArtistFragment artistFragment = ArtistFragment.newInstance(artistModel);
+            getActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rootHomeContainerUpper, artistFragment, ArtistFragment.TAG)
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss();
+
+        });
     }
 
 }

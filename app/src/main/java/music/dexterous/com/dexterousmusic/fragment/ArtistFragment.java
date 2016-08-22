@@ -14,20 +14,17 @@ import android.widget.ImageView;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AlbumSongsAdapter;
-import music.dexterous.com.dexterousmusic.adapters.list.AllAlbumsAdapter;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
-import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
-import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
+import music.dexterous.com.dexterousmusic.models.ArtistModel;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class AlbumFragmentFragment extends BaseFragment {
+public class ArtistFragment extends BaseFragment {
 
-    public static final String TAG = AlbumFragmentFragment.class.getName();
+    public static final String TAG = ArtistFragment.class.getName();
     public static final String EXTRA_ALBUM = "EXTRA_ALBUM";
 
     ImageView album_fragment_album_art;
@@ -35,12 +32,12 @@ public class AlbumFragmentFragment extends BaseFragment {
     FontTextView total_songs;
 
     ImageLoader mImageLoader;
-    AlbumModel albumModel;
+    ArtistModel albumModel;
 
     AlbumSongsAdapter albumSongsAdapter;
 
-    public static AlbumFragmentFragment newInstance(AlbumModel albumModel) {
-        AlbumFragmentFragment fragment = new AlbumFragmentFragment();
+    public static ArtistFragment newInstance(ArtistModel albumModel) {
+        ArtistFragment fragment = new ArtistFragment();
         Bundle info = new Bundle();
         info.putParcelable(EXTRA_ALBUM, albumModel);
         fragment.setArguments(info);
@@ -48,7 +45,7 @@ public class AlbumFragmentFragment extends BaseFragment {
     }
 
 
-    public AlbumFragmentFragment() {
+    public ArtistFragment() {
     }
 
     @Override
@@ -70,13 +67,13 @@ public class AlbumFragmentFragment extends BaseFragment {
 
         Bundle args = getArguments();
 
-        albumModel = args != null ? (albumModel = (AlbumModel) args
+        albumModel = args != null ? (albumModel = (ArtistModel) args
                 .getParcelable(EXTRA_ALBUM)) : null;
         if (albumModel == null) {
             return;
         }
 
-        String albumArtPath = albumModel.getAlbumArtPath();
+        String albumArtPath = albumModel.getMusicArrayList().get(0).getSONG_ALBUM_ART_PATH();
         Bitmap bitmap = null;
 
         if (!TextUtils.isEmpty(albumArtPath)) {

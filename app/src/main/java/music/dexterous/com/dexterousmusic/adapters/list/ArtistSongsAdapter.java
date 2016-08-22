@@ -11,6 +11,7 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AlbumSongsViewHolder;
+import music.dexterous.com.dexterousmusic.adapters.list.viewholder.ArtistSongsViewHolder;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.fragment.AlbumFragment;
 import music.dexterous.com.dexterousmusic.utils.other.TimeConvert;
@@ -18,12 +19,12 @@ import music.dexterous.com.dexterousmusic.utils.other.TimeConvert;
 /**
  * This is adapter for list of songs of {@link AlbumFragment}
  */
-public class AlbumSongsAdapter extends RecyclerView.Adapter<AlbumSongsViewHolder>
+public class ArtistSongsAdapter extends RecyclerView.Adapter<ArtistSongsViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
     private List<Music> mDataArray;
 
-    public AlbumSongsAdapter(List<Music> dataset) {
+    public ArtistSongsAdapter(List<Music> dataset) {
         mDataArray = dataset;
     }
 
@@ -35,13 +36,13 @@ public class AlbumSongsAdapter extends RecyclerView.Adapter<AlbumSongsViewHolder
     }
 
     @Override
-    public AlbumSongsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ArtistSongsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_songs_list_item, parent, false);
-        return new AlbumSongsViewHolder(v, mOnClickListener);
+        return new ArtistSongsViewHolder(v, mOnClickListener);
     }
 
     @Override
-    public void onBindViewHolder(AlbumSongsViewHolder holder, int position) {
+    public void onBindViewHolder(ArtistSongsViewHolder holder, int position) {
         holder.mSongName.setText(mDataArray.get(position).getSONG_TITLE());
         holder.mSongAlbum.setText(mDataArray.get(position).getSONG_ALBUM());
         holder.mSongDuration.setText(

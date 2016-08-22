@@ -19,7 +19,7 @@ import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 /**
  * Created by Dubey's on 06-08-2016.
  */
-public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder>
+public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistAdapter.ViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
     /**
@@ -31,7 +31,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
     Context context;
 
 
-    public ArtistAdapter(List<ArtistModel> dataset, Context context) {
+    public AllArtistAdapter(List<ArtistModel> dataset, Context context) {
         this.context = context;
         mDataArray = dataset;
         mImageLoader = new ImageLoader(context, R.drawable.dishoom);
@@ -45,7 +45,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
     }
 
     @Override
-    public ArtistAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AllArtistAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout_artist, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -77,7 +77,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         return mDataArray.get(pos).getAlbumName().substring(0, 1);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView mTextView;
         FontTextView albumName;
 
@@ -85,8 +85,28 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
             super(itemView);
             mTextView = (ImageView) itemView.findViewById(R.id.albumImage);
             albumName = (FontTextView) itemView.findViewById(R.id.albumName);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                default:
+                    mOnClickListener.onClick(view, getAdapterPosition());
+            }
         }
     }
 
+
+    public interface OnAlbumItemClickListener {
+        void onClick(View view, int position);
+    }
+
+    private OnAlbumItemClickListener mOnClickListener;
+
+    public void setOnItemClickListener(OnAlbumItemClickListener onClickListener) {
+        mOnClickListener = onClickListener;
+    }
 
 }
