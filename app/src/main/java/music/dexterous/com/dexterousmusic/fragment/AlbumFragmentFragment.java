@@ -54,11 +54,13 @@ public class AlbumFragmentFragment extends BaseFragment {
         album_fragment_recycler_view = (RecyclerView) view.findViewById(R.id.album_fragment_recycler_view);
 
         Bundle args = getArguments();
-        if (args != null) {
-            albumModel = (AlbumModel) args
-                    .getParcelable(EXTRA_ALBUM);
-            PrettyLogger.d(albumModel.toString());
+        if (args == null) {
+            return;
         }
+
+        albumModel = (AlbumModel) args
+                .getParcelable(EXTRA_ALBUM);
+
 
     }
 }
