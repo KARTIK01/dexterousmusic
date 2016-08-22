@@ -48,7 +48,7 @@ public class AllSongsViewHolder extends RecyclerView.ViewHolder implements View.
                     break;
                 default:
                     int position = getAdapterPosition();
-                    mOnClickListener.onClick(view, position);
+                    mOnClickListener.onItemClick(view, position);
             }
         }
     }

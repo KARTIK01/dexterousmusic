@@ -15,7 +15,7 @@
     <!-- This permission granted by default on Android 6.0+ devices. -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <!-- For drawing waves openGL ES version 2-->
+    <!-- For drawing waves openGL ES version 2 -->
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -42,6 +42,15 @@
         </activity>
         <activity android:name=".activity.HomeActivity" />
         <activity android:name=".activity.MainActivity" />
+        <activity
+            android:name=".activity.AlbumActivity"
+            android:label="@string/title_activity_album_fragment"
+            android:parentActivityName=".activity.HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="${package}.activity.HomeActivity" />
+        </activity>
 
         <service
             android:name=".service.ScanMusicService"
@@ -50,20 +59,15 @@
             android:name=".service.DexterousPlayMusicService"
             android:exported="false" />
 
-        <!--
-           Defining Services For firebase ...
-       -->
-        <service
-            android:name=".service.firebase.MyFirebaseMessagingService">
+        <!--            Defining Services For firebase ... -->
+        <service android:name=".service.firebase.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <service
-            android:name=".service.firebase.MyFirebaseInstanceIDService">
+        <service android:name=".service.firebase.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 

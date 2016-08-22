@@ -8,11 +8,12 @@
     <ImageView
         android:id="@+id/albumImage"
         android:layout_width="150dp"
-        android:layout_height="150dp" />
+        android:layout_height="150dp"
+        android:scaleType="centerCrop" />
 
     <music.dexterous.com.dexterousmusic.customeviews.FontTextView
-        android:layout_width="wrap_content"
         android:id="@+id/albumName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent" />
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 /**
  * Created by Dubey's on 06-08-2016.
  */
-public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.ViewHolder>
+public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.ViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
     /**
@@ -33,7 +34,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.ViewHolder
     Context context;
 
 
-    public AlbumsAdapter(List<AlbumModel> dataset, Context context) {
+    public AllAlbumsAdapter(List<AlbumModel> dataset, Context context) {
         this.context = context;
         mDataArray = dataset;
         mImageLoader = new ImageLoader(context, R.drawable.dishoom);
@@ -47,7 +48,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.ViewHolder
     }
 
     @Override
-    public AlbumsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AllAlbumsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout_albums, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -56,15 +57,21 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        Bitmap bitmap = BitmapFactory.decodeFile(
-                mDataArray
-                        .get(position)
-                        .getAlbumArtPath());
+        String albumArtPath = mDataArray.get(position).getAlbumArtPath();
+        Bitmap bitmap = null;
 
-//        PrettyLogger.d(mDataArray.get(position).toString());
+        if (!TextUtils.isEmpty(albumArtPath)) {
+            bitmap = BitmapFactory.decodeFile(albumArtPath);
+        }
 
-        mImageLoader.loadImage(context, bitmap, holder.mTextView);
+        if (bitmap != null)
+            mImageLoader.loadImage(context, bitmap, holder.mTextView);
+        else
+            mImageLoader.loadImage(context, R.drawable.bg_1, holder.mTextView);
+
+
         holder.albumName.setText(mDataArray.get(position).getAlbumName());
+
     }
 
     @Override
@@ -79,7 +86,17 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.ViewHolder
         return mDataArray.get(pos).getAlbumName().substring(0, 1);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public interface OnAlbumItemClickListener {
+        void onClick(View view, int position);
+    }
+
+    private OnAlbumItemClickListener mOnClickListener;
+
+    public void setOnItemClickListener(OnAlbumItemClickListener onClickListener) {
+        mOnClickListener = onClickListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView mTextView;
         FontTextView albumName;
 
@@ -87,6 +104,17 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.ViewHolder
             super(itemView);
             mTextView = (ImageView) itemView.findViewById(R.id.albumImage);
             albumName = (FontTextView) itemView.findViewById(R.id.albumName);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                default:
+                    int position = getAdapterPosition();
+                    mOnClickListener.onClick(view, position);
+            }
         }
     }
 

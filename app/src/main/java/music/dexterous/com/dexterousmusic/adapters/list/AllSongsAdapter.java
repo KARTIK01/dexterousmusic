@@ -71,7 +71,7 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
     }
 
     public interface OnAllSongsItemClickListener {
-        void onClick(View view, int position);
+        void onItemClick(View view, int position);
     }
 
     @Override

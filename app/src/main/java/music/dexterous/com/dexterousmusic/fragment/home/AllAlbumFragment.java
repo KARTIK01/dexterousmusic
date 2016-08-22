@@ -1,13 +1,13 @@
 package music.dexterous.com.dexterousmusic.fragment.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.viethoa.RecyclerViewFastScroller;
 import com.viethoa.models.AlphabetItem;
@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.AlbumsAdapter;
+import music.dexterous.com.dexterousmusic.activity.AlbumActivity;
+import music.dexterous.com.dexterousmusic.adapters.list.AllAlbumsAdapter;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
@@ -35,6 +36,7 @@ public class AllAlbumFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
+    AllAlbumsAdapter allAlbumsAdapter;
 
     public static AllAlbumFragment newInstance() {
         AllAlbumFragment fragment = new AllAlbumFragment();
@@ -91,13 +93,16 @@ public class AllAlbumFragment extends BaseFragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new AlbumsAdapter(albumModels, getActivity()));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerView.setAdapter(allAlbumsAdapter = new AllAlbumsAdapter(albumModels, getActivity()));
 //
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
-//        shuffle = (Button) view.findViewById(R.id.shuffle);
-//        shuffle.setOnItemClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), albumModels));
+
+        allAlbumsAdapter.setOnItemClickListener((view1, position) -> {
+            Intent intent = AlbumActivity.getIntent(getContext());
+            startActivity(intent);
+        });
     }
 
 }

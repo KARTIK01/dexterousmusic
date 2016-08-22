@@ -35,4 +35,6 @@
     <string name="use_as_ringtone">Use as RingTone</string>
     <string name="delete">Delete</string>
     <string name="share">Share</string>
+    <string name="title_activity_album_fragment">AlbumFragment</string>
+    <string name="action_settings">Settings</string>
 </resources>
