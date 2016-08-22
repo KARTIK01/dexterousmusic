@@ -2,11 +2,8 @@ package music.dexterous.com.dexterousmusic.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -21,12 +18,8 @@ import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.fragment.home.HomeFragment;
-import music.dexterous.com.dexterousmusic.models.AlbumModel;
-import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
-import music.dexterous.com.dexterousmusic.utils.image.BlurBuilder;
+import music.dexterous.com.dexterousmusic.fragment.home.HomeRootFragment;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
-import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
 import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
@@ -38,7 +31,7 @@ public class HomeActivity extends BaseActivity {
 
     FragmentManager mFragmentManager;
 
-    HomeFragment mHomeFragment;
+    HomeRootFragment mHomeRootFragment;
 
     FrameLayout mRootHomeContainer;
 
@@ -60,7 +53,7 @@ public class HomeActivity extends BaseActivity {
         imageView = (ImageView) findViewById(R.id.home_activity_backgroud_image_view);
         mFragmentManager = getSupportFragmentManager();
 
-        mHomeFragment = HomeFragment.newInstance();
+        mHomeRootFragment = HomeRootFragment.newInstance();
 
 
         DataManager.getInstance(this).loadHomeActivitySpecificData();
@@ -82,6 +75,7 @@ public class HomeActivity extends BaseActivity {
             musicToPlay = musicList.get(RandomNumberGeneratorForMusic.nextInt(-1, DataManager.getInstance(this).getAllMusic().size()));
         }
 
+        //TODO cheeck currrent music which is playing
         GlobalApplication.getBus().postSticky(new PlayMusicEvent(musicToPlay));
     }
 
@@ -96,10 +90,10 @@ public class HomeActivity extends BaseActivity {
      * fragment containing the main content for news
      */
     public void openHomeFragment() {
-        BaseFragment fragment = (BaseFragment) mFragmentManager.findFragmentByTag(HomeFragment.FRAGMENT_TAG);
+        BaseFragment fragment = (BaseFragment) mFragmentManager.findFragmentByTag(HomeRootFragment.FRAGMENT_TAG);
         if (fragment == null) {
             mFragmentManager.beginTransaction()
-                    .replace(R.id.rootHomeContainer, mHomeFragment, HomeFragment.FRAGMENT_TAG)
+                    .replace(R.id.rootHomeContainer, mHomeRootFragment, HomeRootFragment.FRAGMENT_TAG)
                     .commitAllowingStateLoss();
         }
     }

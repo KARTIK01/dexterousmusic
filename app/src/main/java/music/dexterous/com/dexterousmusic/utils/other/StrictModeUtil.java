@@ -27,7 +27,7 @@ public class StrictModeUtil {
 //                            .detectLeakedClosableObjects()
                             .detectLeakedRegistrationObjects()
                             .detectLeakedSqlLiteObjects()
-//                            .setClassInstanceLimit(HomeFragment.class, 1)
+//                            .setClassInstanceLimit(HomeRootFragment.class, 1)
 //                            .setClassInstanceLimit(HomeActivity.class, 1)
                             .penaltyDeath()
                             .penaltyLog();

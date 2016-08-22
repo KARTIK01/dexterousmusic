@@ -104,7 +104,7 @@ public class AllAlbumFragment extends BaseFragment {
             getActivity()
                     .getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.rootHomeContainer, albumFragmentFragment)
+                    .add(R.id.rootHomeContainerUpper, albumFragmentFragment)
                     .commit();
         });
     }

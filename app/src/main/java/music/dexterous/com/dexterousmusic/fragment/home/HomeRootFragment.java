@@ -26,14 +26,14 @@ import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
  * Created by Kartik on 8/9/2016.
  */
 
-public class HomeFragment extends BaseFragment {
+public class HomeRootFragment extends BaseFragment {
 
     private static final int NUM_PAGES_CACHED = 3;
 
     /**
      * tag for fragment transactions
      */
-    public static final String FRAGMENT_TAG = HomeFragment.class.getSimpleName();
+    public static final String FRAGMENT_TAG = HomeRootFragment.class.getSimpleName();
 
     /**
      * Flag to determine if on resume has been called from oncreate or not
@@ -42,12 +42,15 @@ public class HomeFragment extends BaseFragment {
 
     FragmentManager mFragmentManager;
 
-    ViewPager mHomeViewPager;
-    TabLayout mHomeTabHeader;
+    SlidingUpPanelLayout mSlidingUpPanelLayout;
+    BottomPanelSlideListener mBottomPanelSlideListener;
 
-    MusicViewPageAdapter mMusicViewPageAdapter;
+    FrameLayout mRootHomeContainerBottom;
+    FrameLayout mRootHomeContainerUpper;
 
-    FloatingActionButton shuffelAllSongs;
+    NowPlayingFragment mNowPlayingFragment;
+    HomeFragment homeFragment;
+
 
     /**
      * transformer for the viewpager
@@ -55,8 +58,8 @@ public class HomeFragment extends BaseFragment {
     private final ABaseTransformer PAGE_TRANSFORMER = new DepthPageTransformer();
 
 
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public static HomeRootFragment newInstance() {
+        HomeRootFragment fragment = new HomeRootFragment();
         Bundle info = new Bundle();
         fragment.setArguments(info);
         return fragment;
@@ -74,34 +77,36 @@ public class HomeFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home_layout, container, false);
+        return inflater.inflate(R.layout.fragment_home_root_layout, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /**
-         * fragment views
-         */
-        mHomeViewPager = (ViewPager) view.findViewById(R.id.home_view_pager);
-        mHomeTabHeader = (TabLayout) view.findViewById(R.id.home_tab_header);
 
-        shuffelAllSongs = (FloatingActionButton) view.findViewById(R.id.shuffel_all_songs_fab);
+        mSlidingUpPanelLayout = (SlidingUpPanelLayout) view.findViewById(R.id.sliding_layout);
+
+        mRootHomeContainerUpper = (FrameLayout) view.findViewById(R.id.rootHomeContainerUpper);
+        mRootHomeContainerBottom = (FrameLayout) view.findViewById(R.id.rootHomeContainerBottom);
 
         mFragmentManager = getActivity().getSupportFragmentManager();
-        mMusicViewPageAdapter = new MusicViewPageAdapter(getChildFragmentManager());
+
+        mNowPlayingFragment = NowPlayingFragment.newInstance();
+        homeFragment = HomeFragment.newInstance();
 
 
-        mHomeViewPager.setAdapter(mMusicViewPageAdapter);
-        mHomeViewPager.setOffscreenPageLimit(NUM_PAGES_CACHED);
-        mHomeViewPager.setPageTransformer(true, PAGE_TRANSFORMER);
-        mHomeViewPager.addOnPageChangeListener(new OnHomeViewPagerChangeListener(shuffelAllSongs));
-        mHomeTabHeader.setupWithViewPager(mHomeViewPager);
+        if (mBottomPanelSlideListener == null)
+            mSlidingUpPanelLayout.addPanelSlideListener(mBottomPanelSlideListener = new BottomPanelSlideListener());
 
 
-        shuffelAllSongs.setOnClickListener(view1 -> {
-            ShuffleAllSongs.shuffleAllSongs(getActivity(), DataManager.getInstance(getActivity()).getAllMusic());
-        });
+        mFragmentManager.beginTransaction()
+                .replace(R.id.rootHomeContainerBottom, mNowPlayingFragment, NowPlayingFragment.FRAGMENT_TAG)
+                .commitAllowingStateLoss();
+
+
+        mFragmentManager.beginTransaction()
+                .replace(R.id.rootHomeContainerUpper, homeFragment, HomeFragment.FRAGMENT_TAG)
+                .commitAllowingStateLoss();
     }
 
 }
