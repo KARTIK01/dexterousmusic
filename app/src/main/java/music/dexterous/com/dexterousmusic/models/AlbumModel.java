@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Honey on 8/11/2016.
@@ -44,6 +45,7 @@ public class AlbumModel implements Parcelable {
     }
 
     static public List<AlbumModel> getModel(List<Music> musicList, List<AlbumModel> albumModelList) {
+        //Map of albumName to albumModel
         Map<String, AlbumModel> albumModelMap = new HashMap<>(albumModelList.size());
 
         for (int i = 0; i < albumModelList.size(); i++) {
@@ -56,6 +58,7 @@ public class AlbumModel implements Parcelable {
             musicList1.add(musicList.get(i));
             albumModel.setMusicArrayList(musicList1);
         }
+
         return new ArrayList<AlbumModel>(albumModelMap.values());
     }
 
@@ -109,9 +112,10 @@ public class AlbumModel implements Parcelable {
 
     @Override
     public String toString() {
-        return "AlbumModel{" +
+        return "\nAlbumModel{" +
                 "albumName='" + albumName + '\'' +
                 ", albumArtPath='" + albumArtPath + '\'' +
+                ", musicArrayList Size =" + musicArrayList.size() +
                 ", musicArrayList=" + musicArrayList +
                 '}';
     }

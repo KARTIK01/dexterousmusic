@@ -21,6 +21,7 @@ import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.AlbumFragmentFragment;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Kartik on 8/9/2016.

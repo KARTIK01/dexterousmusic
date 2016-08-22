@@ -17,6 +17,12 @@
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop" />
 
+    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+        android:id="@+id/total_songs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_large" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/album_fragment_recycler_view"
