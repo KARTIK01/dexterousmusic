@@ -43,15 +43,6 @@ public class AlbumModel implements Parcelable {
         this.musicArrayList = musicArrayList;
     }
 
-    @Override
-    public String toString() {
-        return "\nAlbumModel{" +
-                "albumName='" + albumName + '\'' +
-                ", albumArtPath=" + albumArtPath +
-                ", musicArrayList=" + musicArrayList +
-                '}';
-    }
-
     static public List<AlbumModel> getModel(List<Music> musicList, List<AlbumModel> albumModelList) {
         Map<String, AlbumModel> albumModelMap = new HashMap<>(albumModelList.size());
 
@@ -115,4 +106,13 @@ public class AlbumModel implements Parcelable {
             return new AlbumModel[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "AlbumModel{" +
+                "albumName='" + albumName + '\'' +
+                ", albumArtPath='" + albumArtPath + '\'' +
+                ", musicArrayList=" + musicArrayList +
+                '}';
+    }
 }

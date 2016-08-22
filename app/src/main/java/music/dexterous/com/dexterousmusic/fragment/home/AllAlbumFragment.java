@@ -104,8 +104,10 @@ public class AllAlbumFragment extends BaseFragment {
             getActivity()
                     .getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.rootHomeContainerUpper, albumFragmentFragment)
-                    .commit();
+                    .replace(R.id.rootHomeContainerUpper, albumFragmentFragment, AlbumFragmentFragment.TAG)
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss();
+
         });
     }
 

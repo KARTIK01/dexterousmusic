@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/toastLayoutRoot"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toastLayoutRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_simple_toast"
@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/toastSideMargin"
     android:paddingTop="@dimen/toastUpMargin">
 
-    <com.lockscreen.zuppit.customviews.widgets.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
         android:id="@+id/toastMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
