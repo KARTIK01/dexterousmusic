@@ -252,25 +252,27 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     @Override
     public void unPauseMusic() {
-        //restart music
-        mDexterousMediaPlayer.start();
+        //restart music when it is paused
+        if (currentMusic != null) {
+            mDexterousMediaPlayer.start();
 
-        currentMusic.setSONG_IS_PLAYING(true);
+            currentMusic.setSONG_IS_PLAYING(true);
 
-        //show on notification
-        if (notification != null)
-            notification.notifyPaused(false);
+            //show on notification
+            if (notification != null)
+                notification.notifyPaused(false);
 
-        //TODO Updates Lock-Screen Widget
-        /**
-         * Controller that communicates with the lock screen,
-         * providing that fancy widget.
-         */
+            //TODO Updates Lock-Screen Widget
+            /**
+             * Controller that communicates with the lock screen,
+             * providing that fancy widget.
+             */
 //        RemoteControlClientCompat lockscreenController = null;
 //        if (lockscreenController != null)
 //            lockscreenController.setPlaybackState(RemoteControlClient.PLAYSTATE_PLAYING);
-
-
+        } else {
+            PrettyLogger.d("to do stuff");
+        }
         GlobalApplication.getBus().post(new MusicUnPaused());
 
     }
