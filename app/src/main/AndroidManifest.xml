@@ -15,6 +15,9 @@
     <!-- This permission granted by default on Android 6.0+ devices. -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <!-- used for drawing widget. This permission must be granted before calling AudioWidget.show(). -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <!-- For drawing waves openGL ES version 2 -->
     <uses-feature
         android:glEsVersion="0x00020000"
