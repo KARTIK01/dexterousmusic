@@ -12,6 +12,7 @@ import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.event.MusicPaused;
+import music.dexterous.com.dexterousmusic.event.MusicStop;
 import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
@@ -213,6 +214,8 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         mDexterousMediaPlayer = null;
 
         notification.cancel();
+
+        GlobalApplication.getBus().post(new MusicStop());
     }
 
 
