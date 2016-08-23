@@ -30,4 +30,5 @@ public class PlayCurrentSong {
         NowPlayingList.getInstance().setCurrentSongPosition(currentSongPoistion);
         DexterousPlayMusicService.startService(context, DexterousPlayMusicService.PLAY_MUSIC);
     }
+
 }

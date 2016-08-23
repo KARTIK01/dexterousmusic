@@ -69,14 +69,18 @@ public class HomeActivity extends BaseActivity {
     private void setUpUiForCurrentSong() {
         Music musicToPlay;
         List<Music> musicList = DataManager.getInstance(this).getAllMusic();
-        if (OtherPreference.getCurrentSongIndex() != -1) {
-            musicToPlay = musicList.get(OtherPreference.getCurrentSongIndex());
+        if (musicList != null && musicList.size() > 0) {
+            if (OtherPreference.getCurrentSongIndex() != -1) {
+                musicToPlay = musicList.get(OtherPreference.getCurrentSongIndex());
+            } else {
+                //if no song played till now then show background of fist song
+                musicToPlay = musicList.get(0);
+            }
+            GlobalApplication.getBus().postSticky(new PlayMusicEvent(musicToPlay));
         } else {
-            musicToPlay = musicList.get(RandomNumberGeneratorForMusic.nextInt(-1, DataManager.getInstance(this).getAllMusic().size()));
+            //FUCK user phone doesn't have any song
+            //TODO show UI
         }
-
-        //TODO cheeck currrent music which is playing
-        GlobalApplication.getBus().postSticky(new PlayMusicEvent(musicToPlay));
     }
 
     @Override

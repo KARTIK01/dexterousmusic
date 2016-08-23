@@ -10,16 +10,19 @@ import java.io.IOException;
 
 import music.dexterous.com.dexterousmusic.GlobalApplication;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.event.MusicPaused;
 import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
+import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
+import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
 import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 /**
@@ -252,7 +255,10 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     @Override
     public void unPauseMusic() {
-        //restart music when it is paused
+        /**
+         * restart music when it is paused only else play song which is stored in preference
+         * {@link music.dexterous.com.dexterousmusic.utils.preference.OtherPreference.KEY_CURRENT_SONG_INDEX}
+         */
         if (currentMusic != null) {
             mDexterousMediaPlayer.start();
 
@@ -270,9 +276,15 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 //        RemoteControlClientCompat lockscreenController = null;
 //        if (lockscreenController != null)
 //            lockscreenController.setPlaybackState(RemoteControlClient.PLAYSTATE_PLAYING);
+        } else if (OtherPreference.getCurrentSongIndex() != -1) {
+            //This will call when user opens app (not first time) and toggle song
+            //TODO pass his playList in second parameter
+            PlayCurrentSong.playCurrentSong(this, DataManager.getInstance(this).getAllMusic(), OtherPreference.getCurrentSongIndex());
         } else {
-            PrettyLogger.d("to do stuff");
+            //when user opens app first time and press toogel button then play song of index zero whoese UI is set in default
+            PlayCurrentSong.playCurrentSong(this, DataManager.getInstance(this).getAllMusic(), 0);
         }
+
         GlobalApplication.getBus().post(new MusicUnPaused());
 
     }
