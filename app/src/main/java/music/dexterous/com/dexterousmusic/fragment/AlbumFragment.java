@@ -17,6 +17,8 @@ import music.dexterous.com.dexterousmusic.adapters.list.AlbumSongsAdapter;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
+import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 
 /**
@@ -30,7 +32,7 @@ public class AlbumFragment extends BaseFragment {
     ImageView album_fragment_album_art;
     RecyclerView album_fragment_recycler_view;
     FontTextView total_songs;
-
+    FontTextView total_songs_duration;
     ImageLoader mImageLoader;
     AlbumModel albumModel;
 
@@ -59,12 +61,27 @@ public class AlbumFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        album_fragment_album_art = (ImageView) view.findViewById(R.id.album_fragment_album_art);
-        album_fragment_recycler_view = (RecyclerView) view.findViewById(R.id.album_fragment_recycler_view);
-        total_songs = (FontTextView) view.findViewById(R.id.total_songs);
 
         mImageLoader = new ImageLoader(getActivity());
+        setUpComponent(view);
+        showData();
 
+        albumSongsAdapter.setOnItemClickListener((view1, position) -> {
+            if (albumModel != null && albumModel.getMusicArrayList() != null) {
+                PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), albumModel.getMusicArrayList(), position);
+            }
+        });
+
+    }
+
+    private void setUpComponent(View view) {
+        album_fragment_album_art = (ImageView) view.findViewById(R.id.album_fragment_album_art);
+        album_fragment_recycler_view = (RecyclerView) view.findViewById(R.id.album_fragment_recycler_view);
+        total_songs = (FontTextView) view.findViewById(R.id.album_fragment_total_songs);
+        total_songs_duration = (FontTextView) view.findViewById(R.id.album_fragment_total_songs_duration);
+    }
+
+    private void showData() {
         Bundle args = getArguments();
 
         albumModel = args != null ? (albumModel = (AlbumModel) args
@@ -74,29 +91,14 @@ public class AlbumFragment extends BaseFragment {
         }
 
         String albumArtPath = albumModel.getAlbumArtPath();
-        Bitmap bitmap = null;
 
-        if (!TextUtils.isEmpty(albumArtPath)) {
-            bitmap = BitmapFactory.decodeFile(albumArtPath);
-        }
-
-        if (bitmap != null)
-            mImageLoader.loadImage(getActivity(), bitmap, album_fragment_album_art);
-        else
-            mImageLoader.loadImage(getActivity(), R.drawable.bg_1, album_fragment_album_art);
-
-
+        total_songs_duration.setText(SongsDuration.getSongsDuration(albumModel.getMusicArrayList()));
         total_songs.setText("" + albumModel.getMusicArrayList().size());
+        HomeActivtyBgImageHelper.setImage(getActivity(), albumArtPath, album_fragment_album_art, false);
 
         album_fragment_recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
         album_fragment_recycler_view.setAdapter(albumSongsAdapter = new AlbumSongsAdapter(albumModel.getMusicArrayList()));
 
-        albumSongsAdapter.setOnItemClickListener((view1, position) -> {
-            if (albumModel == null && albumModel.getMusicArrayList() != null) {
-                PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), albumModel.getMusicArrayList(), position);
-            }
-        });
 
     }
-
 }

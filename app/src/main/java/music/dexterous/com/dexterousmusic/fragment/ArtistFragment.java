@@ -90,7 +90,7 @@ public class ArtistFragment extends BaseFragment {
         }
 
         total_songs.setText("" + artistModel.getMusicArrayList().size());
-        total_songs.setText(SongsDuration.getSongsDuration(artistModel.getMusicArrayList()));
+        total_songs_duration.setText(SongsDuration.getSongsDuration(artistModel.getMusicArrayList()));
 
         String albumArtPath = artistModel.getMusicArrayList().get(0).getSONG_ALBUM_ART_PATH();
 

@@ -35,6 +35,6 @@
         android:id="@+id/artist_fragment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/album_fragment_album_art" />
+        android:layout_below="@id/artist_fragment_album_art" />
 
 </RelativeLayout>
