@@ -26,6 +26,8 @@ import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 
 /**
  * Created by Honey on 7/13/2016.
+ * <p>
+ * Add this file in root package folder i.e music.dexterous.com.dexterousmusic
  */
 public class GlobalApplication extends Application {
 

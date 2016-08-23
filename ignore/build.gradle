@@ -1,3 +1,5 @@
+//and add build.gradel in dexterousmusic/app. this is app level build.gradle
+
 buildscript {
     repositories {
         jcenter()

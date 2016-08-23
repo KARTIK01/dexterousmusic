@@ -9,6 +9,7 @@ This is Dexterous Music Player App.
 ### How do I get set up? ###
 
 * clone it
+* Add files from igonre folder to there specific location
 * open in Android Studio
 * build-run
 
