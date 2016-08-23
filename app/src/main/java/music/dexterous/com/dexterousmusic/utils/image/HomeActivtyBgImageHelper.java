@@ -18,13 +18,15 @@ public class HomeActivtyBgImageHelper {
 
     public static void setImage(PlayMusicEvent upDateHomeActivityEvent, Context context, ImageView imageView, boolean isBlur) {
         String albumArtPath = "";
-
         String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
         AlbumModel albumModel = DataManager.getInstance(context).getAlbumsMap().get(songAlbum);
         if (albumModel != null) {
             albumArtPath = albumModel.getAlbumArtPath();
         }
+        setImage(context, albumArtPath, imageView, isBlur);
+    }
 
+    public static void setImage(Context context, String albumArtPath, ImageView imageView, boolean isBlur) {
         if (!TextUtils.isEmpty(albumArtPath)) {
             Bitmap songCoverImage = BitmapFactory.decodeFile(albumArtPath);
             if (songCoverImage != null) {
@@ -35,12 +37,10 @@ public class HomeActivtyBgImageHelper {
                 else
                     new ImageLoader(context)
                             .loadImage(context, songCoverImage, imageView);
-            } else {
-                showRandomImage(context, imageView, isBlur);
+                return;
             }
-        } else {
-            showRandomImage(context, imageView, isBlur);
         }
+        showRandomImage(context, imageView, isBlur);
     }
 
     private static void showRandomImage(Context context, ImageView imageView, boolean isBlr) {

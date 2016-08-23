@@ -10,11 +10,10 @@ import com.viethoa.RecyclerViewFastScroller;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AlbumSongsViewHolder;
 import music.dexterous.com.dexterousmusic.adapters.list.viewholder.ArtistSongsViewHolder;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.fragment.AlbumFragment;
-import music.dexterous.com.dexterousmusic.utils.other.TimeConvert;
+import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
 
 /**
  * This is adapter for list of songs of {@link AlbumFragment}
@@ -45,8 +44,7 @@ public class ArtistSongsAdapter extends RecyclerView.Adapter<ArtistSongsViewHold
     public void onBindViewHolder(ArtistSongsViewHolder holder, int position) {
         holder.mSongName.setText(mDataArray.get(position).getSONG_TITLE());
         holder.mSongAlbum.setText(mDataArray.get(position).getSONG_ALBUM());
-        holder.mSongDuration.setText(
-                TimeConvert.songDurationToDisplay(Long.parseLong(mDataArray.get(position).getSONG_DURATION())));
+        holder.mSongDuration.setText(SongsDuration.getSongsDuration(mDataArray.get(position)));
         holder.mSongArtist.setText(mDataArray.get(position).getSONG_ARTIST());
 
     }

@@ -15,8 +15,10 @@ import android.widget.ImageView;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AlbumSongsAdapter;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
-import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
+import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
+import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 
 /**
@@ -30,11 +32,11 @@ public class ArtistFragment extends BaseFragment {
     ImageView album_fragment_album_art;
     RecyclerView album_fragment_recycler_view;
     FontTextView total_songs;
-
+    FontTextView total_songs_duration;
     ImageLoader mImageLoader;
-    ArtistModel albumModel;
+    ArtistModel artistModel;
 
-    AlbumSongsAdapter albumSongsAdapter;
+    AlbumSongsAdapter artistSongsAdapter;
 
     public static ArtistFragment newInstance(ArtistModel albumModel) {
         ArtistFragment fragment = new ArtistFragment();
@@ -51,45 +53,50 @@ public class ArtistFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_album_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_artist_fragment, container, false);
 
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        album_fragment_album_art = (ImageView) view.findViewById(R.id.album_fragment_album_art);
-        album_fragment_recycler_view = (RecyclerView) view.findViewById(R.id.album_fragment_recycler_view);
-        total_songs = (FontTextView) view.findViewById(R.id.total_songs);
 
         mImageLoader = new ImageLoader(getActivity());
+        setUpComponent(view);
+        showData();
 
+
+        artistSongsAdapter.setOnItemClickListener((view1, position) -> {
+            if (artistModel != null && artistModel.getMusicArrayList() != null)
+                PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), artistModel.getMusicArrayList(), position);
+        });
+    }
+
+
+    private void setUpComponent(View view) {
+        album_fragment_album_art = (ImageView) view.findViewById(R.id.artist_fragment_album_art);
+        album_fragment_recycler_view = (RecyclerView) view.findViewById(R.id.artist_fragment_recycler_view);
+        total_songs = (FontTextView) view.findViewById(R.id.artist_fragment_total_songs);
+        total_songs_duration = (FontTextView) view.findViewById(R.id.artist_fragment_total_songs_duration);
+    }
+
+    private void showData() {
         Bundle args = getArguments();
 
-        albumModel = args != null ? (albumModel = (ArtistModel) args
+        artistModel = args != null ? (artistModel = (ArtistModel) args
                 .getParcelable(EXTRA_ALBUM)) : null;
-        if (albumModel == null) {
+        if (artistModel == null) {
             return;
         }
 
-        String albumArtPath = albumModel.getMusicArrayList().get(0).getSONG_ALBUM_ART_PATH();
-        Bitmap bitmap = null;
+        total_songs.setText("" + artistModel.getMusicArrayList().size());
+        total_songs.setText(SongsDuration.getSongsDuration(artistModel.getMusicArrayList()));
 
-        if (!TextUtils.isEmpty(albumArtPath)) {
-            bitmap = BitmapFactory.decodeFile(albumArtPath);
-        }
+        String albumArtPath = artistModel.getMusicArrayList().get(0).getSONG_ALBUM_ART_PATH();
 
-        if (bitmap != null)
-            mImageLoader.loadImage(getActivity(), bitmap, album_fragment_album_art);
-        else
-            mImageLoader.loadImage(getActivity(), R.drawable.bg_1, album_fragment_album_art);
-
-
-        total_songs.setText("" + albumModel.getMusicArrayList().size());
-
+        HomeActivtyBgImageHelper.setImage(getActivity(), albumArtPath, album_fragment_album_art, false);
         album_fragment_recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-        album_fragment_recycler_view.setAdapter(albumSongsAdapter = new AlbumSongsAdapter(albumModel.getMusicArrayList()));
-    }
+        album_fragment_recycler_view.setAdapter(artistSongsAdapter = new AlbumSongsAdapter(artistModel.getMusicArrayList()));
 
+    }
 }

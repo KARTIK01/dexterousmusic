@@ -5,16 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.turingtechnologies.materialscrollbar.INameableAdapter;
-import com.viethoa.RecyclerViewFastScroller;
-
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllSongsViewHolder;
 import music.dexterous.com.dexterousmusic.adapters.list.viewholder.PlayListViewHolder;
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.utils.other.TimeConvert;
+import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
 
 /**
  * Created by Dubey's on 06-08-2016.
@@ -44,8 +40,7 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListViewHolder> {
     public void onBindViewHolder(PlayListViewHolder holder, int position) {
         holder.mSongName.setText(playListSongList.get(position).getSONG_TITLE());
         holder.mSongAlbum.setText(playListSongList.get(position).getSONG_ALBUM());
-        holder.mSongDuration.setText(
-                TimeConvert.songDurationToDisplay(Long.parseLong(playListSongList.get(position).getSONG_DURATION())));
+        holder.mSongDuration.setText(SongsDuration.getSongsDuration(playListSongList.get(position)));
         holder.mSongArtist.setText(playListSongList.get(position).getSONG_ARTIST());
 
     }

@@ -16,6 +16,7 @@ import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AlbumSongsAdapter;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
+import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 
 /**
@@ -89,6 +90,13 @@ public class AlbumFragment extends BaseFragment {
 
         album_fragment_recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
         album_fragment_recycler_view.setAdapter(albumSongsAdapter = new AlbumSongsAdapter(albumModel.getMusicArrayList()));
+
+        albumSongsAdapter.setOnItemClickListener((view1, position) -> {
+            if (albumModel == null && albumModel.getMusicArrayList() != null) {
+                PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), albumModel.getMusicArrayList(), position);
+            }
+        });
+
     }
 
 }
