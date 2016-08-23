@@ -62,6 +62,12 @@ ShortToast.displayToast(context, "Please Select At Least One song to play", 2000
 Its auto generated code by GreenDao lib, for more reference go https://github.com/greenrobot/greenDAO
 
 
+### To Store any data in SharedPreference ###
+
+create getter and setter method in ```OtherPreference.java``` or  ```UserPreference.java``` or ```UsersAppPreference.java```
+then call that function where you required. 
+For more help check allready created methods in ```OtherPreference.java```
+
 ### use TextSize form dimen ###
 ```
 
