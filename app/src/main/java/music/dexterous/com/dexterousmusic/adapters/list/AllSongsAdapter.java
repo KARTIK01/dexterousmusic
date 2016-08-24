@@ -21,17 +21,17 @@ import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
 public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter, INameableAdapter {
 
-    private List<Music> mDataArray;
+    private List<Music> musics;
 
     public AllSongsAdapter(List<Music> dataset) {
-        mDataArray = dataset;
+        musics = dataset;
     }
 
     @Override
     public int getItemCount() {
-        if (mDataArray == null)
+        if (musics == null)
             return 0;
-        return mDataArray.size();
+        return musics.size();
     }
 
     @Override
@@ -42,23 +42,23 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
 
     @Override
     public void onBindViewHolder(AllSongsViewHolder holder, int position) {
-        holder.mSongName.setText(mDataArray.get(position).getSONG_TITLE());
-        holder.mSongAlbum.setText(mDataArray.get(position).getSONG_ALBUM());
-        holder.mSongArtist.setText(mDataArray.get(position).getSONG_ARTIST());
-        holder.mSongDuration.setText(SongsDuration.getSongsDuration(mDataArray.get(position)));
+        holder.mSongName.setText(musics.get(position).getSONG_TITLE());
+        holder.mSongAlbum.setText(musics.get(position).getSONG_ALBUM());
+        holder.mSongArtist.setText(musics.get(position).getSONG_ARTIST());
+        holder.mSongDuration.setText(SongsDuration.getSongsDuration(musics.get(position)));
 
     }
 
     @Override
     public String getTextToShowInBubble(int pos) {
-        if (pos < 0 || pos >= mDataArray.size())
+        if (pos < 0 || pos >= musics.size())
             return null;
 
-        String name = mDataArray.get(pos).getSONG_TITLE();
+        String name = musics.get(pos).getSONG_TITLE();
         if (name == null || name.length() < 1)
             return null;
 
-        return mDataArray.get(pos).getSONG_TITLE().substring(0, 1);
+        return musics.get(pos).getSONG_TITLE().substring(0, 1);
     }
 
 
@@ -74,7 +74,7 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
 
     @Override
     public Character getCharacterForElement(int element) {
-        Character c = mDataArray.get(element).getSONG_TITLE().charAt(0);
+        Character c = musics.get(element).getSONG_TITLE().charAt(0);
         if (Character.isDigit(c)) {
             c = '#';
         }

@@ -30,11 +30,7 @@ public class AllAlbumFragment extends BaseFragment {
 
     List<AlbumModel> albumModels;
 
-    //Alphabet list
-    private List<AlphabetItem> mAlphabetItems;
-
     RecyclerView mRecyclerView;
-    RecyclerViewFastScroller fastScroller;
     AllAlbumsAdapter allAlbumsAdapter;
 
     public static AllAlbumFragment newInstance() {
@@ -72,31 +68,13 @@ public class AllAlbumFragment extends BaseFragment {
         List<AlbumModel> albums = DataManager.getInstance(getActivity()).getAlbums();
 
         albumModels = AlbumModel.getModel(allSongsList, albums);
-        //Alphabet fast scroller data
-        mAlphabetItems = new ArrayList<>();
-
-        List<String> strAlphabets = new ArrayList<>();
-        for (int i = 0; i < allSongsList.size(); i++) {
-            String tittle = allSongsList.get(i).getSONG_TITLE();
-            if (tittle == null || tittle.trim().isEmpty())
-                continue;
-            String word = tittle.substring(0, 1);
-            if (!strAlphabets.contains(word)) {
-                strAlphabets.add(word);
-                mAlphabetItems.add(new AlphabetItem(i, word, false));
-            }
-        }
     }
 
     protected void initialiseUI(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setAdapter(allAlbumsAdapter = new AllAlbumsAdapter(albumModels, getActivity()));
-//
-        fastScroller.setRecyclerView(mRecyclerView);
-        fastScroller.setUpAlphabet(mAlphabetItems);
 
         allAlbumsAdapter.setOnItemClickListener((view1, position) -> {
             AlbumModel albumModel = albumModels.get(position);

@@ -16,12 +16,14 @@
             android:layout_height="match_parent"
             android:scrollbars="vertical" />
 
-        <com.viethoa.RecyclerViewFastScroller
-            android:id="@+id/fast_scroller"
+        <com.turingtechnologies.materialscrollbar.DragScrollBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/dragScrollBar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            app:msb_lightOnTouch="false" />
 
     </RelativeLayout>
 </LinearLayout>

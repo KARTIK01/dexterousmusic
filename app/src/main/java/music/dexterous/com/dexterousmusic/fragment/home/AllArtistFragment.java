@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
+import com.turingtechnologies.materialscrollbar.DragScrollBar;
 import com.viethoa.RecyclerViewFastScroller;
 import com.viethoa.models.AlphabetItem;
 
@@ -30,11 +32,9 @@ public class AllArtistFragment extends BaseFragment {
 
     List<ArtistModel> artistModels;
 
-    //Alphabet list
-    private List<AlphabetItem> mAlphabetItems;
-
     RecyclerView mRecyclerView;
-    RecyclerViewFastScroller fastScroller;
+
+    DragScrollBar dragScrollBar;
     AllArtistAdapter allArtistAdapter;
 
     public static AllArtistFragment newInstance() {
@@ -72,31 +72,18 @@ public class AllArtistFragment extends BaseFragment {
         List<ArtistModel> albums = DataManager.getInstance(getActivity()).getArtist();
 
         artistModels = ArtistModel.getModel(allSongsList, albums);
-        //Alphabet fast scroller data
-        mAlphabetItems = new ArrayList<>();
 
-        List<String> strAlphabets = new ArrayList<>();
-        for (int i = 0; i < allSongsList.size(); i++) {
-            String tittle = allSongsList.get(i).getSONG_TITLE();
-            if (tittle == null || tittle.trim().isEmpty())
-                continue;
-            String word = tittle.substring(0, 1);
-            if (!strAlphabets.contains(word)) {
-                strAlphabets.add(word);
-                mAlphabetItems.add(new AlphabetItem(i, word, false));
-            }
-        }
     }
 
     protected void initialiseUI(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        fastScroller = (RecyclerViewFastScroller) view.findViewById(R.id.fast_scroller);
+        dragScrollBar =  (DragScrollBar) view.findViewById(R.id.dragScrollBar);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(allArtistAdapter = new AllArtistAdapter(artistModels, getActivity()));
 //
-        fastScroller.setRecyclerView(mRecyclerView);
-        fastScroller.setUpAlphabet(mAlphabetItems);
+        dragScrollBar.setRecyclerView(mRecyclerView);
+        dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
 
         allArtistAdapter.setOnItemClickListener((view1, position) -> {
             ArtistModel artistModel = artistModels.get(position);

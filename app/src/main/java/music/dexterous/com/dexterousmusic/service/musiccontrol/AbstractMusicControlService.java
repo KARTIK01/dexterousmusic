@@ -121,7 +121,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
             PrettyLogger.e("IOException: couldn't change the song : " + io.getMessage(), io);
             destroySelf();
         } catch (Exception e) {
-            PrettyLogger.e("Error when changing the song", e);
+            PrettyLogger.e("Error when changing the song :" + e.getMessage(), e);
             destroySelf();
         }
 /********************************Mess Ends here please improve this, please *************************************/

@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.turingtechnologies.materialscrollbar.INameableAdapter;
 import com.viethoa.RecyclerViewFastScroller;
 
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllArtistViewHolder;
+import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllSongsViewHolder;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
@@ -19,8 +22,8 @@ import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 /**
  * Created by Dubey's on 06-08-2016.
  */
-public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistAdapter.ViewHolder>
-        implements RecyclerViewFastScroller.BubbleTextGetter {
+public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
+        implements RecyclerViewFastScroller.BubbleTextGetter, INameableAdapter {
 
     /**
      * Used to load images asynchronously on a background thread.
@@ -45,14 +48,13 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistAdapter.View
     }
 
     @Override
-    public AllArtistAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AllArtistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout_artist, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new AllArtistViewHolder(v, mOnClickListener);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(AllArtistViewHolder holder, int position) {
 
 //        Bitmap bitmap = BitmapFactory.decodeFile(
 //                mDataArray
@@ -77,28 +79,6 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistAdapter.View
         return artistModels.get(pos).getArtistName().substring(0, 1);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView mTextView;
-        FontTextView albumName;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            mTextView = (ImageView) itemView.findViewById(R.id.albumImage);
-            albumName = (FontTextView) itemView.findViewById(R.id.albumName);
-
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                default:
-                    mOnClickListener.onClick(view, getAdapterPosition());
-            }
-        }
-    }
-
-
     public interface OnAlbumItemClickListener {
         void onClick(View view, int position);
     }
@@ -107,6 +87,15 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistAdapter.View
 
     public void setOnItemClickListener(OnAlbumItemClickListener onClickListener) {
         mOnClickListener = onClickListener;
+    }
+
+    @Override
+    public Character getCharacterForElement(int element) {
+        Character c = artistModels.get(element).getArtistName().charAt(0);
+        if (Character.isDigit(c)) {
+            c = '#';
+        }
+        return c;
     }
 
 }
