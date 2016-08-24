@@ -16,6 +16,14 @@ import music.dexterous.com.dexterousmusic.models.AlbumModel;
  */
 public class HomeActivtyBgImageHelper {
 
+    /**
+     * set albumArt of  upDateHomeActivityEvent into imageView if it exist else ramdom other drawable image will be shown
+     *
+     * @param upDateHomeActivityEvent
+     * @param context
+     * @param imageView
+     * @param isBlur
+     */
     public static void setImage(PlayMusicEvent upDateHomeActivityEvent, Context context, ImageView imageView, boolean isBlur) {
         String albumArtPath = "";
         String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
@@ -24,6 +32,21 @@ public class HomeActivtyBgImageHelper {
             albumArtPath = albumModel.getAlbumArtPath();
         }
         setImage(context, albumArtPath, imageView, isBlur);
+    }
+
+    public static Bitmap getBitMap(String albumName, Context context) {
+        Bitmap songCoverImage = null;
+        String albumArtPath = null;
+        AlbumModel albumModel = DataManager.getInstance(context).getAlbumsMap().get(albumName);
+        if (albumModel != null) {
+            albumArtPath = albumModel.getAlbumArtPath();
+        }
+        if (!TextUtils.isEmpty(albumArtPath)) {
+            songCoverImage = BitmapFactory.decodeFile(albumArtPath);
+        } else {
+            songCoverImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.bg_1);
+        }
+        return songCoverImage;
     }
 
     public static void setImage(Context context, String albumArtPath, ImageView imageView, boolean isBlur) {

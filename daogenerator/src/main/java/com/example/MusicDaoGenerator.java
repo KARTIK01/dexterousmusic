@@ -28,22 +28,22 @@ public class MusicDaoGenerator {
         Entity newsItemEntity = schema.addEntity("Music");
 
         newsItemEntity.addStringProperty("SONG_ID").primaryKey();
+        newsItemEntity.addStringProperty("SONG_FILE_PATH");
         newsItemEntity.addStringProperty("SONG_TITLE");
         newsItemEntity.addStringProperty("SONG_ARTIST");
         newsItemEntity.addStringProperty("SONG_ALBUM");
-        newsItemEntity.addStringProperty("SONG_ALBUM_ARTIST");
         newsItemEntity.addStringProperty("SONG_DURATION");
-        newsItemEntity.addStringProperty("SONG_FILE_PATH");
+        newsItemEntity.addStringProperty("SONG_YEAR");
+        newsItemEntity.addStringProperty("SONG_TRACK_NUMBER");
 
 
         newsItemEntity.addBooleanProperty("SONG_IS_PLAYING");
+        newsItemEntity.addStringProperty("SONG_ALBUM_ARTIST");
 
         //TODO Check why we require this
-        newsItemEntity.addStringProperty("SONG_TRACK_NUMBER");
 
         newsItemEntity.addStringProperty("SONG_GENRE");
         newsItemEntity.addStringProperty("SONG_PLAY_COUNT");
-        newsItemEntity.addStringProperty("SONG_YEAR");
 
         //TODO Check why we require this
         newsItemEntity.addStringProperty("ALBUMS_COUNT");
@@ -57,7 +57,7 @@ public class MusicDaoGenerator {
         newsItemEntity.addStringProperty("RATING");
         newsItemEntity.addStringProperty("LAST_PLAYED_TIMESTAMP");
         newsItemEntity.addStringProperty("SONG_SOURCE");
-        newsItemEntity.addStringProperty("SONG_ALBUM_ART_PATH");
+        newsItemEntity.addStringProperty("SONG_ALBUM_ART_PATH"); //remove this
         newsItemEntity.addStringProperty("SONG_DELETED");
         newsItemEntity.addStringProperty("ARTIST_ART_LOCATION");
         newsItemEntity.addStringProperty("ALBUM_ID");

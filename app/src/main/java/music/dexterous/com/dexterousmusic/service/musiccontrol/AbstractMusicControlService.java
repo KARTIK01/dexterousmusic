@@ -15,6 +15,7 @@ import music.dexterous.com.dexterousmusic.event.MusicPaused;
 import music.dexterous.com.dexterousmusic.event.MusicStop;
 import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
+import music.dexterous.com.dexterousmusic.event.ShowWidget;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
