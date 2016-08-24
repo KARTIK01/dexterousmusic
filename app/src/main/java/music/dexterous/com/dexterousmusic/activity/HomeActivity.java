@@ -62,7 +62,12 @@ public class HomeActivity extends BaseActivity {
         openHomeFragment();
 
         safeRegister();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        safeRegister();
         setUpUiForCurrentSong();
     }
 
@@ -81,12 +86,6 @@ public class HomeActivity extends BaseActivity {
             //FUCK user phone doesn't have any song
             //TODO show UI
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        safeRegister();
     }
 
 
