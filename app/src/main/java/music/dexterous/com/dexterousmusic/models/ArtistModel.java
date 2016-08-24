@@ -18,14 +18,13 @@ public class ArtistModel implements Parcelable {
     private String artistName;
     private List<Music> musicArrayList = new ArrayList<>();
 
-    public String getAlbumName() {
+    public String getArtistName() {
         return artistName;
     }
 
     public void setArtistName(String artistName) {
         this.artistName = artistName;
     }
-
 
     public List<Music> getMusicArrayList() {
         return musicArrayList;

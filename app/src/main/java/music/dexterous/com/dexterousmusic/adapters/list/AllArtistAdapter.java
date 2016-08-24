@@ -27,21 +27,21 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistAdapter.View
      */
     ImageLoader mImageLoader;
 
-    private List<ArtistModel> mDataArray;
+    private List<ArtistModel> artistModels;
     Context context;
 
 
-    public AllArtistAdapter(List<ArtistModel> dataset, Context context) {
+    public AllArtistAdapter(List<ArtistModel> artistModels, Context context) {
         this.context = context;
-        mDataArray = dataset;
+        this.artistModels = artistModels;
         mImageLoader = new ImageLoader(context, R.drawable.dishoom);
     }
 
     @Override
     public int getItemCount() {
-        if (mDataArray == null)
+        if (artistModels == null)
             return 0;
-        return mDataArray.size();
+        return artistModels.size();
     }
 
     @Override
@@ -62,19 +62,19 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistAdapter.View
 //        PrettyLogger.d(mDataArray.get(position).toString());
 
 //        mImageLoader.loadImage(context,bitmap, holder.mTextView);/
-        holder.albumName.setText(mDataArray.get(position).getAlbumName());
+        holder.albumName.setText(artistModels.get(position).getArtistName());
     }
 
     @Override
     public String getTextToShowInBubble(int pos) {
-        if (pos < 0 || pos >= mDataArray.size())
+        if (pos < 0 || pos >= artistModels.size())
             return null;
 
-        String name = mDataArray.get(pos).getAlbumName();
+        String name = artistModels.get(pos).getArtistName();
         if (name == null || name.length() < 1)
             return null;
 
-        return mDataArray.get(pos).getAlbumName().substring(0, 1);
+        return artistModels.get(pos).getArtistName().substring(0, 1);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -86,7 +86,7 @@ public class DataManager extends MediaDao {
 
     private void loadAllMusic() {
         synchronized (allMusic) {
-            List<Music> returnMusicList = mMusicDao.loadAll();
+            List<Music> returnMusicList = mMusicDao.queryBuilder().orderAsc(MusicDao.Properties.SONG_TITLE).list();
             allMusic.clear();
             allMusic.addAll(returnMusicList);
         }
@@ -96,7 +96,7 @@ public class DataManager extends MediaDao {
         synchronized (artist) {
             List<ArtistModel> returnListOfAlbumNames = new ArrayList<>();
             Uri artistUri = android.provider.MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
-            Cursor cursor = mContext.getContentResolver().query(artistUri, null, null, null, null);
+            Cursor cursor = mContext.getContentResolver().query(artistUri, null, null, null, MediaStore.Audio.Artists.ARTIST);
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     ArtistModel albumModel = new ArtistModel();
@@ -124,20 +124,20 @@ public class DataManager extends MediaDao {
     }
 
 
-    public  List<AlbumModel> getAlbums() {
+    public List<AlbumModel> getAlbums() {
         return new ArrayList<AlbumModel>(albumHash.values());
     }
 
-    public  Map<String, AlbumModel> getAlbumsMap() {
+    public Map<String, AlbumModel> getAlbumsMap() {
         return albumHash;
     }
 
-    public  List<ArtistModel> getArtist() {
+    public List<ArtistModel> getArtist() {
         return artist;
     }
 
 
-    public  List<Music> getAllMusic() {
+    public List<Music> getAllMusic() {
         return allMusic;
     }
 
