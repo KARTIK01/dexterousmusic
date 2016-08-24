@@ -34,7 +34,15 @@ public class HomeActivtyBgImageHelper {
         setImage(context, albumArtPath, imageView, isBlur);
     }
 
-    public static Bitmap getBitMap(String albumName, Context context) {
+    /**
+     * returns bitMap of alubumName
+     *
+     * @param albumName
+     * @param context
+     * @param isCircular
+     * @return
+     */
+    public static Bitmap getBitMap(String albumName, Context context, boolean isCircular) {
         Bitmap songCoverImage = null;
         String albumArtPath = null;
         AlbumModel albumModel = DataManager.getInstance(context).getAlbumsMap().get(albumName);

@@ -141,6 +141,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
          * update {@link music.dexterous.com.dexterousmusic.activity.HomeActivity} UI
          */
         GlobalApplication.getBus().post(new PlayMusicEvent(musicToPlay));
+        GlobalApplication.getBus().post(new ShowWidget(musicToPlay));
 
 
     }
