@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.ContextWrapper;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import org.greenrobot.eventbus.EventBus;
 
 import hugo.weaving.DebugLog;
@@ -41,6 +43,7 @@ public class GlobalApplication extends Application {
     @DebugLog
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         /** Initialize the Preference class */
         new AppPreference.Builder().setContext(GlobalApplication.this)

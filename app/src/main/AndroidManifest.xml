@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="music.dexterous.com.dexterousmusic">
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- TODO Check we require this permission or not -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -16,7 +19,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- used for drawing widget. This permission must be granted before calling AudioWidget.show(). -->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <!-- For drawing waves openGL ES version 2 -->
     <uses-feature
@@ -95,6 +98,9 @@
             android:name="${package}.utils.image.LimitCacheSizeGlideModule"
             android:value="GlideModule" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="27f8cfedaa38568e160e85bb4a1ec48d0f60291f" />
     </application>
 
 </manifest>
