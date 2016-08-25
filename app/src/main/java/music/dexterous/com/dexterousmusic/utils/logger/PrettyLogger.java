@@ -1,5 +1,6 @@
 package music.dexterous.com.dexterousmusic.utils.logger;
 
+import com.crashlytics.android.Crashlytics;
 import com.orhanobut.logger.Logger;
 
 import music.dexterous.com.dexterousmusic.BuildConfig;
@@ -27,6 +28,7 @@ public class PrettyLogger {
         } else {
             //TODO send exception
         }
+        Crashlytics.logException(e);
     }
 
     public static void d(String msg) {
