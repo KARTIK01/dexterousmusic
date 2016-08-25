@@ -36,7 +36,6 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
     private void init(Context context) {
         setOnSeekBarChangeListener(this);
         mediaPlayer = AbstractMusicControlService.mDexterousMediaPlayer;
-//        updateProgressBar();
     }
 
     @Override

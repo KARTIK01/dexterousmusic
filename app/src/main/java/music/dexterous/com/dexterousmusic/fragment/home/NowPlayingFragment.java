@@ -38,7 +38,7 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
     private ImageView mToggelButton;
 
     //views for big bar
-    private MusicControlBar forword_song_seekbar;
+    private MusicControlBar musicControlBar;
     private FontTextView current_song_playing_time;
     private FontTextView current_song_duration;
 
@@ -83,7 +83,7 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         widget_skip_next = (ImageView) view.findViewById(R.id.widget_skip_next);
 
 
-        forword_song_seekbar = (MusicControlBar) view.findViewById(R.id.forword_song_seekbar);
+        musicControlBar = (MusicControlBar) view.findViewById(R.id.forword_song_seekbar);
         current_song_playing_time = (FontTextView) view.findViewById(R.id.current_song_playing_time);
         current_song_duration = (FontTextView) view.findViewById(R.id.current_song_duration);
 
@@ -100,29 +100,6 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         widget_toggle.setOnClickListener(this);
         widget_skip_previous.setOnClickListener(this);
         widget_skip_next.setOnClickListener(this);
-
-    }
-
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void setUpUI(PlayMusicEvent playMusicEvent) {
-        //show image into imageView
-        HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), mNowPlayingImageView, false);
-        HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), album_art_image_view, false);
-
-        //show song Name
-        mNowPlayingSongNameTextView.setText(playMusicEvent.music.getSONG_TITLE());
-        song_name_tv.setText(playMusicEvent.music.getSONG_TITLE());
-        song_artist_tv.setText(playMusicEvent.music.getSONG_ARTIST());
-        song_album_tv.setText(playMusicEvent.music.getSONG_ALBUM());
-
-        //show image for play or pause
-        if (playMusicEvent.music.getSONG_IS_PLAYING() != null && playMusicEvent.music.getSONG_IS_PLAYING()) {
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
-        } else {
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
-        }
-
-        current_song_duration.setText(SongsDuration.getSongsDuration(playMusicEvent.music));
 
     }
 
@@ -148,6 +125,31 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         }
     }
 
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void setUpUI(PlayMusicEvent playMusicEvent) {
+        //show image into imageView
+        HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), mNowPlayingImageView, false);
+        HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), album_art_image_view, false);
+
+        //show song Name
+        mNowPlayingSongNameTextView.setText(playMusicEvent.music.getSONG_TITLE());
+        song_name_tv.setText(playMusicEvent.music.getSONG_TITLE());
+        song_artist_tv.setText(playMusicEvent.music.getSONG_ARTIST());
+        song_album_tv.setText(playMusicEvent.music.getSONG_ALBUM());
+
+        //show image for play or pause
+        if (playMusicEvent.music.getSONG_IS_PLAYING() != null && playMusicEvent.music.getSONG_IS_PLAYING()) {
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, widget_toggle);
+        } else {
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, widget_toggle);
+        }
+        current_song_duration.setText(SongsDuration.getSongsDuration(playMusicEvent.music));
+    }
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void pause(MusicPaused musicPaused) {
         new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
@@ -158,6 +160,7 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
     public void unpause(MusicUnPaused musicUnPaused) {
         new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
         new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, widget_toggle);
+        musicControlBar.updateProgressBar();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
