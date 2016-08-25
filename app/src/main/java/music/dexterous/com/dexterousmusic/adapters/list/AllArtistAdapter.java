@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.turingtechnologies.materialscrollbar.INameableAdapter;
 import com.viethoa.RecyclerViewFastScroller;
@@ -14,8 +13,6 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllArtistViewHolder;
-import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllSongsViewHolder;
-import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 
@@ -37,7 +34,7 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
     public AllArtistAdapter(List<ArtistModel> artistModels, Context context) {
         this.context = context;
         this.artistModels = artistModels;
-        mImageLoader = new ImageLoader(context, R.drawable.dishoom);
+        mImageLoader = new ImageLoader(context, R.drawable.bg_1);
     }
 
     @Override

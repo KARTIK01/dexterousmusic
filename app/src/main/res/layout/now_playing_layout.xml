@@ -19,7 +19,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/dishoom" />
+            tools:src="@drawable/bg_1" />
 
         <music.dexterous.com.dexterousmusic.customeviews.FontTextView
             android:id="@+id/status"
@@ -69,7 +69,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/dishoom" />
+            tools:src="@drawable/bg_1" />
 
         <music.dexterous.com.dexterousmusic.customeviews.FontTextView
             android:id="@+id/song_tittle"

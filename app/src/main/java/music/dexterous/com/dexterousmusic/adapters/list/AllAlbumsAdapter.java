@@ -37,7 +37,7 @@ public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.View
     public AllAlbumsAdapter(List<AlbumModel> dataset, Context context) {
         this.context = context;
         mDataArray = dataset;
-        mImageLoader = new ImageLoader(context, R.drawable.dishoom);
+        mImageLoader = new ImageLoader(context, R.drawable.bg_1);
     }
 
     @Override
