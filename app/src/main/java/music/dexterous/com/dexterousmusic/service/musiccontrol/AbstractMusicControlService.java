@@ -22,6 +22,7 @@ import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
+import music.dexterous.com.dexterousmusic.utils.android.AppState;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
 import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
@@ -81,8 +82,6 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     @Override
     public void initMusicPlayer() {
-        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-
         if (mDexterousMediaPlayer == null) {
             mDexterousMediaPlayer = new DexterousMediaPlayer();
         }
@@ -213,10 +212,14 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         if (mDexterousMediaPlayer == null)
             return;
 
+        DataManager.getInstance(this).getAllMusic().get(OtherPreference.getCurrentSongIndex()).setSONG_IS_PLAYING(false);
         mDexterousMediaPlayer.stop();
-        mDexterousMediaPlayer.release();
-        mDexterousMediaPlayer = null;
-
+        currentMusic = null;
+        //if app is not in foreground then only cancel all these as they are initilise in global application
+        if (AppState.isAppIsInBackground(this)) {
+            mDexterousMediaPlayer.release();
+            mDexterousMediaPlayer = null;
+        }
         notification.cancel();
 
         GlobalApplication.getBus().post(new MusicStop());
@@ -296,12 +299,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     }
 
-    protected Boolean isPlaying() {
-        if (mDexterousMediaPlayer != null) {
-            return mDexterousMediaPlayer.isPlaying();
-        } else {
-            initMusicPlayer();
-            return mDexterousMediaPlayer.isPlaying();
-        }
+    protected boolean isPlaying() {
+        return mDexterousMediaPlayer.isPlaying();
     }
 }

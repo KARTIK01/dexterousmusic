@@ -13,4 +13,11 @@ public class PlayMusicEvent {
     public PlayMusicEvent(Music music) {
         this.music = music;
     }
+
+    @Override
+    public String toString() {
+        return "PlayMusicEvent{" +
+                "music=" + music +
+                '}';
+    }
 }

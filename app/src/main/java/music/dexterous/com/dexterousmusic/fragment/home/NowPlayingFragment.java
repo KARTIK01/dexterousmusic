@@ -80,9 +80,9 @@ public class NowPlayingFragment extends BaseFragment {
         safeRegister();
 
         mToggelButton.setOnClickListener(view1 -> {
-            Intent buttonPlayIntent = new Intent(getActivity(), ToggleMusicReceiver.class);
-            buttonPlayIntent.putExtra(ToggleMusicReceiver.ACTION, ToggleMusicReceiver.ACTION_TYPE_TOGGLE);
-            getActivity().sendBroadcast(buttonPlayIntent);
+            Intent toggleMusicintent = new Intent(getActivity(), ToggleMusicReceiver.class);
+            toggleMusicintent.putExtra(ToggleMusicReceiver.ACTION, ToggleMusicReceiver.ACTION_TYPE_TOGGLE);
+            getActivity().sendBroadcast(toggleMusicintent);
         });
 
 
@@ -90,6 +90,7 @@ public class NowPlayingFragment extends BaseFragment {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void setUpUI(PlayMusicEvent playMusicEvent) {
+        PrettyLogger.d(playMusicEvent.toString());
         //show image into imageView
         HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), mNowPlayingImageView, false);
         HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), album_art_image_view, false);

@@ -437,13 +437,14 @@ public class Music implements Parcelable {
     @Override
     public String toString() {
         return "Music{" +
-                ", SONG_ID='" + SONG_ID + '\'' +
+                "SONG_ID='" + SONG_ID + '\'' +
                 ", SONG_TITLE='" + SONG_TITLE + '\'' +
                 ", SONG_ARTIST='" + SONG_ARTIST + '\'' +
                 ", SONG_ALBUM='" + SONG_ALBUM + '\'' +
                 ", SONG_ALBUM_ARTIST='" + SONG_ALBUM_ARTIST + '\'' +
                 ", SONG_DURATION='" + SONG_DURATION + '\'' +
                 ", SONG_FILE_PATH='" + SONG_FILE_PATH + '\'' +
+                ", SONG_IS_PLAYING=" + SONG_IS_PLAYING +
                 ", SONG_TRACK_NUMBER='" + SONG_TRACK_NUMBER + '\'' +
                 ", SONG_GENRE='" + SONG_GENRE + '\'' +
                 ", SONG_PLAY_COUNT='" + SONG_PLAY_COUNT + '\'' +
@@ -470,6 +471,7 @@ public class Music implements Parcelable {
                 ", SAVED_POSITION='" + SAVED_POSITION + '\'' +
                 '}';
     }
+
     // KEEP METHODS END
 
 }

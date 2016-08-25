@@ -35,6 +35,10 @@ public class PrettyLogger {
         if (DEBUG) Logger.d(msg);
     }
 
+    public static void d(Object msg) {
+        if (DEBUG) Logger.d(msg.toString());
+    }
+
     public static void i(String msg) {
         if (DEBUG) Logger.i(msg);
     }
