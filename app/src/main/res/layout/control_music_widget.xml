@@ -6,18 +6,21 @@
     android:weightSum="3">
 
     <ImageView
+        android:id="@+id/widget_skip_previous"
         android:layout_width="@dimen/widget_element_size_small"
         android:layout_height="@dimen/widget_element_size_small"
         android:layout_weight="1"
         android:src="@drawable/ic_skip_previous_vector" />
 
     <ImageView
+        android:id="@+id/widget_toggle"
         android:layout_width="@dimen/widget_element_size"
         android:layout_height="@dimen/widget_element_size"
         android:layout_weight="1"
         android:src="@drawable/ic_play_vector" />
 
     <ImageView
+        android:id="@+id/widget_skip_next"
         android:layout_width="@dimen/widget_element_size_small"
         android:layout_height="@dimen/widget_element_size_small"
         android:layout_weight="1"

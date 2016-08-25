@@ -7,6 +7,13 @@ import android.content.Intent;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 
 public class PreviousMusicReceiver extends BroadcastReceiver {
+
+    public static final String ACTION = "action";
+
+
+    public static final String ACTION_TYPE_SKIP = "action_type_skip";
+
+
     public PreviousMusicReceiver() {
     }
 

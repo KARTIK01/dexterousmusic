@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/status"
-            android:layout_toLeftOf="@+id/toggle"
+            android:layout_toLeftOf="@+id/toggle_upper"
             android:layout_toRightOf="@id/now_playing_imageview"
             android:ellipsize="marquee"
             android:maxLines="1"
@@ -47,7 +47,7 @@
             tools:text="Song Name" />
 
         <ImageView
-            android:id="@+id/toggle"
+            android:id="@+id/toggle_upper"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_alignParentRight="true"

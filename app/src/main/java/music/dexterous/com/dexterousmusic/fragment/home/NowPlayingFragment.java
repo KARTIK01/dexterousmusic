@@ -20,12 +20,14 @@ import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.receiver.widget.NextMusicReceiver;
+import music.dexterous.com.dexterousmusic.receiver.widget.PreviousMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
-public class NowPlayingFragment extends BaseFragment {
+public class NowPlayingFragment extends BaseFragment implements View.OnClickListener {
 
 
     public static final String FRAGMENT_TAG = NowPlayingFragment.class.getSimpleName();
@@ -35,16 +37,20 @@ public class NowPlayingFragment extends BaseFragment {
     private FontTextView mNowPlayingSongNameTextView;
     private ImageView mToggelButton;
 
-
+    //views for big bar
     private MusicControlBar forword_song_seekbar;
     private FontTextView current_song_playing_time;
     private FontTextView current_song_duration;
 
-    //views for big bar
     private ImageView album_art_image_view;
     private FontTextView song_name_tv;
     private FontTextView song_artist_tv;
     private FontTextView song_album_tv;
+
+    //controll widget
+    private ImageView widget_toggle;
+    private ImageView widget_skip_previous;
+    private ImageView widget_skip_next;
 
     public static NowPlayingFragment newInstance() {
         NowPlayingFragment fragment = new NowPlayingFragment();
@@ -65,11 +71,16 @@ public class NowPlayingFragment extends BaseFragment {
 
         mNowPlayingImageView = (ImageView) view.findViewById(R.id.now_playing_imageview);
         mNowPlayingSongNameTextView = (FontTextView) view.findViewById(R.id.now_playing_song_name_textview);
-        mToggelButton = (ImageView) view.findViewById(R.id.toggle);
+        mToggelButton = (ImageView) view.findViewById(R.id.toggle_upper);
         album_art_image_view = (ImageView) view.findViewById(R.id.album_art);
         song_name_tv = (FontTextView) view.findViewById(R.id.song_tittle);
         song_artist_tv = (FontTextView) view.findViewById(R.id.song_artist);
         song_album_tv = (FontTextView) view.findViewById(R.id.song_album);
+
+
+        widget_toggle = (ImageView) view.findViewById(R.id.widget_toggle);
+        widget_skip_previous = (ImageView) view.findViewById(R.id.widget_skip_previous);
+        widget_skip_next = (ImageView) view.findViewById(R.id.widget_skip_next);
 
 
         forword_song_seekbar = (MusicControlBar) view.findViewById(R.id.forword_song_seekbar);
@@ -78,13 +89,17 @@ public class NowPlayingFragment extends BaseFragment {
 
 
         safeRegister();
+        setListener();
+    }
 
-        mToggelButton.setOnClickListener(view1 -> {
-            Intent toggleMusicintent = new Intent(getActivity(), ToggleMusicReceiver.class);
-            toggleMusicintent.putExtra(ToggleMusicReceiver.ACTION, ToggleMusicReceiver.ACTION_TYPE_TOGGLE);
-            getActivity().sendBroadcast(toggleMusicintent);
-        });
+    private void setListener() {
+        //small
+        mToggelButton.setOnClickListener(this);
 
+        //big
+        widget_toggle.setOnClickListener(this);
+        widget_skip_previous.setOnClickListener(this);
+        widget_skip_next.setOnClickListener(this);
 
     }
 
@@ -111,14 +126,38 @@ public class NowPlayingFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.widget_toggle:
+            case R.id.toggle_upper:
+                Intent toggleMusicintent = new Intent(getActivity(), ToggleMusicReceiver.class);
+                toggleMusicintent.putExtra(ToggleMusicReceiver.ACTION, ToggleMusicReceiver.ACTION_TYPE_TOGGLE);
+                getActivity().sendBroadcast(toggleMusicintent);
+                break;
+            case R.id.widget_skip_next:
+                Intent nextIntent = new Intent(getActivity(), NextMusicReceiver.class);
+                nextIntent.putExtra(NextMusicReceiver.ACTION, NextMusicReceiver.ACTION_TYPE_SKIP);
+                getActivity().sendBroadcast(nextIntent);
+                break;
+            case R.id.widget_skip_previous:
+                Intent previosIntent = new Intent(getActivity(), PreviousMusicReceiver.class);
+                previosIntent.putExtra(PreviousMusicReceiver.ACTION, PreviousMusicReceiver.ACTION_TYPE_SKIP);
+                getActivity().sendBroadcast(previosIntent);
+                break;
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void pause(MusicPaused musicPaused) {
         new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
+        new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, widget_toggle);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void unpause(MusicUnPaused musicUnPaused) {
         new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
+        new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, widget_toggle);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
