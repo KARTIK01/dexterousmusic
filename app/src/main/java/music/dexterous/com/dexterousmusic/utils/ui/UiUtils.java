@@ -1,7 +1,6 @@
 package music.dexterous.com.dexterousmusic.utils.ui;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -15,7 +14,6 @@ import android.view.View;
 import java.util.concurrent.CountDownLatch;
 
 import music.dexterous.com.dexterousmusic.R;
-import okhttp3.Response;
 
 /**
  * Created by Kartik on 06/01/16.
@@ -37,6 +35,9 @@ public class UiUtils {
     static public Drawable ic_shuffle_white_vector;
     static public Drawable ic_shuffle_vector;
     static public Drawable ic_dots_vertical_vector;
+    static public Drawable ic_not_shuffle_vector;
+    static public Drawable ic_shuffle_one_vector;
+    static public Drawable ic_repeat_vector;
 
     /**
      * Screen dimensions in pixels
@@ -111,7 +112,12 @@ public class UiUtils {
         ic_skip_previous_vector = ContextCompat.getDrawable(context, R.drawable.ic_skip_previous_vector);
         ic_shuffle_white_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_white_vector);
         ic_shuffle_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_vector);
+        ic_not_shuffle_vector = ContextCompat.getDrawable(context, R.drawable.ic_not_shuffle_vector);
         ic_dots_vertical_vector = ContextCompat.getDrawable(context, R.drawable.ic_dots_vertical_vector);
+        ic_shuffle_one_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_one_vector);
+        ic_shuffle_one_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_one_vector);
+        ic_repeat_vector = ContextCompat.getDrawable(context, R.drawable.ic_repeat_vector);
+
     }
 
 }

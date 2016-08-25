@@ -7,12 +7,14 @@
     android:weightSum="11">
 
     <ImageView
+        android:id="@+id/widget_repeate"
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
-        android:src="@drawable/ic_repeat_vector" />
+        tools:src="@drawable/ic_repeat_vector" />
 
     <ImageView
+        android:id="@+id/widget_vol_down"
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
@@ -25,12 +27,14 @@
         android:layout_weight="7" />
 
     <ImageView
+        android:id="@+id/widget_vol_inc"
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
         android:src="@drawable/ic_volume_up_vector" />
 
     <ImageView
+        android:id="@+id/widget_shuffel"
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"

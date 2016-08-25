@@ -25,6 +25,8 @@ import music.dexterous.com.dexterousmusic.receiver.widget.PreviousMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
+import music.dexterous.com.dexterousmusic.utils.music.RepeatMode;
+import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 public class NowPlayingFragment extends BaseFragment implements View.OnClickListener {
@@ -51,6 +53,11 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
     private ImageView widget_toggle;
     private ImageView widget_skip_previous;
     private ImageView widget_skip_next;
+
+    private ImageView widget_repeate;
+    private ImageView widget_vol_down;
+    private ImageView widget_vol_inc;
+    private ImageView widget_shuffel;
 
     public static NowPlayingFragment newInstance() {
         NowPlayingFragment fragment = new NowPlayingFragment();
@@ -82,6 +89,10 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         widget_skip_previous = (ImageView) view.findViewById(R.id.widget_skip_previous);
         widget_skip_next = (ImageView) view.findViewById(R.id.widget_skip_next);
 
+        widget_repeate = (ImageView) view.findViewById(R.id.widget_repeate);
+        widget_vol_down = (ImageView) view.findViewById(R.id.widget_vol_down);
+        widget_vol_inc = (ImageView) view.findViewById(R.id.widget_vol_inc);
+        widget_shuffel = (ImageView) view.findViewById(R.id.widget_shuffel);
 
         musicControlBar = (MusicControlBar) view.findViewById(R.id.forword_song_seekbar);
         current_song_playing_time = (FontTextView) view.findViewById(R.id.current_song_playing_time);
@@ -100,6 +111,11 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         widget_toggle.setOnClickListener(this);
         widget_skip_previous.setOnClickListener(this);
         widget_skip_next.setOnClickListener(this);
+
+        widget_repeate.setOnClickListener(this);
+        widget_vol_down.setOnClickListener(this);
+        widget_vol_inc.setOnClickListener(this);
+        widget_shuffel.setOnClickListener(this);
 
     }
 
@@ -122,6 +138,20 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
                 previosIntent.putExtra(PreviousMusicReceiver.ACTION, PreviousMusicReceiver.ACTION_TYPE_SKIP);
                 getActivity().sendBroadcast(previosIntent);
                 break;
+            case R.id.widget_repeate:
+                RepeatMode.changeRepeteMode();
+                break;
+            case R.id.widget_shuffel:
+                UsersAppPreference.setMusicShuffleMode(true);
+                break;
+            case R.id.widget_vol_inc:
+
+                break;
+            case R.id.widget_vol_down:
+
+                break;
+
+
         }
     }
 
@@ -147,6 +177,14 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
             new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, widget_toggle);
         }
         current_song_duration.setText(SongsDuration.getSongsDuration(playMusicEvent.music));
+
+        if (UsersAppPreference.isMusicShuffle()) {
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_vector, widget_shuffel);
+        } else {
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_not_shuffle_vector, widget_shuffel);
+        }
+
+        RepeatMode.showRepeatIcon(getActivity(), widget_repeate);
     }
 
 
