@@ -69,11 +69,11 @@ public class Helper {
     }
 
 
-    // And now, building and attaching the Skip button.
+    // And now, building and attaching the cross button.
     static protected void setButtonCloseIntent(Context context, RemoteViews smallNotificationView, @IdRes int buttonId) {
-        Intent buttonSkipIntent = new Intent(context, CloseMusicReceiver.class);
-        buttonSkipIntent.putExtra(CloseMusicReceiver.ACTION, CloseMusicReceiver.ACTION_TYPE_CLOSE);
-        PendingIntent buttonSkipPendingIntent = PendingIntent.getBroadcast(context, 0, buttonSkipIntent, 0);
+        Intent buttonCrossIntent = new Intent(context, CloseMusicReceiver.class);
+        buttonCrossIntent.putExtra(CloseMusicReceiver.ACTION, CloseMusicReceiver.ACTION_TYPE_CLOSE);
+        PendingIntent buttonSkipPendingIntent = PendingIntent.getBroadcast(context, 0, buttonCrossIntent, 0);
         smallNotificationView.setOnClickPendingIntent(buttonId, buttonSkipPendingIntent);
     }
 

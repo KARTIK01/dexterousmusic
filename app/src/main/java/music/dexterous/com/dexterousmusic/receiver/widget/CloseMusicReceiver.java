@@ -7,7 +7,7 @@ import android.content.Intent;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 
 /**
- * Called when user clicks the "skip" button on the on-going system Notification.
+ * Called when user clicks the "buttonCross" button on the on-going system Notification.
  */
 public class CloseMusicReceiver extends BroadcastReceiver {
 

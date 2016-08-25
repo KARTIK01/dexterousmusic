@@ -53,7 +53,6 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
                 }
                 switch (intent.getAction()) {
                     case INITIALIZE:
-                        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                         initMusicPlayer();
                         break;
                     case PLAY_MUSIC:
