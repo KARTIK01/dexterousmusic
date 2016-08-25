@@ -36,7 +36,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     /**
      * Dexterous Media Player - we control it in here.
      */
-    private MediaPlayer mDexterousMediaPlayer;
+    static public MediaPlayer mDexterousMediaPlayer;
 
     /**
      * Spawns an on-going notification with our current

@@ -2,19 +2,18 @@ package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
+import music.dexterous.com.dexterousmusic.customeviews.MusicControlBar;
 import music.dexterous.com.dexterousmusic.event.MusicPaused;
 import music.dexterous.com.dexterousmusic.event.MusicStop;
 import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
@@ -24,7 +23,6 @@ import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 public class NowPlayingFragment extends BaseFragment {
@@ -32,15 +30,13 @@ public class NowPlayingFragment extends BaseFragment {
 
     public static final String FRAGMENT_TAG = NowPlayingFragment.class.getSimpleName();
 
-    Handler updateHandler = new Handler();
-
     // Views for small bar
     private ImageView mNowPlayingImageView;
     private FontTextView mNowPlayingSongNameTextView;
     private ImageView mToggelButton;
 
 
-    private SeekBar forword_song_seekbar;
+    private MusicControlBar forword_song_seekbar;
     private FontTextView current_song_playing_time;
     private FontTextView current_song_duration;
 
@@ -76,7 +72,7 @@ public class NowPlayingFragment extends BaseFragment {
         song_album_tv = (FontTextView) view.findViewById(R.id.song_album);
 
 
-        forword_song_seekbar = (SeekBar) view.findViewById(R.id.forword_song_seekbar);
+        forword_song_seekbar = (MusicControlBar) view.findViewById(R.id.forword_song_seekbar);
         current_song_playing_time = (FontTextView) view.findViewById(R.id.current_song_playing_time);
         current_song_duration = (FontTextView) view.findViewById(R.id.current_song_duration);
 
@@ -94,7 +90,6 @@ public class NowPlayingFragment extends BaseFragment {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void setUpUI(PlayMusicEvent playMusicEvent) {
-        PrettyLogger.d(playMusicEvent.toString());
         //show image into imageView
         HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), mNowPlayingImageView, false);
         HomeActivtyBgImageHelper.setImage(playMusicEvent, getActivity(), album_art_image_view, false);
@@ -114,29 +109,6 @@ public class NowPlayingFragment extends BaseFragment {
 
         current_song_duration.setText(SongsDuration.getSongsDuration(playMusicEvent.music));
 
-//        updateHandler.postDelayed(new Runnable() {
-//
-//            public void run() {
-//                long currentDuration = mediaPlayer.getCurrentPosition();
-//                long elapsedDuration = mediaPlayer.getDuration() - currentDuration;
-//
-//                // Displaying current song progress
-//                // playing
-//                current_song_playing_time.setText("" + SongsDuration.songDurationToDisplay(currentDuration));
-//                // Displaying remaining time
-//                current_song_duration.setText("" + SongsDuration.songDurationToDisplay(elapsedDuration));
-//
-//                // Updating progress bar
-//                int progress = (int) (SongsDuration.getProgressPercentage(currentDuration,
-//                        elapsedDuration));
-//                // Log.d("Progress", ""+progress);
-//                forword_song_seekbar.setProgress(progress);
-//
-//                // Running this thread after 100
-//                // milliseconds
-//                updateHandler.postDelayed(this, 100);
-//            }
-//        }, 1000);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

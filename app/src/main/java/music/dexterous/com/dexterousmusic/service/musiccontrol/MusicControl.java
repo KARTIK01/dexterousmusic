@@ -7,7 +7,7 @@ public interface MusicControl {
 
     /**
      * Initializes the Android's internal MediaPlayer.
-     *
+     * <p>
      * called in {@link music.dexterous.com.dexterousmusic.GlobalApplication}
      */
     public void initMusicPlayer();

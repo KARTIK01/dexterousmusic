@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         tools:text="14:15" />
 
-    <SeekBar
+    <music.dexterous.com.dexterousmusic.customeviews.MusicControlBar
         android:id="@+id/forword_song_seekbar"
         android:layout_width="@dimen/widget_element_size"
         android:layout_height="@dimen/widget_element_size"
