@@ -19,6 +19,7 @@ import music.dexterous.com.dexterousmusic.event.MusicStop;
 import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
+import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
@@ -100,7 +101,6 @@ public class NowPlayingFragment extends BaseFragment {
         song_name_tv.setText(playMusicEvent.music.getSONG_TITLE());
         song_artist_tv.setText(playMusicEvent.music.getSONG_ARTIST());
         song_album_tv.setText(playMusicEvent.music.getSONG_ALBUM());
-        current_song_duration.setText(playMusicEvent.music.getSONG_DURATION());
 
         //show image for play or pause
         if (playMusicEvent.music.getSONG_IS_PLAYING() != null && playMusicEvent.music.getSONG_IS_PLAYING()) {
@@ -108,6 +108,8 @@ public class NowPlayingFragment extends BaseFragment {
         } else {
             new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
         }
+
+        current_song_duration.setText(SongsDuration.getSongsDuration(playMusicEvent.music));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
