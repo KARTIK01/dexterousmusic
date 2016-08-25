@@ -2,6 +2,7 @@ package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,8 @@ public class NowPlayingFragment extends BaseFragment {
 
 
     public static final String FRAGMENT_TAG = NowPlayingFragment.class.getSimpleName();
+
+    Handler updateHandler = new Handler();
 
     // Views for small bar
     private ImageView mNowPlayingImageView;
@@ -110,6 +113,30 @@ public class NowPlayingFragment extends BaseFragment {
         }
 
         current_song_duration.setText(SongsDuration.getSongsDuration(playMusicEvent.music));
+
+//        updateHandler.postDelayed(new Runnable() {
+//
+//            public void run() {
+//                long currentDuration = mediaPlayer.getCurrentPosition();
+//                long elapsedDuration = mediaPlayer.getDuration() - currentDuration;
+//
+//                // Displaying current song progress
+//                // playing
+//                current_song_playing_time.setText("" + SongsDuration.songDurationToDisplay(currentDuration));
+//                // Displaying remaining time
+//                current_song_duration.setText("" + SongsDuration.songDurationToDisplay(elapsedDuration));
+//
+//                // Updating progress bar
+//                int progress = (int) (SongsDuration.getProgressPercentage(currentDuration,
+//                        elapsedDuration));
+//                // Log.d("Progress", ""+progress);
+//                forword_song_seekbar.setProgress(progress);
+//
+//                // Running this thread after 100
+//                // milliseconds
+//                updateHandler.postDelayed(this, 100);
+//            }
+//        }, 1000);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -138,4 +165,5 @@ public class NowPlayingFragment extends BaseFragment {
         super.onPause();
         unregister();
     }
+
 }

@@ -2,7 +2,6 @@ package music.dexterous.com.dexterousmusic.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -53,7 +52,6 @@ public class DexterousPlayMusicService extends AbstractMusicControlService {
                 }
                 switch (intent.getAction()) {
                     case INITIALIZE:
-                        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                         initMusicPlayer();
                         break;
                     case PLAY_MUSIC:

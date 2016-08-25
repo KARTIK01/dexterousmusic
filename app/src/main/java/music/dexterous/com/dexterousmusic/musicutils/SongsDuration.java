@@ -25,10 +25,31 @@ public class SongsDuration {
     }
 
     //TODO setup also to hours and days
-    private static String songDurationToDisplay(long time) {
+    public static String songDurationToDisplay(long time) {
         long min = TimeUnit.MILLISECONDS.toMinutes(time);
         long sec = TimeUnit.MILLISECONDS.toSeconds(time) - TimeUnit.MINUTES.toSeconds(min);
         return String.format("%d.%02d", min
                 , sec);
     }
+
+
+    /**
+     * Function to get Progress percentage
+     *
+     * @param currentDuration
+     * @param totalDuration
+     */
+    static public int getProgressPercentage(long currentDuration, long totalDuration) {
+        Double percentage = (double) 0;
+
+        long currentSeconds = (int) (currentDuration / 1000);
+        long totalSeconds = (int) (totalDuration / 1000);
+
+        // calculating percentage
+        percentage = (((double) currentSeconds) / totalSeconds) * 100;
+
+        // return percentage
+        return percentage.intValue();
+    }
+
 }

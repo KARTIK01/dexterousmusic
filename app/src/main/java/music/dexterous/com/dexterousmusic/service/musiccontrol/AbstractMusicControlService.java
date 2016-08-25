@@ -82,6 +82,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     @Override
     public void initMusicPlayer() {
+
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+
         if (mDexterousMediaPlayer == null) {
             mDexterousMediaPlayer = new DexterousMediaPlayer();
         }
