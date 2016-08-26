@@ -15,16 +15,7 @@ import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
 
-/**
- * Specific way to stick an on-going message on the system
- * with the current song I'm playing.
- * <p>
- * This is a rather complicated set of functions because
- * it interacts with a great deal of the Android API.
- * Read with care. Modify with care
- * <p>
- * Thanks:
- */
+
 public class NotificationMusic extends NotificationSimple {
 
     /**
@@ -121,7 +112,7 @@ public class NotificationMusic extends NotificationSimple {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            RemoteViews bigContentView = new RemoteViews(Package.getPackageName(context), R.layout.notification_big);
+            RemoteViews bigContentView = new RemoteViews(Package.getPackageName(context), R.layout.notification);
 //            bigContentView.setTextViewText(R.id.bigNotificationTitle, title);
 
             //set resources to view from small notification
