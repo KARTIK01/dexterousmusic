@@ -104,7 +104,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
      */
     @Override
     public void playMusic() {
-
+        if (mDexterousMediaPlayer == null) {
+            initMusicPlayer();
+        }
         mDexterousMediaPlayer.reset();
 
         // Get the song ID from the list, extract the ID and

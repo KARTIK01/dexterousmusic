@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.widget.SeekBar;
 
 import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
 
 /**
@@ -51,6 +52,8 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
+        if (mediaPlayer == null)
+            mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
         mHandler.removeCallbacks(mUpdateTimeTask);
         int totalDuration = mediaPlayer.getDuration();
         int currentPosition = progressToTimer(seekBar.getProgress(), totalDuration);
@@ -82,6 +85,9 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
     Runnable mUpdateTimeTask = new Runnable() {
 
         public void run() {
+            if (mediaPlayer == null)
+                mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
+
             long currentDuration = mediaPlayer.getCurrentPosition();
             long elapsedDuration = mediaPlayer.getDuration() - currentDuration;
 
