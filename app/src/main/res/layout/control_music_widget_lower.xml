@@ -11,7 +11,7 @@
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
-        tools:src="@drawable/ic_repeat_vector" />
+        tools:src="@drawable/ic_repeat_all_vector" />
 
     <ImageView
         android:id="@+id/widget_vol_down"
@@ -38,6 +38,6 @@
         android:layout_width="@dimen/widget_element_size_extra_small"
         android:layout_height="@dimen/widget_element_size_extra_small"
         android:layout_weight="1"
-        android:src="@drawable/ic_shuffle_vector" />
+        android:src="@drawable/ic_shuffle_on_vector" />
 
 </LinearLayout>

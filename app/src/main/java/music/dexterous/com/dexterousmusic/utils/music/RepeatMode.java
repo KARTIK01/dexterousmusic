@@ -12,7 +12,7 @@ import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
  */
 public class RepeatMode {
 
-    public static void changeRepeteMode() {
+    public static void changeRepeteMode(Context context, ImageView imageView) {
         int mode = UsersAppPreference.getMusicRepeatModeSetting();
         if (mode == UsersAppPreference.RepeatModeContants.REPEAT_CURRENT_SONG)
             UsersAppPreference.setMusicRepeatModeSetting(UsersAppPreference.RepeatModeContants.REPEAT_CURRENT_PLAYLIST);
@@ -20,15 +20,17 @@ public class RepeatMode {
             UsersAppPreference.setMusicRepeatModeSetting(UsersAppPreference.RepeatModeContants.REPEAT_MODE_OFF);
         else
             UsersAppPreference.setMusicRepeatModeSetting(UsersAppPreference.RepeatModeContants.REPEAT_CURRENT_SONG);
+
+        showRepeatIcon(context, imageView);
     }
 
     public static void showRepeatIcon(Context context, ImageView widget_shuffel) {
         int mode = UsersAppPreference.getMusicRepeatModeSetting();
         if (mode == UsersAppPreference.RepeatModeContants.REPEAT_CURRENT_SONG)
-            new ImageLoader(context).loadImage(context, UiUtils.ic_shuffle_one_vector, widget_shuffel);
+            new ImageLoader(context).loadImage(context, UiUtils.ic_repeat_one_vector, widget_shuffel);
         else if (mode == UsersAppPreference.RepeatModeContants.REPEAT_CURRENT_PLAYLIST)
-            new ImageLoader(context).loadImage(context, UiUtils.ic_repeat_vector, widget_shuffel);
+            new ImageLoader(context).loadImage(context, UiUtils.ic_repeat_all_vector, widget_shuffel);
         else
-            new ImageLoader(context).loadImage(context, UiUtils.ic_not_shuffle_vector, widget_shuffel);
+            new ImageLoader(context).loadImage(context, UiUtils.ic_repeat_off_vector, widget_shuffel);
     }
 }

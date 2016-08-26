@@ -32,12 +32,16 @@ public class UiUtils {
     static public Drawable ic_play_vector;
     static public Drawable ic_skip_next_vector;
     static public Drawable ic_skip_previous_vector;
+
+    static public Drawable ic_shuffle_off_vector;
+    static public Drawable ic_shuffle_on_vector;
     static public Drawable ic_shuffle_white_vector;
-    static public Drawable ic_shuffle_vector;
+
+    static public Drawable ic_repeat_all_vector;
+    static public Drawable ic_repeat_off_vector;
+    static public Drawable ic_repeat_one_vector;
+
     static public Drawable ic_dots_vertical_vector;
-    static public Drawable ic_not_shuffle_vector;
-    static public Drawable ic_shuffle_one_vector;
-    static public Drawable ic_repeat_vector;
 
     /**
      * Screen dimensions in pixels
@@ -106,17 +110,24 @@ public class UiUtils {
     }
 
     static private void loadIcons(Context context) {
+
         ic_pause_vector = ContextCompat.getDrawable(context, R.drawable.ic_pause_vector);
         ic_play_vector = ContextCompat.getDrawable(context, R.drawable.ic_play_vector);
+
         ic_skip_next_vector = ContextCompat.getDrawable(context, R.drawable.ic_skip_next_vector);
         ic_skip_previous_vector = ContextCompat.getDrawable(context, R.drawable.ic_skip_previous_vector);
-        ic_shuffle_white_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_white_vector);
-        ic_shuffle_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_vector);
-        ic_not_shuffle_vector = ContextCompat.getDrawable(context, R.drawable.ic_not_shuffle_vector);
+
         ic_dots_vertical_vector = ContextCompat.getDrawable(context, R.drawable.ic_dots_vertical_vector);
-        ic_shuffle_one_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_one_vector);
-        ic_shuffle_one_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_one_vector);
-        ic_repeat_vector = ContextCompat.getDrawable(context, R.drawable.ic_repeat_vector);
+
+        //shuffle icons
+        ic_shuffle_off_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_off_vector);
+        ic_shuffle_on_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_on_vector);
+        ic_shuffle_white_vector = ContextCompat.getDrawable(context, R.drawable.ic_shuffle_white_vector);
+
+        //repeat icons
+        ic_repeat_all_vector = ContextCompat.getDrawable(context, R.drawable.ic_repeat_all_vector);
+        ic_repeat_one_vector = ContextCompat.getDrawable(context, R.drawable.ic_repeat_one_vector);
+        ic_repeat_off_vector = ContextCompat.getDrawable(context, R.drawable.ic_repeat_off_vector);
 
     }
 

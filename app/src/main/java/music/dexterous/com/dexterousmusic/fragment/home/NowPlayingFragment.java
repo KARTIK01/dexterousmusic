@@ -139,10 +139,15 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
                 getActivity().sendBroadcast(previosIntent);
                 break;
             case R.id.widget_repeate:
-                RepeatMode.changeRepeteMode();
+                RepeatMode.changeRepeteMode(getContext(), widget_repeate);
                 break;
             case R.id.widget_shuffel:
-                UsersAppPreference.setMusicShuffleMode(true);
+                UsersAppPreference.setMusicShuffleMode(!UsersAppPreference.isMusicShuffle());
+                if (UsersAppPreference.isMusicShuffle()) {
+                    new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_on_vector, widget_shuffel);
+                } else {
+                    new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_off_vector, widget_shuffel);
+                }
                 break;
             case R.id.widget_vol_inc:
 
@@ -179,9 +184,9 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         current_song_duration.setText(SongsDuration.getSongsDuration(playMusicEvent.music));
 
         if (UsersAppPreference.isMusicShuffle()) {
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_vector, widget_shuffel);
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_on_vector, widget_shuffel);
         } else {
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_not_shuffle_vector, widget_shuffel);
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_off_vector, widget_shuffel);
         }
 
         RepeatMode.showRepeatIcon(getActivity(), widget_repeate);
