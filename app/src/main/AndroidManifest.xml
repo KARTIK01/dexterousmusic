@@ -71,7 +71,7 @@
             </intent-filter>
         </service>
 
-        <!-- It will fire when headset inserted or removed from phone -->
+        <!-- It will fire when headset inserted or removed from phone  -->
         <receiver
             android:name=".receiver.HeadsetBroadcastReceiver"
             android:enabled="true"
