@@ -69,25 +69,20 @@ public class NowPlayingList {
     }
 
 
+    public int getCurrentSongPosition() {
+        return currentSongPosition;
+    }
+
     /**
      * Sets a specific song, already within internal Now Playing List.
      *
      * @param songIndex Index of the song inside the Now Playing List.
      */
-    public void setSong(int songIndex) {
+    public void setCurrentSongPosition(int songIndex) {
         if (songIndex < 0 || songIndex >= list.size())
-            currentSongPosition = 0;
+            this.currentSongPosition = 0;
         else
             currentSongPosition = songIndex;
-    }
-
-
-    public int getCurrentSongPosition() {
-        return currentSongPosition;
-    }
-
-    public void setCurrentSongPosition(int currentSongPosition) {
-        this.currentSongPosition = currentSongPosition;
         OtherPreference.setCurrentSongIndex(currentSongPosition);
     }
 

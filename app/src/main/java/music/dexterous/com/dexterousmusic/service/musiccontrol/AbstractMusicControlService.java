@@ -99,6 +99,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         initListener();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void playMusic() {
 
@@ -124,14 +127,17 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         } catch (IOException io) {
             PrettyLogger.e("IOException: couldn't change the song : " + io.getMessage(), io);
             destroySelf();
+            //TODO fix what to do next
         } catch (Exception e) {
             PrettyLogger.e("Error when changing the song :" + e.getMessage(), e);
             destroySelf();
+            //TODO fix what to do next
         }
 /********************************Mess Ends here please improve this, please *************************************/
 
         // Prepare the MusicPlayer asynchronously.
         // When finished, will call `onPrepare`
+        //TODO fix  IllegalStateException
         mDexterousMediaPlayer.prepareAsync();
 
 
