@@ -42,17 +42,9 @@ public class PlayMusicOnErrorListener implements DexterousMediaPlayer.OnErrorLis
 
     class PlayMusicOnError extends Exception {
 
-        private int what;
-        private int extra;
-
         PlayMusicOnError(int what, int extra) {
-            this.what = what;
-            this.extra = extra;
+            super("Error in onError PlayMusicOnErrorListener  what : " + what + " extra : " + extra);
         }
 
-        @Override
-        public String toString() {
-            return ("Error in onError PlayMusicOnErrorListener  what : " + what + " extra : " + extra);
-        }
     }
 }
