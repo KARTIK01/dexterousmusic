@@ -99,6 +99,19 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         initListener();
     }
 
+    private void initListener() {
+        // These are the events that will "wake us up"
+        if (mPlayMusicOnPreparedListener == null) {
+            mDexterousMediaPlayer.setOnPreparedListener(mPlayMusicOnPreparedListener = new PlayMusicOnPreparedListener(this, mDexterousMediaPlayer)); // player initialized
+        }
+        if (mPlayMusicOnCompletionListener == null) {
+            mDexterousMediaPlayer.setOnCompletionListener(mPlayMusicOnCompletionListener = new PlayMusicOnCompletionListener(this)); // song completed
+        }
+        if (mPlayMusicOnErrorListener == null) {
+            mDexterousMediaPlayer.setOnErrorListener(mPlayMusicOnErrorListener = new PlayMusicOnErrorListener());
+        }
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -111,7 +124,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
         // Get the song ID from the list, extract the ID and
         // get an URL based on it
-        nowPlayingList = NowPlayingList.getInstance();
+        if (nowPlayingList == null)
+            nowPlayingList = NowPlayingList.getInstance();
+
         int musicPosition = nowPlayingList.getCurrentSongPosition();
         Music musicToPlay = nowPlayingList.getSong(musicPosition);
         musicToPlay.setSONG_IS_PLAYING(true);
@@ -170,6 +185,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
             //TODO
         }
 
+        if (nowPlayingList == null)
+            nowPlayingList = NowPlayingList.getInstance();
+
         //TODO Updates Lock-Screen Widget
 
         int currentSongPosition = nowPlayingList.getCurrentSongPosition();
@@ -190,6 +208,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         if (isUserSkipped) {
             //TODO
         }
+
+        if (nowPlayingList == null)
+            nowPlayingList = NowPlayingList.getInstance();
 
         //TODO Updates Lock-Screen Widget
 
@@ -236,19 +257,6 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         GlobalApplication.getBus().post(new MusicStop());
     }
 
-
-    private void initListener() {
-        // These are the events that will "wake us up"
-        if (mPlayMusicOnPreparedListener == null) {
-            mDexterousMediaPlayer.setOnPreparedListener(mPlayMusicOnPreparedListener = new PlayMusicOnPreparedListener(this, mDexterousMediaPlayer)); // player initialized
-        }
-        if (mPlayMusicOnCompletionListener == null) {
-            mDexterousMediaPlayer.setOnCompletionListener(mPlayMusicOnCompletionListener = new PlayMusicOnCompletionListener(this)); // song completed
-        }
-        if (mPlayMusicOnErrorListener == null) {
-            mDexterousMediaPlayer.setOnErrorListener(mPlayMusicOnErrorListener = new PlayMusicOnErrorListener());
-        }
-    }
 
     @Override
     public void destroySelf() {
