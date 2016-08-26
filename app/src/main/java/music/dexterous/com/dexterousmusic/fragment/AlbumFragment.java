@@ -1,12 +1,9 @@
 package music.dexterous.com.dexterousmusic.fragment;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +15,12 @@ import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -92,7 +93,14 @@ public class AlbumFragment extends BaseFragment {
 
         String albumArtPath = albumModel.getAlbumArtPath();
 
-        total_songs_duration.setText(SongsDuration.getSongsDuration(albumModel.getMusicArrayList()));
+        //TODO get form bundle when it comes
+        Observable.fromCallable(() -> SongsDuration.getSongsDuration(albumModel.getMusicArrayList()))
+                .subscribeOn(Schedulers.from(TaskExecutor.threadPoolExecutor))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(duration -> {
+                    total_songs_duration.setText(duration);
+                });
+
         total_songs.setText("" + albumModel.getMusicArrayList().size());
         HomeActivtyBgImageHelper.setImage(getActivity(), albumArtPath, album_fragment_album_art, false);
 

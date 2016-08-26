@@ -80,7 +80,7 @@ public class TaskExecutor {
     /**
      * thread pool for executing tasks submitted
      */
-    private static final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_WORKER_POOL_SIZE,
+    public static final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_WORKER_POOL_SIZE,
             MAXIMUM_WORKER_POOL_SIZE, KEEP_ALIVE_WORKER, TimeUnit.SECONDS, sPoolWorkQueue, sThreadFactory);
 
     /**
