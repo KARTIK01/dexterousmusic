@@ -42,7 +42,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
      * Spawns an on-going notification_big with our current
      * playing song.
      */
-    private NotificationMusic notification = null;
+    static public NotificationMusic notification = null;
 
     private NowPlayingList nowPlayingList;
 

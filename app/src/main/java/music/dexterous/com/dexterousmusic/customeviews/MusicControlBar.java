@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.widget.SeekBar;
 
 import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
 
@@ -61,6 +62,7 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
 
         // update timer progress again
         updateProgressBar();
+        updateNotification();
     }
 
     /**
@@ -129,5 +131,11 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
         return currentDuration * 1000;
     }
 
+
+    private void updateNotification() {
+        NotificationMusic notificationMusic = AbstractMusicControlService.notification;
+        notificationMusic. setUpSuscription(AbstractMusicControlService.mDexterousMediaPlayer.getCurrentPosition() / 1000,
+                AbstractMusicControlService.mDexterousMediaPlayer.getDuration() / 1000);
+    }
 
 }

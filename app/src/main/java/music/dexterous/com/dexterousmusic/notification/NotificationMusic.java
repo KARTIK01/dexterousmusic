@@ -157,12 +157,12 @@ public class NotificationMusic extends NotificationSimple {
         setUpSuscription(0, Integer.parseInt(music.getSONG_DURATION()) / 1000);
     }
 
-    private void setUpSuscription(int intialValue, int songDuration) {
+    public void setUpSuscription(int intialValue, int songDuration) {
 
         int START_DELAY = 0;
         int INTERVEL_GAP = 1;
 
-        if (intialValue == 0 && subscription != null && !subscription.isUnsubscribed()) {
+        if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
         subscription =
@@ -175,12 +175,12 @@ public class NotificationMusic extends NotificationSimple {
     }
 
     /**
-     * call this method when you want to update progress bar with count
+     * call this method when you want to update progress bar with currentSongDuration
      *
-     * @param count
+     * @param currentSongDuration
      */
-    public void updateProgress(long count, int songDuration) {
-        bigNotificationView.setProgressBar(R.id.status_progress, songDuration, (int) count, false);
+    public void updateProgress(long currentSongDuration, int songDuration) {
+        bigNotificationView.setProgressBar(R.id.status_progress, songDuration, (int) currentSongDuration, false);
         notificationBuilder.setContent(smallNotificationView);
         notificationBuilder.setCustomBigContentView(bigNotificationView);
 
