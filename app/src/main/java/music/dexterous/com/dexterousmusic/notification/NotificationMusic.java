@@ -6,14 +6,19 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
+import android.os.SystemClock;
 import android.support.v7.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
+import music.dexterous.com.dexterousmusic.utils.logger.LogUtils;
+import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 
 public class NotificationMusic extends NotificationSimple {
@@ -22,6 +27,12 @@ public class NotificationMusic extends NotificationSimple {
      * Reference to the context that notified.
      */
     Context context = null;
+    /**
+     * Notification progress bar
+     */
+    private final int STATUS_BAR_NOTIFICATION = 1;
+    private boolean mRun;
+
 
     /**
      * Used to create and update the same notification.
@@ -121,7 +132,7 @@ public class NotificationMusic extends NotificationSimple {
             Helper.setButtonSkipNextIntent(context, bigContentView, R.id.notification_button_skip_next_big);
             Helper.setButtonCloseIntent(context, bigContentView, R.id.notification_button_close_big);
             Helper.setButtonSkipPreviousIntent(context, bigContentView, R.id.notificaion_button_skip_previous);
-
+            bigContentView.setProgressBar(R.id.status_progress, 100, 0, false);
             notification.bigContentView = bigContentView;
             notification.priority = Notification.PRIORITY_MAX;
         }
@@ -137,6 +148,18 @@ public class NotificationMusic extends NotificationSimple {
         // Sets the notification to run on the foreground.
         // (why not the former commented line?)
         service.startForeground(NOTIFICATION_ID, notification);
+
+        TaskExecutor.getInstance().executeTask(() -> {
+            int mCount = 0;
+            mRun = true;
+            while (mRun) {
+                ++mCount;
+                SystemClock.sleep(1000);
+                notification.contentView.setProgressBar(R.id.status_progress, 100, mCount % 100, false);
+                notificationManager.notify(NOTIFICATION_ID, notification);
+            }
+
+        });
     }
 
 
