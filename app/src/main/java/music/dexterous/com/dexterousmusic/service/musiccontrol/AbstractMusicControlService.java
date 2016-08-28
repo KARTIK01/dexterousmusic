@@ -52,7 +52,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
      * <p>
      * Use it to get info from the current song.
      */
-    Music currentMusic;
+    private Music currentMusic;
 
 
     /**
@@ -65,12 +65,12 @@ public abstract class AbstractMusicControlService extends Service implements Mus
      * 2. Guaranteeing the lock screen widget will
      * be controlled by us;
      */
-    protected AudioManager audioManager;
+    private AudioManager audioManager;
 
 
-    PlayMusicOnPreparedListener mPlayMusicOnPreparedListener;
-    PlayMusicOnCompletionListener mPlayMusicOnCompletionListener;
-    PlayMusicOnErrorListener mPlayMusicOnErrorListener;
+    private PlayMusicOnPreparedListener mPlayMusicOnPreparedListener;
+    private PlayMusicOnCompletionListener mPlayMusicOnCompletionListener;
+    private PlayMusicOnErrorListener mPlayMusicOnErrorListener;
 
     public AbstractMusicControlService() {
         super();
@@ -155,8 +155,11 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         // Prepare the MusicPlayer asynchronously.
         // When finished, will call `onPrepare`
         //TODO fix  IllegalStateException
-        mDexterousMediaPlayer.prepareAsync();
-
+        try {
+            mDexterousMediaPlayer.prepareAsync();
+        } catch (Exception e) {
+            PrettyLogger.e("" + e.getMessage(), e);
+        }
 
 //        serviceState = ServiceState.Preparing;
 //
@@ -226,17 +229,22 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     @Override
     public void pauseMusic() {
-        mDexterousMediaPlayer.pause();
+        if (mDexterousMediaPlayer == null) {
+            initMusicPlayer();
+        }
 
-        currentMusic.setSONG_IS_PLAYING(false);
+        if (mDexterousMediaPlayer.isPlaying()) {
+            mDexterousMediaPlayer.pause();
 
-        if (notification != null)
-            notification.notifyPaused(true);
-        //TODO Updates Lock-Screen Widget
+            currentMusic.setSONG_IS_PLAYING(false);
+
+            if (notification != null)
+                notification.notifyPaused(true);
+            //TODO Updates Lock-Screen Widget
 
 
-        GlobalApplication.getBus().post(new MusicPaused());
-
+            GlobalApplication.getBus().post(new MusicPaused());
+        }
     }
 
     @Override
@@ -284,6 +292,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
     @Override
     public void unPauseMusic() {
+        if (mDexterousMediaPlayer == null) {
+            initMusicPlayer();
+        }
         /**
          * restart music when it is paused only else play song which is stored in preference
          * {@link music.dexterous.com.dexterousmusic.utils.preference.OtherPreference.KEY_CURRENT_SONG_INDEX}

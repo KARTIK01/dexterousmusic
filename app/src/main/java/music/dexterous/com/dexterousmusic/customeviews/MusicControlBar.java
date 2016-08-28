@@ -68,6 +68,8 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
             // update timer progress again
             updateProgressBar();
             updateNotification();
+        } else {
+//TODO play music
         }
     }
 
