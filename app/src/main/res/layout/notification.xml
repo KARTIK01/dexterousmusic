@@ -47,7 +47,7 @@
                 android:singleLine="true"
                 android:text="placeholder text"
                 android:textColor="@android:color/secondary_text_dark_nodisable"
-                android:textSize="18sp" />
+                android:textSize="@dimen/font_medium" />
 
             <TextView
                 android:id="@+id/notification_text_title"
@@ -61,7 +61,7 @@
                 android:singleLine="true"
                 android:text="placeholder text"
                 android:textColor="@android:color/secondary_text_dark_nodisable"
-                android:textSize="15sp"
+                android:textSize="@dimen/font_small"
                 android:textStyle="bold" />
 
             <LinearLayout
