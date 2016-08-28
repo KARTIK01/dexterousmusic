@@ -29,6 +29,7 @@ import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 public class HomeFragment extends BaseFragment {
 
     private static final int NUM_PAGES_CACHED = 3;
+    private static final String INTITIAL_PAGE = "initial_page";
 
     /**
      * tag for fragment transactions
@@ -54,10 +55,18 @@ public class HomeFragment extends BaseFragment {
      */
     private final ABaseTransformer PAGE_TRANSFORMER = new DepthPageTransformer();
 
+    /**
+     * initial page index which you want to show
+     * -1 is index for bottom fragment or SlidingUp pannel
+     *
+     */
+    private int initialPage;
 
-    public static HomeFragment newInstance() {
+
+    public static HomeFragment newInstance(int initialPage) {
         HomeFragment fragment = new HomeFragment();
         Bundle info = new Bundle();
+        info.putInt(INTITIAL_PAGE, initialPage);
         fragment.setArguments(info);
         return fragment;
     }
@@ -69,6 +78,9 @@ public class HomeFragment extends BaseFragment {
 
         }
         mIsComingFromOnCreate = true;
+
+        Bundle bundle = getArguments();
+        initialPage = bundle.getInt(INTITIAL_PAGE , 0);
     }
 
     @Nullable
@@ -95,6 +107,7 @@ public class HomeFragment extends BaseFragment {
         mHomeViewPager.setAdapter(mMusicViewPageAdapter);
         mHomeViewPager.setOffscreenPageLimit(NUM_PAGES_CACHED);
         mHomeViewPager.setPageTransformer(true, PAGE_TRANSFORMER);
+        mHomeViewPager.setCurrentItem(initialPage);
         mHomeViewPager.addOnPageChangeListener(new OnHomeViewPagerChangeListener(shuffelAllSongs));
         mHomeTabHeader.setupWithViewPager(mHomeViewPager);
 

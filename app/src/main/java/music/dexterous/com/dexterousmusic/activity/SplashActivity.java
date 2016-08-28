@@ -25,6 +25,8 @@ import permissions.dispatcher.RuntimePermissions;
 
 public class SplashActivity extends AppCompatActivity {
 
+    public static final int INTIAL_PAGE_INDEX = 2 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
 
         } else {
             //TODO user Rx java when data of songs and album is ready then open it
-            Intent homeActivityIntent = HomeActivity.getIntent(SplashActivity.this);
+            Intent homeActivityIntent = HomeActivity.getIntent(SplashActivity.this, INTIAL_PAGE_INDEX);
             startActivity(homeActivityIntent);
             finish();
         }

@@ -58,9 +58,14 @@ public class HomeRootFragment extends BaseFragment {
     private final ABaseTransformer PAGE_TRANSFORMER = new DepthPageTransformer();
 
 
-    public static HomeRootFragment newInstance() {
+    private static final String INTITIAL_PAGE = "initial_page";
+    private int initialPage = 0;
+
+
+    public static HomeRootFragment newInstance(int initialPage) {
         HomeRootFragment fragment = new HomeRootFragment();
         Bundle info = new Bundle();
+        info.putInt(INTITIAL_PAGE, initialPage);
         fragment.setArguments(info);
         return fragment;
     }
@@ -72,6 +77,8 @@ public class HomeRootFragment extends BaseFragment {
 
         }
         mIsComingFromOnCreate = true;
+
+        initialPage = getArguments().getInt(INTITIAL_PAGE , 0);
     }
 
     @Nullable
@@ -92,7 +99,7 @@ public class HomeRootFragment extends BaseFragment {
         mFragmentManager = getActivity().getSupportFragmentManager();
 
         mNowPlayingFragment = NowPlayingFragment.newInstance();
-        homeFragment = HomeFragment.newInstance();
+        homeFragment = HomeFragment.newInstance(initialPage);
 
 
         if (mBottomPanelSlideListener == null)

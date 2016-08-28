@@ -72,7 +72,7 @@ MainActivity extends BaseActivity {
     @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showNeverAskForStorage() {
         ShortToast.displayToast(this, getResources().getString(R.string.permission_storage_never_ask), Toast.LENGTH_SHORT);
-        startActivity(HomeActivity.getIntent(this));
+        startActivity(HomeActivity.getIntent(this , 0));
 
     }
 

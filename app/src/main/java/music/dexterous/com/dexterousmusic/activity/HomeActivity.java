@@ -37,8 +37,13 @@ public class HomeActivity extends BaseActivity {
 
     ImageView imageView;
 
-    public static Intent getIntent(Context context) {
+    private static final String INTITIAL_PAGE = "initial_page";
+    private int initialPage = 0;
+
+
+    public static Intent getIntent(Context context , int initialPage) {
         Intent intent = new Intent(context, HomeActivity.class);
+        intent.putExtra(INTITIAL_PAGE , initialPage);
         return intent;
     }
 
@@ -53,14 +58,19 @@ public class HomeActivity extends BaseActivity {
         imageView = (ImageView) findViewById(R.id.home_activity_backgroud_image_view);
         mFragmentManager = getSupportFragmentManager();
 
-        mHomeRootFragment = HomeRootFragment.newInstance();
+
+        Bundle info = getIntent().getExtras();
+        if (info != null) {
+            initialPage = info.getInt(INTITIAL_PAGE, 0);
+        }
+
+        mHomeRootFragment = HomeRootFragment.newInstance(initialPage);
 
 
         DataManager.getInstance(this).loadHomeActivitySpecificData();
         UiUtils.loadHomeActivitySpecificData(HomeActivity.this);
 
         openHomeFragment();
-
         safeRegister();
     }
 
