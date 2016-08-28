@@ -92,7 +92,7 @@ public class NotificationMusic extends NotificationSimple {
         //set resources to view from small notification
         Helper.setSmallNotificationView(smallNotificationView, music);
         Helper.setSmallButtonPlayIntent(context, smallNotificationView);
-        Helper.setButtonSkipIntent(context, smallNotificationView, R.id.notification_button_skip_small);
+        Helper.setButtonSkipNextIntent(context, smallNotificationView, R.id.notification_button_skip_small);
         Helper.setButtonCloseIntent(context, smallNotificationView, R.id.notification_button_close_small);
 
 
@@ -106,7 +106,7 @@ public class NotificationMusic extends NotificationSimple {
                 .setOngoing(true)
                 .setContentTitle(music.getSONG_TITLE())
                 .setContentText(music.getSONG_ARTIST())
-                .setContent(smallNotificationView);
+                .setContent(smallNotificationView)/*.setProgress(100, 0, false)*/;
 
         Notification notification = notificationBuilder.build();
 
@@ -118,8 +118,9 @@ public class NotificationMusic extends NotificationSimple {
             //set resources to view from small notification
             Helper.setBigNotificationView(bigContentView, music);
             Helper.setBigButtonPlayIntent(context, bigContentView);
-            Helper.setButtonSkipIntent(context, bigContentView, R.id.notification_button_skip_big);
+            Helper.setButtonSkipNextIntent(context, bigContentView, R.id.notification_button_skip_next_big);
             Helper.setButtonCloseIntent(context, bigContentView, R.id.notification_button_close_big);
+            Helper.setButtonSkipPreviousIntent(context, bigContentView, R.id.notificaion_button_skip_previous);
 
             notification.bigContentView = bigContentView;
             notification.priority = Notification.PRIORITY_MAX;

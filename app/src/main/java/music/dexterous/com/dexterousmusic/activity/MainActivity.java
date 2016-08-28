@@ -22,7 +22,8 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class MainActivity extends BaseActivity {
+public class
+MainActivity extends BaseActivity {
     protected Button scan;
 
     @Override
@@ -32,9 +33,8 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         scan = (Button) findViewById(R.id.give_permission);
-        scan.setOnClickListener(view ->{
+        scan.setOnClickListener(view -> {
             MainActivityPermissionsDispatcher.showStoragePermissionWithCheck(this);
-            startActivity(HomeActivity.getIntent(this));
         });
     }
 
@@ -56,7 +56,10 @@ public class MainActivity extends BaseActivity {
     void showRationaleForStorage(PermissionRequest request) {
         new AlertDialog.Builder(this)
                 .setMessage(R.string.permission_storage_rationale)
-                .setPositiveButton(R.string.button_allow, (dialog, button) -> request.proceed())
+                .setPositiveButton(R.string.button_allow, (dialog, button) ->
+                {
+                    request.proceed();
+                })
                 .setNegativeButton(R.string.button_deny, (dialog, button) -> request.cancel())
                 .show();
     }
@@ -69,6 +72,8 @@ public class MainActivity extends BaseActivity {
     @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showNeverAskForStorage() {
         ShortToast.displayToast(this, getResources().getString(R.string.permission_storage_never_ask), Toast.LENGTH_SHORT);
+        startActivity(HomeActivity.getIntent(this));
+
     }
 
     @Override

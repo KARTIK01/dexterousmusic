@@ -14,7 +14,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="10dp"
-        android:src="@drawable/test" />
+        android:src="@drawable/ic_placeholder_dark" />
 
     <LinearLayout
         android:layout_width="180dp"
@@ -52,25 +52,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/previous" />
+            <ImageView
+                android:id="@+id/notificaion_button_skip_previous"
+                android:layout_width="@dimen/notification_icon_dimen_medium"
+                android:layout_height="@dimen/notification_icon_dimen_medium"
+                android:src="@drawable/ic_skip_previous_vector" />
 
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/notification_button_play_big"
+                android:layout_width="@dimen/notification_icon_dimen_medium"
+                android:layout_height="@dimen/notification_icon_dimen_medium"
+                android:src="@drawable/ic_pause_vector" />
 
-                android:src="@drawable/pause" />
-
-            <ImageButton
-                android:id="@+id/notification_button_skip_big"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-
-                android:src="@drawable/next_click" />
+            <ImageView
+                android:id="@+id/notification_button_skip_next_big"
+                android:layout_width="@dimen/notification_icon_dimen_medium"
+                android:layout_height="@dimen/notification_icon_dimen_medium"
+                android:src="@drawable/ic_skip_next_vector" />
 
 
         </LinearLayout>
@@ -86,8 +85,8 @@
 
         <ImageView
             android:id="@+id/notification_button_close_big"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/notification_icon_dimen_small"
+            android:layout_height="@dimen/notification_icon_dimen_small"
             android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
     </LinearLayout>
