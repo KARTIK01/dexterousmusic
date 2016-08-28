@@ -330,6 +330,9 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     }
 
     protected boolean isPlaying() {
-        return mDexterousMediaPlayer.isPlaying();
+        if (mDexterousMediaPlayer != null)
+            return mDexterousMediaPlayer.isPlaying();
+        else
+             return false;
     }
 }

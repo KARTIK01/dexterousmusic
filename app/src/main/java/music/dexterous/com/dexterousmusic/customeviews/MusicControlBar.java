@@ -91,15 +91,15 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
     public void updateProgress() {
         if (mediaPlayer == null)
             mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
+        if (mediaPlayer.isPlaying()) {
+            long totalDuration = mediaPlayer.getDuration();
+            long currentDuration = mediaPlayer.getCurrentPosition();
 
-        long totalDuration = mediaPlayer.getDuration();
-        long currentDuration = mediaPlayer.getCurrentPosition();
-
-        // Updating progress bar
-        int progress = (int) (getProgressPercentage(currentDuration, totalDuration));
-        //Log.d("Progress", ""+progress);
-        setProgress(progress);
-
+            // Updating progress bar
+            int progress = (int) (getProgressPercentage(currentDuration, totalDuration));
+            //Log.d("Progress", ""+progress);
+            setProgress(progress);
+        }
     }
 
 
