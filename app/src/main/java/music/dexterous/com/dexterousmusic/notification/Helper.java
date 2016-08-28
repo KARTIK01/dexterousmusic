@@ -22,7 +22,7 @@ public class Helper {
     // (ignoring the defaults on the XML)
     static protected void setSmallNotificationView(RemoteViews smallNotificationView, Music music) {
         smallNotificationView.setImageViewResource(R.id.notification_button_play_small, R.drawable.ic_pause_vector);
-        smallNotificationView.setImageViewResource(R.id.notification_button_skip_small, R.drawable.ic_skip_next_vector);
+        smallNotificationView.setImageViewResource(R.id.notification_button_skip_next_small, R.drawable.ic_skip_next_vector);
         smallNotificationView.setTextViewText(R.id.notification_text_title, music.getSONG_TITLE());
         smallNotificationView.setTextViewText(R.id.notification_text_artist, music.getSONG_ARTIST());
     }
