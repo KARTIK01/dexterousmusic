@@ -11,11 +11,16 @@ import android.os.SystemClock;
 import android.support.v7.app.NotificationCompat;
 import android.widget.RemoteViews;
 
+import java.util.concurrent.TimeUnit;
+
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
+import rx.Observable;
+import rx.Observer;
+import rx.Subscription;
 
 
 public class NotificationMusic extends NotificationSimple {
@@ -28,7 +33,6 @@ public class NotificationMusic extends NotificationSimple {
      * Notification progress bar
      */
     private final int STATUS_BAR_NOTIFICATION = 1;
-    private boolean mRun;
 
 
     /**
@@ -54,6 +58,8 @@ public class NotificationMusic extends NotificationSimple {
      * Reference to the service we're attached to.
      */
     private Service service;
+    private Subscription subscription;
+
 
     /**
      * Sends a system notification_big with a Music's information.
@@ -147,26 +153,28 @@ public class NotificationMusic extends NotificationSimple {
         // (why not the former commented line?)
         service.startForeground(NOTIFICATION_ID, notification);
 
-        TaskExecutor.getInstance().executeTask(() -> {
-            int mCount = 0;
-            mRun = true;
-            while (mRun) {
-                ++mCount;
-                SystemClock.sleep(1000);
-                updateProgress(mCount % 100);
-            }
-
-        });
+        setUpSuscription(0 , Integer.parseInt(music.getSONG_DURATION()));
     }
 
+    private void setUpSuscription(int intialValue, int songDuration) {
+
+        int START_DELAY = 0;
+        int INTERVEL_GAP = 1;
+
+        subscription =
+                Observable
+                        .interval(START_DELAY, INTERVEL_GAP, TimeUnit.SECONDS)
+                        .subscribe(aLong ->
+                                updateProgress(aLong, songDuration));
+    }
 
     /**
      * call this method when you want to update progress bar with count
      *
      * @param count
      */
-    public void updateProgress(int count) {
-        bigNotificationView.setProgressBar(R.id.status_progress, 100, count % 100, false);
+    public void updateProgress(long count, int songDuration) {
+        bigNotificationView.setProgressBar(R.id.status_progress, songDuration, (int)count * 1000, false);
         notificationBuilder.setContent(smallNotificationView);
         notificationBuilder.setCustomBigContentView(bigNotificationView);
 
@@ -177,9 +185,11 @@ public class NotificationMusic extends NotificationSimple {
      * Updates the Notification icon if the music is paused.
      */
     public void notifyPaused(boolean isPaused) {
-        mRun = !isPaused;
+        if (isPaused)
+            subscription.unsubscribe();
+//        else
+//            setUpSuscription(0);
 
-        //TODO big notification_big gone when this funcation calls
         if ((smallNotificationView == null) || (notificationBuilder == null))
             return;
 
