@@ -195,10 +195,10 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         if (DexterousPlayMusicService.mDexterousMediaPlayer != null &&
                 DexterousPlayMusicService.mDexterousMediaPlayer.isPlaying()) {
             musicControlBar.setProgress(DexterousPlayMusicService.mDexterousMediaPlayer.getCurrentPosition());
-//            musicControlBar.setMax(DexterousPlayMusicService.mDexterousMediaPlayer.getDuration());
             musicControlBar.setMax(100);
             musicControlBar.updateProgressBar();
         }
+
     }
 
 
