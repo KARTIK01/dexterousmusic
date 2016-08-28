@@ -2,23 +2,26 @@ package music.dexterous.com.dexterousmusic.customeviews;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 
-import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import java.sql.Time;
+import java.util.concurrent.TimeUnit;
+
 import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
+import rx.Observable;
+import rx.Subscription;
 
 /**
  * Created by naren on 25/8/16.
  */
 public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeListener {
 
-    MediaPlayer mediaPlayer;
+    Subscription subscription;
 
-    Handler mHandler = new Handler();
+    MediaPlayer mediaPlayer;
 
     public MusicControlBar(Context context) {
         super(context);
@@ -47,13 +50,13 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // remove message Handler from updating progress bar
-        mHandler.removeCallbacks(mUpdateTimeTask);
+        safeUnSubscription();
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        mHandler.removeCallbacks(mUpdateTimeTask);
+        safeUnSubscription();
+
         int totalDuration = mediaPlayer.getDuration();
         int currentPosition = progressToTimer(seekBar.getProgress(), totalDuration);
 
@@ -69,32 +72,31 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
      * Update timer on seekbar
      */
     public void updateProgressBar() {
-        mHandler.postDelayed(mUpdateTimeTask, 100);
+
+        int START_DELAY = 0;
+        int INTERVEL_GAP = 100;
+
+        safeUnSubscription();
+        subscription = Observable.interval(START_DELAY, INTERVEL_GAP, TimeUnit.MILLISECONDS)
+                .subscribe(aLong -> {
+                    updateProgress();
+                });
     }
 
-    Runnable mUpdateTimeTask = new Runnable() {
+    public void updateProgress() {
+        if (mediaPlayer == null)
+            mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
 
-        public void run() {
-            if (mediaPlayer == null)
-                mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
+        long totalDuration = mediaPlayer.getDuration();
+        long currentDuration = mediaPlayer.getCurrentPosition();
 
-            long totalDuration = mediaPlayer.getDuration();
-            long currentDuration = mediaPlayer.getCurrentPosition();
+        // Updating progress bar
+        int progress = (int) (getProgressPercentage(currentDuration, totalDuration));
+        //Log.d("Progress", ""+progress);
+        setProgress(progress);
 
-            // Displaying Total Duration time
-//            songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
-//            // Displaying time completed playing
-//            songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+    }
 
-            // Updating progress bar
-            int progress = (int) (getProgressPercentage(currentDuration, totalDuration));
-            //Log.d("Progress", ""+progress);
-            setProgress(progress);
-
-            // Running this thread after 100 milliseconds
-            mHandler.postDelayed(this, 100);
-        }
-    };
 
     /**
      * Function to get Progress percentage
@@ -139,6 +141,12 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
         NotificationMusic notificationMusic = AbstractMusicControlService.notification;
         notificationMusic.setUpSuscription(AbstractMusicControlService.mDexterousMediaPlayer.getCurrentPosition() / 1000,
                 AbstractMusicControlService.mDexterousMediaPlayer.getDuration() / 1000);
+    }
+
+    private void safeUnSubscription() {
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
     }
 
 }
