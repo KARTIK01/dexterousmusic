@@ -12,7 +12,7 @@ public class Constants {
 
 
     /**
-     * Variable used as notification id
+     * Variable used as notification_big id
      * It should be used when @FOREGROUND_NOTIFICATION is not in use
      */
     public final static int AUTO_NOTIFICATION_PUSH = 1;

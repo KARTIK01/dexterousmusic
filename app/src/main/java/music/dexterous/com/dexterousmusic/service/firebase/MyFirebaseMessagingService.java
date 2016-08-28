@@ -19,7 +19,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         PrettyLogger.d("From: " + remoteMessage.getFrom());
         PrettyLogger.d("Notification Message Body: " + remoteMessage.getNotification().getBody());
 
-        //Calling method to generate notification
+        //Calling method to generate notification_big
         FireBaseNotificationUpdateApp.sendNotification(this, remoteMessage.getNotification().getBody());
     }
 

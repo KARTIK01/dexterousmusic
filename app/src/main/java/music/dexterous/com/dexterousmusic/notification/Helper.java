@@ -37,7 +37,7 @@ public class Helper {
         smallNotificationView.setTextViewText(R.id.notification_text_artist, music.getSONG_ARTIST());
     }
 
-    // On the notification we have two buttons - Play and Skip
+    // On the notification_big we have two buttons - Play and Skip
     // Here we make sure the class `NotificationButtonHandler`
     // gets called when user selects one of those.
     //
@@ -49,7 +49,7 @@ public class Helper {
         smallNotificationView.setOnClickPendingIntent(R.id.notification_button_play_small, buttonPlayPendingIntent);
     }
 
-    // On the notification we have two buttons - Play and Skip
+    // On the notification_big we have two buttons - Play and Skip
     // Here we make sure the class `NotificationButtonHandler`
     // gets called when user selects one of those.
     //

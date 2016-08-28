@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.SystemClock;
 import android.support.v7.app.NotificationCompat;
@@ -17,8 +16,6 @@ import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
-import music.dexterous.com.dexterousmusic.utils.logger.LogUtils;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 
 public class NotificationMusic extends NotificationSimple {
@@ -35,17 +32,17 @@ public class NotificationMusic extends NotificationSimple {
 
 
     /**
-     * Used to create and update the same notification.
+     * Used to create and update the same notification_big.
      */
     NotificationCompat.Builder notificationBuilder = null;
 
     /**
-     * Custom appearance of the notification, also updated.
+     * Custom appearance of the notification_big, also updated.
      */
     RemoteViews smallNotificationView = null;
 
     /**
-     * Used to actually broadcast the notification.
+     * Used to actually broadcast the notification_big.
      * Depends on the Activity that originally called
      * the nofitication.
      */
@@ -58,9 +55,9 @@ public class NotificationMusic extends NotificationSimple {
     private Service service;
 
     /**
-     * Sends a system notification with a Music's information.
+     * Sends a system notification_big with a Music's information.
      * <p>
-     * If the user clicks the notification, will be redirected
+     * If the user clicks the notification_big, will be redirected
      * to the "Now Playing" Activity.
      * <p>
      * If the user clicks on any of the buttons inside it,
@@ -73,7 +70,7 @@ public class NotificationMusic extends NotificationSimple {
      *                run on the background.
      * @param music   Song which we'll display information.
      * @note By calling this function multiple times, it'll
-     * update the old notification.
+     * update the old notification_big.
      */
     public void notifySong(Context context, Service service, Music music) {
 
@@ -88,7 +85,7 @@ public class NotificationMusic extends NotificationSimple {
         //TODO put extra for now playing
         notifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        //TODO build TaskStackBuilder for notification
+        //TODO build TaskStackBuilder for notification_big
         // Letting the Intent be executed later by other application.
         PendingIntent pendingIntent = PendingIntent.getActivity
                 (context,
@@ -97,10 +94,10 @@ public class NotificationMusic extends NotificationSimple {
                         PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-        // Setting our custom appearance for the notification
+        // Setting our custom appearance for the notification_big
         smallNotificationView = new RemoteViews(Package.getPackageName(service), R.layout.notification_small);
 
-        //set resources to view from small notification
+        //set resources to view from small notification_big
         Helper.setSmallNotificationView(smallNotificationView, music);
         Helper.setSmallButtonPlayIntent(context, smallNotificationView);
         Helper.setButtonSkipNextIntent(context, smallNotificationView, R.id.notification_button_skip_small);
@@ -123,10 +120,10 @@ public class NotificationMusic extends NotificationSimple {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            RemoteViews bigContentView = new RemoteViews(Package.getPackageName(context), R.layout.notification);
+            RemoteViews bigContentView = new RemoteViews(Package.getPackageName(context), R.layout.notification_big);
 //            bigContentView.setTextViewText(R.id.bigNotificationTitle, title);
 
-            //set resources to view from small notification
+            //set resources to view from small notification_big
             Helper.setBigNotificationView(bigContentView, music);
             Helper.setBigButtonPlayIntent(context, bigContentView);
             Helper.setButtonSkipNextIntent(context, bigContentView, R.id.notification_button_skip_next_big);
@@ -143,9 +140,9 @@ public class NotificationMusic extends NotificationSimple {
         }
 
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-//		notificationManager.notify(NOTIFICATION_ID, notification);
+//		notificationManager.notify(NOTIFICATION_ID, notification_big);
 
-        // Sets the notification to run on the foreground.
+        // Sets the notification_big to run on the foreground.
         // (why not the former commented line?)
         service.startForeground(NOTIFICATION_ID, notification);
 
@@ -167,8 +164,8 @@ public class NotificationMusic extends NotificationSimple {
      * Updates the Notification icon if the music is paused.
      */
     public void notifyPaused(boolean isPaused) {
-        //TODO big notification gone when this funcation calls
-        //TODO if paused make a cross symol to cancle notification
+        //TODO big notification_big gone when this funcation calls
+        //TODO if paused make a cross symol to cancle notification_big
         if ((smallNotificationView == null) || (notificationBuilder == null))
             return;
 
@@ -183,13 +180,13 @@ public class NotificationMusic extends NotificationSimple {
 
 //		notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
 
-        // Sets the notification to run on the foreground.
+        // Sets the notification_big to run on the foreground.
         // (why not the former commented line?)
         service.startForeground(NOTIFICATION_ID, notificationBuilder.build());
     }
 
     /**
-     * Cancels this notification.
+     * Cancels this notification_big.
      */
     public void cancel() {
         service.stopForeground(true);

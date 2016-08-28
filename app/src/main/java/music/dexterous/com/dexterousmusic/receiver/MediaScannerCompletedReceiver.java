@@ -24,7 +24,7 @@ public class MediaScannerCompletedReceiver extends BroadcastReceiver {
                     //TODO check if music is adedd in app then show notificaton for more songs added in app
                     // it can be done in 2 ways
                     //1 . check uri returned in abpve url
-                    //2. check out database state then show notification
+                    //2. check out database state then show notification_big
 
 
                     //TODO check if we has permission for access

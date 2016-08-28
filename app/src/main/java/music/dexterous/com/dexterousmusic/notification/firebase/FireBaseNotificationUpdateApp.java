@@ -20,7 +20,7 @@ public class FireBaseNotificationUpdateApp extends FireBaseNotification {
     private static final int NOTIFICATION_ID = 123;
 
 
-    //This method is push notification for app update
+    //This method is push notification_big for app update
     static public void sendNotification(Context context, String messageBody) {
         Intent intent = DeepLinkingActivity.getIntent(context, DeepLinkingActivity.ACTION_OPEN_PLAY_STORE);
 

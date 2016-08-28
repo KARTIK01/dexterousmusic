@@ -11,7 +11,7 @@ public class DexterousMediaPlayer extends MediaPlayer {
     public void start() throws IllegalStateException {
         super.start();
 
-        // If the user clicks on the notification, let's spawn the
+        // If the user clicks on the notification_big, let's spawn the
         // Now Playing screen.
 //        notifyCurrentSong();
     }

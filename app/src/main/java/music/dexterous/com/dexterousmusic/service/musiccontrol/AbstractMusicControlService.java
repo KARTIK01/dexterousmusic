@@ -39,7 +39,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     static public MediaPlayer mDexterousMediaPlayer;
 
     /**
-     * Spawns an on-going notification with our current
+     * Spawns an on-going notification_big with our current
      * playing song.
      */
     private NotificationMusic notification = null;
@@ -266,7 +266,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
 
     /**
-     * Displays a notification on the status bar with the
+     * Displays a notification_big on the status bar with the
      * current song and some nice buttons.
      */
     @Override
@@ -293,7 +293,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
             currentMusic.setSONG_IS_PLAYING(true);
 
-            //show on notification
+            //show on notification_big
             if (notification != null)
                 notification.notifyPaused(false);
 

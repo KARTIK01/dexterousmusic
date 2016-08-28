@@ -13,7 +13,7 @@ import music.dexterous.com.dexterousmusic.R;
 
 /**
  * Sticks a message outside of the application UI, both
- * on the "notification area" and the "notification drawer".
+ * on the "notification_big area" and the "notification_big drawer".
  * <p>
  * Simple class that wraps the Android API.
  * <p>
@@ -42,11 +42,11 @@ public class NotificationSimple {
     }
 
     /**
-     * Sends a quick text notification.
+     * Sends a quick text notification_big.
      *
-     * @param title Title of the notification.
-     * @param text  Text of the notification.
-     * @note This notification can be dismissed by the user and
+     * @param title Title of the notification_big.
+     * @param text  Text of the notification_big.
+     * @note This notification_big can be dismissed by the user and
      * if clicked won't do nothing.
      */
     public void notify(Context c, String title, String text) {
@@ -62,13 +62,13 @@ public class NotificationSimple {
     }
 
     /**
-     * Sends a quick text re-directable notification.
+     * Sends a quick text re-directable notification_big.
      *
      * @param toWhere Class of the Activity it'll redirect when
      *                it is clicked.
-     * @param title   Title of the notification.
-     * @param text    Text of the notification.
-     * @note This notification can be dismissed by the user and
+     * @param title   Title of the notification_big.
+     * @param text    Text of the notification_big.
+     * @note This notification_big can be dismissed by the user and
      * will be redirected to specified Activity if clicked.
      */
     public void notify(Context context, Class<?> toWhere, String title, String text) {
