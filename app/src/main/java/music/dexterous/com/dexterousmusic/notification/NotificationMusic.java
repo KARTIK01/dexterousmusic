@@ -7,12 +7,14 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.SystemClock;
 import android.support.v7.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
 
 
@@ -145,19 +147,31 @@ public class NotificationMusic extends NotificationSimple {
         // (why not the former commented line?)
         service.startForeground(NOTIFICATION_ID, notification);
 
-//        TaskExecutor.getInstance().executeTask(() -> {
-//            int mCount = 0;
-//            mRun = true;
-//            while (mRun) {
-//                ++mCount;
-//                SystemClock.sleep(1000);
-//                notification.contentView.setProgressBar(R.id.status_progress, 100, mCount % 100, false);
-//                notificationManager.notify(NOTIFICATION_ID, notification);
-//            }
-//
-//        });
+        TaskExecutor.getInstance().executeTask(() -> {
+            int mCount = 0;
+            mRun = true;
+            while (mRun) {
+                ++mCount;
+                SystemClock.sleep(1000);
+                updateProgress(mCount % 100);
+            }
+
+        });
     }
 
+
+    /**
+     * call this method when you want to update progress bar with count
+     *
+     * @param count
+     */
+    public void updateProgress(int count) {
+        bigNotificationView.setProgressBar(R.id.status_progress, 100, count % 100, false);
+        notificationBuilder.setContent(smallNotificationView);
+        notificationBuilder.setCustomBigContentView(bigNotificationView);
+
+        service.startForeground(NOTIFICATION_ID, notificationBuilder.build());
+    }
 
     /**
      * Updates the Notification icon if the music is paused.
