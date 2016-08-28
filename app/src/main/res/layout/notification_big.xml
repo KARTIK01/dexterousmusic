@@ -5,14 +5,14 @@
     android:orientation="vertical">
 
     <ProgressBar
-        android:progressDrawable="@drawable/progress_drawable"
         android:id="@+id/status_progress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="3dp"
         android:layout_alignParentTop="true"
         android:indeterminate="false"
-        android:indeterminateOnly="false" />
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/progress_drawable" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/notification"

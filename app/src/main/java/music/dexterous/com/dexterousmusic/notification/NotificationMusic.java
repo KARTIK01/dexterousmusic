@@ -177,6 +177,8 @@ public class NotificationMusic extends NotificationSimple {
      * Updates the Notification icon if the music is paused.
      */
     public void notifyPaused(boolean isPaused) {
+        mRun = !isPaused;
+
         //TODO big notification_big gone when this funcation calls
         if ((smallNotificationView == null) || (notificationBuilder == null))
             return;
