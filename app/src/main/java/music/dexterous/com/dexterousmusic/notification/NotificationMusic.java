@@ -110,6 +110,7 @@ public class NotificationMusic extends NotificationSimple {
         Helper.setSmallButtonPlayIntent(context, smallNotificationView);
         Helper.setButtonSkipNextIntent(context, smallNotificationView, R.id.notification_button_skip_next_small);
         Helper.setButtonCloseIntent(context, smallNotificationView, R.id.notification_button_close_small);
+        Helper.setAlbumImage(context, music, smallNotificationView);
 
 
         // Finally... Actually creating the Notification
@@ -137,6 +138,7 @@ public class NotificationMusic extends NotificationSimple {
             Helper.setButtonSkipNextIntent(context, bigNotificationView, R.id.notification_button_skip_next_big);
             Helper.setButtonCloseIntent(context, bigNotificationView, R.id.notification_button_close_big);
             Helper.setButtonSkipPreviousIntent(context, bigNotificationView, R.id.notificaion_button_skip_previous);
+            Helper.setAlbumImage(context, music, bigNotificationView);
             bigNotificationView.setProgressBar(R.id.status_progress, 100, 0, false);
             notification.bigContentView = bigNotificationView;
             notification.priority = Notification.PRIORITY_MAX;
