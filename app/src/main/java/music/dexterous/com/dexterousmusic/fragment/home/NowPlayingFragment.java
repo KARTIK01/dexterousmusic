@@ -14,6 +14,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 import music.dexterous.com.dexterousmusic.customeviews.MusicControlBar;
+import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout;
 import music.dexterous.com.dexterousmusic.event.MusicPaused;
 import music.dexterous.com.dexterousmusic.event.MusicStop;
 import music.dexterous.com.dexterousmusic.event.MusicUnPaused;

@@ -55,17 +55,20 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        safeUnSubscription();
+        if (DexterousPlayMusicService.mDexterousMediaPlayer != null &&
+                DexterousPlayMusicService.mDexterousMediaPlayer.isPlaying()) {
+            safeUnSubscription();
 
-        int totalDuration = mediaPlayer.getDuration();
-        int currentPosition = progressToTimer(seekBar.getProgress(), totalDuration);
+            int totalDuration = mediaPlayer.getDuration();
+            int currentPosition = progressToTimer(seekBar.getProgress(), totalDuration);
 
-        // forward or backward to certain seconds
-        mediaPlayer.seekTo(currentPosition);
+            // forward or backward to certain seconds
+            mediaPlayer.seekTo(currentPosition);
 
-        // update timer progress again
-        updateProgressBar();
-        updateNotification();
+            // update timer progress again
+            updateProgressBar();
+            updateNotification();
+        }
     }
 
     /**
@@ -139,8 +142,10 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
      */
     private void updateNotification() {
         NotificationMusic notificationMusic = AbstractMusicControlService.notification;
-        notificationMusic.setUpSuscription(AbstractMusicControlService.mDexterousMediaPlayer.getCurrentPosition() / 1000,
-                AbstractMusicControlService.mDexterousMediaPlayer.getDuration() / 1000);
+        MediaPlayer mDexterousMediaPlayer = AbstractMusicControlService.mDexterousMediaPlayer;
+        if (notificationMusic != null && mDexterousMediaPlayer != null)
+            notificationMusic.setUpSuscription(mDexterousMediaPlayer.getCurrentPosition() / 1000,
+                    mDexterousMediaPlayer.getDuration() / 1000);
     }
 
     private void safeUnSubscription() {

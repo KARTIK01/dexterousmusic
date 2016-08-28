@@ -78,7 +78,7 @@ public class HomeRootFragment extends BaseFragment {
         }
         mIsComingFromOnCreate = true;
 
-        initialPage = getArguments().getInt(INTITIAL_PAGE , 0);
+        initialPage = getArguments().getInt(INTITIAL_PAGE, 0);
     }
 
     @Nullable
@@ -101,6 +101,8 @@ public class HomeRootFragment extends BaseFragment {
         mNowPlayingFragment = NowPlayingFragment.newInstance();
         homeFragment = HomeFragment.newInstance(initialPage);
 
+        if (true)
+            mSlidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
 
         if (mBottomPanelSlideListener == null)
             mSlidingUpPanelLayout.addPanelSlideListener(mBottomPanelSlideListener = new BottomPanelSlideListener());
