@@ -6,17 +6,13 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
-import android.os.SystemClock;
 import android.support.v7.app.NotificationCompat;
-import android.widget.ProgressBar;
 import android.widget.RemoteViews;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
 
 
@@ -42,6 +38,7 @@ public class NotificationMusic extends NotificationSimple {
      * Custom appearance of the notification_big, also updated.
      */
     RemoteViews smallNotificationView = null;
+    RemoteViews bigNotificationView = null;
 
     /**
      * Used to actually broadcast the notification_big.
@@ -122,17 +119,17 @@ public class NotificationMusic extends NotificationSimple {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            RemoteViews bigContentView = new RemoteViews(Package.getPackageName(context), R.layout.notification_big);
-//            bigContentView.setTextViewText(R.id.bigNotificationTitle, title);
+            bigNotificationView = new RemoteViews(Package.getPackageName(context), R.layout.notification_big);
+//            bigNotificationView.setTextViewText(R.id.bigNotificationTitle, title);
 
             //set resources to view from small notification_big
-            Helper.setBigNotificationView(bigContentView, music);
-            Helper.setBigButtonPlayIntent(context, bigContentView);
-            Helper.setButtonSkipNextIntent(context, bigContentView, R.id.notification_button_skip_next_big);
-            Helper.setButtonCloseIntent(context, bigContentView, R.id.notification_button_close_big);
-            Helper.setButtonSkipPreviousIntent(context, bigContentView, R.id.notificaion_button_skip_previous);
-            bigContentView.setProgressBar(R.id.status_progress, 100, 0, false);
-            notification.bigContentView = bigContentView;
+            Helper.setBigNotificationView(bigNotificationView, music);
+            Helper.setBigButtonPlayIntent(context, bigNotificationView);
+            Helper.setButtonSkipNextIntent(context, bigNotificationView, R.id.notification_button_skip_next_big);
+            Helper.setButtonCloseIntent(context, bigNotificationView, R.id.notification_button_close_big);
+            Helper.setButtonSkipPreviousIntent(context, bigNotificationView, R.id.notificaion_button_skip_previous);
+            bigNotificationView.setProgressBar(R.id.status_progress, 100, 0, false);
+            notification.bigContentView = bigNotificationView;
             notification.priority = Notification.PRIORITY_MAX;
         }
 
@@ -148,17 +145,17 @@ public class NotificationMusic extends NotificationSimple {
         // (why not the former commented line?)
         service.startForeground(NOTIFICATION_ID, notification);
 
-        TaskExecutor.getInstance().executeTask(() -> {
-            int mCount = 0;
-            mRun = true;
-            while (mRun) {
-                ++mCount;
-                SystemClock.sleep(1000);
-                notification.contentView.setProgressBar(R.id.status_progress, 100, mCount % 100, false);
-                notificationManager.notify(NOTIFICATION_ID, notification);
-            }
-
-        });
+//        TaskExecutor.getInstance().executeTask(() -> {
+//            int mCount = 0;
+//            mRun = true;
+//            while (mRun) {
+//                ++mCount;
+//                SystemClock.sleep(1000);
+//                notification.contentView.setProgressBar(R.id.status_progress, 100, mCount % 100, false);
+//                notificationManager.notify(NOTIFICATION_ID, notification);
+//            }
+//
+//        });
     }
 
 
@@ -167,7 +164,6 @@ public class NotificationMusic extends NotificationSimple {
      */
     public void notifyPaused(boolean isPaused) {
         //TODO big notification_big gone when this funcation calls
-        //TODO if paused make a cross symol to cancle notification_big
         if ((smallNotificationView == null) || (notificationBuilder == null))
             return;
 
@@ -175,10 +171,11 @@ public class NotificationMusic extends NotificationSimple {
                 R.drawable.ic_play_vector :
                 R.drawable.ic_pause_vector);
 
-        smallNotificationView.setImageViewResource(R.id.notification_button_play_big, iconID);
+        bigNotificationView.setImageViewResource(R.id.notification_button_play_big, iconID);
         smallNotificationView.setImageViewResource(R.id.notification_button_play_small, iconID);
 
         notificationBuilder.setContent(smallNotificationView);
+        notificationBuilder.setCustomBigContentView(bigNotificationView);
 
 //		notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
 
