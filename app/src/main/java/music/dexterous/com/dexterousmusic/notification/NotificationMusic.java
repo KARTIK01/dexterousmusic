@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
 import rx.Observable;
@@ -153,7 +154,7 @@ public class NotificationMusic extends NotificationSimple {
         // (why not the former commented line?)
         service.startForeground(NOTIFICATION_ID, notification);
 
-        setUpSuscription(0 , Integer.parseInt(music.getSONG_DURATION()));
+        setUpSuscription(0, Integer.parseInt(music.getSONG_DURATION()) / 1000);
     }
 
     private void setUpSuscription(int intialValue, int songDuration) {
@@ -161,11 +162,16 @@ public class NotificationMusic extends NotificationSimple {
         int START_DELAY = 0;
         int INTERVEL_GAP = 1;
 
+        if (intialValue == 0 && subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
         subscription =
                 Observable
                         .interval(START_DELAY, INTERVEL_GAP, TimeUnit.SECONDS)
+                        .map(aLong1 -> aLong1 + intialValue)
                         .subscribe(aLong ->
                                 updateProgress(aLong, songDuration));
+
     }
 
     /**
@@ -174,7 +180,7 @@ public class NotificationMusic extends NotificationSimple {
      * @param count
      */
     public void updateProgress(long count, int songDuration) {
-        bigNotificationView.setProgressBar(R.id.status_progress, songDuration, (int)count * 1000, false);
+        bigNotificationView.setProgressBar(R.id.status_progress, songDuration, (int) count, false);
         notificationBuilder.setContent(smallNotificationView);
         notificationBuilder.setCustomBigContentView(bigNotificationView);
 
@@ -187,8 +193,10 @@ public class NotificationMusic extends NotificationSimple {
     public void notifyPaused(boolean isPaused) {
         if (isPaused)
             subscription.unsubscribe();
-//        else
-//            setUpSuscription(0);
+        else
+            setUpSuscription(
+                    AbstractMusicControlService.mDexterousMediaPlayer.getCurrentPosition() / 1000,
+                    AbstractMusicControlService.mDexterousMediaPlayer.getDuration() / 1000);
 
         if ((smallNotificationView == null) || (notificationBuilder == null))
             return;
