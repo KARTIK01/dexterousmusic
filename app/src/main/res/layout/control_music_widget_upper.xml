@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,19 +10,22 @@
         android:id="@+id/current_song_playing_time"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
         tools:text="14:15" />
 
     <music.dexterous.com.dexterousmusic.customeviews.MusicControlBar
         android:id="@+id/forword_song_seekbar"
-        android:layout_width="@dimen/widget_element_size"
-        android:layout_height="@dimen/widget_element_size"
-        android:layout_weight="7" />
+        android:layout_toRightOf="@+id/current_song_playing_time"
+        android:layout_toLeftOf="@+id/current_song_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
     <music.dexterous.com.dexterousmusic.customeviews.FontTextView
         android:id="@+id/current_song_duration"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         tools:text="14:15" />
 
-</LinearLayout>
+</RelativeLayout>
