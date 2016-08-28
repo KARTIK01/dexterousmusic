@@ -132,9 +132,12 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
     }
 
 
+    /**
+     * updates notification when user move forward seekbar
+     */
     private void updateNotification() {
         NotificationMusic notificationMusic = AbstractMusicControlService.notification;
-        notificationMusic. setUpSuscription(AbstractMusicControlService.mDexterousMediaPlayer.getCurrentPosition() / 1000,
+        notificationMusic.setUpSuscription(AbstractMusicControlService.mDexterousMediaPlayer.getCurrentPosition() / 1000,
                 AbstractMusicControlService.mDexterousMediaPlayer.getDuration() / 1000);
     }
 
