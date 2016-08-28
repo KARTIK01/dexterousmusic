@@ -3,11 +3,15 @@ package music.dexterous.com.dexterousmusic.notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.IdRes;
+import android.text.TextUtils;
 import android.widget.RemoteViews;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.models.AlbumModel;
 import music.dexterous.com.dexterousmusic.receiver.widget.CloseMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.NextMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.PreviousMusicReceiver;
@@ -35,6 +39,19 @@ public class Helper {
         smallNotificationView.setImageViewResource(R.id.notificaion_button_skip_previous, R.drawable.ic_skip_previous_vector);
         smallNotificationView.setTextViewText(R.id.notification_text_title, music.getSONG_TITLE());
         smallNotificationView.setTextViewText(R.id.notification_text_artist, music.getSONG_ARTIST());
+    }
+
+    public static void setAlbumImage(Context context, Music music, RemoteViews remoteViews) {
+        String albumArtPath = "";
+        String songAlbum = music.getSONG_ALBUM();
+        AlbumModel albumModel = DataManager.getInstance(context).getAlbumsMap().get(songAlbum);
+        if (albumModel != null) {
+            albumArtPath = albumModel.getAlbumArtPath();
+        }
+        if (!TextUtils.isEmpty(albumArtPath))
+            remoteViews.setImageViewUri(R.id.notification_icon, Uri.parse(albumArtPath));
+        else
+            remoteViews.setImageViewResource(R.id.notification_icon, R.drawable.bg_1);
     }
 
     // On the notification_big we have two buttons - Play and Skip
