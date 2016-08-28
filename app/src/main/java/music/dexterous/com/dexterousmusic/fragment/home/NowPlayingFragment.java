@@ -23,6 +23,7 @@ import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
 import music.dexterous.com.dexterousmusic.receiver.widget.NextMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.PreviousMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
+import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 import music.dexterous.com.dexterousmusic.utils.music.RepeatMode;
@@ -190,6 +191,14 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         }
 
         RepeatMode.showRepeatIcon(getActivity(), widget_repeate);
+
+        if (DexterousPlayMusicService.mDexterousMediaPlayer != null &&
+                DexterousPlayMusicService.mDexterousMediaPlayer.isPlaying()) {
+            musicControlBar.setProgress(DexterousPlayMusicService.mDexterousMediaPlayer.getCurrentPosition());
+//            musicControlBar.setMax(DexterousPlayMusicService.mDexterousMediaPlayer.getDuration());
+            musicControlBar.setMax(100);
+            musicControlBar.updateProgressBar();
+        }
     }
 
 

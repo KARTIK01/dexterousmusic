@@ -40,20 +40,18 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+    public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
         // remove message Handler from updating progress bar
         mHandler.removeCallbacks(mUpdateTimeTask);
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        if (mediaPlayer == null)
-            mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
         mHandler.removeCallbacks(mUpdateTimeTask);
         int totalDuration = mediaPlayer.getDuration();
         int currentPosition = progressToTimer(seekBar.getProgress(), totalDuration);
@@ -65,6 +63,63 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
         updateProgressBar();
     }
 
+    /**
+     * Update timer on seekbar
+     */
+    public void updateProgressBar() {
+        mHandler.postDelayed(mUpdateTimeTask, 100);
+    }
+
+    Runnable mUpdateTimeTask = new Runnable() {
+
+        public void run() {
+            if (mediaPlayer == null)
+                mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
+
+            long totalDuration = mediaPlayer.getDuration();
+            long currentDuration = mediaPlayer.getCurrentPosition();
+
+            // Displaying Total Duration time
+//            songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
+//            // Displaying time completed playing
+//            songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+
+            // Updating progress bar
+            int progress = (int) (getProgressPercentage(currentDuration, totalDuration));
+            //Log.d("Progress", ""+progress);
+            setProgress(progress);
+
+            // Running this thread after 100 milliseconds
+            mHandler.postDelayed(this, 100);
+        }
+    };
+
+    /**
+     * Function to get Progress percentage
+     *
+     * @param currentDuration
+     * @param totalDuration
+     */
+    public int getProgressPercentage(long currentDuration, long totalDuration) {
+        Double percentage = (double) 0;
+
+        long currentSeconds = (int) (currentDuration / 1000);
+        long totalSeconds = (int) (totalDuration / 1000);
+
+        // calculating percentage
+        percentage = (((double) currentSeconds) / totalSeconds) * 100;
+
+        // return percentage
+        return percentage.intValue();
+    }
+
+
+    /**
+     * Function to change progress to timer
+     *
+     * @param progress      -
+     * @param totalDuration returns current duration in milliseconds
+     */
     public int progressToTimer(int progress, int totalDuration) {
         int currentDuration = 0;
         totalDuration = (int) (totalDuration / 1000);
@@ -74,39 +129,5 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
         return currentDuration * 1000;
     }
 
-    /**
-     * Update timer on seekbar
-     */
-    public void updateProgressBar() {
-        mHandler.postDelayed(mUpdateTimeTask, 100);
-    }
-
-
-    Runnable mUpdateTimeTask = new Runnable() {
-
-        public void run() {
-            if (mediaPlayer == null)
-                mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
-
-            long currentDuration = mediaPlayer.getCurrentPosition();
-            long elapsedDuration = mediaPlayer.getDuration() - currentDuration;
-
-            // Displaying current song progress
-            // playing
-//            current_song_playing_time.setText("" + SongsDuration.songDurationToDisplay(currentDuration));
-//            // Displaying remaining time
-//            current_song_duration.setText("" + SongsDuration.songDurationToDisplay(elapsedDuration));
-//
-//            // Updating progress bar
-            int progress = (int) (SongsDuration.getProgressPercentage(currentDuration,
-                    elapsedDuration));
-//            // Log.d("Progress", ""+progress);
-            setProgress(progress);
-
-            // Running this thread after 100
-            // milliseconds
-            mHandler.postDelayed(this, 1000);
-        }
-    };
 
 }
