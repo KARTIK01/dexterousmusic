@@ -100,7 +100,7 @@ public class NotificationMusic extends NotificationSimple {
         //set resources to view from small notification_big
         Helper.setSmallNotificationView(smallNotificationView, music);
         Helper.setSmallButtonPlayIntent(context, smallNotificationView);
-        Helper.setButtonSkipNextIntent(context, smallNotificationView, R.id.notification_button_skip_small);
+        Helper.setButtonSkipNextIntent(context, smallNotificationView, R.id.notification_button_skip_next_small);
         Helper.setButtonCloseIntent(context, smallNotificationView, R.id.notification_button_close_small);
 
 
