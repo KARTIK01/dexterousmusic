@@ -25,11 +25,11 @@ public class UpgradeDpHelper extends DaoMaster.OpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 //        If old version is very old
-        if (newVersion - oldVersion > DIFF) {
-            DaoMaster.dropAllTables(db, true);
-            DaoMaster.createAllTables(db, false);
-            return;
-        }
+//        if (newVersion - oldVersion > DIFF) {
+//            DaoMaster.dropAllTables(db, true);
+//            DaoMaster.createAllTables(db, false);
+//            return;
+//        }
 
         switch (newVersion) {
             case 2:
