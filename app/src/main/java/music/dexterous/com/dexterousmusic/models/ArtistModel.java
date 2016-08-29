@@ -4,9 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import music.dexterous.com.dexterousmusic.database.Music;
 
@@ -40,21 +38,6 @@ public class ArtistModel implements Parcelable {
                 ", artistName='" + artistName + '\'' +
                 ", musicArrayList=" + musicArrayList +
                 '}';
-    }
-
-    static public List<ArtistModel> getModel(List<Music> allSongs, List<ArtistModel> allArtists) {
-        Map<String, ArtistModel> artistMap = new HashMap<>(allArtists.size());
-
-        for (int i = 0; i < allArtists.size(); i++) {
-            artistMap.put(allArtists.get(i).artistName, allArtists.get(i));
-        }
-
-        for (int i = 0; i < allSongs.size(); i++) {
-            ArtistModel artistModel = artistMap.get(allSongs.get(i).getSONG_ARTIST());
-            List<Music> musicList1 = artistModel.getMusicArrayList();
-            musicList1.add(allSongs.get(i));
-        }
-        return new ArrayList<ArtistModel>(artistMap.values());
     }
 
     @Override

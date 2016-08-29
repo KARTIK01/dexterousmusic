@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.viethoa.RecyclerViewFastScroller;
-
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
@@ -22,8 +20,7 @@ import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 /**
  * Created by Dubey's on 06-08-2016.
  */
-public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.ViewHolder>
-        implements RecyclerViewFastScroller.BubbleTextGetter {
+public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.ViewHolder> {
 
     /**
      * Used to load images asynchronously on a background thread.
@@ -72,18 +69,6 @@ public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.View
 
         holder.albumName.setText(mDataArray.get(position).getAlbumName());
 
-    }
-
-    @Override
-    public String getTextToShowInBubble(int pos) {
-        if (pos < 0 || pos >= mDataArray.size())
-            return null;
-
-        String name = mDataArray.get(pos).getAlbumName();
-        if (name == null || name.length() < 1)
-            return null;
-
-        return mDataArray.get(pos).getAlbumName().substring(0, 1);
     }
 
     public interface OnAlbumItemClickListener {

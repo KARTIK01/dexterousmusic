@@ -66,7 +66,7 @@ public class AllAlbumFragment extends BaseFragment {
             albums = DataManager.getInstance(getActivity()).getAlbums();
         }
         if (albumModels == null) {
-            albumModels = AlbumModel.getModel(allSongsList, albums);
+            albumModels = DataManager.getInstance(getContext()).getAlbums();
         }
     }
 
@@ -84,7 +84,7 @@ public class AllAlbumFragment extends BaseFragment {
                     .beginTransaction()
                     .replace(R.id.rootHomeContainerUpper, albumFragmentFragment, AlbumFragment.TAG)
                     .addToBackStack(null)
-                    .commitAllowingStateLoss();
+                    .commit();
 
         });
     }

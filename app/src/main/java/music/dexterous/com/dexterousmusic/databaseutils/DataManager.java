@@ -35,10 +35,15 @@ public class DataManager extends MediaDao {
     /**
      * list of all Albums present
      */
-
     private static final Map<String, AlbumModel> albumHash = new HashMap<>();
+
+
+    private static final Map<String, ArtistModel> artist = new HashMap<>();
+    /**
+     * All music in user phone
+     */
     private static final List<Music> allMusic = new ArrayList<>();
-    private static final List<ArtistModel> artist = new ArrayList<>();
+
 
     private DataManager(Context context) {
         mContext = context;
@@ -65,6 +70,14 @@ public class DataManager extends MediaDao {
         loadArtist();
     }
 
+    private void loadAllMusic() {
+        synchronized (allMusic) {
+            List<Music> returnMusicList = mMusicDao.queryBuilder().orderAsc(MusicDao.Properties.SONG_TITLE).list();
+            allMusic.clear();
+            allMusic.addAll(returnMusicList);
+        }
+    }
+
     private void loadAlbums() {
         synchronized (albumHash) {
             Map<String, AlbumModel> returnListOfAlbumNames = new HashMap<>();
@@ -79,34 +92,40 @@ public class DataManager extends MediaDao {
                     returnListOfAlbumNames.put(albumName, albumModel);
                 } while (cursor.moveToNext());
             }
+
+            for (int i = 0; i < allMusic.size(); i++) {
+                AlbumModel albumModel = returnListOfAlbumNames.get(allMusic.get(i).getSONG_ALBUM());
+                List<Music> albumMusicList = albumModel.getMusicArrayList();
+                albumMusicList.add(allMusic.get(i));
+            }
+
             albumHash.clear();
             albumHash.putAll(returnListOfAlbumNames);
         }
     }
 
-    private void loadAllMusic() {
-        synchronized (allMusic) {
-            List<Music> returnMusicList = mMusicDao.queryBuilder().orderAsc(MusicDao.Properties.SONG_TITLE).list();
-            allMusic.clear();
-            allMusic.addAll(returnMusicList);
-        }
-    }
-
     private void loadArtist() {
         synchronized (artist) {
-            List<ArtistModel> returnListOfAlbumNames = new ArrayList<>();
+            Map<String, ArtistModel> returnListOfArtistNames = new HashMap<>();
             Uri artistUri = android.provider.MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
             Cursor cursor = mContext.getContentResolver().query(artistUri, null, null, null, MediaStore.Audio.Artists.ARTIST);
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     ArtistModel albumModel = new ArtistModel();
-                    albumModel.setArtistName(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST)));
-//                    albumModel.setAlbumName(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.)));
-                    returnListOfAlbumNames.add(albumModel);
+                    String artistName = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST));
+                    albumModel.setArtistName(artistName);
+                    returnListOfArtistNames.put(artistName, albumModel);
                 } while (cursor.moveToNext());
             }
+
+            for (int i = 0; i < allMusic.size(); i++) {
+                ArtistModel artistModel = returnListOfArtistNames.get(allMusic.get(i).getSONG_ARTIST());
+                List<Music> musicList1 = artistModel.getMusicArrayList();
+                musicList1.add(allMusic.get(i));
+            }
+
             artist.clear();
-            artist.addAll(returnListOfAlbumNames);
+            artist.putAll(returnListOfArtistNames);
         }
     }
 
@@ -128,14 +147,17 @@ public class DataManager extends MediaDao {
         return new ArrayList<AlbumModel>(albumHash.values());
     }
 
+    public List<ArtistModel> getArtist() {
+        return new ArrayList<ArtistModel>(artist.values());
+    }
+
     public Map<String, AlbumModel> getAlbumsMap() {
         return albumHash;
     }
 
-    public List<ArtistModel> getArtist() {
+    public Map<String, ArtistModel> getArtistMap() {
         return artist;
     }
-
 
     public List<Music> getAllMusic() {
         return allMusic;

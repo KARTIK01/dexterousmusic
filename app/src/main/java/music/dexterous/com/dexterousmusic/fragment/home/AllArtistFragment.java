@@ -10,10 +10,7 @@ import android.view.ViewGroup;
 
 import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
 import com.turingtechnologies.materialscrollbar.DragScrollBar;
-import com.viethoa.RecyclerViewFastScroller;
-import com.viethoa.models.AlphabetItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
@@ -71,13 +68,13 @@ public class AllArtistFragment extends BaseFragment {
         List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
         List<ArtistModel> albums = DataManager.getInstance(getActivity()).getArtist();
 
-        artistModels = ArtistModel.getModel(allSongsList, albums);
+        artistModels = DataManager.getInstance(getContext()).getArtist();
 
     }
 
     protected void initialiseUI(View view) {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        dragScrollBar =  (DragScrollBar) view.findViewById(R.id.dragScrollBar);
+        dragScrollBar = (DragScrollBar) view.findViewById(R.id.dragScrollBar);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(allArtistAdapter = new AllArtistAdapter(artistModels, getActivity()));
