@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Honey on 8/11/2016.
@@ -44,22 +43,21 @@ public class AlbumModel implements Parcelable {
         this.musicArrayList = musicArrayList;
     }
 
-    static public List<AlbumModel> getModel(List<Music> musicList, List<AlbumModel> albumModelList) {
+    static public List<AlbumModel> getModel(List<Music> allMusics, List<AlbumModel> allAlbums) {
         //Map of albumName to albumModel
-        Map<String, AlbumModel> albumModelMap = new HashMap<>(albumModelList.size());
+        Map<String, AlbumModel> albumMap = new HashMap<>(allAlbums.size());
 
-        for (int i = 0; i < albumModelList.size(); i++) {
-            albumModelMap.put(albumModelList.get(i).albumName, albumModelList.get(i));
+        for (int i = 0; i < allAlbums.size(); i++) {
+            albumMap.put(allAlbums.get(i).albumName, allAlbums.get(i));
         }
 
-        for (int i = 0; i < musicList.size(); i++) {
-            AlbumModel albumModel = albumModelMap.get(musicList.get(i).getSONG_ALBUM());
-            List<Music> musicList1 = albumModel.getMusicArrayList();
-            musicList1.add(musicList.get(i));
-            albumModel.setMusicArrayList(musicList1);
+        for (int i = 0; i < allMusics.size(); i++) {
+            AlbumModel albumModel = albumMap.get(allMusics.get(i).getSONG_ALBUM());
+            List<Music> albumMusicList = albumModel.getMusicArrayList();
+            albumMusicList.add(allMusics.get(i));
         }
 
-        return new ArrayList<AlbumModel>(albumModelMap.values());
+        return new ArrayList<AlbumModel>(albumMap.values());
     }
 
     @Override

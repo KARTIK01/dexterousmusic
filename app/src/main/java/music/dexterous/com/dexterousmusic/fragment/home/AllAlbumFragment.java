@@ -8,10 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.viethoa.RecyclerViewFastScroller;
-import com.viethoa.models.AlphabetItem;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
@@ -29,6 +25,8 @@ import music.dexterous.com.dexterousmusic.models.AlbumModel;
 public class AllAlbumFragment extends BaseFragment {
 
     List<AlbumModel> albumModels;
+    List<Music> allSongsList;
+    List<AlbumModel> albums;
 
     RecyclerView mRecyclerView;
     AllAlbumsAdapter allAlbumsAdapter;
@@ -62,16 +60,18 @@ public class AllAlbumFragment extends BaseFragment {
     }
 
     protected void initialiseData() {
-
-        //All songs List
-        List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
-        List<AlbumModel> albums = DataManager.getInstance(getActivity()).getAlbums();
-
-        albumModels = AlbumModel.getModel(allSongsList, albums);
+        if (allSongsList == null)
+            allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
+        if (albums == null) {
+            albums = DataManager.getInstance(getActivity()).getAlbums();
+        }
+        if (albumModels == null) {
+            albumModels = AlbumModel.getModel(allSongsList, albums);
+        }
     }
 
     protected void initialiseUI(View view) {
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.all_album_fragment_recycler_view);
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setAdapter(allAlbumsAdapter = new AllAlbumsAdapter(albumModels, getActivity()));
