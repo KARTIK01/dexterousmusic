@@ -2,6 +2,8 @@ package music.dexterous.com.dexterousmusic.service.playmusiclistener;
 
 import android.media.MediaPlayer;
 
+import com.crashlytics.android.Crashlytics;
+
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
@@ -36,15 +38,25 @@ public class PlayMusicOnErrorListener implements DexterousMediaPlayer.OnErrorLis
     public boolean onError(MediaPlayer mediaPlayer, int what, int extra) {
         //Reset media player
         mediaPlayer.reset();
+        Crashlytics.setString("What Extra :", "" + what + ", " + extra);
         PrettyLogger.e("Error in onError PlayMusicOnErrorListener", new PlayMusicOnError(what, extra));
         return false;
     }
 
     class PlayMusicOnError extends Exception {
 
+        private int what;
+        private int extra;
+
         PlayMusicOnError(int what, int extra) {
             super("Error in onError PlayMusicOnErrorListener  what : " + what + " extra : " + extra);
+            this.what = what;
+            this.extra = extra;
         }
 
+        @Override
+        public String toString() {
+            return ("Error in onError PlayMusicOnErrorListener  what : " + what + " extra : " + extra);
+        }
     }
 }

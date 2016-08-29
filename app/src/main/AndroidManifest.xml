@@ -49,7 +49,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.HomeActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".activity.MainActivity" />
 
         <service

@@ -252,7 +252,10 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         if (mDexterousMediaPlayer == null)
             return;
 
-        DataManager.getInstance(this).getAllMusic().get(OtherPreference.getCurrentSongIndex()).setSONG_IS_PLAYING(false);
+        int songIndex = OtherPreference.getCurrentSongIndex();
+        if (DataManager.getInstance(this).getAllMusic().size() > songIndex)
+            DataManager.getInstance(this).getAllMusic().get(songIndex).setSONG_IS_PLAYING(false);
+
         mDexterousMediaPlayer.stop();
         currentMusic = null;
         //if app is not in foreground then only cancel all these as they are initilise in global application
@@ -333,6 +336,6 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         if (mDexterousMediaPlayer != null)
             return mDexterousMediaPlayer.isPlaying();
         else
-             return false;
+            return false;
     }
 }
