@@ -101,8 +101,8 @@ public class HomeRootFragment extends BaseFragment {
         mNowPlayingFragment = NowPlayingFragment.newInstance();
         homeFragment = HomeFragment.newInstance(initialPage);
 
-        if (true)
-            mSlidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+//        if (true)
+//            mSlidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
 
         if (mBottomPanelSlideListener == null)
             mSlidingUpPanelLayout.addPanelSlideListener(mBottomPanelSlideListener = new BottomPanelSlideListener());
