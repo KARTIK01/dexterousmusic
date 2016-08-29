@@ -59,6 +59,9 @@ ShortToast.displayToast(context, "Please Select At Least One song to play", 2000
 
 ### Don't not chnage any thing in database package directly###
 
+You can only change in Entity classes which is only one i.e 
+```Music in music.dexterous.com.dexterousmusic.database```
+
 Its auto generated code by GreenDao lib, for more reference go https://github.com/greenrobot/greenDAO
 
 
