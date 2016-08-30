@@ -24,8 +24,6 @@ import music.dexterous.com.dexterousmusic.models.AlbumModel;
 
 public class AllAlbumFragment extends BaseFragment {
 
-    List<AlbumModel> albumModels;
-    List<Music> allSongsList;
     List<AlbumModel> albums;
 
     RecyclerView mRecyclerView;
@@ -60,13 +58,9 @@ public class AllAlbumFragment extends BaseFragment {
     }
 
     protected void initialiseData() {
-        if (allSongsList == null)
-            allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
         if (albums == null) {
+            List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
             albums = DataManager.getInstance(getActivity()).getAlbums();
-        }
-        if (albumModels == null) {
-            albumModels = DataManager.getInstance(getContext()).getAlbums();
         }
     }
 
@@ -74,10 +68,10 @@ public class AllAlbumFragment extends BaseFragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.all_album_fragment_recycler_view);
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        mRecyclerView.setAdapter(allAlbumsAdapter = new AllAlbumsAdapter(albumModels, getActivity()));
+        mRecyclerView.setAdapter(allAlbumsAdapter = new AllAlbumsAdapter(albums, getActivity()));
 
         allAlbumsAdapter.setOnItemClickListener((view1, position) -> {
-            AlbumModel albumModel = albumModels.get(position);
+            AlbumModel albumModel = albums.get(position);
             AlbumFragment albumFragmentFragment = AlbumFragment.newInstance(albumModel);
             getActivity()
                     .getSupportFragmentManager()

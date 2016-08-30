@@ -63,10 +63,10 @@ public class HomeActivtyBgImageHelper {
             if (songCoverImage != null) {
                 //TODO make blur via glide and {@link BlurTransformation}
                 if (isBlur)
-                    new ImageLoader(context)
+                    new ImageLoader(context, R.drawable.bg_1)
                             .loadImage(context, BlurBuilder.blur(context, songCoverImage), imageView);
                 else
-                    new ImageLoader(context)
+                    new ImageLoader(context, R.drawable.bg_1)
                             .loadImage(context, songCoverImage, imageView);
                 return;
             }

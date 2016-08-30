@@ -15,6 +15,7 @@ import java.util.List;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
+import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 
 /**
@@ -47,8 +48,7 @@ public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.View
     @Override
     public AllAlbumsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout_albums, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
@@ -68,6 +68,8 @@ public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.View
 
 
         holder.albumName.setText(mDataArray.get(position).getAlbumName());
+
+        HomeActivtyBgImageHelper.setImage(context, albumArtPath, holder.mTextView, false);
 
     }
 
