@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         tools:context=".activity.SongListActivity">
 
-        <android.support.v7.widget.RecyclerView
+
+        <music.dexterous.com.dexterousmusic.customeviews.bounce.BounceBackRecyclerView
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

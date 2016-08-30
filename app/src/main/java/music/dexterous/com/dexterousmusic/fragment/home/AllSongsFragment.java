@@ -3,27 +3,22 @@ package music.dexterous.com.dexterousmusic.fragment.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
 import com.turingtechnologies.materialscrollbar.DragScrollBar;
-import com.viethoa.RecyclerViewFastScroller;
-import com.viethoa.models.AlphabetItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AllSongsAdapter;
+import music.dexterous.com.dexterousmusic.customeviews.bounce.BounceBackRecyclerView;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
-import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 /**
  * Created by Kartik on 8/9/2016.
@@ -34,7 +29,7 @@ public class AllSongsFragment extends BaseFragment {
     //All songs List
     List<Music> allSongsList;
 
-    RecyclerView mRecyclerView;
+    BounceBackRecyclerView mRecyclerView;
     DragScrollBar dragScrollBar;
     AllSongsAdapter recyclerViewAdapterAllSongs;
 
@@ -72,17 +67,14 @@ public class AllSongsFragment extends BaseFragment {
     }
 
     protected void initialiseUI(View view) {
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        mRecyclerView = (BounceBackRecyclerView) view.findViewById(R.id.my_recycler_view);
         dragScrollBar = (DragScrollBar) view.findViewById(R.id.dragScrollBar);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(recyclerViewAdapterAllSongs = new AllSongsAdapter(allSongsList));
 
         dragScrollBar.setRecyclerView(mRecyclerView);
         dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
-
-//        shuffle = (Button) view.findViewById(R.id.shuffle);
-//        shuffle.setOnClickListener(view2 -> ShuffleAllSongs.shuffleAllSongs(getActivity(), allSongsList));
 
         recyclerViewAdapterAllSongs.setOnItemClickListener((view1, position) -> {
             PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), allSongsList, position);
