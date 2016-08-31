@@ -4,15 +4,13 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
+import music.dexterous.com.dexterousmusic.customeviews.widget.ShortToast;
 import music.dexterous.com.dexterousmusic.service.ScanMusicService;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;

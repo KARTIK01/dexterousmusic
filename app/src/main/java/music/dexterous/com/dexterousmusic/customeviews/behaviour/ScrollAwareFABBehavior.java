@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.customeviews;
+package music.dexterous.com.dexterousmusic.customeviews.behaviour;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

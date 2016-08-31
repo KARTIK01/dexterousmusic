@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
+import music.dexterous.com.dexterousmusic.customeviews.widget.ShortToast;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;

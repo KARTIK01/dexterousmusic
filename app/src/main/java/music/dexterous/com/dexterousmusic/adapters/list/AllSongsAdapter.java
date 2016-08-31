@@ -13,7 +13,7 @@ import java.util.List;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllSongsViewHolder;
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.musicutils.HumanReadableTime;
 
 /**
  * Created by Dubey's on 06-08-2016.
@@ -45,7 +45,7 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
         holder.mSongName.setText(musics.get(position).getSONG_TITLE());
         holder.mSongAlbum.setText(musics.get(position).getSONG_ALBUM());
         holder.mSongArtist.setText(musics.get(position).getSONG_ARTIST());
-        holder.mSongDuration.setText(SongsDuration.getSongsDuration(musics.get(position)));
+        holder.mSongDuration.setText(HumanReadableTime.getSongsDuration(musics.get(position)));
 
     }
 

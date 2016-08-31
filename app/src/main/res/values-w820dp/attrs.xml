@@ -6,6 +6,11 @@
         <attr name="setBackground" format="boolean" />
     </declare-styleable>
 
+
+    <declare-styleable name="TimerText">
+        <attr name="type" format="string"/>
+    </declare-styleable>
+
     <!-- SlidingUpPanelLayout-->
     <declare-styleable name="SlidingUpPanelLayout">
         <attr name="umanoPanelHeight" format="dimension" />

@@ -8,7 +8,7 @@ import music.dexterous.com.dexterousmusic.database.Music;
 /**
  * Created by naren on 23/8/16.
  */
-public class SongsDuration {
+public class HumanReadableTime {
 
     //TODO call this on background thread
     public static String getSongsDuration(List<Music> musics) {

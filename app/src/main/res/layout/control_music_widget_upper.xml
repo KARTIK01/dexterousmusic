@@ -6,14 +6,14 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.TimerTextView
         android:id="@+id/current_song_playing_time"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         tools:text="14:15" />
 
-    <music.dexterous.com.dexterousmusic.customeviews.MusicControlBar
+    <music.dexterous.com.dexterousmusic.customeviews.widget.MusicControlSeekBar
         android:id="@+id/forword_song_seekbar"
         android:layout_toRightOf="@+id/current_song_playing_time"
         android:layout_toLeftOf="@+id/current_song_duration"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content" />
 
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/current_song_duration"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"

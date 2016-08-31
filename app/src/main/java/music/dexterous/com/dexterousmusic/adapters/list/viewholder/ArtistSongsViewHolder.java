@@ -8,9 +8,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.AlbumSongsAdapter;
 import music.dexterous.com.dexterousmusic.adapters.list.ArtistSongsAdapter;
-import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
+import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 public class ArtistSongsViewHolder extends RecyclerView.ViewHolder

@@ -17,14 +17,14 @@
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop" />
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/artist_fragment_total_songs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_large" />
 
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/artist_fragment_total_songs_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

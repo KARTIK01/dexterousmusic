@@ -1,11 +1,10 @@
-package music.dexterous.com.dexterousmusic.customeviews;
+package music.dexterous.com.dexterousmusic.customeviews.widget;
 
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
@@ -15,25 +14,25 @@ import rx.Observable;
 import rx.Subscription;
 
 /**
- * Created by naren on 25/8/16.
+ * Created by Kartik on 25/8/16.
  */
-public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeListener {
+public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarChangeListener {
 
     Subscription subscription;
 
     MediaPlayer mediaPlayer;
 
-    public MusicControlBar(Context context) {
+    public MusicControlSeekBar(Context context) {
         super(context);
         init(context);
     }
 
-    public MusicControlBar(Context context, AttributeSet attrs) {
+    public MusicControlSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public MusicControlBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MusicControlSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -88,7 +87,7 @@ public class MusicControlBar extends SeekBar implements SeekBar.OnSeekBarChangeL
                 });
     }
 
-    public void updateProgress() {
+    private void updateProgress() {
         if (mediaPlayer == null)
             mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
         if (mediaPlayer.isPlaying()) {

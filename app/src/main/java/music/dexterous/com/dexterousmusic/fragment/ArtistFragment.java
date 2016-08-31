@@ -11,10 +11,10 @@ import android.widget.ImageView;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AlbumSongsAdapter;
-import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
+import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
 import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
-import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.musicutils.HumanReadableTime;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
@@ -91,7 +91,7 @@ public class ArtistFragment extends BaseFragment {
         }
 
         //TODO get form bundle when it comes
-        Observable.fromCallable(() -> SongsDuration.getSongsDuration(artistModel.getMusicArrayList()))
+        Observable.fromCallable(() -> HumanReadableTime.getSongsDuration(artistModel.getMusicArrayList()))
                 .subscribeOn(Schedulers.from(TaskExecutor.threadPoolExecutor))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(duration -> {

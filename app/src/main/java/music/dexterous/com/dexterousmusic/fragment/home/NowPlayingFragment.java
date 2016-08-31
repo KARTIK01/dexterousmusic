@@ -12,15 +12,15 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
-import music.dexterous.com.dexterousmusic.customeviews.MusicControlBar;
-import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout;
+import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
+import music.dexterous.com.dexterousmusic.customeviews.widget.MusicControlSeekBar;
+import music.dexterous.com.dexterousmusic.customeviews.widget.TimerTextView;
 import music.dexterous.com.dexterousmusic.event.MusicPaused;
 import music.dexterous.com.dexterousmusic.event.MusicStop;
 import music.dexterous.com.dexterousmusic.event.MusicUnPaused;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.musicutils.SongsDuration;
+import music.dexterous.com.dexterousmusic.musicutils.HumanReadableTime;
 import music.dexterous.com.dexterousmusic.receiver.widget.NextMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.PreviousMusicReceiver;
 import music.dexterous.com.dexterousmusic.receiver.widget.ToggleMusicReceiver;
@@ -42,8 +42,8 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
     private ImageView mToggelButton;
 
     //views for big bar
-    private MusicControlBar musicControlBar;
-    private FontTextView current_song_playing_time;
+    private MusicControlSeekBar musicControlBar;
+    private TimerTextView current_song_playing_time;
     private FontTextView current_song_duration;
 
     private ImageView album_art_image_view;
@@ -77,6 +77,13 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        findViewById(view);
+        safeRegister();
+        setListener();
+    }
+
+
+    private void findViewById(View view) {
 
         mNowPlayingImageView = (ImageView) view.findViewById(R.id.now_playing_imageview);
         mNowPlayingSongNameTextView = (FontTextView) view.findViewById(R.id.now_playing_song_name_textview);
@@ -96,13 +103,9 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         widget_vol_inc = (ImageView) view.findViewById(R.id.widget_vol_inc);
         widget_shuffel = (ImageView) view.findViewById(R.id.widget_shuffel);
 
-        musicControlBar = (MusicControlBar) view.findViewById(R.id.forword_song_seekbar);
-        current_song_playing_time = (FontTextView) view.findViewById(R.id.current_song_playing_time);
+        musicControlBar = (MusicControlSeekBar) view.findViewById(R.id.forword_song_seekbar);
+        current_song_playing_time = (TimerTextView) view.findViewById(R.id.current_song_playing_time);
         current_song_duration = (FontTextView) view.findViewById(R.id.current_song_duration);
-
-
-        safeRegister();
-        setListener();
     }
 
     private void setListener() {
@@ -183,7 +186,7 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
             new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
             new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, widget_toggle);
         }
-        current_song_duration.setText(SongsDuration.getSongsDuration(playMusicEvent.music));
+        current_song_duration.setText(HumanReadableTime.getSongsDuration(playMusicEvent.music));
 
         if (UsersAppPreference.isMusicShuffle()) {
             new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_on_vector, widget_shuffel);
@@ -195,11 +198,15 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
 
         if (DexterousPlayMusicService.mDexterousMediaPlayer != null &&
                 DexterousPlayMusicService.mDexterousMediaPlayer.isPlaying()) {
-            musicControlBar.setProgress(DexterousPlayMusicService.mDexterousMediaPlayer.getCurrentPosition());
-            musicControlBar.setMax(100);
-            musicControlBar.updateProgressBar();
+            if (musicControlBar != null) {
+                musicControlBar.setProgress(DexterousPlayMusicService.mDexterousMediaPlayer.getCurrentPosition());
+                musicControlBar.setMax(100);
+                musicControlBar.updateProgressBar();
+            }
+            if (current_song_playing_time != null) {
+                current_song_playing_time.updateTimerTextView();
+            }
         }
-
     }
 
 
@@ -214,6 +221,8 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
         new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, widget_toggle);
         musicControlBar.updateProgressBar();
+        current_song_playing_time.updateTimerTextView();
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

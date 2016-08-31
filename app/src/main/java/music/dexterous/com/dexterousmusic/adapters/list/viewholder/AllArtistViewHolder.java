@@ -1,17 +1,12 @@
 package music.dexterous.com.dexterousmusic.adapters.list.viewholder;
 
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AllArtistAdapter;
-import music.dexterous.com.dexterousmusic.adapters.list.AllSongsAdapter;
-import music.dexterous.com.dexterousmusic.customeviews.FontTextView;
-import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
+import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
 
 public class AllArtistViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private AllArtistAdapter.OnAlbumItemClickListener mOnClickListener;

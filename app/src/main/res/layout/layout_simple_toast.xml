@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/toastSideMargin"
     android:paddingTop="@dimen/toastUpMargin">
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/toastMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

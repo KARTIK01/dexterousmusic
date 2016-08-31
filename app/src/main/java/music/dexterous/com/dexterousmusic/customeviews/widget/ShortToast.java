@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.customeviews;
+package music.dexterous.com.dexterousmusic.customeviews.widget;
 
 import android.content.Context;
 import android.os.Handler;

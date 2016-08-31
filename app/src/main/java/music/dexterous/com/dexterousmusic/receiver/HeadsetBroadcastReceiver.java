@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import music.dexterous.com.dexterousmusic.customeviews.ShortToast;
+import music.dexterous.com.dexterousmusic.customeviews.widget.ShortToast;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 //TODO register it with service it cannot br registed with manifest

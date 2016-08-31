@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="@dimen/medium_space">
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/song_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         app:fontName="Calibri-light.ttf"
         tools:text="Song Name Song" />
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/song_album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         app:fontName="Calibri-light.ttf"
         tools:text="Song Album Song Album Song Album" />
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/dash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:textSize="@dimen/text_large"
         app:fontName="Calibri-light.ttf" />
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/song_artist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         tools:text="Song Artist Song Artist Song Artist" />
 
 
-    <music.dexterous.com.dexterousmusic.customeviews.FontTextView
+    <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
         android:id="@+id/song_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.customeviews;
+package music.dexterous.com.dexterousmusic.customeviews.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -37,7 +37,7 @@ public class FontTextView extends TextView {
         init(attrs);
     }
 
-    private void init(AttributeSet attrs) {
+    protected void init(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.FontText);
             String fontName = a.getString(R.styleable.FontText_fontName);
