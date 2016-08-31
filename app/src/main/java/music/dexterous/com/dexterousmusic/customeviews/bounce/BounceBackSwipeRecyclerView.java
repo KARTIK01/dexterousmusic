@@ -10,17 +10,17 @@ import music.dexterous.com.dexterousmusic.customeviews.bounce.helper.OverScrollD
 /**
  * Created by kartik on 30/08/16.
  */
-public class BounceBackRecyclerView extends RecyclerView {
+public class BounceBackSwipeRecyclerView extends RecyclerView {
 
-    public BounceBackRecyclerView(Context context) {
+    public BounceBackSwipeRecyclerView(Context context) {
         super(context);
     }
 
-    public BounceBackRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public BounceBackSwipeRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public BounceBackRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public BounceBackSwipeRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
          
     }

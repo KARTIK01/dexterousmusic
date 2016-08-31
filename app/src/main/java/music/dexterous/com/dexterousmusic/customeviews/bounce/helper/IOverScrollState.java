@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.customeviews.bounce;
+package music.dexterous.com.dexterousmusic.customeviews.bounce.helper;
 
 /**
  * @author amit

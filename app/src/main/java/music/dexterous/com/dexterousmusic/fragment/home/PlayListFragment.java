@@ -7,12 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.malinskiy.superrecyclerview.SuperRecyclerView;
-
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.PlayListAdapter;
+import music.dexterous.com.dexterousmusic.customeviews.bounce.BounceBackSwipeRecyclerView;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
@@ -26,7 +25,7 @@ public class PlayListFragment extends BaseFragment {
     List<Music> playListSongList;
     public static final String FRAGMENT_TAG = PlayListFragment.class.getName();
 
-    SuperRecyclerView mRecyclerView;
+    BounceBackSwipeRecyclerView mRecyclerView;
 
     public static PlayListFragment newInstance() {
         PlayListFragment fragment = new PlayListFragment();
@@ -61,7 +60,7 @@ public class PlayListFragment extends BaseFragment {
     }
 
     protected void initialiseUI(View view) {
-        mRecyclerView = (SuperRecyclerView) view.findViewById(R.id.play_list_recyclerView);
+        mRecyclerView = (BounceBackSwipeRecyclerView) view.findViewById(R.id.play_list_recyclerView);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(new PlayListAdapter(playListSongList));

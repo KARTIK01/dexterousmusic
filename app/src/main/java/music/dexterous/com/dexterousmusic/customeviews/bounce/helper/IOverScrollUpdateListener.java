@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.customeviews.bounce;
+package music.dexterous.com.dexterousmusic.customeviews.bounce.helper;
 
 /**
  * A callback-listener enabling over-scroll effect clients to subscribe to <b>real-time</b> updates

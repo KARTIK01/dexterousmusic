@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.customeviews.bounce;
+package music.dexterous.com.dexterousmusic.customeviews.bounce.helper;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;

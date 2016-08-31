@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.customeviews.bounce;
+package music.dexterous.com.dexterousmusic.customeviews.bounce.helper;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
