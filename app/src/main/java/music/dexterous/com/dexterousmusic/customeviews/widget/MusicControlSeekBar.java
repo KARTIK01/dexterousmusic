@@ -98,6 +98,8 @@ public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarCha
             int progress = (int) (getProgressPercentage(currentDuration, totalDuration));
             //Log.d("Progress", ""+progress);
             setProgress(progress);
+        }else{
+            safeUnSubscription();
         }
     }
 

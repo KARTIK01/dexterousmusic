@@ -6,12 +6,15 @@ import android.media.MediaPlayer;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
+import java.util.concurrent.TimeUnit;
+
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.musicutils.HumanReadableTime;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
-import music.dexterous.com.dexterousmusic.utils.logger.LogUtils;
+import rx.Observable;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by kartik on 31/08/16.
@@ -64,15 +67,16 @@ public class TimerTextView extends FontTextView {
     }
 
     public void updateTimerTextView() {
-//        int START_DELAY = 0;
-//        int INTERVEL_GAP = 1000;
-//
-//        safeUnSubscription();
-//        //TODO handle onError
-//        subscription = Observable.interval(START_DELAY, INTERVEL_GAP, TimeUnit.SECONDS)
-//                .subscribe(aLong -> {
-//                    update();
-//                });
+        int START_DELAY = 0;
+        int INTERVEL_GAP = 1;
+
+        safeUnSubscription();
+        //TODO handle onError
+        subscription = Observable.interval(START_DELAY, INTERVEL_GAP, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    update();
+                });
     }
 
     private void update() {
@@ -81,8 +85,9 @@ public class TimerTextView extends FontTextView {
         if (mediaPlayer.isPlaying()) {
             long totalDuration = mediaPlayer.getDuration();
             long currentDuration = mediaPlayer.getCurrentPosition();
-            LogUtils.LOGD("LogUtils", "" + currentDuration);
             setText(HumanReadableTime.songDurationToDisplay(currentDuration));
+        }else{
+            safeUnSubscription();
         }
     }
 
