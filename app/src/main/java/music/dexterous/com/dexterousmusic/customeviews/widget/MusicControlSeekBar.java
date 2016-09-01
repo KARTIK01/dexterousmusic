@@ -12,6 +12,7 @@ import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
 import rx.Observable;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by Kartik on 25/8/16.
@@ -82,6 +83,7 @@ public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarCha
 
         safeUnSubscription();
         subscription = Observable.interval(START_DELAY, INTERVEL_GAP, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     updateProgress();
                 });
