@@ -1,10 +1,7 @@
 package music.dexterous.com.dexterousmusic.adapters.list;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,18 +52,6 @@ public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         String albumArtPath = mDataArray.get(position).getAlbumArtPath();
-        Bitmap bitmap = null;
-
-        if (!TextUtils.isEmpty(albumArtPath)) {
-            bitmap = BitmapFactory.decodeFile(albumArtPath);
-        }
-
-        if (bitmap != null)
-            mImageLoader.loadImage(context, bitmap, holder.mTextView);
-        else
-            mImageLoader.loadImage(context, R.drawable.bg_1, holder.mTextView);
-
-
         holder.albumName.setText(mDataArray.get(position).getAlbumName());
 
         HomeActivtyBgImageHelper.setImage(context, albumArtPath, holder.mTextView, false);
