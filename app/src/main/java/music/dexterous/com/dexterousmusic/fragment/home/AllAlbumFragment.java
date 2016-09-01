@@ -3,7 +3,6 @@ package music.dexterous.com.dexterousmusic.fragment.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AllAlbumsAdapter;
+import music.dexterous.com.dexterousmusic.customeviews.bounce.BounceBackRecyclerView;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.AlbumFragment;
@@ -26,7 +26,7 @@ public class AllAlbumFragment extends BaseFragment {
 
     List<AlbumModel> albums;
 
-    RecyclerView mRecyclerView;
+    BounceBackRecyclerView mRecyclerView;
     AllAlbumsAdapter allAlbumsAdapter;
 
     public static AllAlbumFragment newInstance() {
@@ -65,7 +65,7 @@ public class AllAlbumFragment extends BaseFragment {
     }
 
     protected void initialiseUI(View view) {
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.all_album_fragment_recycler_view);
+        mRecyclerView = (BounceBackRecyclerView) view.findViewById(R.id.all_album_fragment_recycler_view);
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setAdapter(allAlbumsAdapter = new AllAlbumsAdapter(albums, getActivity()));

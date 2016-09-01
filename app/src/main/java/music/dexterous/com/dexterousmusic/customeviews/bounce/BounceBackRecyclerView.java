@@ -22,7 +22,7 @@ public class BounceBackRecyclerView extends RecyclerView {
 
     public BounceBackRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-         
+
     }
 
     @Override
@@ -30,5 +30,5 @@ public class BounceBackRecyclerView extends RecyclerView {
         super.setAdapter(adapter);
         OverScrollDecoratorHelper.setUpOverScroll(this, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
     }
-    
+
 }
