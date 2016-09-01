@@ -179,8 +179,7 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         song_album_tv.setText(playMusicEvent.music.getSONG_ALBUM());
 
 
-
-        if (DexterousPlayMusicService.mDexterousMediaPlayer != null ) {
+        if (DexterousPlayMusicService.mDexterousMediaPlayer != null) {
             if (musicControlBar != null) {
                 musicControlBar.setProgress(DexterousPlayMusicService.mDexterousMediaPlayer.getCurrentPosition());
                 musicControlBar.setMax(100);
