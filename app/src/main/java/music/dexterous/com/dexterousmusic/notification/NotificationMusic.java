@@ -7,7 +7,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.SystemClock;
 import android.support.v7.app.NotificationCompat;
 import android.widget.RemoteViews;
 
@@ -17,10 +16,8 @@ import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.HomeActivity;
 import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.AbstractMusicControlService;
-import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.android.Package;
 import rx.Observable;
-import rx.Observer;
 import rx.Subscription;
 
 
@@ -164,9 +161,7 @@ public class NotificationMusic extends NotificationSimple {
         int START_DELAY = 0;
         int INTERVEL_GAP = 1;
 
-        if (subscription != null && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
-        }
+        saveUnSubscribe();
         subscription =
                 Observable
                         .interval(START_DELAY, INTERVEL_GAP, TimeUnit.SECONDS)
@@ -194,7 +189,7 @@ public class NotificationMusic extends NotificationSimple {
      */
     public void notifyPaused(boolean isPaused) {
         if (isPaused)
-            subscription.unsubscribe();
+            saveUnSubscribe();
         else
             setUpSuscription(
                     AbstractMusicControlService.mDexterousMediaPlayer.getCurrentPosition() / 1000,
@@ -224,6 +219,7 @@ public class NotificationMusic extends NotificationSimple {
      * Cancels this notification_big.
      */
     public void cancel() {
+        saveUnSubscribe();
         service.stopForeground(true);
         notificationManager.cancel(NOTIFICATION_ID);
     }
@@ -234,5 +230,11 @@ public class NotificationMusic extends NotificationSimple {
     public static void cancelAll(Context c) {
         NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancelAll();
+    }
+
+    private void saveUnSubscribe() {
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
     }
 }
