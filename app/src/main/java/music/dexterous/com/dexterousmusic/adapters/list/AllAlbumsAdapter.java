@@ -12,7 +12,6 @@ import java.util.List;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
 import music.dexterous.com.dexterousmusic.models.AlbumModel;
-import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 
 /**
@@ -24,6 +23,7 @@ public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.View
      * Used to load images asynchronously on a background thread.
      */
     ImageLoader mImageLoader;
+    private static final String TAG = "AllAlbumsAdapter";
 
     private List<AlbumModel> mDataArray;
     Context context;
@@ -53,9 +53,7 @@ public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.View
 
         String albumArtPath = mDataArray.get(position).getAlbumArtPath();
         holder.albumName.setText(mDataArray.get(position).getAlbumName());
-
-        HomeActivtyBgImageHelper.setImage(context, albumArtPath, holder.mTextView, false);
-
+        new ImageLoader(context).loadImage(context, albumArtPath, holder.mTextView);
     }
 
     public interface OnAlbumItemClickListener {

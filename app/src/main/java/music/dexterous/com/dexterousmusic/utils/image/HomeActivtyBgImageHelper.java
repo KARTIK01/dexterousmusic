@@ -34,31 +34,9 @@ public class HomeActivtyBgImageHelper {
         setImage(context, albumArtPath, imageView, isBlur);
     }
 
-    /**
-     * returns bitMap of alubumName
-     *
-     * @param albumName
-     * @param context
-     * @param isCircular
-     * @return
-     */
-    public static Bitmap getBitMap(String albumName, Context context, boolean isCircular) {
-        Bitmap songCoverImage = null;
-        String albumArtPath = null;
-        AlbumModel albumModel = DataManager.getInstance(context).getAlbumsMap().get(albumName);
-        if (albumModel != null) {
-            albumArtPath = albumModel.getAlbumArtPath();
-        }
-        if (!TextUtils.isEmpty(albumArtPath)) {
-            songCoverImage = BitmapFactory.decodeFile(albumArtPath);
-        } else {
-            songCoverImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.bg_1);
-        }
-        return songCoverImage;
-    }
-
     public static void setImage(Context context, String albumArtPath, ImageView imageView, boolean isBlur) {
         if (!TextUtils.isEmpty(albumArtPath)) {
+
             Bitmap songCoverImage = BitmapFactory.decodeFile(albumArtPath);
             if (songCoverImage != null) {
                 //TODO make blur via glide and {@link BlurTransformation}
@@ -66,13 +44,14 @@ public class HomeActivtyBgImageHelper {
                     new ImageLoader(context, R.drawable.bg_1)
                             .loadImage(context, BlurBuilder.blur(context, songCoverImage), imageView);
                 else
-                    new ImageLoader(context, R.drawable.bg_1)
-                            .loadImage(context, songCoverImage, imageView);
+                    new ImageLoader(context)
+                            .loadImage(context, albumArtPath, imageView);
                 return;
             }
         }
         showRandomImage(context, imageView, isBlur);
     }
+
 
     private static void showRandomImage(Context context, ImageView imageView, boolean isBlr) {
         if (isBlr) {
@@ -81,7 +60,7 @@ public class HomeActivtyBgImageHelper {
 
         } else {
             new ImageLoader(context)
-                    .loadImage(context, BitmapFactory.decodeResource(context.getResources(), R.drawable.bg_1), imageView);
+                    .loadImage(context, R.drawable.bg_1, imageView);
 
         }
 

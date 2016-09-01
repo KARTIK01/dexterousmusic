@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
-import android.util.Base64;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.BitmapRequestBuilder;
@@ -15,9 +15,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestListener;
 
-import music.dexterous.com.dexterousmusic.BuildConfig;
+import java.io.File;
+
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.utils.image.transformation.BlurTransformation;
 
 /**
  * Created by Honey on 8/1/2016.
@@ -161,20 +161,6 @@ public class ImageLoader extends ImageLoaderHelper {
      * to load image from byte array
      *
      * @param context
-     * @param imageInBytes
-     * @param imageView
-     */
-    public void loadImage(Context context, byte[] imageInBytes, ImageView imageView) {
-        Glide.with(context).load(imageInBytes)
-                .priority(Priority.IMMEDIATE)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .into(imageView);
-    }
-
-    /**
-     * to load image from byte array
-     *
-     * @param context
      * @param bitmap
      * @param imageView
      */
@@ -187,20 +173,16 @@ public class ImageLoader extends ImageLoaderHelper {
         imageView.setImageBitmap(bitmap);
     }
 
-
-    /**
-     * to load image from byte array
-     *
-     * @param context
-     * @param albumArtPath
-     * @param imageView
-     */
-    public static void loadBlurImage(Context context, Bitmap albumArtPath, ImageView imageView) {
-        Glide.with(context).load(albumArtPath)
-                .bitmapTransform(new BlurTransformation(context))
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .asBitMap()
-                .into(imageView);
+    public void loadImage(Context context, String albumArtPath, ImageView imageView) {
+        if (!TextUtils.isEmpty(albumArtPath))
+            Glide.with(context)
+                    .load(new File(albumArtPath))
+                    .placeholder(R.drawable.bg_1)
+                    .error(R.drawable.bg_1)
+                    .into(imageView);
+        else
+            Glide.with(context)
+                    .load(R.drawable.bg_1)
+                    .into(imageView);
     }
-
 }
