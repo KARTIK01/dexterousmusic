@@ -128,6 +128,8 @@ public abstract class AbstractMusicControlService extends Service implements Mus
             nowPlayingList = NowPlayingList.getInstance();
 
         int musicPosition = nowPlayingList.getCurrentSongPosition();
+        if (musicPosition < 0 || musicPosition >= nowPlayingList.getList().size())
+            return;
         Music musicToPlay = nowPlayingList.getSong(musicPosition);
         musicToPlay.setSONG_IS_PLAYING(true);
 

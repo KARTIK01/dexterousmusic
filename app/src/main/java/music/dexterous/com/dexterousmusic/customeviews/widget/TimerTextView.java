@@ -91,7 +91,7 @@ public class TimerTextView extends FontTextView {
         }
     }
 
-    private void safeUnSubscription() {
+    public void safeUnSubscription() {
         if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }

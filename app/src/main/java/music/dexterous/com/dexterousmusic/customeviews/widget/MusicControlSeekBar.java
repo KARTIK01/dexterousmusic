@@ -151,7 +151,7 @@ public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarCha
                     mDexterousMediaPlayer.getDuration() / 1000);
     }
 
-    private void safeUnSubscription() {
+    public void safeUnSubscription() {
         if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }

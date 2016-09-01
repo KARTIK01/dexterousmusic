@@ -178,26 +178,9 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
         song_artist_tv.setText(playMusicEvent.music.getSONG_ARTIST());
         song_album_tv.setText(playMusicEvent.music.getSONG_ALBUM());
 
-        //show image for play or pause
-        if (playMusicEvent.music.getSONG_IS_PLAYING() != null && playMusicEvent.music.getSONG_IS_PLAYING()) {
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, widget_toggle);
-        } else {
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, widget_toggle);
-        }
-        current_song_duration.setText(HumanReadableTime.getSongsDuration(playMusicEvent.music));
 
-        if (UsersAppPreference.isMusicShuffle()) {
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_on_vector, widget_shuffel);
-        } else {
-            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_off_vector, widget_shuffel);
-        }
 
-        RepeatMode.showRepeatIcon(getActivity(), widget_repeate);
-
-        if (DexterousPlayMusicService.mDexterousMediaPlayer != null &&
-                DexterousPlayMusicService.mDexterousMediaPlayer.isPlaying()) {
+        if (DexterousPlayMusicService.mDexterousMediaPlayer != null ) {
             if (musicControlBar != null) {
                 musicControlBar.setProgress(DexterousPlayMusicService.mDexterousMediaPlayer.getCurrentPosition());
                 musicControlBar.setMax(100);
@@ -206,6 +189,24 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
             if (current_song_playing_time != null) {
                 current_song_playing_time.updateTimerTextView();
             }
+        }
+
+
+        //Update TextViews and small images
+        current_song_duration.setText(HumanReadableTime.getSongsDuration(playMusicEvent.music));
+        if (UsersAppPreference.isMusicShuffle()) {
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_on_vector, widget_shuffel);
+        } else {
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_shuffle_off_vector, widget_shuffel);
+        }
+        RepeatMode.showRepeatIcon(getActivity(), widget_repeate);
+        //show image for play or pause
+        if (playMusicEvent.music.getSONG_IS_PLAYING() != null && playMusicEvent.music.getSONG_IS_PLAYING()) {
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, mToggelButton);
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_pause_vector, widget_toggle);
+        } else {
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, mToggelButton);
+            new ImageLoader(getContext()).loadImage(getContext(), UiUtils.ic_play_vector, widget_toggle);
         }
     }
 
@@ -234,12 +235,16 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
     public void onResume() {
         super.onResume();
         safeRegister();
+        current_song_playing_time.updateTimerTextView();
+        musicControlBar.updateProgressBar();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         unregister();
+        current_song_playing_time.safeUnSubscription();
+        musicControlBar.safeUnSubscription();
     }
 
 }
