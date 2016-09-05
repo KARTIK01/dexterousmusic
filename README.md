@@ -9,6 +9,9 @@ This is Dexterous Music Player App.
 ### How do I get set up? ###
 
 * clone it
+```
+    git clone https://kartik_agarwal01_self@bitbucket.org/kartik_agarwal01_self/dexterousmusic.git
+```
 * Add files from igonre folder to there specific location
     * Add ```/dexterousmusic/ignore/build.gradle``` into ```/dexterousmusic/app``` folder
     * Add ```/dexterousmusic/ignore/GlobalApplication.java``` into ```/dexterousmusic/app/src/main/java/music.dexterous.com.dexterousmusic``` folder
@@ -44,7 +47,7 @@ This is Dexterous Music Player App.
 ```
 * fastscroller     
 ```
-com.github.viethoa:fastscroller:1.1.0
+    com.github.viethoa:fastscroller:1.1.0
 ```
 * materialscrollbar 
 ```
