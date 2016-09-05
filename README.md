@@ -10,14 +10,64 @@ This is Dexterous Music Player App.
 
 * clone it
 * Add files from igonre folder to there specific location
+    * Add ```/dexterousmusic/ignore/build.gradle``` into ```/dexterousmusic/app``` folder
+    * Add ```/dexterousmusic/ignore/GlobalApplication.java``` into ```/dexterousmusic/app/src/main/java/music.dexterous.com.dexterousmusic``` folder
 * open in Android Studio
-* build-run
+* build OR gradle sync
+* Run 
 
 ### Dependencies ###
-
+* Event Bus
+```
+    compile 'org.greenrobot:eventbus:3.0.0'
+```
+* Green DAO
+```
+    compile "org.greenrobot:greendao:$greenDaoVersion"
+```
+* Rx Java
+```
+     compile 'io.reactivex:rxjava:1.1.5'
+```
+* Rx Android and Binding
+```
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+```
+* Glide
+```
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+```
+* Logger
+```
+    compile 'com.orhanobut:logger:1.15'
+```
+* fastscroller     
+```
+com.github.viethoa:fastscroller:1.1.0
+```
+* materialscrollbar 
+```
+   compile 'com.turingtechnologies.materialscrollbar:lib:10.+'
+```
+* permissionsdispatcher
+```
+    compile 'com.github.hotchemi:permissionsdispatcher:2.1.3'
+    apt 'com.github.hotchemi:permissionsdispatcher-processor:2.1.3'
+```
+* firebase-messaging
+```
+    compile 'com.google.firebase:firebase-messaging:9.4.0'
+```
+* crashlytics
+```
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.2@aar') {
+        transitive = true;
+    }
+```
 
 ### Contribution guidelines ###
-
+* Kartik Agarwal (Major Contributing)
 
 ### Custom ###
 
