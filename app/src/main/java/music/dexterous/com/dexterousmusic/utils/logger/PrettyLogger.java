@@ -54,4 +54,12 @@ public class PrettyLogger {
     public static void wtf(String msg) {
         if (DEBUG) Logger.wtf(msg);
     }
+
+    public static void json(String msg) {
+        if (DEBUG) Logger.json(msg);
+    }
+
+    public static void xml(String msg) {
+        if (DEBUG) Logger.xml(msg);
+    }
 }
