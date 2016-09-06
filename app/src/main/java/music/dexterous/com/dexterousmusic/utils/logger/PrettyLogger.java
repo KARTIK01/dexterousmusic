@@ -62,4 +62,10 @@ public class PrettyLogger {
     public static void xml(String msg) {
         if (DEBUG) Logger.xml(msg);
     }
+
+//    Timber.plant(new Timber.DebugTree() {
+//        @Override protected void log(int priority, String tag, String message, Throwable t) {
+//            Logger.log(priority, tag, message, t);
+//        }
+//    });
 }
