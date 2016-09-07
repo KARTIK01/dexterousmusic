@@ -22,16 +22,14 @@ public interface MusicControl {
     /**
      * Jumps to the next song on the list.
      *
-     * @note Remember to call {@link #playMusic} to make the MusicPlayer
-     * actually play the music.
+     * @note Remember to call {@link #playMusic} to make the MusicPlayer actually play the music.
      */
     public void playNextMusic(boolean isUserSkipped);
 
     /**
      * Jumps to the previous song on the list.
      *
-     * @note Remember to call {@link #playMusic} to make the MusicPlayer
-     * actually play the music.
+     * @note Remember to call {@link #playMusic} to make the MusicPlayer actually play the music.
      */
     public void playPreviousMusic(boolean isUserSkipped);
 
@@ -40,18 +38,15 @@ public interface MusicControl {
     /**
      * Cleans resources from Android's native MediaPlayer.
      *
-     * @note According to the MediaPlayer guide, you should release
-     * the MediaPlayer as often as possible.
-     * For example, when losing Audio Focus for an extended
-     * period of time.
+     * @note According to the MediaPlayer guide, you should release the MediaPlayer as often as
+     * possible. For example, when losing Audio Focus for an extended period of time.
      */
     public void stopMusicPlayer();
 
     /**
      * Kills the service.
      *
-     * @note Explicitly call this when the service is completed
-     * or whatnot.
+     * @note Explicitly call this when the service is completed or whatnot.
      */
     public void destroySelf();
 

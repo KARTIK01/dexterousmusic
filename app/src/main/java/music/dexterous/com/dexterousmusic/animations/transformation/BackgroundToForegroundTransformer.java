@@ -23,8 +23,8 @@ public class BackgroundToForegroundTransformer extends ABaseTransformer {
     @Override
     protected void onTransform(View view, float position) {
         final float height = view.getHeight();
-        final float width = view.getWidth();
-        final float scale = min(position < 0 ? 1f : Math.abs(1f - position), 0.70f);
+        final float width  = view.getWidth();
+        final float scale  = min(position < 0 ? 1f : Math.abs(1f - position), 0.70f);
 
         view.setScaleX(scale);
         view.setScaleY(scale);

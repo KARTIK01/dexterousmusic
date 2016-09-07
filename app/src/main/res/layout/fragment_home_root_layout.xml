@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:sothree="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/sliding_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom"
-    sothree:umanoPanelHeight="@dimen/home_activity_bottom_bar"
-    sothree:umanoShadowHeight="4dp">
+<music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:sothree = "http://schemas.android.com/apk/res-auto"
+    android:id = "@+id/sliding_layout"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent"
+    android:gravity = "bottom"
+    sothree:umanoPanelHeight = "@dimen/home_activity_bottom_bar"
+    sothree:umanoShadowHeight = "4dp"
+    >
 
     <FrameLayout
-        android:id="@+id/rootHomeContainerUpper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id = "@+id/rootHomeContainerUpper"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        />
 
     <FrameLayout
-        android:id="@+id/rootHomeContainerBottom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id = "@+id/rootHomeContainerBottom"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        />
 
-</music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout>
+</music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout >

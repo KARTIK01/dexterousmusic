@@ -19,15 +19,14 @@ import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
  */
 public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.ViewHolder> {
 
+    private static final String TAG = "AllAlbumsAdapter";
     /**
      * Used to load images asynchronously on a background thread.
      */
     ImageLoader mImageLoader;
-    private static final String TAG = "AllAlbumsAdapter";
-
-    private List<AlbumModel> mDataArray;
     Context context;
-
+    private List<AlbumModel> mDataArray;
+    private OnAlbumItemClickListener mOnClickListener;
 
     public AllAlbumsAdapter(List<AlbumModel> dataset, Context context) {
         this.context = context;
@@ -56,18 +55,16 @@ public class AllAlbumsAdapter extends RecyclerView.Adapter<AllAlbumsAdapter.View
         new ImageLoader(context).loadImage(context, albumArtPath, holder.mTextView);
     }
 
-    public interface OnAlbumItemClickListener {
-        void onClick(View view, int position);
-    }
-
-    private OnAlbumItemClickListener mOnClickListener;
-
     public void setOnItemClickListener(OnAlbumItemClickListener onClickListener) {
         mOnClickListener = onClickListener;
     }
 
+    public interface OnAlbumItemClickListener {
+        void onClick(View view, int position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView mTextView;
+        ImageView    mTextView;
         FontTextView albumName;
 
         public ViewHolder(View itemView) {

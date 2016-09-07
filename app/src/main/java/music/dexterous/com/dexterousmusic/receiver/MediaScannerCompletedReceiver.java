@@ -4,10 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Vibrator;
 
 import music.dexterous.com.dexterousmusic.service.ScanMusicService;
-import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 
 public class MediaScannerCompletedReceiver extends BroadcastReceiver {
 

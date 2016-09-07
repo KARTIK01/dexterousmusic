@@ -25,30 +25,24 @@ import music.dexterous.com.dexterousmusic.BuildConfig;
  */
 public class ImageLoaderHelper {
 
-    protected DiskCacheStrategy mDiskCacheStrategy = DiskCacheStrategy.RESULT;
-
     /**
      * Flag to determine if images should be cropped by default or not
      */
     protected final static boolean shouldCropByDefault = true;
-
     /**
      * Glide url cache
      */
     private static final ModelCache<String, GlideUrl> urlCache =
             new ModelCache<>(150);
-
     /**
      * Generic image load request
      */
     private final BitmapTypeRequest<String> mGlideModelRequest;
-
-
     /**
      * Default transformation
      */
     private final Transformation<Bitmap> mBitmapTransformation;
-
+    protected DiskCacheStrategy mDiskCacheStrategy = DiskCacheStrategy.RESULT;
     protected Integer mPlaceHolderResId = null;
 
 
@@ -60,7 +54,7 @@ public class ImageLoaderHelper {
     }
 
     public ImageLoaderHelper(Context context, Transformation<Bitmap> transformation) {
-        VariableWidthImageLoader imageLoader = new VariableWidthImageLoader(context);
+        VariableWidthImageLoader        imageLoader      = new VariableWidthImageLoader(context);
         LoggingListener<String, Bitmap> LOGGING_LISTENER = new LoggingListener<>();
 
         mGlideModelRequest = Glide.with(context)
@@ -123,15 +117,15 @@ public class ImageLoaderHelper {
         }
 
         /**
-         * If the URL contains a special variable width indicator (eg "__w-200-400-800__")
-         * we get the buckets from the URL (200, 400 and 800 in the example) and replace
-         * the URL with the best bucket for the requested width (the bucket immediately
-         * larger than the requested width).
+         * If the URL contains a special variable width indicator (eg "__w-200-400-800__") we get
+         * the buckets from the URL (200, 400 and 800 in the example) and replace the URL with the
+         * best bucket for the requested width (the bucket immediately larger than the requested
+         * width).
          */
         @Override
         protected String getUrl(String model, int width, int height) {
-            Matcher m = PATTERN.matcher(model);
-            int bestBucket = 0;
+            Matcher m          = PATTERN.matcher(model);
+            int     bestBucket = 0;
             if (m.find()) {
                 String[] found = m.group(1).split("-");
                 for (String bucketStr : found) {

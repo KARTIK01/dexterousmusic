@@ -24,7 +24,7 @@ public class HeadsetBroadcastReceiver extends BroadcastReceiver {
         if (intent != null && intent.getAction().equals(Intent.ACTION_HEADSET_PLUG)) {
             ShortToast.displayToast(context, "Received", Toast.LENGTH_SHORT);
 
-            int state = intent.getIntExtra("state", -1);
+            int state      = intent.getIntExtra("state", -1);
             int microPhone = intent.getIntExtra("microphone", -1); // 1 when has microphone else 0
             switch (state) {
                 case 0:

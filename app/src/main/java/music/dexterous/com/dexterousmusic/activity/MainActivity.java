@@ -24,6 +24,11 @@ public class
 MainActivity extends BaseActivity {
     protected Button scan;
 
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +43,6 @@ MainActivity extends BaseActivity {
 
     private void playMusic() {
 
-    }
-
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
-        return intent;
     }
 
     @NeedsPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -70,7 +70,7 @@ MainActivity extends BaseActivity {
     @OnNeverAskAgain(Manifest.permission.READ_EXTERNAL_STORAGE)
     void showNeverAskForStorage() {
         ShortToast.displayToast(this, getResources().getString(R.string.permission_storage_never_ask), Toast.LENGTH_SHORT);
-        startActivity(HomeActivity.getIntent(this , 0));
+        startActivity(HomeActivity.getIntent(this, 0));
 
     }
 

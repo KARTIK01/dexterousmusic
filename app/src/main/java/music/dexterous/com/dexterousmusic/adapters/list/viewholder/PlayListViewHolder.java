@@ -13,7 +13,7 @@ public class PlayListViewHolder extends RecyclerView.ViewHolder {
     public FontTextView mSongName;
     public FontTextView mSongArtist;
     public FontTextView mSongDuration;
-    public ImageView mOverflowIcon;
+    public ImageView    mOverflowIcon;
 
 
     public PlayListViewHolder(View itemView) {

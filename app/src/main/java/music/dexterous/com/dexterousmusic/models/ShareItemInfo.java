@@ -10,10 +10,10 @@ import android.graphics.drawable.Drawable;
  * Represents an item in the picker grid
  */
 public class ShareItemInfo {
-    public Drawable icon;
-    public final String label;
+    public final String        label;
     public final ComponentName componentName;
-    public final ResolveInfo resolveInfo;
+    public final ResolveInfo   resolveInfo;
+    public       Drawable      icon;
 
     public ShareItemInfo(Drawable icon, String label, Context context, Class<?> clazz) {
         this.icon = icon;

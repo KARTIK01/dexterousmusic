@@ -1,36 +1,36 @@
-<resources>
+<resources >
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name = "activity_horizontal_margin" >16dp</dimen >
+    <dimen name = "activity_vertical_margin" >16dp</dimen >
+    <dimen name = "fab_margin" >16dp</dimen >
 
 
     <!-- Text Dim-->
-    <dimen name="text_extra_extra_small">12sp</dimen>
-    <dimen name="text_extra_small">14sp</dimen>
-    <dimen name="text_small">16sp</dimen>
-    <dimen name="text_medium">18sp</dimen>
-    <dimen name="text_large">20sp</dimen>
-    <dimen name="text_extra_large">22sp</dimen>
-    <dimen name="text_extra_extra_large">24sp</dimen>
+    <dimen name = "text_extra_extra_small" >12sp</dimen >
+    <dimen name = "text_extra_small" >14sp</dimen >
+    <dimen name = "text_small" >16sp</dimen >
+    <dimen name = "text_medium" >18sp</dimen >
+    <dimen name = "text_large" >20sp</dimen >
+    <dimen name = "text_extra_large" >22sp</dimen >
+    <dimen name = "text_extra_extra_large" >24sp</dimen >
 
     <!-- Toast Dimensions-->
-    <dimen name="toastSideMargin">6dp</dimen>
-    <dimen name="toastUpMargin">5dp</dimen>
+    <dimen name = "toastSideMargin" >6dp</dimen >
+    <dimen name = "toastUpMargin" >5dp</dimen >
 
     <!-- control music widget Dimessions -->
-    <dimen name="widget_element_size">64dp</dimen>
-    <dimen name="widget_element_size_small">48dp</dimen>
-    <dimen name="widget_element_size_extra_small">24dp</dimen>
+    <dimen name = "widget_element_size" >64dp</dimen >
+    <dimen name = "widget_element_size_small" >48dp</dimen >
+    <dimen name = "widget_element_size_extra_small" >24dp</dimen >
 
-    <dimen name="home_fragment_tab_height">48dp</dimen>
+    <dimen name = "home_fragment_tab_height" >48dp</dimen >
 
 
-    <dimen name="home_activity_bottom_bar">68dp</dimen>
-    <dimen name="home_activity_bottom_bar_image">56dp</dimen>
+    <dimen name = "home_activity_bottom_bar" >68dp</dimen >
+    <dimen name = "home_activity_bottom_bar_image" >56dp</dimen >
 
     <!-- play pause drawable Dimessions -->
-    <dimen name="notification_icon_dimen_medium">40dp</dimen>
-    <dimen name="notification_icon_dimen_small">20dp</dimen>
+    <dimen name = "notification_icon_dimen_medium" >40dp</dimen >
+    <dimen name = "notification_icon_dimen_small" >20dp</dimen >
 
-</resources>
+</resources >

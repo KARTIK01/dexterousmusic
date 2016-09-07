@@ -21,7 +21,7 @@ import java.util.Set;
 public class AppPreference {
 
     private static final String DEFAULT_SUFFIX = "_preferences";
-    private static final String LENGTH = "#LENGTH";
+    private static final String LENGTH         = "#LENGTH";
     private static SharedPreferences mPrefs;
 
     /**
@@ -48,6 +48,7 @@ public class AppPreference {
      * Returns an instance of the shared preference for this app.
      *
      * @return an Instance of the SharedPreference
+     *
      * @throws RuntimeException if sharedpreference instance has not been instatiated yet.
      */
     public static SharedPreferences getPreferences() {
@@ -59,8 +60,8 @@ public class AppPreference {
     }
 
     /**
-     * @return Returns a map containing a list of pairs key/value representing
-     * the preferences.
+     * @return Returns a map containing a list of pairs key/value representing the preferences.
+     *
      * @see SharedPreferences#getAll()
      */
     public static Map<String, ?> getAll() {
@@ -70,9 +71,10 @@ public class AppPreference {
     /**
      * @param key      The name of the preference to retrieve.
      * @param defValue Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue.  Throws
-     * ClassCastException if there is a preference with this name that is not
-     * an int.
+     *
+     * @return Returns the preference value if it exists, or defValue.  Throws ClassCastException if
+     * there is a preference with this name that is not an int.
+     *
      * @see SharedPreferences#getInt(String, int)
      */
     public static int getInt(final String key, final int defValue) {
@@ -82,9 +84,10 @@ public class AppPreference {
     /**
      * @param key      The name of the preference to retrieve.
      * @param defValue Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue.  Throws
-     * ClassCastException if there is a preference with this name that is not
-     * a boolean.
+     *
+     * @return Returns the preference value if it exists, or defValue.  Throws ClassCastException if
+     * there is a preference with this name that is not a boolean.
+     *
      * @see SharedPreferences#getBoolean(String, boolean)
      */
     public static boolean getBoolean(final String key, final boolean defValue) {
@@ -94,9 +97,10 @@ public class AppPreference {
     /**
      * @param key      The name of the preference to retrieve.
      * @param defValue Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue.  Throws
-     * ClassCastException if there is a preference with this name that is not
-     * a long.
+     *
+     * @return Returns the preference value if it exists, or defValue.  Throws ClassCastException if
+     * there is a preference with this name that is not a long.
+     *
      * @see SharedPreferences#getLong(String, long)
      */
     public static long getLong(final String key, final long defValue) {
@@ -108,9 +112,10 @@ public class AppPreference {
      *
      * @param key      The name of the preference to retrieve.
      * @param defValue the double Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue.  Throws
-     * ClassCastException if there is a preference with this name that is not
-     * a long.
+     *
+     * @return Returns the preference value if it exists, or defValue.  Throws ClassCastException if
+     * there is a preference with this name that is not a long.
+     *
      * @see SharedPreferences#getLong(String, long)
      */
     public static double getDouble(final String key, final double defValue) {
@@ -120,9 +125,10 @@ public class AppPreference {
     /**
      * @param key      The name of the preference to retrieve.
      * @param defValue Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue.  Throws
-     * ClassCastException if there is a preference with this name that is not
-     * a float.
+     *
+     * @return Returns the preference value if it exists, or defValue.  Throws ClassCastException if
+     * there is a preference with this name that is not a float.
+     *
      * @see SharedPreferences#getFloat(String, float)
      */
     public static float getFloat(final String key, final float defValue) {
@@ -132,9 +138,10 @@ public class AppPreference {
     /**
      * @param key      The name of the preference to retrieve.
      * @param defValue Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue.  Throws
-     * ClassCastException if there is a preference with this name that is not
-     * a String.
+     *
+     * @return Returns the preference value if it exists, or defValue.  Throws ClassCastException if
+     * there is a preference with this name that is not a String.
+     *
      * @see SharedPreferences#getString(String, String)
      */
     public static String getString(final String key, final String defValue) {
@@ -145,6 +152,7 @@ public class AppPreference {
      * Get parsed ArrayList of String from SharedPreferences at 'key'
      *
      * @param key SharedPreferences key
+     *
      * @return ArrayList of String
      */
     public static List<String> getListString(String key) {
@@ -154,9 +162,10 @@ public class AppPreference {
     /**
      * @param key      The name of the preference to retrieve.
      * @param defValue Value to return if this preference does not exist.
-     * @return Returns the preference values if they exist, or defValues.
-     * Throws ClassCastException if there is a preference with this name
-     * that is not a Set.
+     *
+     * @return Returns the preference values if they exist, or defValues. Throws ClassCastException
+     * if there is a preference with this name that is not a Set.
+     *
      * @see SharedPreferences#getStringSet(String, Set)
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -183,6 +192,7 @@ public class AppPreference {
     /**
      * @param key   The name of the preference to modify.
      * @param value The new value for the preference.
+     *
      * @see Editor#putLong(String, long)
      */
     public static void putLong(final String key, final long value) {
@@ -198,6 +208,7 @@ public class AppPreference {
     /**
      * @param key   The name of the preference to modify.
      * @param value The new value for the preference.
+     *
      * @see Editor#putInt(String, int)
      */
     public static void putInt(final String key, final int value) {
@@ -215,6 +226,7 @@ public class AppPreference {
      *
      * @param key   The name of the preference to modify.
      * @param value The double value to be save in the preferences.
+     *
      * @see Editor#putLong(String, long)
      */
     public static void putDouble(final String key, final double value) {
@@ -230,6 +242,7 @@ public class AppPreference {
     /**
      * @param key   The name of the preference to modify.
      * @param value The new value for the preference.
+     *
      * @see Editor#putFloat(String, float)
      */
     public static void putFloat(final String key, final float value) {
@@ -245,6 +258,7 @@ public class AppPreference {
     /**
      * @param key   The name of the preference to modify.
      * @param value The new value for the preference.
+     *
      * @see Editor#putBoolean(String, boolean)
      */
     public static void putBoolean(final String key, final boolean value) {
@@ -260,6 +274,7 @@ public class AppPreference {
     /**
      * @param key   The name of the preference to modify.
      * @param value The new value for the preference.
+     *
      * @see Editor#putString(String, String)
      */
     public static void putString(final String key, final String value) {
@@ -285,6 +300,7 @@ public class AppPreference {
     /**
      * @param key   The name of the preference to modify.
      * @param value The new value for the preference.
+     *
      * @see Editor#putStringSet(String, Set)
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -319,11 +335,12 @@ public class AppPreference {
 
     /**
      * @param key The name of the preference to remove.
+     *
      * @see Editor#remove(String)
      */
     public static void remove(final String key) {
-        SharedPreferences prefs = getPreferences();
-        final Editor editor = prefs.edit();
+        SharedPreferences prefs  = getPreferences();
+        final Editor      editor = prefs.edit();
         if (prefs.contains(key + LENGTH)) {
             // Workaround for pre-HC's lack of StringSets
             int stringSetLength = prefs.getInt(key + LENGTH, -1);
@@ -345,7 +362,9 @@ public class AppPreference {
 
     /**
      * @param key The name of the preference to check.
+     *
      * @return true if preference contains this key value.
+     *
      * @see SharedPreferences#contains(String)
      */
     public static boolean contains(final String key) {
@@ -355,6 +374,7 @@ public class AppPreference {
     /**
      * @return the {@link Editor} for chaining. The changes have already been committed/applied
      * through the execution of this method.
+     *
      * @see Editor#clear()
      */
     public static Editor clear() {
@@ -376,9 +396,9 @@ public class AppPreference {
      * onCreate. And in the rest of the code base you can call Prefs.method name.
      */
     public final static class Builder {
-        private String mKey;
+        private String  mKey;
         private Context mContext;
-        private int mMode = -1;
+        private int     mMode       = -1;
         private boolean mUseDefault = false;
 
         /**
@@ -386,6 +406,7 @@ public class AppPreference {
          * packagename.xml but for migration purposes or customization.
          *
          * @param prefsName the filename used for the sharedpreference
+         *
          * @return the {@link AppPreference.Builder} object.
          */
         public Builder setPrefsName(final String prefsName) {
@@ -397,6 +418,7 @@ public class AppPreference {
          * Set the context used to instantiate the sharedpreferences
          *
          * @param context the application context
+         *
          * @return the {@link AppPreference.Builder} object.
          */
         public Builder setContext(final Context context) {
@@ -407,9 +429,11 @@ public class AppPreference {
         /**
          * Set the mode of the sharedpreference instance.
          *
-         * @param mode Operating mode.  Use 0 or {@link Context#MODE_PRIVATE} for the
-         *             default operation, {@link Context#MODE_WORLD_READABLE}
+         * @param mode Operating mode.  Use 0 or {@link Context#MODE_PRIVATE} for the default
+         *             operation, {@link Context#MODE_WORLD_READABLE}
+         *
          * @return the {@link AppPreference.Builder} object.
+         *
          * @see Context#getSharedPreferences
          */
         public Builder setMode(final int mode) {
@@ -428,6 +452,7 @@ public class AppPreference {
          * android.preference.PreferenceFragment} is used android append that with _preference.
          *
          * @param defaultSharedPreference true if default sharedpreference name should used.
+         *
          * @return the {@link AppPreference.Builder} object.
          */
         public Builder setUseDefaultSharedPreference(boolean defaultSharedPreference) {

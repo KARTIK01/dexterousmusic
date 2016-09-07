@@ -11,23 +11,11 @@ import java.util.List;
 
 /**
  * @author amitd
- *
  */
 public class RecyclerViewOverScrollDecorAdapter implements IOverScrollDecoratorAdapter {
 
-    /**
-     * A delegation of the adapter implementation of this view that should provide the processing
-     * of {@link #isInAbsoluteStart()} and {@link #isInAbsoluteEnd()}. Essentially needed simply
-     * because the implementation depends on the layout manager implementation being used.
-     */
-    protected interface Impl {
-        boolean isInAbsoluteStart();
-        boolean isInAbsoluteEnd();
-    }
-
     protected final RecyclerView mRecyclerView;
-    protected final Impl mImpl;
-
+    protected final Impl         mImpl;
     protected boolean mIsItemTouchInEffect = false;
 
     public RecyclerViewOverScrollDecorAdapter(RecyclerView recyclerView) {
@@ -36,21 +24,18 @@ public class RecyclerViewOverScrollDecorAdapter implements IOverScrollDecoratorA
 
         final RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof LinearLayoutManager ||
-            layoutManager instanceof StaggeredGridLayoutManager)
-        {
+                layoutManager instanceof StaggeredGridLayoutManager) {
             final int orientation =
                     (layoutManager instanceof LinearLayoutManager
-                        ? ((LinearLayoutManager) layoutManager).getOrientation()
-                        : ((StaggeredGridLayoutManager) layoutManager).getOrientation());
+                            ? ((LinearLayoutManager) layoutManager).getOrientation()
+                            : ((StaggeredGridLayoutManager) layoutManager).getOrientation());
 
             if (orientation == LinearLayoutManager.HORIZONTAL) {
                 mImpl = new ImplHorizLayout();
             } else {
                 mImpl = new ImplVerticalLayout();
             }
-        }
-        else
-        {
+        } else {
             throw new IllegalArgumentException("Recycler views with custom layout managers are not supported by this adapter out of the box." +
                     "Try implementing and providing an explicit 'impl' parameter to the other c'tors, or otherwise create a custom adapter subclass of your own.");
         }
@@ -96,30 +81,15 @@ public class RecyclerViewOverScrollDecorAdapter implements IOverScrollDecoratorA
         return !mIsItemTouchInEffect && mImpl.isInAbsoluteEnd();
     }
 
-    protected class ImplHorizLayout implements Impl {
+    /**
+     * A delegation of the adapter implementation of this view that should provide the processing of
+     * {@link #isInAbsoluteStart()} and {@link #isInAbsoluteEnd()}. Essentially needed simply
+     * because the implementation depends on the layout manager implementation being used.
+     */
+    protected interface Impl {
+        boolean isInAbsoluteStart();
 
-        @Override
-        public boolean isInAbsoluteStart() {
-            return !mRecyclerView.canScrollHorizontally(-1);
-        }
-
-        @Override
-        public boolean isInAbsoluteEnd() {
-            return !mRecyclerView.canScrollHorizontally(1);
-        }
-    }
-
-    protected class ImplVerticalLayout implements Impl {
-
-        @Override
-        public boolean isInAbsoluteStart() {
-            return !mRecyclerView.canScrollVertically(-1);
-        }
-
-        @Override
-        public boolean isInAbsoluteEnd() {
-            return !mRecyclerView.canScrollVertically(1);
-        }
+        boolean isInAbsoluteEnd();
     }
 
     private static class ItemTouchHelperCallbackWrapper extends ItemTouchHelper.Callback {
@@ -218,6 +188,32 @@ public class RecyclerViewOverScrollDecorAdapter implements IOverScrollDecoratorA
         @Override
         public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize, int viewSizeOutOfBounds, int totalSize, long msSinceStartScroll) {
             return mCallback.interpolateOutOfBoundsScroll(recyclerView, viewSize, viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+        }
+    }
+
+    protected class ImplHorizLayout implements Impl {
+
+        @Override
+        public boolean isInAbsoluteStart() {
+            return !mRecyclerView.canScrollHorizontally(-1);
+        }
+
+        @Override
+        public boolean isInAbsoluteEnd() {
+            return !mRecyclerView.canScrollHorizontally(1);
+        }
+    }
+
+    protected class ImplVerticalLayout implements Impl {
+
+        @Override
+        public boolean isInAbsoluteStart() {
+            return !mRecyclerView.canScrollVertically(-1);
+        }
+
+        @Override
+        public boolean isInAbsoluteEnd() {
+            return !mRecyclerView.canScrollVertically(1);
         }
     }
 }

@@ -7,7 +7,6 @@ import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
-import com.bumptech.glide.util.ExceptionCatchingInputStream;
 
 import java.io.InputStream;
 
@@ -34,11 +33,11 @@ public class SetupGlideModule implements GlideModule {
                 .readTimeout(25, SECONDS)
                 .writeTimeout(20, SECONDS)
                 .addInterceptor(chain -> {
-                    Request request = chain.request();
+                    Request  request  = chain.request();
                     Response response = null;
 
                     boolean responseOk = false;
-                    int tryCount = 0;
+                    int     tryCount   = 0;
 
                     while (!responseOk && tryCount < 3) {
                         try {

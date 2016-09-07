@@ -13,8 +13,8 @@ import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AlbumSongsAdapter;
 import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
 import music.dexterous.com.dexterousmusic.models.ArtistModel;
-import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.musicutils.HumanReadableTime;
+import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
@@ -27,28 +27,27 @@ import rx.schedulers.Schedulers;
  */
 public class ArtistFragment extends BaseFragment {
 
-    public static final String TAG = ArtistFragment.class.getName();
+    public static final String TAG         = ArtistFragment.class.getName();
     public static final String EXTRA_ALBUM = "EXTRA_ALBUM";
 
-    ImageView album_fragment_album_art;
+    ImageView    album_fragment_album_art;
     RecyclerView album_fragment_recycler_view;
     FontTextView total_songs;
     FontTextView total_songs_duration;
-    ImageLoader mImageLoader;
-    ArtistModel artistModel;
+    ImageLoader  mImageLoader;
+    ArtistModel  artistModel;
 
     AlbumSongsAdapter artistSongsAdapter;
 
+    public ArtistFragment() {
+    }
+
     public static ArtistFragment newInstance(ArtistModel albumModel) {
         ArtistFragment fragment = new ArtistFragment();
-        Bundle info = new Bundle();
+        Bundle         info     = new Bundle();
         info.putParcelable(EXTRA_ALBUM, albumModel);
         fragment.setArguments(info);
         return fragment;
-    }
-
-
-    public ArtistFragment() {
     }
 
     @Override

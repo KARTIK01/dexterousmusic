@@ -20,6 +20,7 @@ public class ScrollableViewHelper {
      *
      * @param scrollableView the scrollable view
      * @param isSlidingUp    whether or not the panel is sliding up or down
+     *
      * @return the scroll position
      */
     public int getScrollableViewScrollPosition(View scrollableView, boolean isSlidingUp) {
@@ -28,8 +29,8 @@ public class ScrollableViewHelper {
             if (isSlidingUp) {
                 return scrollableView.getScrollY();
             } else {
-                ScrollView sv = ((ScrollView) scrollableView);
-                View child = sv.getChildAt(0);
+                ScrollView sv    = ((ScrollView) scrollableView);
+                View       child = sv.getChildAt(0);
                 return (child.getBottom() - (sv.getHeight() + sv.getScrollY()));
             }
         } else if (scrollableView instanceof ListView && ((ListView) scrollableView).getChildCount() > 0) {
@@ -45,7 +46,7 @@ public class ScrollableViewHelper {
                 return (lv.getAdapter().getCount() - lv.getLastVisiblePosition() - 1) * lastChild.getHeight() + lastChild.getBottom() - lv.getBottom();
             }
         } else if (scrollableView instanceof RecyclerView && ((RecyclerView) scrollableView).getChildCount() > 0) {
-            RecyclerView rv = ((RecyclerView) scrollableView);
+            RecyclerView               rv = ((RecyclerView) scrollableView);
             RecyclerView.LayoutManager lm = rv.getLayoutManager();
             if (rv.getAdapter() == null) return 0;
             if (isSlidingUp) {

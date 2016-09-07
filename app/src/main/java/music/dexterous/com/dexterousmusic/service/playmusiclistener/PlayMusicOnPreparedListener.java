@@ -2,7 +2,6 @@ package music.dexterous.com.dexterousmusic.service.playmusiclistener;
 
 import android.media.MediaPlayer;
 
-import music.dexterous.com.dexterousmusic.BuildConfig;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.service.musiccontrol.MusicControl;
 
@@ -13,7 +12,7 @@ public class PlayMusicOnPreparedListener implements DexterousMediaPlayer.OnPrepa
 
 
     private MusicControl mMusicControl;
-    private MediaPlayer mDexterousMediaPlayer;
+    private MediaPlayer  mDexterousMediaPlayer;
 
     public PlayMusicOnPreparedListener(MusicControl musicControl, MediaPlayer dexterousMediaPlayer) {
         mMusicControl = musicControl;

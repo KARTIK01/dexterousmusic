@@ -53,14 +53,14 @@ public class FastBlur {
         int[] pix = new int[w * h];
         bitmap.getPixels(pix, 0, w, 0, 0, w, h);
 
-        int wm = w - 1;
-        int hm = h - 1;
-        int wh = w * h;
+        int wm  = w - 1;
+        int hm  = h - 1;
+        int wh  = w * h;
         int div = radius + radius + 1;
 
-        int r[] = new int[wh];
-        int g[] = new int[wh];
-        int b[] = new int[wh];
+        int r[]    = new int[wh];
+        int g[]    = new int[wh];
+        int b[]    = new int[wh];
         int rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
         int vmin[] = new int[Math.max(w, h)];
 
@@ -74,13 +74,13 @@ public class FastBlur {
         yw = yi = 0;
 
         int[][] stack = new int[div][3];
-        int stackpointer;
-        int stackstart;
-        int[] sir;
-        int rbs;
-        int r1 = radius + 1;
-        int routsum, goutsum, boutsum;
-        int rinsum, ginsum, binsum;
+        int     stackpointer;
+        int     stackstart;
+        int[]   sir;
+        int     rbs;
+        int     r1    = radius + 1;
+        int     routsum, goutsum, boutsum;
+        int     rinsum, ginsum, binsum;
 
         for (y = 0; y < h; y++) {
             rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;

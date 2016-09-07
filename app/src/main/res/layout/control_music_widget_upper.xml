@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="horizontal">
+<LinearLayout
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content"
+    android:gravity = "center"
+    android:orientation = "horizontal"
+    >
 
     <music.dexterous.com.dexterousmusic.customeviews.widget.TimerTextView
-        android:id="@+id/current_song_playing_time"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        tools:text="14:15" />
+        android:id = "@+id/current_song_playing_time"
+        android:layout_width = "wrap_content"
+        android:layout_height = "match_parent"
+        tools:text = "14:15"
+        />
 
     <music.dexterous.com.dexterousmusic.customeviews.widget.MusicControlSeekBar
-        android:id="@+id/forword_song_seekbar"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content" />
+        android:id = "@+id/forword_song_seekbar"
+        android:layout_width = "300dp"
+        android:layout_height = "wrap_content"
+        />
 
 
     <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
-        android:id="@+id/current_song_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        tools:text="14:15" />
+        android:id = "@+id/current_song_duration"
+        android:layout_width = "wrap_content"
+        android:layout_height = "match_parent"
+        tools:text = "14:15"
+        />
 
-</LinearLayout>
+</LinearLayout >

@@ -10,8 +10,8 @@ import music.dexterous.com.dexterousmusic.utils.AppUtils;
  */
 public class StrictModeUtil {
     /**
-     * Enables strict mode for debugging.
-     * Beware that instance count is buggy, so ignore it (as of April 12, 2016 )
+     * Enables strict mode for debugging. Beware that instance count is buggy, so ignore it (as of
+     * April 12, 2016 )
      */
     public static void enableStrictMode() {
         if (AppUtils.isCompatWith(Build.VERSION_CODES.GINGERBREAD)) {

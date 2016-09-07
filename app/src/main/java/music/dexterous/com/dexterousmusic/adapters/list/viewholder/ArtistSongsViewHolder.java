@@ -15,13 +15,12 @@ import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 public class ArtistSongsViewHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
-    private ArtistSongsAdapter.OnAlbumSongsItemClickListener mOnClickListener;
-
     public FontTextView mSongAlbum;
     public FontTextView mSongName;
     public FontTextView mSongArtist;
     public FontTextView mSongDuration;
-    public ImageView mOverflowIcon;
+    public ImageView    mOverflowIcon;
+    private ArtistSongsAdapter.OnAlbumSongsItemClickListener mOnClickListener;
 
 
     public ArtistSongsViewHolder(View itemView, ArtistSongsAdapter.OnAlbumSongsItemClickListener onClickListener) {

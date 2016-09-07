@@ -7,25 +7,20 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.database.Music;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
-import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
 import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 /**
  * Created by Dubey's on 31-07-2016.
  */
 public class ScanningMusic {
-    private boolean scanningSongs;
-    private boolean scannedSongs;
     private final static int INTERNAL = 0;
     private final static int EXTERNAL = 1;
-
     List<Music> musicLibraryTables = new ArrayList<>();
-
+    private boolean scanningSongs;
+    private boolean scannedSongs;
 
     public boolean isScanning() {
         return scanningSongs;
@@ -39,8 +34,8 @@ public class ScanningMusic {
      * make sure you call {@link #isScanning()} before this method
      *
      * @param context
-     * @return list already scanning
-     * null while scanning
+     *
+     * @return list already scanning null while scanning
      */
     public List<Music> getAllMusicEntities(Context context) {
         if (scanningSongs)
@@ -61,18 +56,18 @@ public class ScanningMusic {
         Uri playlistUri = ((fromWhere == INTERNAL) ?
                 android.provider.MediaStore.Audio.Playlists.INTERNAL_CONTENT_URI :
                 android.provider.MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI);
-        ContentResolver resolver = c.getContentResolver();
-        Cursor cursor;
-        final String musicsOnly = MediaStore.Audio.Media.IS_MUSIC + "=1";
+        ContentResolver resolver   = c.getContentResolver();
+        Cursor          cursor;
+        final String    musicsOnly = MediaStore.Audio.Media.IS_MUSIC + "=1";
 
 
-        String GENRE_ID = MediaStore.Audio.Genres._ID;
-        String GENRE_NAME = MediaStore.Audio.Genres.NAME;
-        String SONG_ID = android.provider.MediaStore.Audio.Media._ID;
-        String SONG_TITLE = android.provider.MediaStore.Audio.Media.TITLE;
-        String SONG_ARTIST = android.provider.MediaStore.Audio.Media.ARTIST;
-        String SONG_ALBUM = android.provider.MediaStore.Audio.Media.ALBUM;
-        String SONG_YEAR = android.provider.MediaStore.Audio.Media.YEAR;
+        String GENRE_ID      = MediaStore.Audio.Genres._ID;
+        String GENRE_NAME    = MediaStore.Audio.Genres.NAME;
+        String SONG_ID       = android.provider.MediaStore.Audio.Media._ID;
+        String SONG_TITLE    = android.provider.MediaStore.Audio.Media.TITLE;
+        String SONG_ARTIST   = android.provider.MediaStore.Audio.Media.ARTIST;
+        String SONG_ALBUM    = android.provider.MediaStore.Audio.Media.ALBUM;
+        String SONG_YEAR     = android.provider.MediaStore.Audio.Media.YEAR;
         String SONG_TRACK_NO = android.provider.MediaStore.Audio.Media.TRACK;
         String SONG_FILEPATH = android.provider.MediaStore.Audio.Media.DATA;
         String SONG_DURATION = android.provider.MediaStore.Audio.Media.DURATION;

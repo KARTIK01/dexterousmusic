@@ -14,11 +14,11 @@ public class PrettyLogger {
 
     private static final boolean DEBUG = BuildConfig.DEBUG;
 
-    public PrettyLogger() {
-    }
-
     static {
         Logger.init("PrettyLogger");
+    }
+
+    public PrettyLogger() {
     }
 
     public static void e(String msg, Exception e) {

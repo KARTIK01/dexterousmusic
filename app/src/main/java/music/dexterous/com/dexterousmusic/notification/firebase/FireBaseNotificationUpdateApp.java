@@ -10,7 +10,6 @@ import android.support.v4.app.NotificationCompat;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.DeepLinkingActivity;
-import music.dexterous.com.dexterousmusic.notification.firebase.FireBaseNotification;
 
 /**
  * Created by naren on 22/8/16.

@@ -30,12 +30,12 @@ public class AllSongsFragment extends BaseFragment {
     List<Music> allSongsList;
 
     BounceBackRecyclerView mRecyclerView;
-    DragScrollBar dragScrollBar;
-    AllSongsAdapter recyclerViewAdapterAllSongs;
+    DragScrollBar          dragScrollBar;
+    AllSongsAdapter        recyclerViewAdapterAllSongs;
 
     public static AllSongsFragment newInstance() {
         AllSongsFragment fragment = new AllSongsFragment();
-        Bundle info = new Bundle();
+        Bundle           info     = new Bundle();
         fragment.setArguments(info);
         return fragment;
     }

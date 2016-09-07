@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="white">#FFFFFF</color>
+<resources >
+    <color name = "colorPrimary" >#3F51B5</color >
+    <color name = "colorPrimaryDark" >#303F9F</color >
+    <color name = "colorAccent" >#FF4081</color >
+    <color name = "white" >#FFFFFF</color >
 
 
-    <color name="partial_transparent_start">#c8000000</color>
-    <color name="partial_transparent_mid">#3c284d</color>
-    <color name="partial_transparent_end">#1c1827</color>
+    <color name = "partial_transparent_start" >#c8000000</color >
+    <color name = "partial_transparent_mid" >#3c284d</color >
+    <color name = "partial_transparent_end" >#1c1827</color >
 
 
-    <color name="partial_transparent">#a0abc7cc</color>
-    <color name="none">#00ffffff</color>
+    <color name = "partial_transparent" >#a0abc7cc</color >
+    <color name = "none" >#00ffffff</color >
 
-    <color name="VISUALIZER_END_COLOR">@color/colorAccent</color>
-    <color name="VISUALIZER__START_COLOR">@color/colorAccent</color>
-    <color name="VISUALIZER_COLOR_HERE">@color/colorAccent</color>
+    <color name = "VISUALIZER_END_COLOR" >@color/colorAccent</color >
+    <color name = "VISUALIZER__START_COLOR" >@color/colorAccent</color >
+    <color name = "VISUALIZER_COLOR_HERE" >@color/colorAccent</color >
 
-</resources>
+</resources >

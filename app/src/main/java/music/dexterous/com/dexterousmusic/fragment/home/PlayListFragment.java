@@ -26,15 +26,14 @@ import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
 
 public class PlayListFragment extends BaseFragment {
 
-    List<Music> playListSongList;
     public static final String FRAGMENT_TAG = PlayListFragment.class.getName();
-
+    List<Music> playListSongList;
     BounceBackSwipeRecyclerView mRecyclerView;
     private PlayListAdapter playListAdapter;
 
     public static PlayListFragment newInstance() {
         PlayListFragment fragment = new PlayListFragment();
-        Bundle info = new Bundle();
+        Bundle           info     = new Bundle();
         fragment.setArguments(info);
         return fragment;
     }
@@ -69,7 +68,7 @@ public class PlayListFragment extends BaseFragment {
         mRecyclerView = (BounceBackSwipeRecyclerView) view.findViewById(R.id.play_list_recyclerView);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(playListAdapter =new PlayListAdapter(playListSongList));
+        mRecyclerView.setAdapter(playListAdapter = new PlayListAdapter(playListSongList));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

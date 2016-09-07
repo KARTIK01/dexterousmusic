@@ -4,12 +4,8 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 /**
- * Created by Bruce too
- * Enhance by amit
- * On 2016/6/16
- * At 14:51
- * An adapter to enable over-scrolling over object of {@link ViewPager}
- *
+ * Created by Bruce too Enhance by amit On 2016/6/16 At 14:51 An adapter to enable over-scrolling
+ * over object of {@link ViewPager}
  */
 public class ViewPagerOverScrollDecorAdapter implements IOverScrollDecoratorAdapter, ViewPager.OnPageChangeListener {
 
@@ -42,7 +38,7 @@ public class ViewPagerOverScrollDecorAdapter implements IOverScrollDecoratorAdap
     @Override
     public boolean isInAbsoluteEnd() {
 
-        return mLastPagerPosition == mViewPager.getAdapter().getCount()-1 &&
+        return mLastPagerPosition == mViewPager.getAdapter().getCount() - 1 &&
                 mLastPagerScrollOffset == 0f;
     }
 

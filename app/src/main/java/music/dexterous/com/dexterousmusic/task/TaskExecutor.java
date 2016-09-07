@@ -14,55 +14,34 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
-/**
- * Created by Kartik on 05/01/16.
- * <p>
- * Helper class to execute tasks on background thread
- */
 public class TaskExecutor {
 
-    /**
-     * Capacity of the queue holding tasks for the thread pool executor
-     */
+    /** Capacity of the queue holding tasks for the thread pool executor */
     private static final int TASK_QUEUE_CAPACITY = 65536;
 
-    /**
-     * Time in seconds after which idle worker threads are killed
-     */
+    /** Time in seconds after which idle worker threads are killed */
     private static final int KEEP_ALIVE_WORKER = 20;
 
-    /**
-     * Time in seconds after which idle rxjava threads are killed
-     */
+    /** Time in seconds after which idle rxjava threads are killed */
     private static final int KEEP_ALIVE_RX_JAVA = 5;
 
     private static TaskExecutor sInstance;
 
-    /**
-     * tweak these if it doesn't work well
-     */
+    /** tweak these if it doesn't work well */
     private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
 
-    /**
-     * thread pool limits for worker threads
-     */
-    private static final int CORE_WORKER_POOL_SIZE = CPU_COUNT + 2;
+    /** thread pool limits for worker threads */
+    private static final int CORE_WORKER_POOL_SIZE    = CPU_COUNT + 2;
     private static final int MAXIMUM_WORKER_POOL_SIZE = CPU_COUNT * 2 + 1;
 
-    /**
-     * thread pool limits for rx java threads
-     */
-    private static final int CORE_RX_POOL_SIZE = CPU_COUNT + 1;
+    /** thread pool limits for rx java threads */
+    private static final int CORE_RX_POOL_SIZE    = CPU_COUNT + 1;
     private static final int MAXIMUM_RX_POOL_SIZE = CPU_COUNT * 2 + 1;
 
-    /**
-     * task queue for worker threads
-     */
+    /** task queue for worker threads */
     private static final BlockingQueue<Runnable> sPoolWorkQueue = new LinkedBlockingDeque<>(TASK_QUEUE_CAPACITY);
 
-    /**
-     * task queue for rx java threads
-     */
+    /** task queue for rx java threads */
     private static final BlockingQueue<Runnable> rxJavaWorkQueue = new LinkedBlockingDeque<>(TASK_QUEUE_CAPACITY);
 
     private static final ThreadFactory sThreadFactory;
@@ -77,15 +56,11 @@ public class TaskExecutor {
         };
     }
 
-    /**
-     * thread pool for executing tasks submitted
-     */
+    /** thread pool for executing tasks submitted */
     public static final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(CORE_WORKER_POOL_SIZE,
             MAXIMUM_WORKER_POOL_SIZE, KEEP_ALIVE_WORKER, TimeUnit.SECONDS, sPoolWorkQueue, sThreadFactory);
 
-    /**
-     * thread pool for creating threads for rx java
-     */
+    /** thread pool for creating threads for rx java */
     public static final ThreadPoolExecutor RX_THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(CORE_RX_POOL_SIZE,
             MAXIMUM_RX_POOL_SIZE, KEEP_ALIVE_RX_JAVA, TimeUnit.SECONDS, rxJavaWorkQueue, sThreadFactory);
 
@@ -105,15 +80,14 @@ public class TaskExecutor {
         return sInstance;
     }
 
-    /**
-     * executes the given task
-     */
+    /** executes the given task */
     public void executeTask(Runnable task) {
         if (task != null) {
             try {
                 threadPoolExecutor.execute(task);
             } catch (Exception e) {
                 PrettyLogger.e(e.toString(), e);
+                com.crashlytics.android.Crashlytics.logException(e);
             }
         }
     }
@@ -124,6 +98,7 @@ public class TaskExecutor {
                 return threadPoolExecutor.submit(task);
             } catch (Exception e) {
                 PrettyLogger.e(e.toString(), e);
+                com.crashlytics.android.Crashlytics.logException(e);
             }
         }
         return null;
@@ -137,7 +112,7 @@ public class TaskExecutor {
 
         @Override
         public void run() {
-            Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+            android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
             super.run();
         }
     }

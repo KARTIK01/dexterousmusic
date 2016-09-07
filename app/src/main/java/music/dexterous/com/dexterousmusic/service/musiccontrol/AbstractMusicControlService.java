@@ -39,8 +39,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     static public MediaPlayer mDexterousMediaPlayer;
 
     /**
-     * Spawns an on-going notification_big with our current
-     * playing song.
+     * Spawns an on-going notification_big with our current playing song.
      */
     static public NotificationMusic notification = null;
 
@@ -60,17 +59,15 @@ public abstract class AbstractMusicControlService extends Service implements Mus
      * <p>
      * Use this to get audio focus:
      * <p>
-     * 1. Making sure other music apps don't play
-     * at the same time;
-     * 2. Guaranteeing the lock screen widget will
-     * be controlled by us;
+     * 1. Making sure other music apps don't play at the same time; 2. Guaranteeing the lock screen
+     * widget will be controlled by us;
      */
     private AudioManager audioManager;
 
 
-    private PlayMusicOnPreparedListener mPlayMusicOnPreparedListener;
+    private PlayMusicOnPreparedListener   mPlayMusicOnPreparedListener;
     private PlayMusicOnCompletionListener mPlayMusicOnCompletionListener;
-    private PlayMusicOnErrorListener mPlayMusicOnErrorListener;
+    private PlayMusicOnErrorListener      mPlayMusicOnErrorListener;
 
     public AbstractMusicControlService() {
         super();
@@ -181,8 +178,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
     /**
      * Jumps to the next song on the list.
      *
-     * @note Remember to call {@link #playMusic} to make the MusicPlayer
-     * actually play the music.
+     * @note Remember to call {@link #playMusic} to make the MusicPlayer actually play the music.
      */
     @Override
     public void playNextMusic(boolean isUserSkipped) {
@@ -279,8 +275,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
 
 
     /**
-     * Displays a notification_big on the status bar with the
-     * current song and some nice buttons.
+     * Displays a notification_big on the status bar with the current song and some nice buttons.
      */
     @Override
     public void notifyCurrentSong() {

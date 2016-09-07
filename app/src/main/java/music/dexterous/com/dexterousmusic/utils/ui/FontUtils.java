@@ -1,16 +1,12 @@
-
 package music.dexterous.com.dexterousmusic.utils.ui;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.Build.VERSION_CODES;
-import android.os.StrictMode;
 import android.support.v4.util.ArrayMap;
 
 import java.util.concurrent.Future;
 
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
-import music.dexterous.com.dexterousmusic.utils.AppUtils;
 import music.dexterous.com.dexterousmusic.utils.DiskUtils;
 
 /**

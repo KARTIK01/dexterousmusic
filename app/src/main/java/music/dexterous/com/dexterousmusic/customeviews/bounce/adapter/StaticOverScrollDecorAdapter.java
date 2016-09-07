@@ -6,7 +6,6 @@ import android.view.View;
  * A static adapter for views that are ALWAYS over-scroll-able (e.g. image view).
  *
  * @author amit
- *
  */
 public class StaticOverScrollDecorAdapter implements IOverScrollDecoratorAdapter {
 

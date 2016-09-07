@@ -2,25 +2,18 @@ package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.viewpager.MusicViewPageAdapter;
 import music.dexterous.com.dexterousmusic.animations.transformation.ABaseTransformer;
 import music.dexterous.com.dexterousmusic.animations.transformation.DepthPageTransformer;
 import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.BottomPanelSlideListener;
 import music.dexterous.com.dexterousmusic.customeviews.slidinguppannel.SlidingUpPanelLayout;
-import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.fragment.home.listener.OnHomeViewPagerChangeListener;
-import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 /**
  * Created by Kartik on 8/9/2016.
@@ -28,43 +21,33 @@ import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 
 public class HomeRootFragment extends BaseFragment {
 
-    private static final int NUM_PAGES_CACHED = 3;
-
     /**
      * tag for fragment transactions
      */
     public static final String FRAGMENT_TAG = HomeRootFragment.class.getSimpleName();
-
-    /**
-     * Flag to determine if on resume has been called from oncreate or not
-     */
-    private boolean mIsComingFromOnCreate = false;
-
-    FragmentManager mFragmentManager;
-
-    SlidingUpPanelLayout mSlidingUpPanelLayout;
-    BottomPanelSlideListener mBottomPanelSlideListener;
-
-    FrameLayout mRootHomeContainerBottom;
-    FrameLayout mRootHomeContainerUpper;
-
-    NowPlayingFragment mNowPlayingFragment;
-    HomeFragment homeFragment;
-
-
+    private static final int NUM_PAGES_CACHED = 3;
+    private static final String INTITIAL_PAGE = "initial_page";
     /**
      * transformer for the viewpager
      */
     private final ABaseTransformer PAGE_TRANSFORMER = new DepthPageTransformer();
-
-
-    private static final String INTITIAL_PAGE = "initial_page";
-    private int initialPage = 0;
+    FragmentManager mFragmentManager;
+    SlidingUpPanelLayout     mSlidingUpPanelLayout;
+    BottomPanelSlideListener mBottomPanelSlideListener;
+    FrameLayout mRootHomeContainerBottom;
+    FrameLayout mRootHomeContainerUpper;
+    NowPlayingFragment mNowPlayingFragment;
+    HomeFragment       homeFragment;
+    /**
+     * Flag to determine if on resume has been called from oncreate or not
+     */
+    private boolean mIsComingFromOnCreate = false;
+    private              int    initialPage   = 0;
 
 
     public static HomeRootFragment newInstance(int initialPage) {
         HomeRootFragment fragment = new HomeRootFragment();
-        Bundle info = new Bundle();
+        Bundle           info     = new Bundle();
         info.putInt(INTITIAL_PAGE, initialPage);
         fragment.setArguments(info);
         return fragment;

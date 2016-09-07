@@ -22,6 +22,7 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter, INameableAdapter {
 
     private List<Music> musics;
+    private OnAllSongsItemClickListener mOnClickListener;
 
     public AllSongsAdapter(List<Music> dataset) {
         musics = dataset;
@@ -61,15 +62,8 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
         return musics.get(pos).getSONG_TITLE().substring(0, 1);
     }
 
-
-    private OnAllSongsItemClickListener mOnClickListener;
-
     public void setOnItemClickListener(OnAllSongsItemClickListener onClickListener) {
         mOnClickListener = onClickListener;
-    }
-
-    public interface OnAllSongsItemClickListener {
-        void onItemClick(View view, int position);
     }
 
     @Override
@@ -79,5 +73,9 @@ public class AllSongsAdapter extends RecyclerView.Adapter<AllSongsViewHolder>
             c = '#';
         }
         return c;
+    }
+
+    public interface OnAllSongsItemClickListener {
+        void onItemClick(View view, int position);
     }
 }

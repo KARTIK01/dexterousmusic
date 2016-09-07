@@ -31,8 +31,8 @@ public class DeepLinkingActivity extends BaseActivity {
 
         Intent intent = getIntent();
 
-        String host;
-        String scheme;
+        String       host;
+        String       scheme;
         List<String> listUrlPrefixes;
 
         if (intent != null) {
