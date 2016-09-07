@@ -91,11 +91,12 @@
         <!-- It will fire when headset inserted or removed from phone  -->
         <receiver
             android:name = ".receiver.HeadsetBroadcastReceiver"
-            android:enabled = "true"
-            android:exported = "true"
             >
             <intent-filter >
                 <action android:name = "android.intent.action.HEADSET_PLUG" />
+            </intent-filter >
+            <intent-filter >
+                <action android:name = "android.intent.action.MEDIA_BUTTON" />
             </intent-filter >
         </receiver >
         <receiver android:name = ".receiver.widget.NextMusicReceiver" />
