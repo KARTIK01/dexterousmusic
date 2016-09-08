@@ -1,6 +1,9 @@
 package music.dexterous.com.dexterousmusic.service.musiccontrol;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -19,6 +22,7 @@ import music.dexterous.com.dexterousmusic.event.ShowWidget;
 import music.dexterous.com.dexterousmusic.musicutils.DexterousMediaPlayer;
 import music.dexterous.com.dexterousmusic.musicutils.PlayCurrentSong;
 import music.dexterous.com.dexterousmusic.notification.NotificationMusic;
+import music.dexterous.com.dexterousmusic.receiver.HeadsetBroadcastReceiver;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnCompletionListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnErrorListener;
 import music.dexterous.com.dexterousmusic.service.playmusiclistener.PlayMusicOnPreparedListener;
@@ -94,6 +98,7 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         mDexterousMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         initListener();
+        setReceiver();
     }
 
     private void initListener() {
@@ -107,6 +112,14 @@ public abstract class AbstractMusicControlService extends Service implements Mus
         if (mPlayMusicOnErrorListener == null) {
             mDexterousMediaPlayer.setOnErrorListener(mPlayMusicOnErrorListener = new PlayMusicOnErrorListener());
         }
+    }
+
+    private void setReceiver() {
+        BroadcastReceiver receiver                = HeadsetBroadcastReceiver.gerReciver(this);
+        IntentFilter      intentFilter            = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+        IntentFilter      intentFilterMediaButton = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);
+        registerReceiver(receiver, intentFilter);
+        registerReceiver(receiver, intentFilterMediaButton);
     }
 
     /**

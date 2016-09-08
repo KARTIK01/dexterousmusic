@@ -7,7 +7,9 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import music.dexterous.com.dexterousmusic.customeviews.widget.ShortToast;
+import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
+import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 //TODO register it with service it cannot br registed with manifest
 
@@ -28,6 +30,11 @@ import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
  */
 public class HeadsetBroadcastReceiver extends BroadcastReceiver {
     String TAG = "Receiver";
+
+
+    static public BroadcastReceiver gerReciver(Context context) {
+        return new HeadsetBroadcastReceiver();
+    }
 
     public HeadsetBroadcastReceiver() {
     }
@@ -58,12 +65,14 @@ public class HeadsetBroadcastReceiver extends BroadcastReceiver {
         int microPhone = intent.getIntExtra("microphone", -1); // 1 when has microphone else 0
         switch (state) {
             case 0:
-                ShortToast.displayToast(context, "Received", Toast.LENGTH_SHORT);
                 PrettyLogger.d("Headset is unplugged");
+                DexterousPlayMusicService.startService(context, DexterousPlayMusicService.PAUSE_MUSIC);
                 break;
             case 1:
-                ShortToast.displayToast(context, "Received", Toast.LENGTH_SHORT);
                 PrettyLogger.d("Headset is plugged");
+                if (UsersAppPreference.getMusicPlayONInsetHeadSet()) {
+                    DexterousPlayMusicService.startService(context, DexterousPlayMusicService.PLAY_MUSIC);
+                }
                 break;
             default:
                 ShortToast.displayToast(context, "Received", Toast.LENGTH_SHORT);
@@ -71,6 +80,11 @@ public class HeadsetBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
+    /**
+     * TODO Its not working, check why
+     *
+     * @param keyEvent
+     */
     private void handleKeyPressed(KeyEvent keyEvent) {
 
         // Not interested on anything other than pressed keys.
