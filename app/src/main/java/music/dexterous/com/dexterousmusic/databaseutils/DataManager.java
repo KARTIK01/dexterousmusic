@@ -25,18 +25,19 @@ public class DataManager extends MediaDao {
     /**
      * list of all Albums present
      */
-    private static final Map<String, AlbumModel> albumHash = new HashMap<>();
-    private static final Map<String, ArtistModel> artist   = new HashMap<>();
+    private static final Map<String, AlbumModel>  albumHash = new HashMap<>();
+    private static final Map<String, ArtistModel> artist    = new HashMap<>();
+    private static final Map<String, ArtistModel> playList  = new HashMap<>();
     /**
      * All music in user phone
      */
-    private static final List<Music>              allMusic = new ArrayList<>();
+    private static final List<Music>              allMusic  = new ArrayList<>();
     private static DataManager sInstance;
     private        Context     mContext;
     /**
      * Dao classes for db queries
      */
-    private MusicDao mMusicDao;
+    private        MusicDao    mMusicDao;
 
 
     private DataManager(Context context) {
@@ -62,6 +63,7 @@ public class DataManager extends MediaDao {
         loadAllMusic();
         loadAlbums();
         loadArtist();
+        loadPlayList();
     }
 
     private void loadAllMusic() {
@@ -121,6 +123,31 @@ public class DataManager extends MediaDao {
             artist.clear();
             artist.putAll(returnListOfArtistNames);
         }
+    }
+
+    private void loadPlayList() {
+//        synchronized (playList) {
+//            Map<String, ArtistModel> returnListOfPlayList = new HashMap<>();
+//            Uri                      playListUri          = android.provider.MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI;
+//            Cursor                   cursor               = mContext.getContentResolver().query(playListUri, null, null, null, MediaStore.Audio.Artists.ARTIST);
+//            if (cursor != null && cursor.moveToFirst()) {
+//                do {
+//                    PlaylistModel playlistModel = new PlaylistModel();
+//                    String        artistName = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST));
+//                    playlistModel.setArtistName(artistName);
+//                    returnListOfPlayList.put(artistName, playlistModel);
+//                } while (cursor.moveToNext());
+//            }
+//
+//            for (int i = 0; i < allMusic.size(); i++) {
+//                ArtistModel artistModel = returnListOfPlayList.get(allMusic.get(i).getSONG_ARTIST());
+//                List<Music> musicList1  = artistModel.getMusicArrayList();
+//                musicList1.add(allMusic.get(i));
+//            }
+//
+//            playList.clear();
+//            playList.putAll(returnListOfPlayList);
+//        }
     }
 
 

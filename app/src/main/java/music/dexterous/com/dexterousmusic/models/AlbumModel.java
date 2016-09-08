@@ -13,17 +13,7 @@ import music.dexterous.com.dexterousmusic.database.Music;
  */
 public class AlbumModel implements Parcelable {
 
-    public static final Creator<AlbumModel> CREATOR = new Creator<AlbumModel>() {
-        @Override
-        public AlbumModel createFromParcel(Parcel source) {
-            return new AlbumModel(source);
-        }
 
-        @Override
-        public AlbumModel[] newArray(int size) {
-            return new AlbumModel[size];
-        }
-    };
     private String albumName;
     private String albumArtPath;
     private List<Music> musicArrayList = new ArrayList<>();
@@ -86,6 +76,18 @@ public class AlbumModel implements Parcelable {
         dest.writeString(this.albumArtPath);
         dest.writeTypedList(this.musicArrayList);
     }
+
+    public static final Creator<AlbumModel> CREATOR = new Creator<AlbumModel>() {
+        @Override
+        public AlbumModel createFromParcel(Parcel source) {
+            return new AlbumModel(source);
+        }
+
+        @Override
+        public AlbumModel[] newArray(int size) {
+            return new AlbumModel[size];
+        }
+    };
 
     @Override
     public String toString() {
