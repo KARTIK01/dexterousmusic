@@ -37,16 +37,16 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
     public static final String FRAGMENT_TAG = NowPlayingFragment.class.getSimpleName();
 
     // Views for small bar
-    private ImageView mNowPlayingImageView;
+    private ImageView    mNowPlayingImageView;
     private FontTextView mNowPlayingSongNameTextView;
-    private ImageView mToggelButton;
+    private ImageView    mToggelButton;
 
     //views for big bar
     private MusicControlSeekBar musicControlBar;
-    private TimerTextView current_song_playing_time;
-    private FontTextView current_song_duration;
+    private TimerTextView       current_song_playing_time;
+    private FontTextView        current_song_duration;
 
-    private ImageView album_art_image_view;
+    private ImageView    album_art_image_view;
     private FontTextView song_name_tv;
     private FontTextView song_artist_tv;
     private FontTextView song_album_tv;
@@ -63,7 +63,7 @@ public class NowPlayingFragment extends BaseFragment implements View.OnClickList
 
     public static NowPlayingFragment newInstance() {
         NowPlayingFragment fragment = new NowPlayingFragment();
-        Bundle info = new Bundle();
+        Bundle             info     = new Bundle();
         fragment.setArguments(info);
         return fragment;
     }

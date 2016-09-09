@@ -1,42 +1,42 @@
-<resources>
+<resources >
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name = "AppTheme" parent = "Theme.AppCompat.NoActionBar" >
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+        <item name = "colorPrimary" >@color/colorPrimary</item >
+        <item name = "colorPrimaryDark" >@color/colorPrimaryDark</item >
+        <item name = "colorAccent" >@color/colorAccent</item >
+    </style >
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    <style name = "AppTheme.NoActionBar" >
+        <item name = "windowActionBar" >false</item >
+        <item name = "windowNoTitle" >true</item >
+    </style >
 
 
-    <style name="AppThemeDark.Splash" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@drawable/window_preview</item>
-    </style>
+    <style name = "AppThemeDark.Splash" parent = "Theme.AppCompat.NoActionBar" >
+        <item name = "colorPrimary" >@color/colorPrimary</item >
+        <item name = "colorPrimaryDark" >@color/colorPrimaryDark</item >
+        <item name = "colorAccent" >@color/colorAccent</item >
+        <item name = "android:windowBackground" >@drawable/window_preview</item >
+    </style >
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name = "AppTheme.AppBarOverlay" parent = "ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name = "AppTheme.PopupOverlay" parent = "ThemeOverlay.AppCompat.Light" />
 
-    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">@dimen/text_small</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="textAllCaps">false</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
+    <style name = "TabTextAppearance" parent = "TextAppearance.Design.Tab" >
+        <item name = "android:textSize" >@dimen/text_small</item >
+        <item name = "android:textColor" >@color/white</item >
+        <item name = "textAllCaps" >false</item >
+        <item name = "android:textAllCaps" >false</item >
+    </style >
 
     <!-- theme for settings tabs -->
-    <style name="tabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorHeight">0dp</item>
-        <item name="tabTextAppearance">@style/TabTextAppearance</item>
-        <item name="tabSelectedTextColor">@color/white</item>
-    </style>
+    <style name = "tabLayout" parent = "Widget.Design.TabLayout" >
+        <item name = "tabIndicatorHeight" >0dp</item >
+        <item name = "tabTextAppearance" >@style/TabTextAppearance</item >
+        <item name = "tabSelectedTextColor" >@color/white</item >
+    </style >
 
-</resources>
+</resources >

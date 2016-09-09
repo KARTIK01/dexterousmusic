@@ -39,8 +39,8 @@ public class FontTextView extends TextView {
 
     protected void init(AttributeSet attrs) {
         if (attrs != null) {
-            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.FontText);
-            String fontName = a.getString(R.styleable.FontText_fontName);
+            TypedArray a        = getContext().obtainStyledAttributes(attrs, R.styleable.FontText);
+            String     fontName = a.getString(R.styleable.FontText_fontName);
             a.recycle();
             if (fontName == null) {
                 fontName = Constants.DEFAULT_ENGLISH_FONT;

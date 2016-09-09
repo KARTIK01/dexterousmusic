@@ -17,23 +17,23 @@ import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 
 public class DexterousPlayMusicService extends AbstractMusicControlService {
 
-    public static final String PLAY_MUSIC = "play_music";
-    public static final String PAUSE_MUSIC = "pause_music";
-    public static final String STOP_MUSIC = "stop_music";
-    public static final String UNPAUSE_MUSIC = "unpause_music";
-    public static final String TOGGLE_MUSIC = "toggle_music";
-    public static final String NEXT_MUSIC = "next_music";
+    public static final String PLAY_MUSIC     = "play_music";
+    public static final String PAUSE_MUSIC    = "pause_music";
+    public static final String STOP_MUSIC     = "stop_music";
+    public static final String UNPAUSE_MUSIC  = "unpause_music";
+    public static final String TOGGLE_MUSIC   = "toggle_music";
+    public static final String NEXT_MUSIC     = "next_music";
     public static final String PREVIOUS_MUSIC = "previous_music";
-    public static final String INITIALIZE = "initialize";
+    public static final String INITIALIZE     = "initialize";
+
+    public DexterousPlayMusicService() {
+        super("DexterousPlayMusicService");
+    }
 
     public static void startService(Context context, String type) {
         Intent nextMusic = new Intent(type);
         nextMusic.setClass(context, DexterousPlayMusicService.class);
         context.startService(nextMusic);
-    }
-
-    public DexterousPlayMusicService() {
-        super("DexterousPlayMusicService");
     }
 
     @Nullable

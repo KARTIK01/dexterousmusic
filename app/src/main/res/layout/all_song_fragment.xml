@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<LinearLayout
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent"
+    android:orientation = "vertical"
+    >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activity.SongListActivity">
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        tools:context = ".activity.SongListActivity"
+        >
 
         <music.dexterous.com.dexterousmusic.customeviews.bounce.BounceBackRecyclerView
-            android:id="@+id/my_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            android:id = "@+id/my_recycler_view"
+            android:layout_width = "match_parent"
+            android:layout_height = "match_parent"
+            android:scrollbars = "vertical"
+            />
 
-        <com.turingtechnologies.materialscrollbar.DragScrollBar xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/dragScrollBar"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            app:msb_lightOnTouch="false" />
+        <com.turingtechnologies.materialscrollbar.DragScrollBar
+            xmlns:app = "http://schemas.android.com/apk/res-auto"
+            android:id = "@+id/dragScrollBar"
+            android:layout_width = "wrap_content"
+            android:layout_height = "match_parent"
+            android:layout_alignParentEnd = "false"
+            android:layout_alignParentRight = "true"
+            android:layout_alignParentTop = "true"
+            app:msb_lightOnTouch = "false"
+            />
 
-    </RelativeLayout>
-</LinearLayout>
+    </RelativeLayout >
+</LinearLayout >

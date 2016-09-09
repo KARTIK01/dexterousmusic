@@ -17,7 +17,7 @@ import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
  * Created by Honey on 7/31/2016.
  */
 public class ShortToast {
-    public static final int yOffset = UiUtils.dpToPixel(52);
+    public static final  int     yOffset  = UiUtils.dpToPixel(52);
     private static final Handler sHandler = new Handler(Looper.getMainLooper());
 
     public static void displayToast(Context context, String textToShow, long duration) {
@@ -28,8 +28,8 @@ public class ShortToast {
 
             duration = (duration > 400) ? duration : 1000;
 
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View toastLayout = inflater.inflate(R.layout.layout_simple_toast, null);
+            LayoutInflater inflater    = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View           toastLayout = inflater.inflate(R.layout.layout_simple_toast, null);
 
             final TextView text = (TextView) toastLayout.findViewById(R.id.toastMessage);
 

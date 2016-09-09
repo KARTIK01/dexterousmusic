@@ -28,9 +28,9 @@ public class CropCircleTransformation implements Transformation<Bitmap> {
     @Override
     public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
         Bitmap source = resource.get();
-        int size = Math.min(source.getWidth(), source.getHeight());
+        int    size   = Math.min(source.getWidth(), source.getHeight());
 
-        int width = (source.getWidth() - size) / 2;
+        int width  = (source.getWidth() - size) / 2;
         int height = (source.getHeight() - size) / 2;
 
         Bitmap bitmap = mBitmapPool.get(size, size, Bitmap.Config.ARGB_8888);
@@ -39,7 +39,7 @@ public class CropCircleTransformation implements Transformation<Bitmap> {
         }
 
         Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint();
+        Paint  paint  = new Paint();
         BitmapShader shader =
                 new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
         if (width != 0 || height != 0) {

@@ -31,24 +31,21 @@ public class DiskUtils {
     private static final String TAG = LogUtils.makeLogTag("DiskUtils");
 
     /**
-     * return the uri to file for sharing the image of the passed view.
-     * If it already exists, return uri to that file else generate and return uri
-     * to that file
+     * return the uri to file for sharing the image of the passed view. If it already exists, return
+     * uri to that file else generate and return uri to that file
      */
     public static Uri readOrGenerateFileUri(View view, String fileIdSuffix) {
         return readOrGenerateInternalFileUri(view.getContext(), view, fileIdSuffix, true);
     }
 
     /**
-     * return the uri to file for sharing the image of the passed view.
-     * If it already exists, return uri to that file else generate and return uri
-     * to that file
-     * URI is in form of
+     * return the uri to file for sharing the image of the passed view. If it already exists, return
+     * uri to that file else generate and return uri to that file URI is in form of
      * content://com.lockscreen.zuppit.debug.imageprovider/shareimages/zuppit-referral.jpg
      */
     public static Uri readOrGenerateInternalFileUri(Context context, View view, String fileIdSuffix, boolean shouldUseCache) {
         String fileName = getShareImageFileNameById(fileIdSuffix);
-        Uri imageFileUri;
+        Uri    imageFileUri;
         if (shouldUseCache && checkImageExists(context, fileName)) {
             imageFileUri = getInternalUriForFile(context, new File(getImageStorePath(context), fileName));
         } else {
@@ -59,25 +56,24 @@ public class DiskUtils {
     }
 
     /**
-     * @return Uri to the the file being passed.
-     * It is assumed that file is stored in the internal storage.
-     * Do not use this for files which are stored in external storage.
+     * @return Uri to the the file being passed. It is assumed that file is stored in the internal
+     * storage. Do not use this for files which are stored in external storage.
      */
     private static Uri getInternalUriForFile(Context context, File theFile) {
         return FileProvider.getUriForFile(context.getApplicationContext(), context.getApplicationContext().getPackageName() + ".imageprovider", theFile);
     }
 
     /**
-     * @return Either create or use already existing image file uri for the view being passed.
-     * Name of the file is generated from the @newsItemId being passed.
+     * @return Either create or use already existing image file uri for the view being passed. Name
+     * of the file is generated from the @newsItemId being passed.
      */
     public static Uri readOrGenerateBookmarkFileUri(View view, long newsItemId) {
         return readOrGenerateInternalFileUri(view.getContext(), view, "bookmark-" + newsItemId, true);
     }
 
     /**
-     * @return Either create or use already existing image file uri for the view being passed.
-     * Name of the file is generated from the @itemId being passed.
+     * @return Either create or use already existing image file uri for the view being passed. Name
+     * of the file is generated from the @itemId being passed.
      */
     public static Uri readOrGenerateLiveScoreFileUri(View view, String itemId) {
         return readOrGenerateInternalFileUri(view.getContext(), view, "liveScore-" + itemId, false);
@@ -91,8 +87,8 @@ public class DiskUtils {
     }
 
     /**
-     * @return name of the file where screenshot for the current view of the news item
-     * shall be stored. This will be used while sharing the news with other people
+     * @return name of the file where screenshot for the current view of the news item shall be
+     * stored. This will be used while sharing the news with other people
      */
     private static String getShareImageFileNameById(String fileIdSuffix) {
         return "zuppit-" + fileIdSuffix + ".jpg";
@@ -112,8 +108,8 @@ public class DiskUtils {
     }
 
     /**
-     * @return URI to stored image
-     * TODO   if want to use this method them update this for internal storage
+     * @return URI to stored image TODO   if want to use this method them update this for internal
+     * storage
      */
     @Nullable
     @Deprecated
@@ -191,6 +187,7 @@ public class DiskUtils {
 
     /**
      * @return the storage folder path for the images within the app
+     *
      * @Deprecated
      */
     public static String getImageStorePath(Context context) {
@@ -218,13 +215,13 @@ public class DiskUtils {
      * Unzips the file zipname to the path
      */
     public static boolean extractZippedFont(AssetManager assetManager, String outputFilePath, String zipFontFileName) {
-        InputStream is = null;
+        InputStream    is  = null;
         ZipInputStream zis = null;
         try {
             is = assetManager.open(zipFontFileName);
             zis = new ZipInputStream(new BufferedInputStream(is));
             byte[] buffer = new byte[1024];
-            int count;
+            int    count;
 
             ZipEntry zipEntry;
             while ((zipEntry = zis.getNextEntry()) != null) {

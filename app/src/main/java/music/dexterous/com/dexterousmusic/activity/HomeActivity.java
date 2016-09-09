@@ -2,8 +2,8 @@ package music.dexterous.com.dexterousmusic.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -20,7 +20,6 @@ import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.HomeRootFragment;
 import music.dexterous.com.dexterousmusic.utils.image.HomeActivtyBgImageHelper;
-import music.dexterous.com.dexterousmusic.utils.other.RandomNumberGeneratorForMusic;
 import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
@@ -29,21 +28,17 @@ import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
  */
 public class HomeActivity extends BaseActivity {
 
-    FragmentManager mFragmentManager;
-
-    HomeRootFragment mHomeRootFragment;
-
-    FrameLayout mRootHomeContainer;
-
-    ImageView imageView;
-
     private static final String INTITIAL_PAGE = "initial_page";
-    private int initialPage = 0;
+    FragmentManager mFragmentManager;
+    HomeRootFragment mHomeRootFragment;
+    FrameLayout mRootHomeContainer;
+    ImageView imageView;
+    private              int    initialPage   = 0;
 
 
-    public static Intent getIntent(Context context , int initialPage) {
+    public static Intent getIntent(Context context, int initialPage) {
         Intent intent = new Intent(context, HomeActivity.class);
-        intent.putExtra(INTITIAL_PAGE , initialPage);
+        intent.putExtra(INTITIAL_PAGE, initialPage);
         return intent;
     }
 
@@ -82,7 +77,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void setUpUiForCurrentSong() {
-        Music musicToPlay;
+        Music       musicToPlay;
         List<Music> musicList = DataManager.getInstance(this).getAllMusic();
         if (musicList != null && musicList.size() > 0) {
             if (OtherPreference.getCurrentSongIndex() != -1) {
@@ -112,8 +107,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     /**
-     * updates user HomeScreen Background
-     * with current playing song album art
+     * updates user HomeScreen Background with current playing song album art
      *
      * @param playMusicEvent
      */

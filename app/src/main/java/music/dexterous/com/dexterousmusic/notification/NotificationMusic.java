@@ -24,15 +24,13 @@ import rx.Subscription;
 public class NotificationMusic extends NotificationSimple {
 
     /**
-     * Reference to the context that notified.
-     */
-    Context context = null;
-    /**
      * Notification progress bar
      */
     private final int STATUS_BAR_NOTIFICATION = 1;
-
-
+    /**
+     * Reference to the context that notified.
+     */
+    Context context = null;
     /**
      * Used to create and update the same notification_big.
      */
@@ -42,12 +40,11 @@ public class NotificationMusic extends NotificationSimple {
      * Custom appearance of the notification_big, also updated.
      */
     RemoteViews smallNotificationView = null;
-    RemoteViews bigNotificationView = null;
+    RemoteViews bigNotificationView   = null;
 
     /**
-     * Used to actually broadcast the notification_big.
-     * Depends on the Activity that originally called
-     * the nofitication.
+     * Used to actually broadcast the notification_big. Depends on the Activity that originally
+     * called the nofitication.
      */
     NotificationManager notificationManager = null;
 
@@ -55,27 +52,31 @@ public class NotificationMusic extends NotificationSimple {
     /**
      * Reference to the service we're attached to.
      */
-    private Service service;
+    private Service      service;
     private Subscription subscription;
 
+    /**
+     * Cancels all sent notifications.
+     */
+    public static void cancelAll(Context c) {
+        NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancelAll();
+    }
 
     /**
      * Sends a system notification_big with a Music's information.
      * <p>
-     * If the user clicks the notification_big, will be redirected
-     * to the "Now Playing" Activity.
+     * If the user clicks the notification_big, will be redirected to the "Now Playing" Activity.
      * <p>
-     * If the user clicks on any of the buttons inside it,
-     * custom actions will be executed on the
+     * If the user clicks on any of the buttons inside it, custom actions will be executed on the
      * `NotificationButtonHandler` class.
      *
      * @param context Activity that calls this function.
-     * @param service Service that calls this function.
-     *                Required so the Notification can
-     *                run on the background.
+     * @param service Service that calls this function. Required so the Notification can run on the
+     *                background.
      * @param music   Song which we'll display information.
-     * @note By calling this function multiple times, it'll
-     * update the old notification_big.
+     *
+     * @note By calling this function multiple times, it'll update the old notification_big.
      */
     public void notifySong(Context context, Service service, Music music) {
 
@@ -158,7 +159,7 @@ public class NotificationMusic extends NotificationSimple {
 
     public void setUpSuscription(int intialValue, int songDuration) {
 
-        int START_DELAY = 0;
+        int START_DELAY  = 0;
         int INTERVEL_GAP = 1;
 
         saveUnSubscribe();
@@ -222,14 +223,6 @@ public class NotificationMusic extends NotificationSimple {
         saveUnSubscribe();
         service.stopForeground(true);
         notificationManager.cancel(NOTIFICATION_ID);
-    }
-
-    /**
-     * Cancels all sent notifications.
-     */
-    public static void cancelAll(Context c) {
-        NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.cancelAll();
     }
 
     private void saveUnSubscribe() {

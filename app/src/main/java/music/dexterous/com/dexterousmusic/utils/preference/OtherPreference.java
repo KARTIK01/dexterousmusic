@@ -5,7 +5,7 @@ package music.dexterous.com.dexterousmusic.utils.preference;
  */
 public class OtherPreference {
 
-    private static final String KEY_IS_FIRST_TIME = "isFirstTime";
+    private static final String KEY_IS_FIRST_TIME      = "isFirstTime";
     private static final String KEY_CURRENT_SONG_INDEX = "lastSongIndex";
 
     /**

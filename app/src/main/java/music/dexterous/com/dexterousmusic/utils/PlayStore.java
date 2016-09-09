@@ -24,7 +24,7 @@ public class PlayStore {
         //TODO update package name
         if (BuildConfig.DEBUG) packageName = "com.lockscreen.zuppit";
 
-        Intent rateIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
+        Intent  rateIntent  = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
         boolean marketFound = false;
 
         /**  find all applications able to handle our rateIntent */

@@ -6,11 +6,14 @@ import music.dexterous.com.dexterousmusic.BuildConfig;
 
 
 public class LogUtils {
-    private static final String LOG_PREFIX = "zuppit_";
-    private static final int LOG_PREFIX_LENGTH = LOG_PREFIX.length();
-    private static final int MAX_LOG_TAG_LENGTH = 23;
+    private static final String LOG_PREFIX         = "zuppit_";
+    private static final int    LOG_PREFIX_LENGTH  = LOG_PREFIX.length();
+    private static final int    MAX_LOG_TAG_LENGTH = 23;
 
     public static boolean LOGGING_ENABLED = BuildConfig.DEBUG;
+
+    private LogUtils() {
+    }
 
     public static String makeLogTag(String str) {
         if (str.length() > MAX_LOG_TAG_LENGTH - LOG_PREFIX_LENGTH) {
@@ -85,8 +88,5 @@ public class LogUtils {
         if (LOGGING_ENABLED) {
             Log.e(tag, message, cause);
         }
-    }
-
-    private LogUtils() {
     }
 }

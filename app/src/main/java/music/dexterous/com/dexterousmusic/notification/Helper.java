@@ -42,9 +42,9 @@ public class Helper {
     }
 
     public static void setAlbumImage(Context context, Music music, RemoteViews remoteViews) {
-        String albumArtPath = "";
-        String songAlbum = music.getSONG_ALBUM();
-        AlbumModel albumModel = DataManager.getInstance(context).getAlbumsMap().get(songAlbum);
+        String     albumArtPath = "";
+        String     songAlbum    = music.getSONG_ALBUM();
+        AlbumModel albumModel   = DataManager.getInstance(context).getAlbumsMap().get(songAlbum);
         if (albumModel != null) {
             albumArtPath = albumModel.getAlbumArtPath();
         }

@@ -4,12 +4,11 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 
 /**
- * An adapter that enables over-scrolling support over a {@link HorizontalScrollView}.
- * <br/>Seeing that {@link HorizontalScrollView} only supports horizontal scrolling, this adapter
- * should only be used with a {@link }.
+ * An adapter that enables over-scrolling support over a {@link HorizontalScrollView}. <br/>Seeing
+ * that {@link HorizontalScrollView} only supports horizontal scrolling, this adapter should only be
+ * used with a {@link }.
  *
  * @author amit
- *
  */
 public class HorizontalScrollViewOverScrollDecorAdapter implements IOverScrollDecoratorAdapter {
 

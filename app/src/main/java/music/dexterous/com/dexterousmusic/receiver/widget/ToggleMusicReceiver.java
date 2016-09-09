@@ -3,7 +3,6 @@ package music.dexterous.com.dexterousmusic.receiver.widget;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 

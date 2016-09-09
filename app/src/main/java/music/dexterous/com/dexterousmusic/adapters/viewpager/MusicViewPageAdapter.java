@@ -16,9 +16,9 @@ import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
 
     //    public static final int RECENT_PLAYED = 0;
-    public static final int ALL_SONGS = 0;
+    public static final int ALL_SONGS  = 0;
     public static final int ALL_ARTIST = 1;
-    public static final int ALL_ALBUM = 2;
+    public static final int ALL_ALBUM  = 2;
 
     protected static final String[] titles = UiUtils.mHomeTabHeaderTittle;
 

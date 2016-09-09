@@ -1,150 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<RelativeLayout
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content"
+    android:orientation = "vertical"
+    >
 
     <!-- small bar -->
     <RelativeLayout
-        android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/home_activity_bottom_bar"
-        android:visibility="visible">
+        android:id = "@+id/bottom_bar"
+        android:layout_width = "match_parent"
+        android:layout_height = "@dimen/home_activity_bottom_bar"
+        android:visibility = "visible"
+        >
 
         <ImageView
-            android:id="@+id/now_playing_imageview"
-            android:layout_width="@dimen/home_activity_bottom_bar"
-            android:layout_height="@dimen/home_activity_bottom_bar"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/bg_1" />
+            android:id = "@+id/now_playing_imageview"
+            android:layout_width = "@dimen/home_activity_bottom_bar"
+            android:layout_height = "@dimen/home_activity_bottom_bar"
+            android:layout_alignParentLeft = "true"
+            android:layout_alignParentTop = "true"
+            android:scaleType = "centerCrop"
+            tools:src = "@drawable/bg_1"
+            />
 
         <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/now_playing_imageview"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin"
-            android:text="Playing"
-            android:textColor="@android:color/holo_purple"
-            android:textSize="@dimen/text_extra_small" />
+            android:id = "@+id/status"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:layout_toRightOf = "@id/now_playing_imageview"
+            android:paddingLeft = "@dimen/activity_horizontal_margin"
+            android:paddingTop = "@dimen/activity_horizontal_margin"
+            android:text = "Playing"
+            android:textColor = "@android:color/holo_purple"
+            android:textSize = "@dimen/text_extra_small"
+            />
 
         <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
-            android:id="@+id/now_playing_song_name_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/status"
-            android:layout_toLeftOf="@+id/toggle_upper"
-            android:layout_toRightOf="@id/now_playing_imageview"
-            android:ellipsize="marquee"
-            android:maxLines="1"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:textSize="@dimen/text_large"
-            app:fontName="Calibri-light.ttf"
-            tools:text="Song Name" />
+            android:id = "@+id/now_playing_song_name_textview"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:layout_below = "@+id/status"
+            android:layout_toLeftOf = "@+id/toggle_upper"
+            android:layout_toRightOf = "@id/now_playing_imageview"
+            android:ellipsize = "marquee"
+            android:maxLines = "1"
+            android:paddingLeft = "@dimen/activity_horizontal_margin"
+            android:textSize = "@dimen/text_large"
+            app:fontName = "Calibri-light.ttf"
+            tools:text = "Song Name"
+            />
 
         <ImageView
-            android:id="@+id/toggle_upper"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            tools:src="@drawable/ic_play_vector" />
+            android:id = "@+id/toggle_upper"
+            android:layout_width = "56dp"
+            android:layout_height = "56dp"
+            android:layout_alignParentRight = "true"
+            android:layout_centerVertical = "true"
+            tools:src = "@drawable/ic_play_vector"
+            />
 
-    </RelativeLayout>
+    </RelativeLayout >
 
     <RelativeLayout
-        android:id="@+id/now_plaiing_innerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible">
+        android:id = "@+id/now_plaiing_innerview"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:visibility = "invisible"
+        >
 
         <ImageView
-            android:id="@+id/album_art"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="8dp"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/bg_1" />
+            android:id = "@+id/album_art"
+            android:layout_width = "200dp"
+            android:layout_height = "200dp"
+            android:layout_centerHorizontal = "true"
+            android:layout_margin = "8dp"
+            android:scaleType = "centerCrop"
+            tools:src = "@drawable/bg_1"
+            />
 
         <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
-            android:id="@+id/song_tittle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/album_art"
-            android:gravity="center"
-            android:lines="1"
-            android:padding="8dp"
-            android:text="01 - Sau Tarah Ke - Dishoom [DJMaza.Cool]"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_extra_large" />
+            android:id = "@+id/song_tittle"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:layout_below = "@id/album_art"
+            android:gravity = "center"
+            android:lines = "1"
+            android:padding = "8dp"
+            android:text = "01 - Sau Tarah Ke - Dishoom [DJMaza.Cool]"
+            android:textColor = "@android:color/white"
+            android:textSize = "@dimen/text_extra_large"
+            />
 
         <LinearLayout
-            android:id="@+id/song_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/song_tittle"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:id = "@+id/song_details"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:layout_below = "@id/song_tittle"
+            android:gravity = "center_horizontal"
+            android:orientation = "horizontal"
+            >
 
             <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
-                android:id="@+id/song_artist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:lines="1"
-                android:padding="8dp"
-                android:text="Artist Name"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_medium" />
+                android:id = "@+id/song_artist"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:gravity = "center"
+                android:lines = "1"
+                android:padding = "8dp"
+                android:text = "Artist Name"
+                android:textColor = "@android:color/white"
+                android:textSize = "@dimen/text_medium"
+                />
 
             <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:lines="1"
-                android:padding="8dp"
-                android:text="|"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_medium" />
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:gravity = "center"
+                android:lines = "1"
+                android:padding = "8dp"
+                android:text = "|"
+                android:textColor = "@android:color/white"
+                android:textSize = "@dimen/text_medium"
+                />
 
             <music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView
-                android:id="@+id/song_album"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:lines="1"
-                android:padding="8dp"
-                android:text="Movie Name"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_medium" />
-        </LinearLayout>
+                android:id = "@+id/song_album"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:gravity = "center"
+                android:lines = "1"
+                android:padding = "8dp"
+                android:text = "Movie Name"
+                android:textColor = "@android:color/white"
+                android:textSize = "@dimen/text_medium"
+                />
+        </LinearLayout >
 
         <include
-            layout="@layout/control_music_widget_upper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/control_music_widget_id"
-            android:layout_below="@id/song_details" />
+            layout = "@layout/control_music_widget_upper"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:layout_above = "@+id/control_music_widget_id"
+            android:layout_below = "@id/song_details"
+            />
 
         <include
-            android:id="@+id/control_music_widget_id"
-            layout="@layout/control_music_widget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/control_music_widget_lower_id" />
+            android:id = "@+id/control_music_widget_id"
+            layout = "@layout/control_music_widget"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:layout_above = "@+id/control_music_widget_lower_id"
+            />
 
 
         <include
-            android:id="@+id/control_music_widget_lower_id"
-            layout="@layout/control_music_widget_lower"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
-    </RelativeLayout>
-</RelativeLayout>
+            android:id = "@+id/control_music_widget_lower_id"
+            layout = "@layout/control_music_widget_lower"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:layout_alignParentBottom = "true"
+            />
+    </RelativeLayout >
+</RelativeLayout >

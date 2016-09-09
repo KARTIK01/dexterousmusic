@@ -26,10 +26,9 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
      * Used to load images asynchronously on a background thread.
      */
     ImageLoader mImageLoader;
-
-    private List<ArtistModel> artistModels;
     Context context;
-
+    private List<ArtistModel> artistModels;
+    private OnAlbumItemClickListener mOnClickListener;
 
     public AllArtistAdapter(List<ArtistModel> artistModels, Context context) {
         this.context = context;
@@ -76,12 +75,6 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
         return artistModels.get(pos).getArtistName().substring(0, 1);
     }
 
-    public interface OnAlbumItemClickListener {
-        void onClick(View view, int position);
-    }
-
-    private OnAlbumItemClickListener mOnClickListener;
-
     public void setOnItemClickListener(OnAlbumItemClickListener onClickListener) {
         mOnClickListener = onClickListener;
     }
@@ -93,6 +86,10 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
             c = '#';
         }
         return c;
+    }
+
+    public interface OnAlbumItemClickListener {
+        void onClick(View view, int position);
     }
 
 }

@@ -20,9 +20,8 @@ public class PlayMusicOnCompletionListener implements DexterousMediaPlayer.OnCom
     }
 
     /**
-     * Will be called when the music completes - either when the
-     * user presses 'next' or when the music ends or when the user
-     * selects another track.
+     * Will be called when the music completes - either when the user presses 'next' or when the
+     * music ends or when the user selects another track.
      */
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {

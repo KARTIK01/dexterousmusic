@@ -21,8 +21,8 @@ public class RsBlur {
             Allocation input =
                     Allocation.createFromBitmap(rs, bitmap, Allocation.MipmapControl.MIPMAP_NONE,
                             Allocation.USAGE_SCRIPT);
-            Allocation output = Allocation.createTyped(rs, input.getType());
-            ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+            Allocation          output = Allocation.createTyped(rs, input.getType());
+            ScriptIntrinsicBlur blur   = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
 
             blur.setInput(input);
             blur.setRadius(radius);

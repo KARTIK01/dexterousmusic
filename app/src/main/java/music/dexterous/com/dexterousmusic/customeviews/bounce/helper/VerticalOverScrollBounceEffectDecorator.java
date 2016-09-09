@@ -6,11 +6,65 @@ import android.view.View;
 import music.dexterous.com.dexterousmusic.customeviews.bounce.adapter.IOverScrollDecoratorAdapter;
 
 /**
- * A concrete implementation of {@link OverScrollBounceEffectDecoratorBase} for a vertical orientation.
+ * A concrete implementation of {@link OverScrollBounceEffectDecoratorBase} for a vertical
+ * orientation.
  *
  * @author amit
  */
 public class VerticalOverScrollBounceEffectDecorator extends OverScrollBounceEffectDecoratorBase {
+
+    /**
+     * C'tor, creating the effect with default arguments: <br/>Touch-drag ratio in 'forward'
+     * direction will be set to DEFAULT_TOUCH_DRAG_MOVE_RATIO_FWD. <br/>Touch-drag ratio in
+     * 'backwards' direction will be set to DEFAULT_TOUCH_DRAG_MOVE_RATIO_BCK. <br/>Deceleration
+     * factor (for the bounce-back effect) will be set to DEFAULT_DECELERATE_FACTOR.
+     *
+     * @param viewAdapter The view's encapsulation.
+     */
+    public VerticalOverScrollBounceEffectDecorator(IOverScrollDecoratorAdapter viewAdapter) {
+        this(viewAdapter, DEFAULT_TOUCH_DRAG_MOVE_RATIO_FWD, DEFAULT_TOUCH_DRAG_MOVE_RATIO_BCK, DEFAULT_DECELERATE_FACTOR);
+    }
+
+    /**
+     * C'tor, creating the effect with explicit arguments.
+     *
+     * @param viewAdapter       The view's encapsulation.
+     * @param touchDragRatioFwd Ratio of touch distance to actual drag distance when in 'forward'
+     *                          direction.
+     * @param touchDragRatioBck Ratio of touch distance to actual drag distance when in 'backward'
+     *                          direction (opposite to initial one).
+     * @param decelerateFactor  Deceleration factor used when decelerating the motion to create the
+     *                          bounce-back effect.
+     */
+    public VerticalOverScrollBounceEffectDecorator(IOverScrollDecoratorAdapter viewAdapter,
+                                                   float touchDragRatioFwd, float touchDragRatioBck, float decelerateFactor) {
+        super(viewAdapter, decelerateFactor, touchDragRatioFwd, touchDragRatioBck);
+
+        // Some setup on the view itself.
+        mViewAdapter.getView().setOnTouchListener(this);
+        mViewAdapter.getView().setOverScrollMode(View.OVER_SCROLL_NEVER);
+    }
+
+    @Override
+    protected MotionAttributes createMotionAttributes() {
+        return new MotionAttributesVertical();
+    }
+
+    @Override
+    protected AnimationAttributes createAnimationAttributes() {
+        return new AnimationAttributesVertical();
+    }
+
+    @Override
+    protected void translateView(View view, float offset) {
+        view.setTranslationY(offset);
+    }
+
+    @Override
+    protected void translateViewAndEvent(View view, float offset, MotionEvent event) {
+        view.setTranslationY(offset);
+        event.offsetLocation(offset - event.getY(0), 0f);
+    }
 
     protected static class MotionAttributesVertical extends MotionAttributes {
 
@@ -48,56 +102,5 @@ public class VerticalOverScrollBounceEffectDecorator extends OverScrollBounceEff
             mAbsOffset = view.getTranslationY();
             mMaxOffset = view.getHeight();
         }
-    }
-
-    /**
-     * C'tor, creating the effect with default arguments:
-     * <br/>Touch-drag ratio in 'forward' direction will be set to DEFAULT_TOUCH_DRAG_MOVE_RATIO_FWD.
-     * <br/>Touch-drag ratio in 'backwards' direction will be set to DEFAULT_TOUCH_DRAG_MOVE_RATIO_BCK.
-     * <br/>Deceleration factor (for the bounce-back effect) will be set to DEFAULT_DECELERATE_FACTOR.
-     *
-     * @param viewAdapter The view's encapsulation.
-     */
-    public VerticalOverScrollBounceEffectDecorator(IOverScrollDecoratorAdapter viewAdapter) {
-        this(viewAdapter, DEFAULT_TOUCH_DRAG_MOVE_RATIO_FWD, DEFAULT_TOUCH_DRAG_MOVE_RATIO_BCK, DEFAULT_DECELERATE_FACTOR);
-    }
-
-    /**
-     * C'tor, creating the effect with explicit arguments.
-     * @param viewAdapter The view's encapsulation.
-     * @param touchDragRatioFwd Ratio of touch distance to actual drag distance when in 'forward' direction.
-     * @param touchDragRatioBck Ratio of touch distance to actual drag distance when in 'backward'
-     *                          direction (opposite to initial one).
-     * @param decelerateFactor Deceleration factor used when decelerating the motion to create the
-     *                         bounce-back effect.
-     */
-    public VerticalOverScrollBounceEffectDecorator(IOverScrollDecoratorAdapter viewAdapter,
-                                                   float touchDragRatioFwd, float touchDragRatioBck, float decelerateFactor) {
-        super(viewAdapter, decelerateFactor, touchDragRatioFwd, touchDragRatioBck);
-
-        // Some setup on the view itself.
-        mViewAdapter.getView().setOnTouchListener(this);
-        mViewAdapter.getView().setOverScrollMode(View.OVER_SCROLL_NEVER);
-    }
-
-    @Override
-    protected MotionAttributes createMotionAttributes() {
-        return new MotionAttributesVertical();
-    }
-
-    @Override
-    protected AnimationAttributes createAnimationAttributes() {
-        return new AnimationAttributesVertical();
-    }
-
-    @Override
-    protected void translateView(View view, float offset) {
-        view.setTranslationY(offset);
-    }
-
-    @Override
-    protected void translateViewAndEvent(View view, float offset, MotionEvent event) {
-        view.setTranslationY(offset);
-        event.offsetLocation(offset - event.getY(0), 0f);
     }
 }

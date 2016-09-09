@@ -6,30 +6,32 @@ import android.view.View;
 public abstract class ABaseTransformer implements ViewPager.PageTransformer {
 
     /**
+     * Same as {@link Math#min(double, double)} without double casting, zero closest to infinity
+     * handling, or NaN support.
+     */
+    protected static final float min(float val, float min) {
+        return val < min ? min : val;
+    }
+
+    /**
      * Called each {@link #transformPage(android.view.View, float)}.
      *
      * @param page     Apply the transformation to this page
      * @param position Position of page relative to the current front-and-center position of the
-     *                 pager. 0 is front and
-     *                 center. 1 is one full page position to the right, and -1 is one page
-     *                 position
-     *                 to the left.
+     *                 pager. 0 is front and center. 1 is one full page position to the right, and
+     *                 -1 is one page position to the left.
      */
     protected abstract void onTransform(View page, float position);
 
     /**
-     * Apply a property transformation to the given page. For most use cases, this method should
-     * not
-     * be overridden.
-     * Instead use {@link #transformPage(android.view.View, float)} to perform typical
-     * transformations.
+     * Apply a property transformation to the given page. For most use cases, this method should not
+     * be overridden. Instead use {@link #transformPage(android.view.View, float)} to perform
+     * typical transformations.
      *
      * @param page     Apply the transformation to this page
      * @param position Position of page relative to the current front-and-center position of the
-     *                 pager. 0 is front and
-     *                 center. 1 is one full page position to the right, and -1 is one page
-     *                 position
-     *                 to the left.
+     *                 pager. 0 is front and center. 1 is one full page position to the right, and
+     *                 -1 is one page position to the left.
      */
     @Override
     public void transformPage(View page, float position) {
@@ -39,10 +41,8 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
     }
 
     /**
-     * If the position offset of a fragment is less than negative one or greater than one,
-     * returning
-     * true will set the
-     * fragment alpha to 0f. Otherwise fragment alpha is always defaulted to 1f.
+     * If the position offset of a fragment is less than negative one or greater than one, returning
+     * true will set the fragment alpha to 0f. Otherwise fragment alpha is always defaulted to 1f.
      */
     protected boolean hideOffscreenPages() {
         return true;
@@ -60,20 +60,14 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
      * #onTransform(android.view.View, float)}.
      * <p>
      * The default implementation attempts to reset all view properties. This is useful when
-     * toggling transforms that do
-     * not modify the same page properties. For instance changing from a transformation that
-     * applies
-     * rotation to a
-     * transformation that fades can inadvertently leave a fragment stuck with a rotation or with
-     * some degree of applied
-     * alpha.
+     * toggling transforms that do not modify the same page properties. For instance changing from a
+     * transformation that applies rotation to a transformation that fades can inadvertently leave a
+     * fragment stuck with a rotation or with some degree of applied alpha.
      *
      * @param page     Apply the transformation to this page
      * @param position Position of page relative to the current front-and-center position of the
-     *                 pager. 0 is front and
-     *                 center. 1 is one full page position to the right, and -1 is one page
-     *                 position
-     *                 to the left.
+     *                 pager. 0 is front and center. 1 is one full page position to the right, and
+     *                 -1 is one page position to the left.
      */
     protected void onPreTransform(View page, float position) {
         final float width = page.getWidth();
@@ -103,20 +97,10 @@ public abstract class ABaseTransformer implements ViewPager.PageTransformer {
      *
      * @param page     Apply the transformation to this page
      * @param position Position of page relative to the current front-and-center position of the
-     *                 pager. 0 is front and
-     *                 center. 1 is one full page position to the right, and -1 is one page
-     *                 position
-     *                 to the left.
+     *                 pager. 0 is front and center. 1 is one full page position to the right, and
+     *                 -1 is one page position to the left.
      */
     protected void onPostTransform(View page, float position) {
-    }
-
-    /**
-     * Same as {@link Math#min(double, double)} without double casting, zero closest to infinity
-     * handling, or NaN support.
-     */
-    protected static final float min(float val, float min) {
-        return val < min ? min : val;
     }
 
 }

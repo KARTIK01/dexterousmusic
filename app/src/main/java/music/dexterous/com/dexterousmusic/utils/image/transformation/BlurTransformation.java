@@ -18,10 +18,10 @@ import music.dexterous.com.dexterousmusic.utils.image.transformation.internal.Rs
 
 public class BlurTransformation implements Transformation<Bitmap> {
 
-    private static int MAX_RADIUS = 25;
+    private static int MAX_RADIUS            = 25;
     private static int DEFAULT_DOWN_SAMPLING = 1;
 
-    private Context mContext;
+    private Context    mContext;
     private BitmapPool mBitmapPool;
 
     private int mRadius;
@@ -58,9 +58,9 @@ public class BlurTransformation implements Transformation<Bitmap> {
     public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
         Bitmap source = resource.get();
 
-        int width = source.getWidth();
-        int height = source.getHeight();
-        int scaledWidth = width / mSampling;
+        int width        = source.getWidth();
+        int height       = source.getHeight();
+        int scaledWidth  = width / mSampling;
         int scaledHeight = height / mSampling;
 
         Bitmap bitmap = mBitmapPool.get(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888);

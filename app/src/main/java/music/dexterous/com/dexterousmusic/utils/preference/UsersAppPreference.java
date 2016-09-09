@@ -5,12 +5,15 @@ package music.dexterous.com.dexterousmusic.utils.preference;
  */
 public class UsersAppPreference {
 
-    private static final String HIDE_SMALL_CLIPS_DURATIONS = "hide_small_clips_durations";
+    private static final String HIDE_SMALL_CLIPS_DURATIONS  = "hide_small_clips_durations";
     private static final String MUSIC_PLAY_ON_INSET_HEADSET = "music_play_on_inset_headset";
-    private static final String MUSIC_REPEAT_MODE_TYPE = "music_repeat_mode_type";
-    private static final String MUSIC_SHUFFLE_MODE = "music_shuffle_mode";
-    private static final String MUSIC_NOTIFICATION = "music_notification";
+    private static final String MUSIC_REPEAT_MODE_TYPE      = "music_repeat_mode_type";
+    private static final String MUSIC_SHUFFLE_MODE          = "music_shuffle_mode";
+    private static final String MUSIC_NOTIFICATION          = "music_notification";
 
+    public static long getHideSmallClipsDurations() {
+        return AppPreference.getLong(HIDE_SMALL_CLIPS_DURATIONS, DefaultPreference.HIDE_SMALL_CLIPS_DURATIONS_DEFAULT);
+    }
 
     /**
      * Set the duration in mill-seconds to hide songs clips which are less than that duration
@@ -21,10 +24,12 @@ public class UsersAppPreference {
         AppPreference.putLong(HIDE_SMALL_CLIPS_DURATIONS, millsec);
     }
 
-    public static long getHideSmallClipsDurations() {
-        return AppPreference.getLong(HIDE_SMALL_CLIPS_DURATIONS, DefaultPreference.HIDE_SMALL_CLIPS_DURATIONS_DEFAULT);
+    /**
+     * @return true when user wants to auto start his music on insert headset false otherwise
+     */
+    public static boolean getMusicPlayONInsetHeadSet() {
+        return AppPreference.getBoolean(MUSIC_PLAY_ON_INSET_HEADSET, DefaultPreference.MUSIC_PLAY_ON_INSET_HEADSET_DEFAULT);
     }
-
 
     /**
      * Set true when user wants to auto start his music when he insert his headset
@@ -36,17 +41,16 @@ public class UsersAppPreference {
     }
 
     /**
-     * @return true when user wants to auto start his music on insert headset
-     * false otherwise
+     * @return true when user wants to auto start his music on insert headset false otherwise
      */
-    public static boolean getMusicPlayONInsetHeadSet() {
-        return AppPreference.getBoolean(MUSIC_PLAY_ON_INSET_HEADSET, DefaultPreference.MUSIC_PLAY_ON_INSET_HEADSET_DEFAULT);
+    public static int getMusicRepeatModeSetting() {
+        return AppPreference.getInt(MUSIC_REPEAT_MODE_TYPE, RepeatModeContants.REPEAT_CURRENT_PLAYLIST);
     }
 
     /**
-     * Set value to repeat current song (0) {@link #, RepeatModeContants.REPEAT_CURRENT_SONG}
-     * or repeat playlist (1)  {@link #, RepeatModeContants.REPEAT_CURRENT_PLAYLIST}
-     * or end when all songs played (2) {@link #, RepeatModeContants.REPEAT_MODE_OFF}
+     * Set value to repeat current song (0) {@link #, RepeatModeContants.REPEAT_CURRENT_SONG} or
+     * repeat playlist (1)  {@link #, RepeatModeContants.REPEAT_CURRENT_PLAYLIST} or end when all
+     * songs played (2) {@link #, RepeatModeContants.REPEAT_MODE_OFF}
      * <p>
      * default is repeat playlist (1)
      *
@@ -55,15 +59,6 @@ public class UsersAppPreference {
     public static void setMusicRepeatModeSetting(int autoStart) {
         AppPreference.putInt(MUSIC_REPEAT_MODE_TYPE, autoStart);
     }
-
-    /**
-     * @return true when user wants to auto start his music on insert headset
-     * false otherwise
-     */
-    public static int getMusicRepeatModeSetting() {
-        return AppPreference.getInt(MUSIC_REPEAT_MODE_TYPE, RepeatModeContants.REPEAT_CURRENT_PLAYLIST);
-    }
-
 
     public static boolean isMusicShuffle() {
         return AppPreference.getBoolean(MUSIC_SHUFFLE_MODE, DefaultPreference.MUSIC_SHUFFLE_MODE_DEFAULT);
@@ -83,17 +78,17 @@ public class UsersAppPreference {
 
 
     static public class RepeatModeContants {
-        public static final int REPEAT_CURRENT_SONG = 0;
+        public static final int REPEAT_CURRENT_SONG     = 0;
         public static final int REPEAT_CURRENT_PLAYLIST = 1;
-        public static final int REPEAT_MODE_OFF = 2;
+        public static final int REPEAT_MODE_OFF         = 2;
     }
 
     static public class DefaultPreference {
 
-        public static boolean MUSIC_NOTIFICATION_DEFAULT = true;
-        public static boolean MUSIC_SHUFFLE_MODE_DEFAULT = true;
+        public static boolean MUSIC_NOTIFICATION_DEFAULT          = true;
+        public static boolean MUSIC_SHUFFLE_MODE_DEFAULT          = true;
         public static boolean MUSIC_PLAY_ON_INSET_HEADSET_DEFAULT = true;
-        public static int HIDE_SMALL_CLIPS_DURATIONS_DEFAULT = 100 * 1000; // 100 seconds
+        public static int     HIDE_SMALL_CLIPS_DURATIONS_DEFAULT  = 100 * 1000; // 100 seconds
 
 
         /**

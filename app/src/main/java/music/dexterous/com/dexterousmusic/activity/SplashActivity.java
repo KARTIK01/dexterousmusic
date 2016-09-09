@@ -9,7 +9,7 @@ import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
 
 public class SplashActivity extends AppCompatActivity {
 
-    public static final int INTIAL_PAGE_INDEX = 2 ;
+    public static final int INTIAL_PAGE_INDEX = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

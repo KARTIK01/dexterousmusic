@@ -10,7 +10,7 @@ import music.dexterous.com.dexterousmusic.customeviews.bounce.helper.OverScrollD
 /**
  * Created by kartik on 31/08/16.
  */
-public class BounceBackViewPager extends ViewPager{
+public class BounceBackViewPager extends ViewPager {
 
     public BounceBackViewPager(Context context) {
         super(context);

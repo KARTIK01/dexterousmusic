@@ -59,7 +59,7 @@ public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarCha
                 DexterousPlayMusicService.mDexterousMediaPlayer.isPlaying()) {
             safeUnSubscription();
 
-            int totalDuration = mediaPlayer.getDuration();
+            int totalDuration   = mediaPlayer.getDuration();
             int currentPosition = progressToTimer(seekBar.getProgress(), totalDuration);
 
             // forward or backward to certain seconds
@@ -78,7 +78,7 @@ public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarCha
      */
     public void updateProgressBar() {
 
-        int START_DELAY = 0;
+        int START_DELAY  = 0;
         int INTERVEL_GAP = 100;
 
         safeUnSubscription();
@@ -93,14 +93,14 @@ public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarCha
         if (mediaPlayer == null)
             mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
         if (mediaPlayer.isPlaying()) {
-            long totalDuration = mediaPlayer.getDuration();
+            long totalDuration   = mediaPlayer.getDuration();
             long currentDuration = mediaPlayer.getCurrentPosition();
 
             // Updating progress bar
             int progress = (int) (getProgressPercentage(currentDuration, totalDuration));
             //Log.d("Progress", ""+progress);
             setProgress(progress);
-        }else{
+        } else {
             safeUnSubscription();
         }
     }
@@ -116,7 +116,7 @@ public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarCha
         Double percentage = (double) 0;
 
         long currentSeconds = (int) (currentDuration / 1000);
-        long totalSeconds = (int) (totalDuration / 1000);
+        long totalSeconds   = (int) (totalDuration / 1000);
 
         // calculating percentage
         percentage = (((double) currentSeconds) / totalSeconds) * 100;
@@ -146,8 +146,8 @@ public class MusicControlSeekBar extends SeekBar implements SeekBar.OnSeekBarCha
      * updates notification when user move forward seekbar
      */
     private void updateNotification() {
-        NotificationMusic notificationMusic = AbstractMusicControlService.notification;
-        MediaPlayer mDexterousMediaPlayer = AbstractMusicControlService.mDexterousMediaPlayer;
+        NotificationMusic notificationMusic     = AbstractMusicControlService.notification;
+        MediaPlayer       mDexterousMediaPlayer = AbstractMusicControlService.mDexterousMediaPlayer;
         if (notificationMusic != null && mDexterousMediaPlayer != null)
             notificationMusic.setUpSuscription(mDexterousMediaPlayer.getCurrentPosition() / 1000,
                     mDexterousMediaPlayer.getDuration() / 1000);

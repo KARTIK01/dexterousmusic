@@ -22,6 +22,7 @@ public class AlbumSongsAdapter extends RecyclerView.Adapter<AlbumSongsViewHolder
         implements RecyclerViewFastScroller.BubbleTextGetter {
 
     private List<Music> mDataArray;
+    private OnAlbumSongsItemClickListener mOnClickListener;
 
     public AlbumSongsAdapter(List<Music> dataset) {
         mDataArray = dataset;
@@ -60,9 +61,6 @@ public class AlbumSongsAdapter extends RecyclerView.Adapter<AlbumSongsViewHolder
 
         return mDataArray.get(pos).getSONG_TITLE().substring(0, 1);
     }
-
-
-    private OnAlbumSongsItemClickListener mOnClickListener;
 
     public void setOnItemClickListener(OnAlbumSongsItemClickListener onClickListener) {
         mOnClickListener = onClickListener;

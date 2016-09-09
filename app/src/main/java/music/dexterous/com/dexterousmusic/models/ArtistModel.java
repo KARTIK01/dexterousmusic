@@ -16,6 +16,14 @@ public class ArtistModel implements Parcelable {
     private String artistName;
     private List<Music> musicArrayList = new ArrayList<>();
 
+    public ArtistModel() {
+    }
+
+    protected ArtistModel(Parcel in) {
+        this.artistName = in.readString();
+        this.musicArrayList = in.createTypedArrayList(Music.CREATOR);
+    }
+
     public String getArtistName() {
         return artistName;
     }
@@ -54,7 +62,6 @@ public class ArtistModel implements Parcelable {
         return false;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -64,14 +71,6 @@ public class ArtistModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.artistName);
         dest.writeTypedList(this.musicArrayList);
-    }
-
-    public ArtistModel() {
-    }
-
-    protected ArtistModel(Parcel in) {
-        this.artistName = in.readString();
-        this.musicArrayList = in.createTypedArrayList(Music.CREATOR);
     }
 
     public static final Creator<ArtistModel> CREATOR = new Creator<ArtistModel>() {

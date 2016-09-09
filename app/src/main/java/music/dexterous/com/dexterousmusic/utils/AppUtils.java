@@ -1,4 +1,3 @@
-
 package music.dexterous.com.dexterousmusic.utils;
 
 import android.os.Build;

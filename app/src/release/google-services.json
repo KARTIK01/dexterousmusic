@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "846450306911",
+    "firebase_url": "https://dexterousmusic-debug.firebaseio.com",
+    "project_id": "dexterousmusic-debug",
+    "storage_bucket": "dexterousmusic-debug.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846450306911:android:7657436364205225",
+        "android_client_info": {
+          "package_name": "music.dexterous.com.dexterousmusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846450306911-s853fmqedaobq9lh049trgpckbor6l3s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "music.dexterous.com.dexterousmusic.debug",
+            "certificate_hash": "F31818B12D5E825322344766C7588473CBEEFC6F"
+          }
+        },
+        {
+          "client_id": "846450306911-gta9qivmj0tq8d1oqdblncqbn4hnq29o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzcVKXFTq0J49qHsy5f_u2O39KomRkRq0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846450306911-gta9qivmj0tq8d1oqdblncqbn4hnq29o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

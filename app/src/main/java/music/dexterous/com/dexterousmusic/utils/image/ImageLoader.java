@@ -55,8 +55,8 @@ public class ImageLoader extends ImageLoaderHelper {
     }
 
     /**
-     * Load an image from a url into an ImageView using the default placeholder
-     * drawable if available.
+     * Load an image from a url into an ImageView using the default placeholder drawable if
+     * available.
      *
      * @param url             The web URL of an image.
      * @param imageView       The target ImageView to load the image into.
@@ -88,15 +88,15 @@ public class ImageLoader extends ImageLoaderHelper {
     }
 
     /**
-     * Load an image from a url into an ImageView using the default placeholder
-     * drawable if available.
+     * Load an image from a url into an ImageView using the default placeholder drawable if
+     * available.
      *
      * @param url                 The web URL of an image.
      * @param imageView           The target ImageView to load the image into.
      * @param requestListener     A listener to monitor the request result.
-     * @param placeholderOverride A drawable to use as a placeholder for this specific image.
-     *                            If this parameter is present, {@link #mPlaceHolderResId}
-     *                            if ignored for this request.
+     * @param placeholderOverride A drawable to use as a placeholder for this specific image. If
+     *                            this parameter is present, {@link #mPlaceHolderResId} if ignored
+     *                            for this request.
      */
     private void loadImage(String url, ImageView imageView, RequestListener<String, Bitmap> requestListener,
                            Integer placeholderOverride, boolean crop) {
@@ -125,8 +125,8 @@ public class ImageLoader extends ImageLoaderHelper {
     }
 
     /**
-     * Load an image from a url into an ImageView using the default placeholder
-     * drawable if available.
+     * Load an image from a url into an ImageView using the default placeholder drawable if
+     * available.
      *
      * @param url       The web URL of an image.
      * @param imageView The target ImageView to load the image into.

@@ -17,7 +17,8 @@ import music.dexterous.com.dexterousmusic.models.AlbumModel;
 public class HomeActivtyBgImageHelper {
 
     /**
-     * set albumArt of  upDateHomeActivityEvent into imageView if it exist else ramdom other drawable image will be shown
+     * set albumArt of  upDateHomeActivityEvent into imageView if it exist else ramdom other
+     * drawable image will be shown
      *
      * @param upDateHomeActivityEvent
      * @param context
@@ -25,9 +26,9 @@ public class HomeActivtyBgImageHelper {
      * @param isBlur
      */
     public static void setImage(PlayMusicEvent upDateHomeActivityEvent, Context context, ImageView imageView, boolean isBlur) {
-        String albumArtPath = "";
-        String songAlbum = upDateHomeActivityEvent.music.getSONG_ALBUM();
-        AlbumModel albumModel = DataManager.getInstance(context).getAlbumsMap().get(songAlbum);
+        String     albumArtPath = "";
+        String     songAlbum    = upDateHomeActivityEvent.music.getSONG_ALBUM();
+        AlbumModel albumModel   = DataManager.getInstance(context).getAlbumsMap().get(songAlbum);
         if (albumModel != null) {
             albumArtPath = albumModel.getAlbumArtPath();
         }

@@ -9,10 +9,9 @@ import music.dexterous.com.dexterousmusic.adapters.list.AllArtistAdapter;
 import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
 
 public class AllArtistViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    private AllArtistAdapter.OnAlbumItemClickListener mOnClickListener;
-
-    public ImageView mTextView;
+    public ImageView    mTextView;
     public FontTextView albumName;
+    private AllArtistAdapter.OnAlbumItemClickListener mOnClickListener;
 
 
     public AllArtistViewHolder(View itemView, AllArtistAdapter.OnAlbumItemClickListener onClickListener) {

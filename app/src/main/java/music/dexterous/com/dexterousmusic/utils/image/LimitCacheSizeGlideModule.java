@@ -14,7 +14,7 @@ import music.dexterous.com.dexterousmusic.utils.android.InternalStorageSize;
  */
 public class LimitCacheSizeGlideModule implements GlideModule {
 
-    private static final int SMALL_INTERNAL_STORAGE_THRESHOLD_GIB = 6;
+    private static final int SMALL_INTERNAL_STORAGE_THRESHOLD_GIB           = 6;
     private static final int DISK_CACHE_SIZE_FOR_SMALL_INTERNAL_STORAGE_MIB = 80 * 1024 * 1024;
     private static final int DISK_CACHE_SIZE_FOR_LARGE_INTERNAL_STORAGE_MIB = 150 * 1024 * 1024;
 

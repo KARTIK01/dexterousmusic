@@ -17,8 +17,10 @@ public class RandomNumberGeneratorForMusic {
     //TODO improve this algo and handle all cases
 
     /**
-     * @param currentSongPosition is current song index if allready playing else  first song to be shuffled then -1
+     * @param currentSongPosition is current song index if allready playing else  first song to be
+     *                            shuffled then -1
      * @param size                size of playlist
+     *
      * @return newSongPosition
      */
     @DebugLog
@@ -32,7 +34,7 @@ public class RandomNumberGeneratorForMusic {
                 return randomNumberGenerator.nextInt(size);
             } else {
                 int newSongPosition = currentSongPosition;
-                int loopCount = 0;
+                int loopCount       = 0;
                 while (newSongPosition == currentSongPosition && ++loopCount < 8)
                     newSongPosition = randomNumberGenerator.nextInt(size);
                 return newSongPosition;

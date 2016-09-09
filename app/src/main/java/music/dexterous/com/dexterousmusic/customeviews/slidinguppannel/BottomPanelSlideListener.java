@@ -3,7 +3,6 @@ package music.dexterous.com.dexterousmusic.customeviews.slidinguppannel;
 import android.view.View;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
 /**
  * Created by Honey on 8/18/2016.

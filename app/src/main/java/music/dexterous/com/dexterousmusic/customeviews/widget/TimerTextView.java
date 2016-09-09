@@ -22,14 +22,11 @@ import rx.android.schedulers.AndroidSchedulers;
 public class TimerTextView extends FontTextView {
 
     /**
-     * It can be in following stages
-     * STATIC
-     * FORWARD
-     * BACKWARD
+     * It can be in following stages STATIC FORWARD BACKWARD
      */
-    private String textType;
+    private String       textType;
     private Subscription subscription;
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer  mediaPlayer;
 
     public TimerTextView(Context context) {
         super(context);
@@ -67,7 +64,7 @@ public class TimerTextView extends FontTextView {
     }
 
     public void updateTimerTextView() {
-        int START_DELAY = 0;
+        int START_DELAY  = 0;
         int INTERVEL_GAP = 1;
 
         safeUnSubscription();
@@ -83,10 +80,10 @@ public class TimerTextView extends FontTextView {
         if (mediaPlayer == null)
             mediaPlayer = DexterousPlayMusicService.mDexterousMediaPlayer;
         if (mediaPlayer.isPlaying()) {
-            long totalDuration = mediaPlayer.getDuration();
+            long totalDuration   = mediaPlayer.getDuration();
             long currentDuration = mediaPlayer.getCurrentPosition();
             setText(HumanReadableTime.songDurationToDisplay(currentDuration));
-        }else{
+        } else {
             safeUnSubscription();
         }
     }

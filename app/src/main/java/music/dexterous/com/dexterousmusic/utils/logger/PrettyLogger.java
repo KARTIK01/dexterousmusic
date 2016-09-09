@@ -14,11 +14,11 @@ public class PrettyLogger {
 
     private static final boolean DEBUG = BuildConfig.DEBUG;
 
-    public PrettyLogger() {
-    }
-
     static {
         Logger.init("PrettyLogger");
+    }
+
+    public PrettyLogger() {
     }
 
     public static void e(String msg, Exception e) {
@@ -54,4 +54,18 @@ public class PrettyLogger {
     public static void wtf(String msg) {
         if (DEBUG) Logger.wtf(msg);
     }
+
+    public static void json(String msg) {
+        if (DEBUG) Logger.json(msg);
+    }
+
+    public static void xml(String msg) {
+        if (DEBUG) Logger.xml(msg);
+    }
+
+//    Timber.plant(new Timber.DebugTree() {
+//        @Override protected void log(int priority, String tag, String message, Throwable t) {
+//            Logger.log(priority, tag, message, t);
+//        }
+//    });
 }
