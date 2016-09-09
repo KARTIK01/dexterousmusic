@@ -62,6 +62,6 @@ captures/
 hs_err_pid*
 
 #apps build.gradle in git ignore
-/app/build.gradle
-/app/src/main/java/music/dexterous/com/dexterousmusic/customeviews/AudioWidgetController.java
-/app/src/main/java/music/dexterous/com/dexterousmusic/GlobalApplication.java
+#/app/build.gradle
+#/app/src/main/java/music/dexterous/com/dexterousmusic/customeviews/AudioWidgetController.java
+#/app/src/main/java/music/dexterous/com/dexterousmusic/GlobalApplication.java
