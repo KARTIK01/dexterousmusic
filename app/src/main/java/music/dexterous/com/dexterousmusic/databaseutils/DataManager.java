@@ -135,10 +135,24 @@ public class DataManager extends MediaDao {
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     PlaylistModel playlistModel = new PlaylistModel();
-                    String playListName = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.PlaylistsColumns.NAME));
+                    String playListName = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Playlists.NAME));
                     long playListID = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Playlists._ID));
                     playlistModel.setName(playListName);
                     playlistModel.setId(playListID);
+
+                    //TODO imporve this
+                    // For each playlist, get all song IDs
+                    Uri currentUri = MediaStore.Audio.Playlists.Members.getContentUri("external", playListID);
+
+                    Cursor cursor2 = mContext.getContentResolver().query(currentUri, null, null, null, null);
+
+                    // Adding each song's ID to it
+                    for (cursor2.moveToFirst(); !cursor2.isAfterLast(); cursor2.moveToNext()) {
+                        long songId = cursor2.getLong(cursor2.getColumnIndex(MediaStore.Audio.Playlists.Members.AUDIO_ID));
+                        if (allMusic.contains(songId)) {
+                            playlistModel.getSongs().add(allMusic.get((int) songId));
+                        }
+                    }
                     returnListOfPlayList.put(playListName, playlistModel);
                 } while (cursor.moveToNext());
             }
