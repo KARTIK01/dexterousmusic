@@ -2,20 +2,14 @@ package music.dexterous.com.dexterousmusic;
 
 import android.app.Application;
 import android.content.ContextWrapper;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import com.cleveroad.audiowidget.AudioWidget;
-
 import com.crashlytics.android.Crashlytics;
-
-import io.fabric.sdk.android.Fabric;
 
 import org.greenrobot.eventbus.EventBus;
 
 import hugo.weaving.DebugLog;
-import music.dexterous.com.dexterousmusic.customeviews.AudioWidgetController;
+import io.fabric.sdk.android.Fabric;
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
 import music.dexterous.com.dexterousmusic.database.update.UpgradeDpHelper;
@@ -23,26 +17,15 @@ import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.service.DexterousPlayMusicService;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
 import music.dexterous.com.dexterousmusic.utils.Constants;
-import music.dexterous.com.dexterousmusic.utils.preference.OtherPreference;
-import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 import music.dexterous.com.dexterousmusic.utils.other.StrictModeUtil;
 import music.dexterous.com.dexterousmusic.utils.preference.AppPreference;
+import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 
 /**
  * Created by Honey on 7/13/2016.
  */
 public class GlobalApplication extends Application {
 
-
-    //TODO remove theses line when share code
-    /*******************************************************************************/
-    /**
-     * Floating widget
-     */
-    private AudioWidget audioWidget;
-    private AudioWidgetController audioWidgetController;
-    private AudioWidget.Controller controller;
-    /*******************************************************************************/
 
     /**
      * lock object for serialized access of dao session
@@ -86,11 +69,6 @@ public class GlobalApplication extends Application {
 
         startMusicService();
 
-
-        //TODO remove theses line when share code
-        /************************************/
-        setupFloatingAudioWidget();
-        /*************************************/
     }
 
 
@@ -125,38 +103,6 @@ public class GlobalApplication extends Application {
     private void startMusicService() {
         DexterousPlayMusicService.startService(this, DexterousPlayMusicService.INITIALIZE);
     }
-
-
-    //TODO remove theses line when share code
-
-    /*************************************************************************************************************************************/
-    private void setupFloatingAudioWidget() {
-        //TODO check preference
-        if (audioWidget == null) {
-            audioWidget = new AudioWidget.Builder(this)
-                    .build();
-            if (audioWidgetController == null) {
-                controller = audioWidget.controller();
-                controller.onControlsClickListener(audioWidgetController = new AudioWidgetController(this));
-                controller.onWidgetStateChangedListener(audioWidgetController);
-            }
-        }
-    }
-
-    public AudioWidget getAudioWidget() {
-        return audioWidget;
-    }
-
-    public AudioWidgetController getAudioWidgetController() {
-        return audioWidgetController;
-    }
-
-    public AudioWidget.Controller getController() {
-        return controller;
-    }
-
-    /*********************************************************************************************************/
-
 
     /**
      * @return App wide event bus
