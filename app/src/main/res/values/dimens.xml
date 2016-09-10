@@ -33,4 +33,9 @@
     <dimen name = "notification_icon_dimen_medium" >40dp</dimen >
     <dimen name = "notification_icon_dimen_small" >20dp</dimen >
 
+    <!--settings fragment dimensions-->
+    <dimen name="margin_top">60dp</dimen>
+    <dimen name="margin_left">10dp</dimen>
+    <dimen name="margin_right">10dp</dimen>
+
 </resources >

@@ -6,9 +6,9 @@ import com.google.firebase.messaging.RemoteMessage;
 import music.dexterous.com.dexterousmusic.notification.firebase.FireBaseNotificationUpdateApp;
 import music.dexterous.com.dexterousmusic.utils.logger.PrettyLogger;
 
-/**
- * Created by gipsy_danger on 17/8/16.
- */
+
+// * Created by gipsy_danger on 17/8/16.
+
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -22,6 +22,4 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //Calling method to generate notification_big
         FireBaseNotificationUpdateApp.sendNotification(this, remoteMessage.getNotification().getBody());
     }
-
-
 }

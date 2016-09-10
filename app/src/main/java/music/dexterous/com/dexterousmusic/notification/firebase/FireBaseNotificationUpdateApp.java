@@ -1,3 +1,4 @@
+
 package music.dexterous.com.dexterousmusic.notification.firebase;
 
 import android.app.NotificationManager;
@@ -11,9 +12,9 @@ import android.support.v4.app.NotificationCompat;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.DeepLinkingActivity;
 
-/**
- * Created by naren on 22/8/16.
- */
+// Created by naren on 22/8/16.
+
+
 public class FireBaseNotificationUpdateApp extends FireBaseNotification {
 
     private static final int NOTIFICATION_ID = 123;
@@ -39,7 +40,7 @@ public class FireBaseNotificationUpdateApp extends FireBaseNotification {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+       notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
-
 }
+
