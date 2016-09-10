@@ -40,10 +40,16 @@ android {
             versionNameSuffix '-DEBUG'
             manifestPlaceholders = [package: "music.dexterous.com.dexterousmusic"]
         }
+        staging {
+            minifyEnabled true
+            applicationIdSuffix '.staging'
+            versionNameSuffix '-STAGING'
+            manifestPlaceholders = [package: "music.dexterous.com.dexterousmusic"]
+        }
         release {
             shrinkResources true
             minifyEnabled true
-
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [package: "music.dexterous.com.dexterousmusic"]
         }
     }

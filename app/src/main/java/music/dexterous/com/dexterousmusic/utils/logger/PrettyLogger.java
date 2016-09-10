@@ -28,7 +28,8 @@ public class PrettyLogger {
         } else {
             //TODO send exception
         }
-        Crashlytics.logException(e);
+        if (!BuildConfig.BUILD_TYPE.equalsIgnoreCase("debug"))
+            Crashlytics.logException(e);
     }
 
     public static void d(String msg) {
