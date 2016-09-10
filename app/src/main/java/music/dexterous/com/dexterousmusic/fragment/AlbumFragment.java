@@ -105,7 +105,5 @@ public class AlbumFragment extends BaseFragment {
 
         album_fragment_recycler_view.setLayoutManager(new LinearLayoutManager(getActivity()));
         album_fragment_recycler_view.setAdapter(albumSongsAdapter = new AlbumSongsAdapter(albumModel.getMusicArrayList()));
-
-
     }
 }

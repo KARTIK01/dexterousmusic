@@ -37,4 +37,17 @@
     <string name = "share" >Share</string >
     <string name = "title_activity_album_fragment" >AlbumFragment</string >
     <string name = "action_settings" >Settings</string >
+
+    <!--Settings -->
+    <string name="hide_small_clips_duration">Hide Small Clips Duration : </string>
+    <string name="sec">sec</string>
+    <string name="music_play_on_inset_headset">Music Play On Inset Headset</string>
+    <string name="music_repeat_mode_type">Music Repeat Mode Type</string>
+    <string name="music_shuffle_mode">Music Shuffle Mode</string>
+    <string name="mudic_notification">Music Notification</string>
+    <string-array name="spinner_itmes">
+        <item>Current Song</item>
+        <item>All Songs</item>
+    </string-array>
+
 </resources >
