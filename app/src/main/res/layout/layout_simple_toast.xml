@@ -7,8 +7,8 @@
     android:background = "@drawable/bg_simple_toast"
     android:orientation = "horizontal"
     android:paddingBottom = "@dimen/toastUpMargin"
-    android:paddingLeft = "@dimen/toastSideMargin"
-    android:paddingRight = "@dimen/toastSideMargin"
+    android:paddingStart= "@dimen/toastSideMargin"
+    android:paddingEnd= "@dimen/toastSideMargin"
     android:paddingTop = "@dimen/toastUpMargin"
     >
 
