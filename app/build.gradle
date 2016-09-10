@@ -39,6 +39,12 @@ android {
             applicationIdSuffix '.debug'
             versionNameSuffix '-DEBUG'
             manifestPlaceholders = [package: "music.dexterous.com.dexterousmusic"]
+
+            tasks.whenTaskAdded { task ->
+                if (task.name.equals("lint")) {
+                    task.enabled = false
+                }
+            }
         }
         staging {
             minifyEnabled true

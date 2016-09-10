@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:846450306911:android:7657436364205225",
         "android_client_info": {
-          "package_name": "music.dexterous.com.dexterousmusic.stagging"
+          "package_name": "music.dexterous.com.dexterousmusic.staging"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "846450306911-s853fmqedaobq9lh049trgpckbor6l3s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "music.dexterous.com.dexterousmusic.debug",
+            "package_name": "music.dexterous.com.dexterousmusic.staging",
             "certificate_hash": "F31818B12D5E825322344766C7588473CBEEFC6F"
           }
         },
