@@ -60,7 +60,7 @@ public class UiUtils {
     public static Bitmap renderViewOnBitmapForShare(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(),
                 view.getHeight(), Bitmap.Config.RGB_565);
-        Canvas         canvas         = new Canvas(bitmap);
+        Canvas canvas = new Canvas(bitmap);
         CountDownLatch countDownLatch = new CountDownLatch(1);
         mHandler.post(() -> {
             canvas.drawColor(Color.WHITE);
@@ -94,11 +94,12 @@ public class UiUtils {
     static private void loadStrings(Context context) {
         Resources resources = context.getResources();
 
-        String albums    = resources.getString(R.string.albums);
-        String artist    = resources.getString(R.string.artist);
+        String albums = resources.getString(R.string.albums);
+        String artist = resources.getString(R.string.artist);
         String all_songs = resources.getString(R.string.all_songs);
+        String setting = resources.getString(R.string.action_settings);
 //        String recent_played = resources.getString(R.string.recent_played);
-        mHomeTabHeaderTittle = new String[]{all_songs, artist, albums};
+        mHomeTabHeaderTittle = new String[]{all_songs, artist, albums, setting};
     }
 
     static private void loadIcons(Context context) {
