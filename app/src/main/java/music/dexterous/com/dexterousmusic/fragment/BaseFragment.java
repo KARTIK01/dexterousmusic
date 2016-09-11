@@ -28,4 +28,6 @@ public class BaseFragment extends Fragment {
     public EventBus getBus() {
         return GlobalApplication.getBus();
     }
+
+
 }

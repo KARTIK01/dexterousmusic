@@ -32,22 +32,22 @@ public class HomeRootFragment extends BaseFragment {
      */
     private final ABaseTransformer PAGE_TRANSFORMER = new DepthPageTransformer();
     FragmentManager mFragmentManager;
-    SlidingUpPanelLayout     mSlidingUpPanelLayout;
+    SlidingUpPanelLayout mSlidingUpPanelLayout;
     BottomPanelSlideListener mBottomPanelSlideListener;
     FrameLayout mRootHomeContainerBottom;
     FrameLayout mRootHomeContainerUpper;
     NowPlayingFragment mNowPlayingFragment;
-    HomeFragment       homeFragment;
+    HomeFragment homeFragment;
     /**
      * Flag to determine if on resume has been called from oncreate or not
      */
     private boolean mIsComingFromOnCreate = false;
-    private              int    initialPage   = 0;
+    private int initialPage = 0;
 
 
     public static HomeRootFragment newInstance(int initialPage) {
         HomeRootFragment fragment = new HomeRootFragment();
-        Bundle           info     = new Bundle();
+        Bundle info = new Bundle();
         info.putInt(INTITIAL_PAGE, initialPage);
         fragment.setArguments(info);
         return fragment;

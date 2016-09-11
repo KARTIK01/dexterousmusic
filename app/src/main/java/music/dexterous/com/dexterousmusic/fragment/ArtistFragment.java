@@ -28,7 +28,7 @@ import rx.schedulers.Schedulers;
 public class ArtistFragment extends BaseFragment {
 
     public static final String TAG         = ArtistFragment.class.getName();
-    public static final String EXTRA_ALBUM = "EXTRA_ALBUM";
+    public static final String EXTRA_ALBUM = "EXTRA_PLAY_LIST";
 
     ImageView    album_fragment_album_art;
     RecyclerView album_fragment_recycler_view;

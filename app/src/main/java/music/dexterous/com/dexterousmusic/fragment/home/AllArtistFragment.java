@@ -31,12 +31,12 @@ public class AllArtistFragment extends BaseFragment {
 
     RecyclerView mRecyclerView;
 
-    DragScrollBar    dragScrollBar;
+    DragScrollBar dragScrollBar;
     AllArtistAdapter allArtistAdapter;
 
     public static AllArtistFragment newInstance() {
         AllArtistFragment fragment = new AllArtistFragment();
-        Bundle            info     = new Bundle();
+        Bundle info = new Bundle();
         fragment.setArguments(info);
         return fragment;
     }
@@ -65,8 +65,8 @@ public class AllArtistFragment extends BaseFragment {
     protected void initialiseData() {
 
         //All songs List
-        List<Music>       allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
-        List<ArtistModel> albums       = DataManager.getInstance(getActivity()).getArtist();
+        List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
+        List<ArtistModel> albums = DataManager.getInstance(getActivity()).getArtist();
 
         artistModels = DataManager.getInstance(getContext()).getArtist();
 
@@ -83,7 +83,7 @@ public class AllArtistFragment extends BaseFragment {
         dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
 
         allArtistAdapter.setOnItemClickListener((view1, position) -> {
-            ArtistModel    artistModel    = artistModels.get(position);
+            ArtistModel artistModel = artistModels.get(position);
             ArtistFragment artistFragment = ArtistFragment.newInstance(artistModel);
             getActivity()
                     .getSupportFragmentManager()

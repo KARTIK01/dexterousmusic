@@ -27,11 +27,11 @@ public class AllAlbumFragment extends BaseFragment {
     List<AlbumModel> albums;
 
     BounceBackRecyclerView mRecyclerView;
-    AllAlbumsAdapter       allAlbumsAdapter;
+    AllAlbumsAdapter allAlbumsAdapter;
 
     public static AllAlbumFragment newInstance() {
         AllAlbumFragment fragment = new AllAlbumFragment();
-        Bundle           info     = new Bundle();
+        Bundle info = new Bundle();
         fragment.setArguments(info);
         return fragment;
     }
@@ -71,7 +71,7 @@ public class AllAlbumFragment extends BaseFragment {
         mRecyclerView.setAdapter(allAlbumsAdapter = new AllAlbumsAdapter(albums, getActivity()));
 
         allAlbumsAdapter.setOnItemClickListener((view1, position) -> {
-            AlbumModel    albumModel            = albums.get(position);
+            AlbumModel albumModel = albums.get(position);
             AlbumFragment albumFragmentFragment = AlbumFragment.newInstance(albumModel);
             getActivity()
                     .getSupportFragmentManager()

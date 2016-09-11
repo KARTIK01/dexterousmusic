@@ -16,7 +16,9 @@ import java.util.List;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.AllPlayListAdapter;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
+import music.dexterous.com.dexterousmusic.fragment.ArtistFragment;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
+import music.dexterous.com.dexterousmusic.fragment.PlayListFragment;
 import music.dexterous.com.dexterousmusic.models.PlaylistModel;
 
 /**
@@ -75,14 +77,14 @@ public class AllPlayListFragment extends BaseFragment {
         dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
 
         allArtistAdapter.setOnItemClickListener((view1, position) -> {
-//            PlaylistModel artistModel = playlistModels.get(position);
-//            ArtistFragment artistFragment = ArtistFragment.newInstance(artistModel);
-//            getActivity()
-//                    .getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.rootHomeContainerUpper, artistFragment, ArtistFragment.TAG)
-//                    .addToBackStack(null)
-//                    .commitAllowingStateLoss();
+            PlaylistModel artistModel = playlistModels.get(position);
+            PlayListFragment playListFragment = PlayListFragment.newInstance(artistModel);
+            getActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.rootHomeContainerUpper, playListFragment, ArtistFragment.TAG)
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss();
 
         });
     }
