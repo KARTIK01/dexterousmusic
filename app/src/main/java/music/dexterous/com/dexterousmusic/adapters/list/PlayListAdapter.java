@@ -13,7 +13,7 @@ import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.musicutils.HumanReadableTime;
 
 /**
- * Created by Dubey's on 06-08-2016.
+ * Created by Kartik's on 06-08-2016.
  */
 public class PlayListAdapter extends RecyclerView.Adapter<PlayListViewHolder> {
 

@@ -97,7 +97,8 @@ public class UiUtils {
         String albums = resources.getString(R.string.albums);
         String artist = resources.getString(R.string.artist);
         String all_songs = resources.getString(R.string.all_songs);
-        mHomeTabHeaderTittle = new String[]{all_songs, artist, albums};
+        String all_playList = resources.getString(R.string.all_plasy_list);
+        mHomeTabHeaderTittle = new String[]{all_songs, artist, albums, all_playList};
     }
 
     static private void loadIcons(Context context) {

@@ -30,10 +30,11 @@ public class DataManager extends MediaDao {
     private static final Map<String, AlbumModel> albumHash = new HashMap<>();
     private static final Map<String, ArtistModel> artist = new HashMap<>();
     private static final Map<String, PlaylistModel> playList = new HashMap<>();
+    private static final Map<Long, Music> allMusic = new HashMap<>();
     /**
      * All music in user phone
      */
-    private static final List<Music> allMusic = new ArrayList<>();
+//    private static final List<Music> allMusic = new ArrayList<>();
     private static DataManager sInstance;
     private Context mContext;
     /**
@@ -72,7 +73,9 @@ public class DataManager extends MediaDao {
         synchronized (allMusic) {
             List<Music> returnMusicList = mMusicDao.queryBuilder().orderAsc(MusicDao.Properties.SONG_TITLE).list();
             allMusic.clear();
-            allMusic.addAll(returnMusicList);
+            for (Music music : returnMusicList) {
+                allMusic.put(Long.parseLong(music.getSONG_ID()), music);
+            }
         }
     }
 
@@ -91,6 +94,7 @@ public class DataManager extends MediaDao {
                 } while (cursor.moveToNext());
             }
 
+            List<Music> allMusic = getAllMusic();
             for (int i = 0; i < allMusic.size(); i++) {
                 AlbumModel albumModel = returnListOfAlbumNames.get(allMusic.get(i).getSONG_ALBUM());
                 List<Music> albumMusicList = albumModel.getMusicArrayList();
@@ -116,6 +120,7 @@ public class DataManager extends MediaDao {
                 } while (cursor.moveToNext());
             }
 
+            List<Music> allMusic = getAllMusic();
             for (int i = 0; i < allMusic.size(); i++) {
                 ArtistModel artistModel = returnListOfArtistNames.get(allMusic.get(i).getSONG_ARTIST());
                 List<Music> musicList1 = artistModel.getMusicArrayList();
@@ -149,19 +154,13 @@ public class DataManager extends MediaDao {
                     // Adding each song's ID to it
                     for (cursor2.moveToFirst(); !cursor2.isAfterLast(); cursor2.moveToNext()) {
                         long songId = cursor2.getLong(cursor2.getColumnIndex(MediaStore.Audio.Playlists.Members.AUDIO_ID));
-                        if (allMusic.contains(songId)) {
-                            playlistModel.getSongs().add(allMusic.get((int) songId));
+                        if (allMusic.get(songId) != null) {
+                            playlistModel.getSongs().add(allMusic.get(songId));
                         }
                     }
                     returnListOfPlayList.put(playListName, playlistModel);
                 } while (cursor.moveToNext());
             }
-
-//            for (int i = 0; i < allMusic.size(); i++) {
-//                PlaylistModel playlistModel = returnListOfPlayList.get(allMusic.get(i).getSONG_ARTIST());
-//                List<Music> musicList1 = artistModel.getMusicArrayList();
-//                musicList1.add(allMusic.get(i));
-//            }
 
             PrettyLogger.d(returnListOfPlayList);
             playList.clear();
@@ -199,8 +198,20 @@ public class DataManager extends MediaDao {
         return artist;
     }
 
-    public List<Music> getAllMusic() {
+    public Map<Long, Music> getAllSongsMap() {
         return allMusic;
+    }
+
+    public List<Music> getAllMusic() {
+        return new ArrayList<Music>(allMusic.values());
+    }
+
+    public Map<String, PlaylistModel> getAllPlayListMap() {
+        return playList;
+    }
+
+    public List<PlaylistModel> getAllPlayList() {
+        return new ArrayList<PlaylistModel>(playList.values());
     }
 
 
