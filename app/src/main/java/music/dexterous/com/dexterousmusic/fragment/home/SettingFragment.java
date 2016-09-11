@@ -2,6 +2,7 @@ package music.dexterous.com.dexterousmusic.fragment.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
@@ -21,7 +21,7 @@ import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 public class SettingFragment extends BaseFragment {
 
     EditText et_audio_length;
-    ToggleButton tb_inset_headset, tb_shuffle_mode, tb_music_notification;
+    SwitchCompat tb_inset_headset, tb_shuffle_mode, tb_music_notification;
     TextView tv_about_us;
     Spinner sp_music_repeat_mode_tye;
 
@@ -49,9 +49,9 @@ public class SettingFragment extends BaseFragment {
 
     private void setUpComponents(View view) {
         et_audio_length = (EditText) view.findViewById(R.id.et_audio_length);
-        tb_inset_headset = (ToggleButton) view.findViewById(R.id.tb_inset_headset);
-        tb_music_notification = (ToggleButton) view.findViewById(R.id.tb_notification);
-        tb_shuffle_mode = (ToggleButton) view.findViewById(R.id.tb_shuffle_mode);
+        tb_inset_headset = (SwitchCompat) view.findViewById(R.id.tb_inset_headset);
+        tb_music_notification = (SwitchCompat) view.findViewById(R.id.tb_notification);
+        tb_shuffle_mode = (SwitchCompat) view.findViewById(R.id.tb_shuffle_mode);
         tv_about_us = (TextView) view.findViewById(R.id.tv_about_us);
         sp_music_repeat_mode_tye = (Spinner) view.findViewById(R.id.sp_mode_type);
     }
