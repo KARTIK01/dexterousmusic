@@ -8,7 +8,6 @@ import com.crashlytics.android.Crashlytics;
 
 import org.greenrobot.eventbus.EventBus;
 
-import hugo.weaving.DebugLog;
 import io.fabric.sdk.android.Fabric;
 import music.dexterous.com.dexterousmusic.database.DaoMaster;
 import music.dexterous.com.dexterousmusic.database.DaoSession;
@@ -39,7 +38,7 @@ public class GlobalApplication extends Application {
 
 
     @Override
-    @DebugLog
+//    @DebugLog
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
