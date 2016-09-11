@@ -49,5 +49,5 @@
         <item>Current Song</item>
         <item>All Songs</item>
     </string-array>
-
+    <string name="about_us">About Us</string>
 </resources >
