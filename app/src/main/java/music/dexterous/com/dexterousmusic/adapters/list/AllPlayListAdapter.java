@@ -2,6 +2,7 @@ package music.dexterous.com.dexterousmusic.adapters.list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,14 @@ import com.viethoa.RecyclerViewFastScroller;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllArtistViewHolder;
-import music.dexterous.com.dexterousmusic.models.ArtistModel;
+import music.dexterous.com.dexterousmusic.adapters.list.viewholder.AllPlayListViewHolder;
+import music.dexterous.com.dexterousmusic.models.PlaylistModel;
 import music.dexterous.com.dexterousmusic.utils.image.ImageLoader;
 
 /**
  * Created by Kartik's on 06-08-2016.
  */
-public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
+public class AllPlayListAdapter extends RecyclerView.Adapter<AllPlayListViewHolder>
         implements RecyclerViewFastScroller.BubbleTextGetter, INameableAdapter {
 
     /**
@@ -27,10 +28,10 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
      */
     ImageLoader mImageLoader;
     Context context;
-    private List<ArtistModel> artistModels;
+    private List<PlaylistModel> artistModels;
     private OnAlbumItemClickListener mOnClickListener;
 
-    public AllArtistAdapter(List<ArtistModel> artistModels, Context context) {
+    public AllPlayListAdapter(List<PlaylistModel> artistModels, Context context) {
         this.context = context;
         this.artistModels = artistModels;
         mImageLoader = new ImageLoader(context, R.drawable.bg_1);
@@ -44,13 +45,13 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
     }
 
     @Override
-    public AllArtistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AllPlayListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout_artist, parent, false);
-        return new AllArtistViewHolder(v, mOnClickListener);
+        return new AllPlayListViewHolder(v, mOnClickListener);
     }
 
     @Override
-    public void onBindViewHolder(AllArtistViewHolder holder, int position) {
+    public void onBindViewHolder(AllPlayListViewHolder holder, int position) {
 
 //        Bitmap bitmap = BitmapFactory.decodeFile(
 //                mDataArray
@@ -60,7 +61,7 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
 //        PrettyLogger.d(mDataArray.get(position).toString());
 
 //        mImageLoader.loadImage(context,bitmap, holder.mTextView);/
-        holder.albumName.setText(artistModels.get(position).getArtistName());
+        holder.albumName.setText(artistModels.get(position).getName());
     }
 
     @Override
@@ -68,11 +69,11 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
         if (pos < 0 || pos >= artistModels.size())
             return null;
 
-        String name = artistModels.get(pos).getArtistName();
+        String name = artistModels.get(pos).getName();
         if (name == null || name.length() < 1)
             return null;
 
-        return artistModels.get(pos).getArtistName().substring(0, 1);
+        return artistModels.get(pos).getName().substring(0, 1);
     }
 
     public void setOnItemClickListener(OnAlbumItemClickListener onClickListener) {
@@ -81,7 +82,10 @@ public class AllArtistAdapter extends RecyclerView.Adapter<AllArtistViewHolder>
 
     @Override
     public Character getCharacterForElement(int element) {
-        Character c = artistModels.get(element).getArtistName().charAt(0);
+        String name = artistModels.get(element).getName();
+        Character c = '#';
+        if (!TextUtils.isEmpty(name))
+            c = artistModels.get(element).getName().charAt(0);
         if (Character.isDigit(c)) {
             c = '#';
         }

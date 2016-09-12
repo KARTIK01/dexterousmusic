@@ -14,28 +14,28 @@ import com.turingtechnologies.materialscrollbar.DragScrollBar;
 import java.util.List;
 
 import music.dexterous.com.dexterousmusic.R;
-import music.dexterous.com.dexterousmusic.adapters.list.AllArtistAdapter;
-import music.dexterous.com.dexterousmusic.database.Music;
+import music.dexterous.com.dexterousmusic.adapters.list.AllPlayListAdapter;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.ArtistFragment;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.models.ArtistModel;
+import music.dexterous.com.dexterousmusic.fragment.PlayListFragment;
+import music.dexterous.com.dexterousmusic.models.PlaylistModel;
 
 /**
  * Created by Kartik on 8/9/2016.
  */
 
-public class AllArtistFragment extends BaseFragment {
+public class AllPlayListFragment extends BaseFragment {
 
-    List<ArtistModel> artistModels;
+    List<PlaylistModel> playlistModels;
 
     RecyclerView mRecyclerView;
 
     DragScrollBar dragScrollBar;
-    AllArtistAdapter allArtistAdapter;
+    AllPlayListAdapter allArtistAdapter;
 
-    public static AllArtistFragment newInstance() {
-        AllArtistFragment fragment = new AllArtistFragment();
+    public static AllPlayListFragment newInstance() {
+        AllPlayListFragment fragment = new AllPlayListFragment();
         Bundle info = new Bundle();
         fragment.setArguments(info);
         return fragment;
@@ -63,13 +63,7 @@ public class AllArtistFragment extends BaseFragment {
     }
 
     protected void initialiseData() {
-
-        //All songs List
-        List<Music> allSongsList = DataManager.getInstance(getActivity()).getAllMusic();
-        List<ArtistModel> albums = DataManager.getInstance(getActivity()).getArtist();
-
-        artistModels = DataManager.getInstance(getContext()).getArtist();
-
+        playlistModels = DataManager.getInstance(getContext()).getAllPlayList();
     }
 
     protected void initialiseUI(View view) {
@@ -77,18 +71,18 @@ public class AllArtistFragment extends BaseFragment {
         dragScrollBar = (DragScrollBar) view.findViewById(R.id.dragScrollBar);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(allArtistAdapter = new AllArtistAdapter(artistModels, getActivity()));
+        mRecyclerView.setAdapter(allArtistAdapter = new AllPlayListAdapter(playlistModels, getActivity()));
 //
         dragScrollBar.setRecyclerView(mRecyclerView);
         dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
 
         allArtistAdapter.setOnItemClickListener((view1, position) -> {
-            ArtistModel artistModel = artistModels.get(position);
-            ArtistFragment artistFragment = ArtistFragment.newInstance(artistModel);
+            PlaylistModel artistModel = playlistModels.get(position);
+            PlayListFragment playListFragment = PlayListFragment.newInstance(artistModel);
             getActivity()
                     .getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.rootHomeContainerUpper, artistFragment, ArtistFragment.TAG)
+                    .replace(R.id.rootHomeContainerUpper, playListFragment, ArtistFragment.TAG)
                     .addToBackStack(null)
                     .commitAllowingStateLoss();
 

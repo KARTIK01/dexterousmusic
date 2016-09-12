@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.fragment.home;
+package music.dexterous.com.dexterousmusic.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,15 +10,11 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.List;
-
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.adapters.list.PlayListAdapter;
 import music.dexterous.com.dexterousmusic.customeviews.bounce.BounceBackSwipeRecyclerView;
-import music.dexterous.com.dexterousmusic.database.Music;
 import music.dexterous.com.dexterousmusic.event.PlayMusicEvent;
-import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
-import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
+import music.dexterous.com.dexterousmusic.models.PlaylistModel;
 
 /**
  * Created by Kartik on 8/9/2016.
@@ -26,14 +22,17 @@ import music.dexterous.com.dexterousmusic.service.musiccontrol.NowPlayingList;
 
 public class PlayListFragment extends BaseFragment {
 
-    public static final String FRAGMENT_TAG = PlayListFragment.class.getName();
-    List<Music> playListSongList;
+    public static final String TAG = AlbumFragment.class.getName();
+    public static final String EXTRA_PLAY_LIST = "EXTRA_PLAYLIST";
+
     BounceBackSwipeRecyclerView mRecyclerView;
     private PlayListAdapter playListAdapter;
+    PlaylistModel playlistModel;
 
-    public static PlayListFragment newInstance() {
+    public static PlayListFragment newInstance(PlaylistModel playlistModel) {
         PlayListFragment fragment = new PlayListFragment();
-        Bundle           info     = new Bundle();
+        Bundle info = new Bundle();
+        info.putParcelable(EXTRA_PLAY_LIST, playlistModel);
         fragment.setArguments(info);
         return fragment;
     }
@@ -61,20 +60,26 @@ public class PlayListFragment extends BaseFragment {
     }
 
     protected void initialiseData() {
-        playListSongList = NowPlayingList.getInstance().getList();
+        Bundle args = getArguments();
+
+        playlistModel = args != null ? (playlistModel = (PlaylistModel) args
+                .getParcelable(EXTRA_PLAY_LIST)) : null;
+        if (playlistModel == null) {
+            return;
+        }
     }
 
     protected void initialiseUI(View view) {
         mRecyclerView = (BounceBackSwipeRecyclerView) view.findViewById(R.id.play_list_recyclerView);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(playListAdapter = new PlayListAdapter(playListSongList));
+        mRecyclerView.setAdapter(playListAdapter = new PlayListAdapter(playlistModel.getSongs()));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void refreshViewsOnSongChange(PlayMusicEvent playMusicEvent) {
-        playListSongList = NowPlayingList.getInstance().getList();
-        playListAdapter.notifyDataSetChanged();
+//        playListSongList = NowPlayingList.getInstance().getList();
+//        playListAdapter.notifyDataSetChanged();
     }
 
     @Override

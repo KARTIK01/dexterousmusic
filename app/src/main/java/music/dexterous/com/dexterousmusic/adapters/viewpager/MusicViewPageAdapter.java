@@ -6,8 +6,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import music.dexterous.com.dexterousmusic.fragment.home.AllAlbumFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.AllArtistFragment;
+import music.dexterous.com.dexterousmusic.fragment.home.AllPlayListFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.AllSongsFragment;
 import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
+
 /**
  * Created by Kartik on 8/9/2016.
  */
@@ -15,9 +17,10 @@ import music.dexterous.com.dexterousmusic.utils.ui.UiUtils;
 public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
 
     //    public static final int RECENT_PLAYED = 0;
-    public static final int ALL_SONGS  = 0;
+    public static final int ALL_SONGS = 0;
     public static final int ALL_ARTIST = 1;
-    public static final int ALL_ALBUM  = 2;
+    public static final int ALL_ALBUM = 2;
+    public static final int ALL_PLAYLIST = 3;
 
     protected static final String[] titles = UiUtils.mHomeTabHeaderTittle;
 
@@ -36,6 +39,8 @@ public class MusicViewPageAdapter extends FragmentStatePagerAdapter {
                 return AllArtistFragment.newInstance();
             case ALL_ALBUM:
                 return AllAlbumFragment.newInstance();
+            case ALL_PLAYLIST:
+                return AllPlayListFragment.newInstance();
         }
         return AllSongsFragment.newInstance();
     }

@@ -27,15 +27,15 @@ import rx.schedulers.Schedulers;
  */
 public class AlbumFragment extends BaseFragment {
 
-    public static final String TAG         = AlbumFragment.class.getName();
-    public static final String EXTRA_ALBUM = "EXTRA_ALBUM";
+    public static final String TAG = AlbumFragment.class.getName();
+    public static final String EXTRA_ALBUM = "EXTRA_PLAY_LIST";
 
-    ImageView    album_fragment_album_art;
+    ImageView album_fragment_album_art;
     RecyclerView album_fragment_recycler_view;
     FontTextView total_songs;
     FontTextView total_songs_duration;
-    ImageLoader  mImageLoader;
-    AlbumModel   albumModel;
+    ImageLoader mImageLoader;
+    AlbumModel albumModel;
 
     AlbumSongsAdapter albumSongsAdapter;
 
@@ -44,7 +44,7 @@ public class AlbumFragment extends BaseFragment {
 
     public static AlbumFragment newInstance(AlbumModel albumModel) {
         AlbumFragment fragment = new AlbumFragment();
-        Bundle        info     = new Bundle();
+        Bundle info = new Bundle();
         info.putParcelable(EXTRA_ALBUM, albumModel);
         fragment.setArguments(info);
         return fragment;
