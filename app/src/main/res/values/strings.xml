@@ -51,6 +51,7 @@
         <item>All Songs</item>
     </string-array>
     <string name="about_us">About Us</string>
-    <string name="send_feedback">Send FeedBack</string>
+   <string name="send_feedback">Send Feedback</string>
     <string name="rate_us">Rate Us</string>
+
 </resources>

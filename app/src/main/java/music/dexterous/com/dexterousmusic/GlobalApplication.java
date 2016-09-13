@@ -38,7 +38,6 @@ public class GlobalApplication extends Application {
 
 
     @Override
-//    @DebugLog
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
