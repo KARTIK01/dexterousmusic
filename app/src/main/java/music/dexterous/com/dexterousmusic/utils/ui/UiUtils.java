@@ -5,11 +5,15 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.content.ContextCompat;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -121,6 +125,46 @@ public class UiUtils {
         ic_repeat_one_vector = ContextCompat.getDrawable(context, R.drawable.ic_repeat_one_vector);
         ic_repeat_off_vector = ContextCompat.getDrawable(context, R.drawable.ic_repeat_off_vector);
 
+    }
+
+
+    /**
+     * @return width of screen
+     */
+    public static int getScreenWidth(Context context) {
+        int width;
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+
+        Display display = windowManager.getDefaultDisplay();
+        // set screen width and height
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            Point size = new Point();
+            display.getSize(size);
+            width = size.x;
+        } else {
+            //noinspection deprecation
+            width = display.getWidth();
+        }
+        return width;
+    }
+
+    /**
+     * @return height of screen in pixels
+     */
+    public static int getScreenHeight(Context context) {
+        int height;
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+
+        Display display = windowManager.getDefaultDisplay();
+        // set screen width and height
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            Point size = new Point();
+            display.getSize(size);
+            height = size.y;
+        } else {
+            height = display.getHeight();
+        }
+        return height;
     }
 
 }
