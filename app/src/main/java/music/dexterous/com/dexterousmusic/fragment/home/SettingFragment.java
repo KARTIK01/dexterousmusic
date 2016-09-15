@@ -13,8 +13,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import music.dexterous.com.dexterousmusic.R;
+import music.dexterous.com.dexterousmusic.activity.DeepLinkingActivity;
 import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
+import music.dexterous.com.dexterousmusic.utils.MailUtill;
 import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 
 /**
@@ -25,7 +27,7 @@ public class SettingFragment extends BaseFragment implements CompoundButton.OnCh
 
     EditText et_audio_length;
     SwitchCompat tb_inset_headset, tb_shuffle_mode, tb_music_notification;
-    FontTextView tv_about_us,tv_rate_us,tv_send_feedback;
+    FontTextView tv_about_us, tv_rate_us, tv_send_feedback;
     Spinner sp_music_repeat_mode_tye;
     Button btn_reset;
     static final String FRAGMENT_TAG = "SettingFragment";
@@ -48,33 +50,8 @@ public class SettingFragment extends BaseFragment implements CompoundButton.OnCh
         super.onViewCreated(view, savedInstanceState);
         setUpComponents(view);
         setUpDropDown(view);
-        tb_inset_headset.setOnCheckedChangeListener(this);
-        tb_music_notification.setOnCheckedChangeListener(this);
-        tb_shuffle_mode.setOnCheckedChangeListener(this);
-        tv_about_us.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                aboutUs();
-            }
-        });
-        tv_send_feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendFeedback();
-            }
-        });
-        tv_rate_us.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rateUs();
-            }
-        });
-        btn_reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetAll();
-            }
-        });
+        setUpListener();
+        updateView();
     }
 
     private void setUpComponents(View view) {
@@ -89,6 +66,41 @@ public class SettingFragment extends BaseFragment implements CompoundButton.OnCh
         btn_reset = (Button) view.findViewById(R.id.btn_reset);
     }
 
+    private void setUpListener() {
+
+        tb_shuffle_mode.setOnCheckedChangeListener(this);
+
+        tb_inset_headset.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            UsersAppPreference.setMusicPlayONInsetHeadSet(isChecked);
+        });
+
+        tb_music_notification.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            UsersAppPreference.setMusicNotificationToDisplat(isChecked);
+        });
+
+        tv_about_us.setOnClickListener(v -> {
+            //TODO
+        });
+
+        tv_send_feedback.setOnClickListener(v -> {
+            MailUtill.sendFeedbackMail(getActivity());
+        });
+
+        tv_rate_us.setOnClickListener(v -> {
+            startActivity(DeepLinkingActivity.getIntent(getContext(), DeepLinkingActivity.ACTION_OPEN_PLAY_STORE));
+        });
+
+        btn_reset.setOnClickListener(v -> {
+            UsersAppPreference.DefaultPreference.restAll();
+            updateView();
+        });
+    }
+
+    private void updateView() {
+        tb_inset_headset.setChecked(UsersAppPreference.getMusicPlayONInsetHeadSet());
+        tb_music_notification.setChecked(UsersAppPreference.isMusicNotificationToDisplay());
+    }
+
     private void setUpDropDown(View view) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(),
                 R.array.spinner_itmes, android.R.layout.simple_spinner_item);
@@ -96,63 +108,22 @@ public class SettingFragment extends BaseFragment implements CompoundButton.OnCh
         sp_music_repeat_mode_tye.setAdapter(adapter);
     }
 
-    private void hideSmallClipDuration()
-    {
+    private void hideSmallClipDuration() {
         String string = et_audio_length.getText().toString();
         Long milli = Long.valueOf(string).longValue();
         UsersAppPreference.setHideSmallClipsDurations(milli);
     }
 
-    private void musicPlayInsetHeadset()
-    {
+    private void musicShuffle() {
 
-    }
-
-    private void musicRepeatModeType()
-    {
-
-    }
-
-    private void musicShuffle()
-    {
-
-    }
-
-    private  void musicNotification()
-    {
-
-    }
-
-    private void aboutUs()
-    {
-
-    }
-
-    private void sendFeedback()
-    {
-
-    }
-
-    private void rateUs()
-    {
-
-    }
-
-    private void resetAll()
-    {
-        UsersAppPreference.DefaultPreference.restAll();
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId())
-        {
-            case R.id.tb_inset_headset: musicPlayInsetHeadset();
-                                        break;
-            case R.id.tb_notification: musicNotification();
-                                        break;
-            case R.id.tb_shuffle_mode: musicShuffle();
-                                        break;
+        switch (buttonView.getId()) {
+            case R.id.tb_shuffle_mode:
+                musicShuffle();
+                break;
         }
     }
 }
