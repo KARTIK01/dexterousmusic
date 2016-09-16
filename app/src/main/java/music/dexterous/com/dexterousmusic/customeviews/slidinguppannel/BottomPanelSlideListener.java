@@ -5,9 +5,11 @@ import android.view.View;
 import music.dexterous.com.dexterousmusic.R;
 
 /**
- * Created by Honey on 8/18/2016.
+ * Created by Kartik on 8/18/2016.
  */
 public class BottomPanelSlideListener implements SlidingUpPanelLayout.PanelSlideListener {
+
+    static float previousSlideOffSet = 0;
 
     /**
      * Called when a sliding pane's position changes.
@@ -18,6 +20,14 @@ public class BottomPanelSlideListener implements SlidingUpPanelLayout.PanelSlide
     @Override
     public void onPanelSlide(View panel, float slideOffset) {
 
+        panel.findViewById(R.id.bottom_bar).setAlpha(1 - slideOffset);
+        panel.findViewById(R.id.now_plaiing_innerview).setAlpha(slideOffset);
+
+        if (previousSlideOffSet == 0) {
+            panel.findViewById(R.id.bottom_bar).setVisibility(View.VISIBLE);
+            panel.findViewById(R.id.now_plaiing_innerview).setVisibility(View.VISIBLE);
+        }
+        previousSlideOffSet = slideOffset;
     }
 
     /**
@@ -30,14 +40,20 @@ public class BottomPanelSlideListener implements SlidingUpPanelLayout.PanelSlide
 
         switch (newState) {
             case EXPANDED:
-                //TODO improve annimation
                 panel.findViewById(R.id.bottom_bar).setVisibility(View.GONE);
                 panel.findViewById(R.id.now_plaiing_innerview).setVisibility(View.VISIBLE);
+                previousSlideOffSet = 0;
                 break;
             case COLLAPSED:
-                //TODO improve annimation
                 panel.findViewById(R.id.bottom_bar).setVisibility(View.VISIBLE);
                 panel.findViewById(R.id.now_plaiing_innerview).setVisibility(View.GONE);
+                previousSlideOffSet = 0;
+                break;
+            case ANCHORED:
+                break;
+            case HIDDEN:
+                break;
+            case DRAGGING:
                 break;
         }
 
