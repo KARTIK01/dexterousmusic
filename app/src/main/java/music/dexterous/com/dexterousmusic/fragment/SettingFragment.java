@@ -29,7 +29,7 @@ public class SettingFragment extends BaseFragment implements CompoundButton.OnCh
     FontTextView tv_about_us, tv_rate_us, tv_send_feedback;
     Spinner sp_music_repeat_mode_tye;
     Button btn_reset;
-    static final String FRAGMENT_TAG = "SettingFragment";
+    public static final String FRAGMENT_TAG = "SettingFragment";
 
     public static SettingFragment newInstance() {
         SettingFragment fragment = new SettingFragment();
