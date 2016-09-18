@@ -74,7 +74,7 @@ public class AllSongsFragment extends BaseFragment {
         mRecyclerView.setAdapter(recyclerViewAdapterAllSongs = new AllSongsAdapter(allSongsList));
 
         dragScrollBar.setRecyclerView(mRecyclerView);
-        dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
+        dragScrollBar.setIndicator(new AlphabetIndicator(getActivity()), true);
 
         recyclerViewAdapterAllSongs.setOnItemClickListener((view1, position) -> {
             PlayCurrentSong.playCurrentSong(getActivity().getApplicationContext(), allSongsList, position);

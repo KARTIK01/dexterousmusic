@@ -74,7 +74,7 @@ public class AllPlayListFragment extends BaseFragment {
         mRecyclerView.setAdapter(allArtistAdapter = new AllPlayListAdapter(playlistModels, getActivity()));
 //
         dragScrollBar.setRecyclerView(mRecyclerView);
-        dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
+        dragScrollBar.setIndicator(new AlphabetIndicator(getActivity()), true);
 
         allArtistAdapter.setOnItemClickListener((view1, position) -> {
             PlaylistModel artistModel = playlistModels.get(position);

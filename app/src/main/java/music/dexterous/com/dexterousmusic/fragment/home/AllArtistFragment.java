@@ -80,7 +80,7 @@ public class AllArtistFragment extends BaseFragment {
         mRecyclerView.setAdapter(allArtistAdapter = new AllArtistAdapter(artistModels, getActivity()));
 //
         dragScrollBar.setRecyclerView(mRecyclerView);
-        dragScrollBar.addIndicator(new AlphabetIndicator(getActivity()), true);
+        dragScrollBar.setIndicator(new AlphabetIndicator(getActivity()), true);
 
         allArtistAdapter.setOnItemClickListener((view1, position) -> {
             ArtistModel artistModel = artistModels.get(position);
