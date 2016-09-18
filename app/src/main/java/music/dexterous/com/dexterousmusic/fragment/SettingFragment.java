@@ -1,4 +1,4 @@
-package music.dexterous.com.dexterousmusic.fragment.home;
+package music.dexterous.com.dexterousmusic.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import music.dexterous.com.dexterousmusic.R;
 import music.dexterous.com.dexterousmusic.activity.DeepLinkingActivity;
 import music.dexterous.com.dexterousmusic.customeviews.widget.FontTextView;
-import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
 import music.dexterous.com.dexterousmusic.utils.MailUtill;
 import music.dexterous.com.dexterousmusic.utils.preference.UsersAppPreference;
 

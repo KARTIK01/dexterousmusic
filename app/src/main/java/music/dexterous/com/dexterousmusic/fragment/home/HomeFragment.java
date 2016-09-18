@@ -17,6 +17,7 @@ import music.dexterous.com.dexterousmusic.animations.transformation.ABaseTransfo
 import music.dexterous.com.dexterousmusic.animations.transformation.DepthPageTransformer;
 import music.dexterous.com.dexterousmusic.databaseutils.DataManager;
 import music.dexterous.com.dexterousmusic.fragment.BaseFragment;
+import music.dexterous.com.dexterousmusic.fragment.SettingFragment;
 import music.dexterous.com.dexterousmusic.fragment.home.listener.OnHomeViewPagerChangeListener;
 import music.dexterous.com.dexterousmusic.musicutils.ShuffleAllSongs;
 import music.dexterous.com.dexterousmusic.task.TaskExecutor;
